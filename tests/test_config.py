@@ -15,6 +15,9 @@ def test_configuration_loads_checked_in_defaults() -> None:
     assert config.telemetry_enabled is False
     assert config.external_logging_enabled is False
     assert config.require_api_key is False
+    assert config.register.max_archive_members == 1_000
+    assert config.register.max_archive_total_uncompressed_bytes == 256 * 1024 * 1024
+    assert config.register.max_archive_member_uncompressed_bytes == 64 * 1024 * 1024
     assert config.extraction.native_first is True
     assert config.extraction.optional_ocr is True
     assert config.extraction.unsupported_policy == "quarantine"
@@ -86,6 +89,7 @@ def test_missing_explicit_configuration_is_an_error(tmp_path: Path) -> None:
     "section, message",
     [
         ("[extraction]\nnative_first = false", "extraction.native_first"),
+        ("[register]\nmax_archive_members = 0", "register.max_archive_members"),
         ("[analysis]\njurisdiction = 'US'", "analysis.jurisdiction"),
         ("[reporting]\nic_brief_pages = 3", "reporting.ic_brief_pages"),
         ("[model_routing]\ndirect_api_enabled = true", "model_routing.direct_api_enabled"),

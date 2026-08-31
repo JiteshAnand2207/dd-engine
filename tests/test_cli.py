@@ -44,17 +44,12 @@ def test_init_run_and_status_cli(tmp_path: Path, capsys: pytest.CaptureFixture[s
     assert set(status["stages"].values()) == {"not_started"}
 
 
-@pytest.mark.parametrize("stage_name", STAGE_ORDER)
+@pytest.mark.parametrize("stage_name", STAGE_ORDER[1:])
 def test_later_stage_commands_report_not_implemented(
     stage_name: str, tmp_path: Path, capsys: pytest.CaptureFixture[str]
 ) -> None:
     run_path = create_run(load_config(cwd=tmp_path))
     arguments = [stage_name, "--run", str(run_path)]
-    if stage_name == "register":
-        room = tmp_path / "explicit-room"
-        room.mkdir()
-        arguments.extend(["--data-room", str(room)])
-
     exit_code = main(arguments)
 
     captured = capsys.readouterr()

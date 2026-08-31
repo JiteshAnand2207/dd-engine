@@ -6,6 +6,11 @@ external_logging_enabled = false
 public_research_enabled = false
 require_api_key = false
 
+[register]
+max_archive_members = 1000
+max_archive_total_uncompressed_bytes = 268435456
+max_archive_member_uncompressed_bytes = 67108864
+
 [extraction]
 native_first = true
 optional_ocr = true

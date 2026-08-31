@@ -21,7 +21,14 @@ _ALLOWED_KEYS = {
     "public_research_enabled",
     "require_api_key",
 }
-_ALLOWED_SECTIONS = {"dd_engine", "extraction", "analysis", "reporting", "model_routing"}
+_ALLOWED_SECTIONS = {
+    "dd_engine",
+    "register",
+    "extraction",
+    "analysis",
+    "reporting",
+    "model_routing",
+}
 _WORKSTREAMS = (
     "financial",
     "commercial",
@@ -38,6 +45,15 @@ class ExtractionConfig:
     native_first: bool
     optional_ocr: bool
     unsupported_policy: str
+
+
+@dataclass(frozen=True, slots=True)
+class RegisterConfig:
+    """Deterministic limits for safe archive inventory."""
+
+    max_archive_members: int
+    max_archive_total_uncompressed_bytes: int
+    max_archive_member_uncompressed_bytes: int
 
 
 @dataclass(frozen=True, slots=True)
@@ -80,6 +96,7 @@ class EngineConfig:
     external_logging_enabled: bool
     public_research_enabled: bool
     require_api_key: bool
+    register: RegisterConfig
     extraction: ExtractionConfig
     analysis: AnalysisConfig
     reporting: ReportingConfig
@@ -97,6 +114,7 @@ class EngineConfig:
             "runs_dir": str(self.runs_dir),
             "schema_version": self.schema_version,
             "telemetry_enabled": self.telemetry_enabled,
+            "register": asdict(self.register),
             "extraction": asdict(self.extraction),
             "analysis": asdict(self.analysis),
             "reporting": asdict(self.reporting),
@@ -110,6 +128,13 @@ def _require_bool(section: dict[str, Any], key: str, default: bool) -> bool:
     value = section.get(key, default)
     if type(value) is not bool:
         raise ConfigError(f"dd_engine.{key} must be true or false")
+    return value
+
+
+def _require_positive_int(section: dict[str, Any], key: str, default: int) -> int:
+    value = section.get(key, default)
+    if type(value) is not int or value <= 0:
+        raise ConfigError(f"register.{key} must be a positive integer")
     return value
 
 
@@ -131,7 +156,7 @@ def _require_locked_value(
 ) -> Any:
     value = section.get(key, default)
     if value != default:
-        raise ConfigError(f"{section_name}.{key} must be {default!r} in Phase 3")
+        raise ConfigError(f"{section_name}.{key} must be {default!r} in Phase 4")
     return value
 
 
@@ -142,6 +167,24 @@ def _build_extraction(section: dict[str, Any]) -> ExtractionConfig:
         optional_ocr=_require_locked_value(section, "extraction", "optional_ocr", True),
         unsupported_policy=_require_locked_value(
             section, "extraction", "unsupported_policy", "quarantine"
+        ),
+    )
+
+
+def _build_register(section: dict[str, Any]) -> RegisterConfig:
+    allowed = {
+        "max_archive_members",
+        "max_archive_total_uncompressed_bytes",
+        "max_archive_member_uncompressed_bytes",
+    }
+    _reject_unknown(section, "register", allowed)
+    return RegisterConfig(
+        max_archive_members=_require_positive_int(section, "max_archive_members", 1_000),
+        max_archive_total_uncompressed_bytes=_require_positive_int(
+            section, "max_archive_total_uncompressed_bytes", 256 * 1024 * 1024
+        ),
+        max_archive_member_uncompressed_bytes=_require_positive_int(
+            section, "max_archive_member_uncompressed_bytes", 64 * 1024 * 1024
         ),
     )
 
@@ -245,6 +288,7 @@ def _build_config(
         external_logging_enabled=external_logging_enabled,
         public_research_enabled=public_research_enabled,
         require_api_key=require_api_key,
+        register=_build_register(_section(document, "register")),
         extraction=_build_extraction(_section(document, "extraction")),
         analysis=_build_analysis(_section(document, "analysis")),
         reporting=_build_reporting(_section(document, "reporting")),

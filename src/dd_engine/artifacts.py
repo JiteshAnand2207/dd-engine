@@ -40,6 +40,22 @@ def atomic_write_json(path: Path, payload: Mapping[str, Any]) -> None:
             temporary.unlink()
 
 
+def atomic_write_text(path: Path, value: str) -> None:
+    """Write UTF-8 text through an adjacent file and atomically replace it."""
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_name(f".{path.name}.{uuid.uuid4().hex}.tmp")
+    try:
+        with temporary.open("x", encoding="utf-8", newline="\n") as handle:
+            handle.write(value)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, path)
+    finally:
+        if temporary.exists():
+            temporary.unlink()
+
+
 def append_json_line(path: Path, payload: Mapping[str, Any]) -> None:
     """Append one local JSONL event."""
 

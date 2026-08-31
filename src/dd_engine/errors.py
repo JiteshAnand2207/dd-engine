@@ -27,3 +27,11 @@ class ArtifactValidationError(StageTransitionError):
 
 class SourcePathError(DDEngineError):
     """Raised when an explicit source-room path is missing or unsafe."""
+
+
+class InventoryError(DDEngineError):
+    """Raised when a source room cannot be inventoried safely."""
+
+
+class ArchiveSafetyError(InventoryError):
+    """Raised when archive metadata cannot be inspected safely."""

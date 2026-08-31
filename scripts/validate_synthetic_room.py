@@ -730,15 +730,15 @@ def validate(
     room_path: Path,
     manifest_path: Path,
     canonical_path: Path,
-    issues_path: Path,
+    issues_path: Path | None,
     *,
     check_determinism: bool,
+    public_only: bool,
     seed: int,
 ) -> tuple[Validator, dict[str, Any]]:
     room = safe_room_path(room_path)
     manifest = stable_json_load(manifest_path)
     canonical = stable_json_load(canonical_path)
-    issues = stable_json_load(issues_path)
     validator = Validator()
     visible = iter_visible_files(room)
     validate_counts(validator, room, manifest, visible)
@@ -746,25 +746,38 @@ def validate(
     validate_zip(validator, room, manifest)
     validate_structure_and_quirks(validator, room, manifest)
     validate_formats(validator, room, manifest)
-    validate_ground_truth(validator, room, issues)
-    validate_baseline(validator, room, manifest, canonical, issues)
     validate_provenance(validator, room, manifest, canonical)
     canonical_hash_ok = sha256_file(canonical_path) == manifest["canonical_dataset"]["sha256"]
-    issues_hash_ok = sha256_file(issues_path) == manifest["sealed_issue_config"]["sha256"]
-    validator.require(
-        "metadata integrity",
-        canonical_hash_ok and issues_hash_ok,
-        f"canonical={canonical_hash_ok}, sealed_issues={issues_hash_ok}",
-    )
-    if check_determinism:
-        validate_determinism(validator, room, manifest_path, issues_path, seed)
+    planted_issue_count: int | None = None
+    if public_only:
+        validator.require(
+            "public metadata integrity",
+            canonical_hash_ok,
+            f"canonical={canonical_hash_ok}; sealed metadata deliberately not accessed",
+        )
+    else:
+        if issues_path is None:
+            raise ValueError("sealed validation requires an explicit issues path")
+        issues = stable_json_load(issues_path)
+        validate_ground_truth(validator, room, issues)
+        validate_baseline(validator, room, manifest, canonical, issues)
+        issues_hash_ok = sha256_file(issues_path) == manifest["sealed_issue_config"]["sha256"]
+        validator.require(
+            "metadata integrity",
+            canonical_hash_ok and issues_hash_ok,
+            f"canonical={canonical_hash_ok}, sealed_issues={issues_hash_ok}",
+        )
+        planted_issue_count = issues["issue_count"]
+        if check_determinism:
+            validate_determinism(validator, room, manifest_path, issues_path, seed)
     size_bytes = sum(path.stat().st_size for path in visible)
     summary = {
         "ok": validator.ok,
         "room": str(room),
         "visible_files": len(visible),
         "logical_documents": len(manifest["entries"]),
-        "planted_issue_count": issues["issue_count"],
+        "planted_issue_count": planted_issue_count,
+        "public_only": public_only,
         "size_bytes": size_bytes,
         "counts": manifest["counts"],
         "checks": [asdict(check) for check in validator.checks],
@@ -782,10 +795,15 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument(
         "--issues",
         type=Path,
-        default=Path("synthetic/planted_issues/issues.json"),
-        help="sealed post-analysis issue key",
+        default=None,
+        help="explicit sealed post-analysis issue key (required unless --public-only)",
     )
     parser.add_argument("--seed", type=int, default=DEFAULT_SEED)
+    parser.add_argument(
+        "--public-only",
+        action="store_true",
+        help="validate public room metadata without reading sealed planted-issue ground truth",
+    )
     parser.add_argument(
         "--check-determinism",
         action="store_true",
@@ -797,6 +815,13 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
 
 def main(argv: Sequence[str] | None = None) -> int:
     args = parse_args(argv)
+    if args.public_only and args.check_determinism:
+        print(
+            "validation failed: deterministic regeneration requires sealed generator inputs; "
+            "omit --check-determinism in public-only mode",
+            file=sys.stderr,
+        )
+        return 1
     try:
         validator, summary = validate(
             args.room,
@@ -804,6 +829,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             args.canonical,
             args.issues,
             check_determinism=args.check_determinism,
+            public_only=args.public_only,
             seed=args.seed,
         )
     except (

@@ -40,3 +40,13 @@ def test_nested_ground_truth_directory_fails_closed(tmp_path: Path) -> None:
 
     with pytest.raises(SourcePathError, match="forbidden planted-issues"):
         list(iter_data_room_files(room))
+
+
+def test_relative_room_path_is_resolved_from_current_directory(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    room = tmp_path / "relative room"
+    room.mkdir()
+    monkeypatch.chdir(tmp_path)
+
+    assert validate_data_room_path(Path("relative room")) == room.resolve()

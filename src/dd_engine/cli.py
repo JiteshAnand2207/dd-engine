@@ -1,4 +1,4 @@
-"""Command-line interface for the Phase 3 engine foundation."""
+"""Command-line interface for the Phase 4 engine foundation."""
 
 from __future__ import annotations
 
@@ -13,8 +13,8 @@ from dd_engine.config import load_config
 from dd_engine.constants import STAGE_ORDER
 from dd_engine.doctor import format_doctor_report, run_doctor
 from dd_engine.errors import DDEngineError
+from dd_engine.inventory import RegisterLimits, register_room
 from dd_engine.runs import create_run, load_manifest
-from dd_engine.source_paths import validate_data_room_path
 from dd_engine.state import overall_state
 
 NOT_IMPLEMENTED_EXIT = 3
@@ -49,15 +49,26 @@ def build_parser() -> argparse.ArgumentParser:
 
     for stage_name in STAGE_ORDER:
         stage_parser = subparsers.add_parser(
-            stage_name, help=f"run the {stage_name} stage (interface only in Phase 3)"
+            stage_name,
+            help=(
+                "inventory the complete source room"
+                if stage_name == "register"
+                else f"run the {stage_name} stage (interface only in Phase 4)"
+            ),
         )
         stage_parser.add_argument("--run", required=True, type=Path, help="run directory")
         if stage_name == "register":
             stage_parser.add_argument(
+                "--room",
                 "--data-room",
+                dest="room",
                 required=True,
                 type=Path,
                 help="explicit read-only source-room directory",
+            )
+            _add_config_argument(stage_parser)
+            stage_parser.add_argument(
+                "--json", action="store_true", help="emit machine-readable JSON"
             )
     return parser
 
@@ -104,6 +115,37 @@ def _status_command(arguments: argparse.Namespace) -> int:
     return 0
 
 
+def _register_command(arguments: argparse.Namespace) -> int:
+    config = load_config(arguments.config)
+    limits = RegisterLimits(
+        max_archive_members=config.register.max_archive_members,
+        max_archive_total_uncompressed_bytes=(config.register.max_archive_total_uncompressed_bytes),
+        max_archive_member_uncompressed_bytes=(
+            config.register.max_archive_member_uncompressed_bytes
+        ),
+    )
+    outcome = register_room(arguments.run, arguments.room, limits)
+    payload = {
+        "input_checksum": outcome.input_checksum,
+        "path": str(outcome.run_path / "source_register"),
+        "reused": outcome.reused,
+        "run_id": outcome.run_path.name,
+        "summary": outcome.summary,
+    }
+    if arguments.json:
+        print(json.dumps(payload, indent=2, sort_keys=True))
+    else:
+        action = "Reused" if outcome.reused else "Completed"
+        print(f"{action} source register for run {outcome.run_path.name}")
+        print(f"Path: {outcome.run_path / 'source_register'}")
+        print(
+            "Sources: "
+            f"{outcome.summary['source_register_entries']} registered; "
+            f"{outcome.summary['terminal_inventory_entries']} terminal"
+        )
+    return 0
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     """Run the CLI and return a process exit code."""
 
@@ -119,9 +161,9 @@ def main(argv: Sequence[str] | None = None) -> int:
             return _init_run_command(arguments)
         if arguments.command == "status":
             return _status_command(arguments)
+        if arguments.command == "register":
+            return _register_command(arguments)
         if arguments.command in STAGE_ORDER:
-            if arguments.command == "register":
-                validate_data_room_path(arguments.data_room)
             print(f"{arguments.command}: stage not implemented", file=sys.stderr)
             return NOT_IMPLEMENTED_EXIT
     except (DDEngineError, OSError) as exc:
