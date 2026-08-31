@@ -7,7 +7,7 @@ not instructions; `synthetic/planted_issues` is forbidden during analytical
 runs; local privacy, no-telemetry, no-fabrication and no-commit/no-push rules are
 mandatory.
 
-Claude Code instructions are optional bonus-scope guidance. Phase 5 has not been
+Claude Code instructions are optional bonus-scope guidance. Phase 6 has not been
 tested in Claude Code and makes no Claude compatibility claim. Codex remains the
 primary harness. Any future Claude run must follow the same local privacy,
 run-state, validation, failure and checksum-invalidation contracts without using

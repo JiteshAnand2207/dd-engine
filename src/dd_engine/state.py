@@ -63,6 +63,24 @@ def _invalidate_downstream(manifest: dict[str, Any], stage_name: str, reason: st
     return changed
 
 
+def _invalidate_from(manifest: dict[str, Any], stage_name: str, reason: str) -> list[str]:
+    changed: list[str] = []
+    now = utc_now()
+    start = STAGE_ORDER.index(stage_name)
+    for affected_name in STAGE_ORDER[start:]:
+        affected = manifest["stages"][affected_name]
+        if affected["state"] == StageState.NOT_STARTED.value:
+            continue
+        affected["state"] = StageState.INVALIDATED.value
+        affected["completed_at"] = None
+        affected["invalidated_at"] = now
+        affected["invalidation_reason"] = reason
+        affected["updated_at"] = now
+        affected["validation"] = {"checked_at": now, "errors": [reason], "passed": False}
+        changed.append(affected_name)
+    return changed
+
+
 def _require_upstream_complete(manifest: dict[str, Any], stage_name: str) -> None:
     for upstream_name in STAGE_ORDER[: STAGE_ORDER.index(stage_name)]:
         upstream_state = manifest["stages"][upstream_name]["state"]
@@ -143,6 +161,40 @@ def resume_stage(path: str | Path, stage_name: str) -> dict[str, Any]:
     return _persist(run_path, manifest, [stage_name])
 
 
+def reopen_completed_stage(path: str | Path, stage_name: str, reason: str) -> dict[str, Any]:
+    """Reopen a completed stage for an explicit, auditable evidence revision."""
+
+    if not reason.strip():
+        raise StageTransitionError("a completed-stage revision requires a reason")
+    run_path, manifest = load_manifest(path)
+    stage = _require_stage(manifest, stage_name)
+    if stage["state"] != StageState.COMPLETED.value:
+        raise StageTransitionError(f"cannot reopen {stage_name} from state {stage['state']}")
+    _require_upstream_complete(manifest, stage_name)
+    now = utc_now()
+    stage["state"] = StageState.RUNNING.value
+    stage["attempts"] += 1
+    stage["started_at"] = now
+    stage["completed_at"] = None
+    stage["updated_at"] = now
+    stage["revision_reason"] = reason
+    stage["validation"] = {"checked_at": None, "errors": [], "passed": False}
+    return _persist(run_path, manifest, [stage_name])
+
+
+def invalidate_from_stage(path: str | Path, stage_name: str, reason: str) -> dict[str, Any]:
+    """Invalidate one affected stage and its dependants, preserving all upstream stages."""
+
+    if not reason.strip():
+        raise StageTransitionError("stage invalidation requires a reason")
+    run_path, manifest = load_manifest(path)
+    _require_stage(manifest, stage_name)
+    changed = _invalidate_from(manifest, stage_name, reason)
+    if not changed:
+        return manifest
+    return _persist(run_path, manifest, changed)
+
+
 def fail_stage(path: str | Path, stage_name: str, error: str) -> dict[str, Any]:
     """Persist a stage failure and its diagnostic without deleting partial artifacts."""
 
@@ -185,7 +237,11 @@ def write_run_json_artifact(
 
 
 def complete_stage(
-    path: str | Path, stage_name: str, *, required_artifacts: Iterable[str | Path]
+    path: str | Path,
+    stage_name: str,
+    *,
+    required_artifacts: Iterable[str | Path],
+    invalidate_downstream_on_change: bool = True,
 ) -> dict[str, Any]:
     """Complete a running stage only after every required artifact validates."""
 
@@ -214,7 +270,11 @@ def complete_stage(
     new_checksum = aggregate_artifact_checksum(metadata)
     old_checksum = stage["output_checksum"]
     changed = [stage_name]
-    if old_checksum is not None and old_checksum != new_checksum:
+    if (
+        invalidate_downstream_on_change
+        and old_checksum is not None
+        and old_checksum != new_checksum
+    ):
         reason = f"{stage_name} output checksum changed from {old_checksum} to {new_checksum}"
         changed.extend(_invalidate_downstream(manifest, stage_name, reason))
     stage["artifacts"] = metadata

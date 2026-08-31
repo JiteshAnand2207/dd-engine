@@ -44,7 +44,7 @@ def test_init_run_and_status_cli(tmp_path: Path, capsys: pytest.CaptureFixture[s
     assert set(status["stages"].values()) == {"not_started"}
 
 
-@pytest.mark.parametrize("stage_name", STAGE_ORDER[2:])
+@pytest.mark.parametrize("stage_name", STAGE_ORDER[3:])
 def test_later_stage_commands_report_not_implemented(
     stage_name: str, tmp_path: Path, capsys: pytest.CaptureFixture[str]
 ) -> None:

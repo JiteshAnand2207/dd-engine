@@ -2,7 +2,7 @@
 
 ## Status and scope
 
-This document defines the implementation architecture. Phase 5 implements the deterministic source register and tiered local-first extraction; intake, analysis, reporting and validation remain later-stage contracts. The chosen runtime harness is **Codex**. Deterministic supporting code targets **Python 3.11 or later**. The native path works without Docker; a container may later be offered only as an optional convenience.
+This document defines the implementation architecture. Phase 6 implements the deterministic source register, tiered local-first extraction and two-round evidence-grounded intake with real human pauses; analysis, reporting and validation remain later-stage contracts. The chosen runtime harness is **Codex**. Deterministic supporting code targets **Python 3.11 or later**. The native path works without Docker; a container may later be offered only as an optional convenience.
 
 The design optimizes for an auditable cold run over an unseen, confidential room. It separates repeatable mechanics from model judgment, makes human pauses resumable, isolates red-team context, and never turns a partial or privacy-unsafe run into an apparent success.
 
@@ -177,9 +177,11 @@ Each tax finding has its own ID, evidence links, calculation links, confidence, 
 
 ### Intake questions and human pauses
 
-Round one follows quick deterministic discovery of paths, hashes, media types and high-level document classes. It asks only questions triggered by those observed facts and deal configuration. Round two follows the complete source register and a preliminary full extraction pass across every registerable logical artifact; it focuses on missing documents, extraction failures, contradictions, price/structure assumptions and material unresolved items.
+Round one uses the register plus an early-evidence slice of extraction: failures, unreadable or vision-dependent material, explicit contradictions, unsupported material figures and broken document references. Questions without a source are permitted only for essential transaction context (perimeter, price/structure, thesis and scope/materiality). Round two requires the complete source register, full extraction and explicit round-one answer ingestion; it targets unresolved contradictions, unsupported figures, missing references, customer groups, contract versions/consents, debt/HP, tax and workforce discrepancies.
 
-At each pause Codex writes a question packet with question ID, trigger evidence, materiality, requested answer and affected workstreams. The run state becomes `AWAITING_DEAL_LEAD`. Resumption hashes the answer file and records who/when if supplied. An explicit “unknown/not available” is a valid answer; silent absence is not.
+Every question records its ID/round, priority, exact wording, decision relevance, evidence source IDs or structured gap, expected answer type, blocking status and the stages affected by changed evidence. Duplicate candidates are suppressed, round limits are enforced and every excluded candidate keeps a reason. At each pause the engine writes JSON and Markdown packets and the run state becomes `awaiting_input`.
+
+Resumption requires an explicit JSON answer file. The engine hashes it, records who/when if supplied, retains each answer verbatim and creates only conservative normalisation. `N/A`, `None`, silence, cross-references, partial and vague replies remain open or narrowed rather than being silently completed. Round one resumes to round-two generation; round two resumes to intake completion. If an already-ingested answer changes, only the declared affected round/stages and their dependants are invalidated.
 
 ### Report drafting
 

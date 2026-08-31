@@ -88,7 +88,7 @@ Given corrupt, encrypted, unsupported and unsafe archive fixtures, then the engi
 
 ### AC-019 - Stage 3 occurs twice
 
-Given a normal run, then intake round one pauses after quick deterministic discovery, and intake round two pauses only after the complete source register and a preliminary full extraction pass across all logical artifacts. Each has distinct question, answer and resume records. (TB-020-TB-022)
+Given a normal run, intake round one selects no more than 12 questions from quick material register/extraction signals and pauses in `awaiting_input` without an answer artifact. Round two selects no more than 15 questions only after the complete source register, full extraction and explicit round-one answer ingestion, then pauses again. Each round has distinct question, answer and resume records. (TB-020-TB-022)
 
 ### AC-020 - Five workstreams
 
@@ -114,11 +114,11 @@ Given all prior gates pass, then stage 6 packages the full Markdown report with 
 
 ### AC-025 - Evidence-driven questions
 
-Every intake question includes a trigger evidence/gap ID, materiality, affected workstreams and a requested answer; a regression test proves the questions change when the input room changes. (TB-020, TB-090)
+Every intake question includes its ID/round, priority, exact wording, why it matters, supporting source IDs or an essential transaction-context gap, decision potentially affected, expected answer type, blocking status and evidence-change invalidation scope. Duplicate candidates and questions already answered are suppressed; every excluded candidate records a reason. A regression test proves the questions change when observed evidence changes. (TB-020, TB-090)
 
 ### AC-026 - Honest unanswered state
 
-At a pause, the engine does not infer an answer from silence. The deal lead may answer, state `unknown/not available`, or explicitly defer; the choice is hashed and downstream confidence/gaps update accordingly. (TB-021-TB-022, TB-041-TB-042)
+At a pause, the engine does not infer an answer from silence and creates no answer artifact. Explicit ingestion stores the verbatim answer, conservative normalised interpretation, provenance, ambiguity, open/narrowed/closed status and affected claims/gaps/stages. `N/A`, `None`, cross-references, partial and vague replies are evidence but do not automatically close a question. (TB-021-TB-022, TB-041-TB-042)
 
 ### AC-027 - Deal assumptions
 
@@ -210,7 +210,7 @@ The nested ZIP's “unredacted” employee list contains synthetic PII-like valu
 
 ### AC-047 - Idempotent resume
 
-Given an interruption at either intake pause or a recoverable extraction failure, when the run resumes with unchanged input/config hashes, then previously valid stages are reused and outputs are not duplicated. Changed inputs invalidate only affected downstream stages. (TB-002, TB-087)
+Given an interruption at either intake pause or a recoverable extraction failure, when the run resumes with unchanged input/config/answer hashes, then previously valid stages are reused and outputs are not duplicated. A changed deal-lead answer invalidates only its declared affected intake/downstream stages and preserves unrelated completed upstream stages. (TB-002, TB-087)
 
 ### AC-048 - Fatal status is honest
 

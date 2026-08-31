@@ -43,3 +43,7 @@ class ExtractionError(DDEngineError):
 
 class SourceIntegrityError(ExtractionError):
     """Raised when a registered source cannot be resolved with its recorded hash."""
+
+
+class IntakeError(DDEngineError):
+    """Raised when intake cannot safely generate or ingest its human packet."""

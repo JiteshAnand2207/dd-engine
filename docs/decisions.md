@@ -152,6 +152,16 @@ Tier 0 uses local PDF, DOCX, XLSX, CSV and image parsers. Tier 1 uses a pinned l
 
 **Consequences:** The deterministic engine remains complete without OCR or a model. DOCX page numbers are never invented. Spreadsheet formulas, stored cached values and later analytical recomputations remain distinct. All 100 synthetic register rows receive a terminal extraction status, including the ZIP container and corrupt fixture.
 
+### ADR-018 - Phase 6 intake is evidence-grounded and answer-gated
+
+**Status:** Accepted by user directive on 1 September 2026.
+
+Round one is capped at 12 questions and consumes only early material register/extraction signals plus essential transaction-context gaps. Round two is capped at 15 and requires the complete register, full extraction and explicit round-one answer ingestion. Candidate selection is deterministic, source-linked and duplicate-suppressed; rejected candidates retain reasons. Every round creates a real `awaiting_input` pause and no answer is inferred from silence.
+
+Answers are stored verbatim beside conservative normalisation, provenance, ambiguity, resolution status and affected claims/gaps/stages. `N/A`, `None`, cross-references, partial and vague replies are not automatically closed. Changed answers invalidate only their declared affected intake/downstream stages. Python makes no model call and extracted text remains untrusted data.
+
+**Consequences:** The question set changes with observed room evidence instead of disguising a fixed questionnaire as dynamic intake. The seven question/answer/unresolved artifacts form the completed intake contract. The canonical synthetic run must stop after round-one generation until Gavin supplies an actual answer file; analysis cannot start from fabricated replies.
+
 ## Assumption register
 
 | ID | Assumption | Basis | If false |
@@ -174,6 +184,7 @@ Tier 0 uses local PDF, DOCX, XLSX, CSV and image parsers. Tier 1 uses a pinned l
 | U-007 | ADR-008: PDF, spreadsheet, DOCX and image citation locators are fixed by format. |
 | U-008 | ADR-015: the IC brief is an exactly two-page A4 PDF rendered and counted through an in-process pure-Python path. |
 | U-011 | ADR-017: extraction preserves source formulas and cached values without generic workbook recalculation; any analytical recomputation is separate and explicitly cited. |
+| U-012 | ADR-018: explicit non-answers may be ingested and carried as open evidence; silence never resumes a pause. |
 
 ## Remaining unresolved ambiguities
 
@@ -183,7 +194,6 @@ Tier 0 uses local PDF, DOCX, XLSX, CSV and image parsers. Tier 1 uses a pinned l
 | U-005 | Which concrete frontier and economy models are available under the evaluator's Codex subscription? | Capability profiles with actual resolved ID logged | High routing risk; environment discovery before locking config. |
 | U-009 | Must clean-clone setup work offline, and which operating systems are in scope? | Do not claim offline or OS-specific support; minimize and lock native dependencies | High 20-minute risk; evaluator environment disclosure. |
 | U-010 | What archive size, nesting depth and file-size limits are acceptable? | Deny unsafe paths; bounded configurable limits with explicit quarantine | Medium resilience risk; benchmark and threat-model decision. |
-| U-012 | Must both intake rounds block indefinitely, or may an explicit `unknown/not available` allow continuation? | Explicit non-answer may continue with lower confidence; silence cannot | Medium workflow risk; deal-lead confirmation. |
 | U-013 | What retention/deletion policy applies to confidential run artifacts after evaluation? | Keep local only; do not auto-delete without explicit authorization | Medium privacy/operations risk; data owner. |
 | U-014 | What quantitative thresholds define acceptable issue recall, false positives and citation accuracy? | Report metrics without inventing pass percentages; require zero dangling citations | High evaluation uncertainty; evaluator rubric. |
 | U-015 | Does “roughly equal weight” require an exact score formula? | Three-domain rubric without invented numeric weights | Low-medium; evaluator. |

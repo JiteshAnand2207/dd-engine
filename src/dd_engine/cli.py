@@ -1,4 +1,4 @@
-"""Command-line interface for deterministic registration and extraction."""
+"""Command-line interface for registration, extraction and human intake pauses."""
 
 from __future__ import annotations
 
@@ -14,6 +14,7 @@ from dd_engine.constants import STAGE_ORDER
 from dd_engine.doctor import format_doctor_report, run_doctor
 from dd_engine.errors import DDEngineError
 from dd_engine.extraction import extract_run
+from dd_engine.intake import generate_intake_questions, ingest_intake_answers
 from dd_engine.inventory import RegisterLimits, register_room
 from dd_engine.runs import create_run, load_manifest
 from dd_engine.state import overall_state
@@ -57,7 +58,11 @@ def build_parser() -> argparse.ArgumentParser:
                 else (
                     "extract all registered sources with durable locators"
                     if stage_name == "extract"
-                    else f"run the {stage_name} stage (interface only after Phase 5)"
+                    else (
+                        "generate or ingest one evidence-grounded intake round"
+                        if stage_name == "intake"
+                        else f"run the {stage_name} stage (interface only after Phase 6)"
+                    )
                 )
             ),
         )
@@ -72,6 +77,23 @@ def build_parser() -> argparse.ArgumentParser:
                 help="explicit read-only source-room directory",
             )
             _add_config_argument(stage_parser)
+            stage_parser.add_argument(
+                "--json", action="store_true", help="emit machine-readable JSON"
+            )
+        elif stage_name == "intake":
+            stage_parser.add_argument(
+                "--round",
+                required=True,
+                type=int,
+                choices=(1, 2),
+                dest="round_number",
+                help="intake round to generate or answer",
+            )
+            stage_parser.add_argument(
+                "--answers",
+                type=Path,
+                help="explicit JSON deal-lead answer file; omit to generate questions",
+            )
             stage_parser.add_argument(
                 "--json", action="store_true", help="emit machine-readable JSON"
             )
@@ -175,6 +197,33 @@ def _extract_command(arguments: argparse.Namespace) -> int:
     return 0
 
 
+def _intake_command(arguments: argparse.Namespace) -> int:
+    outcome = (
+        ingest_intake_answers(arguments.run, arguments.round_number, arguments.answers)
+        if arguments.answers is not None
+        else generate_intake_questions(arguments.run, arguments.round_number)
+    )
+    payload = {
+        "action": outcome.action,
+        "path": str(outcome.run_path / "intake"),
+        "question_count": outcome.question_count,
+        "reused": outcome.reused,
+        "round_number": outcome.round_number,
+        "run_id": outcome.run_path.name,
+        "stage_state": outcome.stage_state,
+        "unresolved_count": outcome.unresolved_count,
+    }
+    if arguments.json:
+        print(json.dumps(payload, indent=2, sort_keys=True))
+    else:
+        action = "Reused" if outcome.reused else "Completed"
+        print(f"{action} intake {outcome.action} for round {outcome.round_number}")
+        print(f"Path: {outcome.run_path / 'intake'}")
+        print(f"Run state: {outcome.stage_state}")
+        print(f"Questions: {outcome.question_count}; unresolved: {outcome.unresolved_count}")
+    return 0
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     """Run the CLI and return a process exit code."""
 
@@ -194,6 +243,8 @@ def main(argv: Sequence[str] | None = None) -> int:
             return _register_command(arguments)
         if arguments.command == "extract":
             return _extract_command(arguments)
+        if arguments.command == "intake":
+            return _intake_command(arguments)
         if arguments.command in STAGE_ORDER:
             print(f"{arguments.command}: stage not implemented", file=sys.stderr)
             return NOT_IMPLEMENTED_EXIT

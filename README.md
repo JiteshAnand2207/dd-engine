@@ -5,12 +5,13 @@ due-diligence workflow. Codex is the primary harness; Claude Code can follow the
 same file-backed operating contract. Python never invokes a model API, and the
 required path uses no provider API key, Docker, database or cloud service.
 
-Phase 5 adds tiered, local-first extraction to the complete deterministic source
-register. It extracts native PDF text, DOCX paragraphs/tables, XLSX structure and
-cells, true CSV bytes and image metadata; renders only unresolved visual PDF
-pages/images; optionally uses detected local Tesseract OCR; and creates a
-structured pending vision queue without invoking a model or fabricating a
-result. Intake and all later analytical stages remain interfaces only.
+Phase 6 adds two evidence-grounded intake rounds and real deal-lead pauses to the
+complete deterministic register/extraction path. Round one uses early material
+signals plus essential transaction-context gaps; round two requires full
+extraction and explicit round-one answer ingestion. Question selection is
+source-linked, duplicate-suppressed and capped. Deal-lead replies remain verbatim
+with conservative normalisation. Analysis and later stages remain interfaces
+only.
 
 ## Requirements and installation
 
@@ -55,7 +56,7 @@ drafting or red-team reasoning.
 `dd-engine.toml` is the checked-in safe default. Relative `runs_dir` values are
 resolved from the configuration file's directory. Unknown settings are rejected.
 Telemetry, external logging and provider API-key requirements cannot be enabled.
-Public research is disabled by default and is not implemented in Phase 5. The
+Public research is disabled by default and is not implemented in Phase 6. The
 `[register]` section configures maximum archive member count, total declared and
 observed uncompressed bytes, and per-member uncompressed bytes. Limit breaches
 are registered as terminal blocked rows rather than silently omitted.
@@ -74,12 +75,13 @@ python -m dd_engine doctor
 python -m dd_engine init-run
 python -m dd_engine register --run runs/<run_id> --room /absolute/or/relative/path/to/room
 python -m dd_engine extract --run runs/<run_id> --room /absolute/or/relative/path/to/room
+python -m dd_engine intake --run runs/<run_id> --round 1
 python -m dd_engine status --run runs/<run_id>
 ```
 
 `init-run` prints the absolute run path and immutable run ID. `--runs-root` can
 select a different local output directory. `--config` can select another TOML
-file. `doctor`, `init-run`, `register`, `extract` and `status` also accept
+file. `doctor`, `init-run`, `register`, `extract`, `intake` and `status` also accept
 `--json`.
 
 The register stage writes under `runs/<run_id>/source_register/`:
@@ -126,16 +128,49 @@ vision tasks point only to local rendered assets and always have a null model
 result until a separate Codex/Claude vision-review task records one in a future
 phase.
 
+The intake stage writes under `runs/<run_id>/intake/`:
+
+```text
+round_1_questions.md
+round_1_questions.json
+round_1_answers.json       created only by explicit ingestion
+round_2_questions.md
+round_2_questions.json
+round_2_answers.json       created only by explicit ingestion
+unresolved_questions.md
+```
+
+Generating a round changes the run to `awaiting_input`. It never creates or
+infers an answer. Send the generated Markdown packet to the deal lead and ingest
+their reply from a JSON file:
+
+```text
+python -m dd_engine intake --run runs/<run_id> --round 1 --answers /path/to/round_1_reply.json
+python -m dd_engine intake --run runs/<run_id> --round 2
+python -m dd_engine intake --run runs/<run_id> --round 2 --answers /path/to/round_2_reply.json
+```
+
+The answer input is an object whose `answers` value is either a mapping from
+question ID to verbatim text, or a list of objects with `question_id` and
+`answer`. Optional `answered_by`, `answered_at`, `run_id` and `round_number`
+fields add provenance. Missing questions are recorded as unanswered; `N/A`,
+`None`, cross-references, partial and vague replies remain open or narrowed.
+
+Round one is capped at 12 questions and round two at 15. Every question records
+its evidence/gap, decision relevance, expected answer and invalidation scope.
+Excluded candidates retain a reason. Re-ingesting the identical answer hash is
+idempotent; changed answers invalidate only their declared affected stages and
+dependants.
+
 The remaining stage interfaces are:
 
 ```text
-python -m dd_engine intake --run runs/<run_id>
 python -m dd_engine analyse --run runs/<run_id>
 python -m dd_engine report --run runs/<run_id>
 python -m dd_engine validate --run runs/<run_id>
 ```
 
-In Phase 5 each command in this remaining-stage list exits with status 3 and
+In Phase 6 each command in this remaining-stage list exits with status 3 and
 `stage not implemented`. This is an intentional scope boundary, not a successful
 stage result.
 
