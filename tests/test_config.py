@@ -21,6 +21,8 @@ def test_configuration_loads_checked_in_defaults() -> None:
     assert config.extraction.native_first is True
     assert config.extraction.optional_ocr is True
     assert config.extraction.unsupported_policy == "quarantine"
+    assert config.extraction.pdf_min_native_characters == 24
+    assert config.extraction.render_scale == 2.0
     assert config.analysis.jurisdiction == "IE"
     assert config.analysis.workstreams == (
         "financial",
@@ -89,6 +91,11 @@ def test_missing_explicit_configuration_is_an_error(tmp_path: Path) -> None:
     "section, message",
     [
         ("[extraction]\nnative_first = false", "extraction.native_first"),
+        (
+            "[extraction]\npdf_min_native_characters = 0",
+            "extraction.pdf_min_native_characters",
+        ),
+        ("[extraction]\nrender_scale = 0", "extraction.render_scale"),
         ("[register]\nmax_archive_members = 0", "register.max_archive_members"),
         ("[analysis]\njurisdiction = 'US'", "analysis.jurisdiction"),
         ("[reporting]\nic_brief_pages = 3", "reporting.ic_brief_pages"),

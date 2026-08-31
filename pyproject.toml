@@ -4,13 +4,15 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "dd-engine"
-version = "0.4.0"
-description = "Codex-native due-diligence engine foundation"
+version = "0.5.0"
+description = "Codex-native local-first due-diligence engine"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+  "openpyxl==3.1.5",
   "Pillow==12.2.0",
   "pypdf==6.10.0",
+  "pypdfium2==4.30.0",
   "python-docx==1.2.0",
   "reportlab==4.4.9",
 ]

@@ -35,3 +35,11 @@ class InventoryError(DDEngineError):
 
 class ArchiveSafetyError(InventoryError):
     """Raised when archive metadata cannot be inspected safely."""
+
+
+class ExtractionError(DDEngineError):
+    """Raised when extraction cannot safely produce its required artifacts."""
+
+
+class SourceIntegrityError(ExtractionError):
+    """Raised when a registered source cannot be resolved with its recorded hash."""

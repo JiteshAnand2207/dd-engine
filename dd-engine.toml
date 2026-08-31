@@ -15,6 +15,8 @@ max_archive_member_uncompressed_bytes = 67108864
 native_first = true
 optional_ocr = true
 unsupported_policy = "quarantine"
+pdf_min_native_characters = 24
+render_scale = 2.0
 
 [analysis]
 jurisdiction = "IE"

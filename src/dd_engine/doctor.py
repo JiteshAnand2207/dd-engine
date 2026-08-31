@@ -58,7 +58,14 @@ def _python_check() -> DoctorCheck:
 
 
 def _required_packages_check() -> DoctorCheck:
-    required_packages = ("Pillow", "pypdf", "python-docx", "reportlab")
+    required_packages = (
+        "openpyxl",
+        "Pillow",
+        "pypdf",
+        "pypdfium2",
+        "python-docx",
+        "reportlab",
+    )
     missing: list[str] = []
     for package in required_packages:
         try:
@@ -72,7 +79,23 @@ def _required_packages_check() -> DoctorCheck:
     return DoctorCheck(
         "Required packages",
         "pass",
-        "required local document-generation and validation packages are installed",
+        "required local extraction, rendering, generation and validation packages are installed",
+    )
+
+
+def _pdf_rendering_check() -> DoctorCheck:
+    try:
+        version = importlib.metadata.version("pypdfium2")
+    except importlib.metadata.PackageNotFoundError:
+        return DoctorCheck(
+            "Optional PDF rendering support",
+            "fail",
+            "bundled local PDF renderer is missing",
+        )
+    return DoctorCheck(
+        "Optional PDF rendering support",
+        "pass",
+        f"bundled local pypdfium2 renderer available: {version}",
     )
 
 
@@ -156,19 +179,11 @@ def run_doctor(config_path: str | Path | None = None, *, cwd: Path | None = None
             executables=("tesseract",),
             available_summary="local OCR executable detected",
             fallback=(
-                "image-only material will require approved Codex visual processing or explicit "
-                "quarantine in a later extraction phase"
+                "image-only material will be rendered locally and placed in the pending vision "
+                "queue without a fabricated result"
             ),
         ),
-        _optional_tool_check(
-            name="Optional PDF rendering support",
-            executables=("pdftoppm", "mutool"),
-            available_summary="local PDF rendering executable detected",
-            fallback=(
-                "native text handling remains available; visual PDF rendering will be reported "
-                "unavailable rather than crashing"
-            ),
-        ),
+        _pdf_rendering_check(),
         _optional_tool_check(
             name="Optional document conversion support",
             executables=("soffice", "libreoffice", "pandoc"),

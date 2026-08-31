@@ -40,11 +40,13 @@ _WORKSTREAMS = (
 
 @dataclass(frozen=True, slots=True)
 class ExtractionConfig:
-    """Validated extraction scaffold settings; no extraction is implemented yet."""
+    """Validated deterministic extraction and local-repair settings."""
 
     native_first: bool
     optional_ocr: bool
     unsupported_policy: str
+    pdf_min_native_characters: int
+    render_scale: float
 
 
 @dataclass(frozen=True, slots=True)
@@ -138,6 +140,29 @@ def _require_positive_int(section: dict[str, Any], key: str, default: int) -> in
     return value
 
 
+def _require_positive_number(section: dict[str, Any], key: str, default: float) -> float:
+    value = section.get(key, default)
+    if type(value) not in {int, float} or value <= 0:
+        raise ConfigError(f"extraction.{key} must be a positive number")
+    return float(value)
+
+
+def _require_extraction_positive_int(
+    section: dict[str, Any], key: str, default: int
+) -> int:
+    value = section.get(key, default)
+    if type(value) is not int or value <= 0:
+        raise ConfigError(f"extraction.{key} must be a positive integer")
+    return value
+
+
+def _require_extraction_bool(section: dict[str, Any], key: str, default: bool) -> bool:
+    value = section.get(key, default)
+    if type(value) is not bool:
+        raise ConfigError(f"extraction.{key} must be true or false")
+    return value
+
+
 def _section(document: dict[str, Any], name: str) -> dict[str, Any]:
     value = document.get(name, {})
     if not isinstance(value, dict):
@@ -161,13 +186,27 @@ def _require_locked_value(
 
 
 def _build_extraction(section: dict[str, Any]) -> ExtractionConfig:
-    _reject_unknown(section, "extraction", {"native_first", "optional_ocr", "unsupported_policy"})
+    _reject_unknown(
+        section,
+        "extraction",
+        {
+            "native_first",
+            "optional_ocr",
+            "unsupported_policy",
+            "pdf_min_native_characters",
+            "render_scale",
+        },
+    )
     return ExtractionConfig(
         native_first=_require_locked_value(section, "extraction", "native_first", True),
-        optional_ocr=_require_locked_value(section, "extraction", "optional_ocr", True),
+        optional_ocr=_require_extraction_bool(section, "optional_ocr", True),
         unsupported_policy=_require_locked_value(
             section, "extraction", "unsupported_policy", "quarantine"
         ),
+        pdf_min_native_characters=_require_extraction_positive_int(
+            section, "pdf_min_native_characters", 24
+        ),
+        render_scale=_require_positive_number(section, "render_scale", 2.0),
     )
 
 

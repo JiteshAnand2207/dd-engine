@@ -1,4 +1,4 @@
-"""Command-line interface for the Phase 4 engine foundation."""
+"""Command-line interface for deterministic registration and extraction."""
 
 from __future__ import annotations
 
@@ -13,6 +13,7 @@ from dd_engine.config import load_config
 from dd_engine.constants import STAGE_ORDER
 from dd_engine.doctor import format_doctor_report, run_doctor
 from dd_engine.errors import DDEngineError
+from dd_engine.extraction import extract_run
 from dd_engine.inventory import RegisterLimits, register_room
 from dd_engine.runs import create_run, load_manifest
 from dd_engine.state import overall_state
@@ -53,11 +54,15 @@ def build_parser() -> argparse.ArgumentParser:
             help=(
                 "inventory the complete source room"
                 if stage_name == "register"
-                else f"run the {stage_name} stage (interface only in Phase 4)"
+                else (
+                    "extract all registered sources with durable locators"
+                    if stage_name == "extract"
+                    else f"run the {stage_name} stage (interface only after Phase 5)"
+                )
             ),
         )
         stage_parser.add_argument("--run", required=True, type=Path, help="run directory")
-        if stage_name == "register":
+        if stage_name in {"register", "extract"}:
             stage_parser.add_argument(
                 "--room",
                 "--data-room",
@@ -146,6 +151,30 @@ def _register_command(arguments: argparse.Namespace) -> int:
     return 0
 
 
+def _extract_command(arguments: argparse.Namespace) -> int:
+    config = load_config(arguments.config)
+    outcome = extract_run(arguments.run, arguments.room, config)
+    payload = {
+        "input_checksum": outcome.input_checksum,
+        "path": str(outcome.run_path / "extracts"),
+        "reused": outcome.reused,
+        "run_id": outcome.run_path.name,
+        "summary": outcome.summary,
+    }
+    if arguments.json:
+        print(json.dumps(payload, indent=2, sort_keys=True))
+    else:
+        action = "Reused" if outcome.reused else "Completed"
+        print(f"{action} extraction for run {outcome.run_path.name}")
+        print(f"Path: {outcome.run_path / 'extracts'}")
+        print(
+            "Sources: "
+            f"{outcome.summary['sources_terminal']}/{outcome.summary['sources_total']} terminal; "
+            f"{outcome.summary['vision_queue_count']} vision task(s) pending"
+        )
+    return 0
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     """Run the CLI and return a process exit code."""
 
@@ -163,6 +192,8 @@ def main(argv: Sequence[str] | None = None) -> int:
             return _status_command(arguments)
         if arguments.command == "register":
             return _register_command(arguments)
+        if arguments.command == "extract":
+            return _extract_command(arguments)
         if arguments.command in STAGE_ORDER:
             print(f"{arguments.command}: stage not implemented", file=sys.stderr)
             return NOT_IMPLEMENTED_EXIT
