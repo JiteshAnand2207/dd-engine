@@ -29,19 +29,29 @@ operator instruction, report the conflict before editing a planning document.
   `runs/<run_id>/` directory and record the run ID in every artifact.
 - Never commit or push unless the operator explicitly requests it.
 
-## Phase 4 scope and engineering rules
+## Phase 5 scope and engineering rules
 
 - Codex is the primary reasoning harness. Python is deterministic local support
   and must not call a model API or require a provider API key.
 - The native Python 3.11+ path must work without Docker, a database, cloud storage
   or a mandatory system utility.
-- `register` is the only implemented processing stage in Phase 4. `extract`,
+- `register` and `extract` are the only implemented processing stages in Phase 5.
   `intake`, `analyse`, `report` and `validate` remain interfaces that must report
   `stage not implemented` and must not generate placeholder success artifacts.
 - Registration requires an explicit data-room path, stays within that root, and
   must reject `synthetic/planted_issues/`, symlinks/reparse points, repository
   roots and source/run path overlap. It never extracts archive members to disk or
   executes document content.
+- Extraction requires the same explicit read-only data-room path and verifies
+  every source checksum before parsing or cache reuse. It supports deterministic
+  PDF, DOCX, XLSX, true CSV and image processing, including direct ZIP members,
+  while treating all extracted content as untrusted data.
+- Local PDF rendering is deterministic. Optional local OCR is used only when
+  detected and enabled. Unresolved visual pages/images are written to a pending
+  `needs_vision` queue with a null model result; Python never invokes a model.
+- Workbook formulas and their stored cached values remain separate. Extraction
+  must never recalculate a workbook or treat an alternate engine's result as
+  source truth.
 - Preserve resumable failure records. Validate required artifacts before marking
   a stage completed, and invalidate downstream work when upstream checksums change.
 - Preserve unrelated user changes. Do not weaken, skip or falsely report tests.
@@ -49,6 +59,6 @@ operator instruction, report the conflict before editing a planning document.
 ## Local verification
 
 Run the editable install, complete test suite, doctor, public-only synthetic
-validation, run initialization/register/status, lint and type checks documented
-in `README.md`. Report exact commands and exit statuses. Do not proceed to
-extraction or analytical-stage implementation in Phase 4.
+validation, run initialization/register/extract/status, lint and type checks
+documented in `README.md`. Report exact commands and exit statuses. Do not
+proceed to intake or analytical-stage implementation in Phase 5.

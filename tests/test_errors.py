@@ -7,8 +7,8 @@ from dd_engine.errors import (
     ExtractionError,
     InventoryError,
     RunError,
-    SourcePathError,
     SourceIntegrityError,
+    SourcePathError,
     StageTransitionError,
 )
 

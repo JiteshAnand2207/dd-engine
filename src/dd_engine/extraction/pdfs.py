@@ -66,7 +66,8 @@ def _meaningful_characters(value: str) -> int:
 
 def _image_suffix(name: str) -> str:
     suffix = PurePosixPath(name).suffix.casefold()
-    return suffix if suffix in {".bmp", ".gif", ".jp2", ".jpeg", ".jpg", ".png", ".tif", ".tiff"} else ".bin"
+    supported = {".bmp", ".gif", ".jp2", ".jpeg", ".jpg", ".png", ".tif", ".tiff"}
+    return suffix if suffix in supported else ".bin"
 
 
 def _render_page(pdf: Any, page_index: int, scale: float) -> tuple[bytes, int, int]:
@@ -144,6 +145,7 @@ def extract_pdf(
     page_failures: list[JsonObject] = []
     metrics: JsonObject = {
         "pdf_embedded_images": 0,
+        "pdf_embedded_image_failures": 0,
         "pdf_pages_failed": 0,
         "pdf_pages_image_only": 0,
         "pdf_pages_low_text": 0,
@@ -277,49 +279,55 @@ def extract_pdf(
                 message = f"page {page_number} embedded images could not be extracted: {exc}"
                 warnings.append(message)
             for image_number, image_file in enumerate(page_images, start=1):
-                image_payload = bytes(image_file.data)
-                suffix = _image_suffix(str(image_file.name))
-                relative_asset = (
-                    Path("extracts")
-                    / "cache"
-                    / "assets"
-                    / config_namespace
-                    / str(source["source_id"])
-                    / f"pdf-page-{page_number:04d}-image-{image_number:04d}{suffix}"
-                )
-                atomic_write_bytes(run_path / relative_asset, image_payload)
-                asset_checksum = hashlib.sha256(image_payload).hexdigest()
-                content = _image_metadata(image_payload)
-                content.update(
-                    {
-                        "asset_checksum": asset_checksum,
-                        "asset_path": relative_asset.as_posix(),
-                        "original_resource_name": str(image_file.name),
-                    }
-                )
-                units.append(
-                    make_unit(
-                        run_id=run_id,
-                        source=source,
-                        ordinal=len(units) + 1,
-                        unit_type="pdf_embedded_image",
-                        locator={
-                            "image_number": image_number,
-                            "page_label": page_label,
-                            "page_number": page_number,
-                            "type": "pdf_image",
-                        },
-                        extraction_method="pypdf_embedded_image",
-                        confidence=0.95,
-                        content=content,
-                        warnings=(
-                            [str(content["metadata_warning"])]
-                            if "metadata_warning" in content
-                            else []
-                        ),
+                try:
+                    image_payload = bytes(image_file.data)
+                    suffix = _image_suffix(str(image_file.name))
+                    relative_asset = (
+                        Path("extracts")
+                        / "cache"
+                        / "assets"
+                        / config_namespace
+                        / str(source["source_id"])
+                        / f"pdf-page-{page_number:04d}-image-{image_number:04d}{suffix}"
                     )
-                )
-                metrics["pdf_embedded_images"] += 1
+                    atomic_write_bytes(run_path / relative_asset, image_payload)
+                    asset_checksum = hashlib.sha256(image_payload).hexdigest()
+                    content = _image_metadata(image_payload)
+                    content.update(
+                        {
+                            "asset_checksum": asset_checksum,
+                            "asset_path": relative_asset.as_posix(),
+                            "original_resource_name": str(image_file.name),
+                        }
+                    )
+                    units.append(
+                        make_unit(
+                            run_id=run_id,
+                            source=source,
+                            ordinal=len(units) + 1,
+                            unit_type="pdf_embedded_image",
+                            locator={
+                                "image_number": image_number,
+                                "page_label": page_label,
+                                "page_number": page_number,
+                                "type": "pdf_image",
+                            },
+                            extraction_method="pypdf_embedded_image",
+                            confidence=0.95,
+                            content=content,
+                            warnings=(
+                                [str(content["metadata_warning"])]
+                                if "metadata_warning" in content
+                                else []
+                            ),
+                        )
+                    )
+                    metrics["pdf_embedded_images"] += 1
+                except Exception as exc:
+                    metrics["pdf_embedded_image_failures"] += 1
+                    warnings.append(
+                        f"page {page_number} image {image_number} extraction failed: {exc}"
+                    )
     finally:
         pdfium_document.close()
 
@@ -333,7 +341,7 @@ def extract_pdf(
     elif tasks and native_or_ocr_pages == 0 and not page_failures:
         status = "queued_for_vision"
         failure_reason = None
-    elif tasks or page_failures:
+    elif tasks or page_failures or int(metrics["pdf_embedded_image_failures"]):
         status = "partially_extracted"
         failure_reason = None
     else:
@@ -351,6 +359,11 @@ def extract_pdf(
         limitation = f"{len(tasks)} page(s) await vision review; no model result was fabricated"
     elif page_failures:
         limitation = f"{len(page_failures)} PDF page extraction/rendering failure(s) recorded"
+    elif int(metrics["pdf_embedded_image_failures"]):
+        limitation = (
+            f"{metrics['pdf_embedded_image_failures']} embedded image extraction failure(s) "
+            "recorded"
+        )
     return SourceExtraction(
         status=status,
         primary_method=primary_method,

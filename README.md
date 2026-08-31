@@ -1,15 +1,16 @@
 # dd-engine
 
-`dd-engine` is the local deterministic foundation for a Codex-native
+`dd-engine` is the local deterministic core for a Codex-native
 due-diligence workflow. Codex is the primary harness; Claude Code can follow the
 same file-backed operating contract. Python never invokes a model API, and the
 required path uses no provider API key, Docker, database or cloud service.
 
-Phase 4 adds the complete deterministic source-register and safe-ingestion
-layer. It inventories physical files, empty folders and bounded ZIP members,
-classifies content signatures, records failures, duplicates and version
-candidates, and writes seven run-local register artifacts. Extraction and all
-later analytical stages remain interfaces only.
+Phase 5 adds tiered, local-first extraction to the complete deterministic source
+register. It extracts native PDF text, DOCX paragraphs/tables, XLSX structure and
+cells, true CSV bytes and image metadata; renders only unresolved visual PDF
+pages/images; optionally uses detected local Tesseract OCR; and creates a
+structured pending vision queue without invoking a model or fabricating a
+result. Intake and all later analytical stages remain interfaces only.
 
 ## Requirements and installation
 
@@ -22,9 +23,10 @@ python -m pip install -e ".[dev]"
 ```
 
 Activate `.venv` using the command appropriate to the local shell before the two
-`pip` commands, or call its Python executable directly. Document generation and
-validation use pinned pure-Python packages; no Office application or mandatory
-system utility is required. The exact versions and build backend are pinned in
+`pip` commands, or call its Python executable directly. Document generation,
+extraction, spreadsheet parsing and PDF rendering use pinned local Python
+packages; no Office application or mandatory system utility is required.
+Tesseract is optional. The exact versions and build backend are pinned in
 `pyproject.toml`.
 
 ## Synthetic room validation
@@ -53,10 +55,15 @@ drafting or red-team reasoning.
 `dd-engine.toml` is the checked-in safe default. Relative `runs_dir` values are
 resolved from the configuration file's directory. Unknown settings are rejected.
 Telemetry, external logging and provider API-key requirements cannot be enabled.
-Public research is disabled by default and is not implemented in Phase 4. The
+Public research is disabled by default and is not implemented in Phase 5. The
 `[register]` section configures maximum archive member count, total declared and
 observed uncompressed bytes, and per-member uncompressed bytes. Limit breaches
 are registered as terminal blocked rows rather than silently omitted.
+
+The `[extraction]` section locks deterministic-first handling, controls optional
+OCR, sets the native-PDF text threshold and PDF render scale, and uses an
+explicit unsupported-format quarantine policy. These values, detected OCR
+capability and extractor/dependency versions form the cache fingerprint.
 
 ## Run procedure
 
@@ -66,12 +73,14 @@ From the repository root:
 python -m dd_engine doctor
 python -m dd_engine init-run
 python -m dd_engine register --run runs/<run_id> --room /absolute/or/relative/path/to/room
+python -m dd_engine extract --run runs/<run_id> --room /absolute/or/relative/path/to/room
 python -m dd_engine status --run runs/<run_id>
 ```
 
 `init-run` prints the absolute run path and immutable run ID. `--runs-root` can
 select a different local output directory. `--config` can select another TOML
-file. `doctor`, `init-run`, `register` and `status` also accept `--json`.
+file. `doctor`, `init-run`, `register`, `extract` and `status` also accept
+`--json`.
 
 The register stage writes under `runs/<run_id>/source_register/`:
 
@@ -91,18 +100,44 @@ extracted to disk. Exact duplicate rows are retained while only one
 representative is marked for later analysis; version candidates are retained and
 never described as authoritative.
 
-The future stage interfaces are:
+The extract stage writes under `runs/<run_id>/extracts/`:
 
 ```text
-python -m dd_engine extract --run runs/<run_id>
+extraction_manifest.json
+extracted_units.jsonl
+extraction_failures.json
+needs_vision.json
+rendered_pages/
+cache/
+```
+
+Every registered source receives one terminal extraction status. Units retain
+the source ID/hash/path, a format-native locator, method, confidence,
+warning/limitation and extracted-content checksum. ZIP members are read in
+memory and keep `zip://...!/member` virtual paths. Source bytes are hash-checked
+before per-source cache reuse. Cache identity includes the source checksum,
+extractor version and extraction configuration/capability fingerprint.
+
+PDF locators use real one-based page numbers. DOCX uses structural paragraph,
+heading and table/row/cell locators and does not invent page numbers. Workbook
+units retain hidden sheet/row/column state, formulas, cached values, merged/named
+ranges and number formats; the engine never recalculates a workbook. Pending
+vision tasks point only to local rendered assets and always have a null model
+result until a separate Codex/Claude vision-review task records one in a future
+phase.
+
+The remaining stage interfaces are:
+
+```text
 python -m dd_engine intake --run runs/<run_id>
 python -m dd_engine analyse --run runs/<run_id>
 python -m dd_engine report --run runs/<run_id>
 python -m dd_engine validate --run runs/<run_id>
 ```
 
-In Phase 4 each command in this future-stage list exits with status 3 and `stage not implemented`. This is an
-intentional scope boundary, not a successful stage result.
+In Phase 5 each command in this remaining-stage list exits with status 3 and
+`stage not implemented`. This is an intentional scope boundary, not a successful
+stage result.
 
 ## Run structure and resumption
 
@@ -116,10 +151,11 @@ run ID and pass format-level validation before completion. Failure diagnostics
 and error history are retained for safe reruns. A changed stage input/output
 checksum invalidates affected downstream results.
 
-Source rooms are read-only and must remain outside the run directory. Arbitrary
-runs, real rooms, secrets, caches, renders, OCR caches and local logs are ignored
-by Git. Only the specifically allowlisted approved synthetic/example locations
-may be committed later.
+Source rooms are read-only and must remain outside the run directory. All
+derived extraction assets stay under that run's `extracts/` tree. Arbitrary runs,
+real rooms, secrets, caches, renders, OCR caches and local logs are ignored by
+Git. Only the specifically allowlisted approved synthetic/example locations may
+be committed later.
 
 ## Development verification
 
@@ -129,6 +165,7 @@ python -m ruff check .
 python -m mypy
 ```
 
-Missing optional OCR, PDF rendering or document conversion tools are doctor
-warnings with stated fallbacks, not installation failures. See `AGENTS.md` and
-`CLAUDE.md` for the full evidence, privacy and honesty contract.
+Missing optional OCR or document conversion tools are doctor warnings with
+stated fallbacks, not installation failures. Local PDF rendering is a required
+pinned Python capability. See `AGENTS.md` and `CLAUDE.md` for the full evidence,
+privacy and honesty contract.

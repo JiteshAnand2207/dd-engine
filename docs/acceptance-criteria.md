@@ -78,7 +78,9 @@ Given the synthetic room, then the complete source register has exactly 100 logi
 
 ### AC-017 - Tiered extraction
 
-Given native-text PDF/DOCX/XLSX/CSV fixtures, then they are extracted locally without a model event. Given image-only or ambiguous material, then escalation follows the configured economy/frontier gates and is logged. (TB-018-TB-019)
+Given native-text PDF/DOCX/XLSX/true-CSV/image fixtures, then deterministic content and metadata are extracted locally without a model event. Low-text and image-only PDF pages are selectively rendered, optional local OCR is recorded only when detected and used, and unresolved visual material receives a structured pending Codex/Claude vision task with a null result. Every extracted unit carries source ID/hash/path, a format-native locator, extraction method, confidence, warnings/limitations and extracted-content checksum. `extraction_manifest.json`, `extracted_units.jsonl`, `extraction_failures.json`, `needs_vision.json`, `rendered_pages/` and `cache/` are run-local. (TB-018-TB-019)
+
+For XLSX, visible/hidden sheets, hidden rows/columns, formulas, source-cached values, merged cells, named ranges, date/currency formats, formula errors, totals and subtotals are inspected. No workbook is silently recalculated. Cache reuse requires an exact source checksum, extractor version and extraction configuration/capability fingerprint; a mismatch is a miss. Every register row has one terminal extraction status. (TB-018-TB-019, TB-043, TB-082)
 
 ### AC-018 - Unsupported and unreadable inputs
 

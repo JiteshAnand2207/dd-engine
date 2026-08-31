@@ -30,7 +30,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     parser = argparse.ArgumentParser(
         prog="python -m dd_engine",
-        description="Codex-native due-diligence engine foundation",
+        description="Codex-native local-first due-diligence engine",
     )
     parser.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
     subparsers = parser.add_subparsers(dest="command")

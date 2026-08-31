@@ -2,7 +2,7 @@
 
 ## Status and scope
 
-This document defines an implementation architecture; it does not implement the engine. The chosen runtime harness is **Codex**. Deterministic supporting code will target **Python 3.11 or later**. The native path must work without Docker; a container may later be offered only as an optional convenience.
+This document defines the implementation architecture. Phase 5 implements the deterministic source register and tiered local-first extraction; intake, analysis, reporting and validation remain later-stage contracts. The chosen runtime harness is **Codex**. Deterministic supporting code targets **Python 3.11 or later**. The native path works without Docker; a container may later be offered only as an optional convenience.
 
 The design optimizes for an auditable cold run over an unseen, confidential room. It separates repeatable mechanics from model judgment, makes human pauses resumable, isolates red-team context, and never turns a partial or privacy-unsafe run into an apparent success.
 
@@ -106,15 +106,16 @@ Byte-identical files are deterministic duplicates. Supersession is a candidate r
 
 ### Tiered extraction
 
-The extraction ladder is cheapest and most deterministic first:
+The Phase 5 extraction ladder is cheapest and most deterministic first:
 
-1. Native local parse for text-bearing PDF, DOCX, XLSX/CSV and metadata-bearing images.
-2. Structural recovery and alternate local parsing for damaged or unusual files.
-3. Economy Codex route for classification or bulk interpretation that cannot be completed deterministically.
-4. Frontier Codex route only where visual interpretation or material judgment is necessary.
-5. Quarantine with an explicit gap if extraction remains unreliable.
+1. Tier 0 locally parses native PDF text, DOCX paragraphs/tables, XLSX cells and structure, true CSV bytes, and image metadata.
+2. Tier 1 locally renders only low-text/image-only PDF pages and standalone images that need visual review, extracts embedded PDF/DOCX images, and optionally invokes detected Tesseract OCR.
+3. Tier 2 writes a structured pending Codex/Claude vision-review queue. Python makes no model call and every queued result remains null until a later authenticated harness task records actual review.
+4. Unreadable or unsupported content receives an explicit terminal reason rather than disappearing.
 
-The local layer records raw values, displayed values, formulas when present, hidden-sheet state, page/sheet coordinates and parse warnings. It never executes workbook macros. Cached formula values are evidence, not proof of recalculation; material figures are recomputed by explicit Python calculations from cited inputs where possible.
+Every registered source receives one of `successfully_extracted`, `partially_extracted`, `queued_for_vision`, `unsupported` or `failed`. The local layer records raw values, formulas and source-cached values separately, hidden sheet/row/column state, merged and named ranges, number formats, page/sheet coordinates and parse warnings. It never executes workbook macros or recalculates a workbook. Cached formula values are evidence, not proof of recalculation; any later analytical recomputation must be a separate record based on cited inputs.
+
+Source-level cache identity includes the source SHA-256, extractor version and complete extraction configuration/capability fingerprint. The engine verifies current source bytes against the register before cache lookup, retains old configuration namespaces for audit, and never reuses a result across a mismatched source hash.
 
 ### Evidence addresses and citations
 
@@ -261,7 +262,7 @@ runs/<run-id>/
   checkpoints/                  versioned stage-state records
   logs/                         local run, route, cost and research ledgers
   source_register/              source register CSV/JSON and inventory metadata
-  extracts/                     deterministic extraction records
+  extracts/                     manifest, JSONL units, failures, vision queue, renders and cache
   intake/                       both question, answer and resume records
   evidence/                     evidence and citation indexes
   workstreams/                  five workstreams, Tax module and calculations

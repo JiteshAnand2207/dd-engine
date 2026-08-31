@@ -7,6 +7,7 @@ from dataclasses import replace
 from datetime import date
 from pathlib import Path
 
+import pytest
 from docx import Document
 from openpyxl import Workbook
 from openpyxl.workbook.defined_name import DefinedName
@@ -16,6 +17,7 @@ from reportlab.lib.utils import ImageReader
 from reportlab.pdfgen import canvas
 
 from dd_engine.config import EngineConfig, load_config
+from dd_engine.errors import ExtractionError
 from dd_engine.extraction import extract_run
 from dd_engine.extraction.cache import ExtractionCache
 from dd_engine.extraction.pipeline import EXTRACTOR_VERSION
@@ -170,7 +172,10 @@ def test_tiered_mixed_extraction_and_durable_locators(tmp_path: Path) -> None:
 
     assert queue["model_execution_performed"] is False
     assert queue["count"] == 3
-    assert all(task["model_result"] is None and task["status"] == "pending" for task in queue["tasks"])
+    assert all(
+        task["model_result"] is None and task["status"] == "pending"
+        for task in queue["tasks"]
+    )
     assert all((run_path / task["asset"]["path"]).is_file() for task in queue["tasks"])
 
     pdf_page = next(
@@ -228,6 +233,9 @@ def test_cache_hit_invalidation_and_stable_locators(tmp_path: Path) -> None:
     run_path, config = _run_room(tmp_path, room)
     units_path = run_path / "extracts" / "extracted_units.jsonl"
     original_units = units_path.read_bytes()
+    original_locators = [
+        json.loads(line)["locator"] for line in original_units.decode("utf-8").splitlines()
+    ]
     extraction = json.loads(
         (run_path / "extracts" / "extraction_manifest.json").read_text(encoding="utf-8")
     )
@@ -265,9 +273,14 @@ def test_cache_hit_invalidation_and_stable_locators(tmp_path: Path) -> None:
     assert stale_cache.load(source) is None
     _, manifest = load_manifest(run_path)
     assert manifest["stages"]["extract"]["attempts"] == 2
-    assert [unit["locator"] for unit in _jsonl(units_path)] == [
-        unit["locator"] for unit in _jsonl(units_path)
-    ]
+    assert [unit["locator"] for unit in _jsonl(units_path)] == original_locators
+
+    (room / "data.csv").write_text("A,B\nchanged,99\n", encoding="utf-8")
+    with pytest.raises(ExtractionError, match="rerun register"):
+        extract_run(run_path, room, changed)
+    _, mismatched_manifest = load_manifest(run_path)
+    assert mismatched_manifest["stages"]["extract"]["state"] == "failed"
+    assert mismatched_manifest["stages"]["extract"]["attempts"] == 3
 
 
 def test_prompt_injection_content_is_inert_untrusted_data(tmp_path: Path) -> None:

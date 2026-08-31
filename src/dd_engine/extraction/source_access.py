@@ -32,7 +32,9 @@ def _physical_path(room_root: Path, relative_path: str) -> Path:
     try:
         resolved = candidate.resolve(strict=True)
     except OSError as exc:
-        raise SourceIntegrityError(f"registered source is unavailable: {relative_path}: {exc}") from exc
+        raise SourceIntegrityError(
+            f"registered source is unavailable: {relative_path}: {exc}"
+        ) from exc
     if not resolved.is_relative_to(room_root) or not resolved.is_file():
         raise SourceIntegrityError(f"registered source escaped the room: {relative_path}")
     return resolved
@@ -105,7 +107,9 @@ def read_registered_source(
         try:
             return path.read_bytes()
         except OSError as exc:
-            raise SourceIntegrityError(f"cannot read registered source {relative_path}: {exc}") from exc
+            raise SourceIntegrityError(
+                f"cannot read registered source {relative_path}: {exc}"
+            ) from exc
 
     container = sources_by_id.get(str(container_id))
     if container is None:

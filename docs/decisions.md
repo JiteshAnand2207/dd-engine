@@ -138,11 +138,19 @@ The authored `ic-brief.md` remains Markdown. An in-process deterministic pure-Py
 
 ### ADR-016 - This turn produces planning documents only
 
-**Status:** Accepted by user directive.
+**Status:** Superseded after completion of the planning turn.
 
 No engine, fixture, README, dependency, test or workflow file will be implemented in this task. Temporary PDF renders used for source review are QA intermediates and will be removed.
 
-**Consequences:** Implementation readiness is assessed from traceability, architecture, acceptance gates and decisions, not from executable proof.
+**Consequences:** This remained binding for the original planning turn only. Phase 4 subsequently implemented registration and Phase 5 implements extraction under later explicit operator directives.
+
+### ADR-017 - Phase 5 extraction is local-first with a durable pending vision queue
+
+**Status:** Accepted by user directive on 31 August 2026.
+
+Tier 0 uses local PDF, DOCX, XLSX, CSV and image parsers. Tier 1 uses a pinned local PDF renderer, extracts embedded images and may use detected optional Tesseract OCR. Tier 2 produces local `needs_vision` tasks for Codex/Claude review but never fabricates a result or requires an API key. Every unit carries an immutable source hash and format-native locator. Cache identity combines source checksum, extractor version and extraction configuration/capabilities.
+
+**Consequences:** The deterministic engine remains complete without OCR or a model. DOCX page numbers are never invented. Spreadsheet formulas, stored cached values and later analytical recomputations remain distinct. All 100 synthetic register rows receive a terminal extraction status, including the ZIP container and corrupt fixture.
 
 ## Assumption register
 
@@ -165,6 +173,7 @@ No engine, fixture, README, dependency, test or workflow file will be implemente
 | U-006 | ADR-009: red team uses a brand-new Codex task/chat and allowlisted sealed packet; ordinary subagents require verified non-inheritance. |
 | U-007 | ADR-008: PDF, spreadsheet, DOCX and image citation locators are fixed by format. |
 | U-008 | ADR-015: the IC brief is an exactly two-page A4 PDF rendered and counted through an in-process pure-Python path. |
+| U-011 | ADR-017: extraction preserves source formulas and cached values without generic workbook recalculation; any analytical recomputation is separate and explicitly cited. |
 
 ## Remaining unresolved ambiguities
 
@@ -174,7 +183,6 @@ No engine, fixture, README, dependency, test or workflow file will be implemente
 | U-005 | Which concrete frontier and economy models are available under the evaluator's Codex subscription? | Capability profiles with actual resolved ID logged | High routing risk; environment discovery before locking config. |
 | U-009 | Must clean-clone setup work offline, and which operating systems are in scope? | Do not claim offline or OS-specific support; minimize and lock native dependencies | High 20-minute risk; evaluator environment disclosure. |
 | U-010 | What archive size, nesting depth and file-size limits are acceptable? | Deny unsafe paths; bounded configurable limits with explicit quarantine | Medium resilience risk; benchmark and threat-model decision. |
-| U-011 | How should arbitrary spreadsheet formulas be recalculated without assuming Office/LibreOffice? | Use cached values as evidence and Python-recompute headline metrics | High financial accuracy risk; fixture analysis and evaluator expectation. |
 | U-012 | Must both intake rounds block indefinitely, or may an explicit `unknown/not available` allow continuation? | Explicit non-answer may continue with lower confidence; silence cannot | Medium workflow risk; deal-lead confirmation. |
 | U-013 | What retention/deletion policy applies to confidential run artifacts after evaluation? | Keep local only; do not auto-delete without explicit authorization | Medium privacy/operations risk; data owner. |
 | U-014 | What quantitative thresholds define acceptable issue recall, false positives and citation accuracy? | Report metrics without inventing pass percentages; require zero dangling citations | High evaluation uncertainty; evaluator rubric. |

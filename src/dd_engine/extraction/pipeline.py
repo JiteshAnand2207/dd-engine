@@ -8,7 +8,6 @@ from collections import Counter
 from contextlib import suppress
 from dataclasses import asdict
 from pathlib import Path
-from typing import Any
 
 from dd_engine.artifacts import (
     append_json_line,
@@ -32,7 +31,7 @@ from dd_engine.extraction.pdfs import OCRCapability, detect_ocr_capability, extr
 from dd_engine.extraction.source_access import read_registered_source
 from dd_engine.extraction.spreadsheets import extract_xlsx
 from dd_engine.runs import load_manifest
-from dd_engine.source_paths import validate_data_room_path
+from dd_engine.source_paths import validate_data_room_path, walk_data_room
 from dd_engine.state import complete_stage, fail_stage, start_stage
 from dd_engine.time import utc_now
 
@@ -76,7 +75,10 @@ def _registered_adverse_result(source: JsonObject) -> SourceExtraction | None:
         return SourceExtraction(
             status="unsupported",
             primary_method="archive_container_inventory_only",
-            limitation="ZIP container is retained as a source; its direct members are extracted separately",
+            limitation=(
+                "ZIP container is retained as a source; its direct members are "
+                "extracted separately"
+            ),
             failure_reason="archive container is not itself an analytical document",
             metrics={"archive_containers": 1},
         )
@@ -197,7 +199,9 @@ def _validate_complete_sources(
     registered_ids = [str(item["source_id"]) for item in registered]
     extracted_ids = [str(item["source_id"]) for item in source_records]
     if extracted_ids != registered_ids:
-        raise ExtractionError("extraction manifest does not preserve every registered source in order")
+        raise ExtractionError(
+            "extraction manifest does not preserve every registered source in order"
+        )
     for record in source_records:
         if record["status"] not in TERMINAL_EXTRACTION_STATUSES:
             raise ExtractionError(f"{record['source_id']} has no terminal extraction status")
@@ -239,6 +243,7 @@ def _aggregate_summary(
         "docx_tables",
         "image_metadata_units",
         "pdf_embedded_images",
+        "pdf_embedded_image_failures",
         "pdf_pages_failed",
         "pdf_pages_image_only",
         "pdf_pages_low_text",
@@ -308,6 +313,37 @@ def _existing_outcome(run_path: Path, input_checksum: str) -> ExtractionOutcome:
     )
 
 
+def _room_snapshot(
+    room_root: Path, sources: list[JsonObject]
+) -> tuple[str, list[str]]:
+    """Hash the current physical room so stage/cache reuse cannot hide changes."""
+
+    walk = walk_data_room(room_root)
+    current = {
+        path.relative_to(room_root).as_posix(): file_sha256(path) for path in walk.files
+    }
+    registered = {
+        str(source["relative_path"]): source.get("sha256")
+        for source in sources
+        if source.get("container_source_id") is None
+    }
+    errors: list[str] = []
+    missing = sorted(set(registered) - set(current))
+    added = sorted(set(current) - set(registered))
+    mismatched = sorted(
+        path
+        for path in set(current) & set(registered)
+        if current[path] != registered[path]
+    )
+    if missing:
+        errors.append(f"registered physical source(s) missing: {', '.join(missing)}")
+    if added:
+        errors.append(f"unregistered physical source(s) added: {', '.join(added)}")
+    if mismatched:
+        errors.append(f"registered source checksum(s) changed: {', '.join(mismatched)}")
+    return stable_json_checksum(current), errors
+
+
 def extract_run(
     run: str | Path,
     room: str | Path,
@@ -344,17 +380,26 @@ def extract_run(
     ocr = detect_ocr_capability(config.extraction.optional_ocr)
     config_record = extraction_config_record(config, ocr)
     config_fingerprint = stable_json_checksum(config_record)
+    room_snapshot_fingerprint, room_snapshot_errors = _room_snapshot(room_root, sources)
     input_checksum = stable_json_checksum(
         {
             "config_fingerprint": config_fingerprint,
             "extractor_version": EXTRACTOR_VERSION,
             "register_output_checksum": manifest["stages"]["register"]["output_checksum"],
+            "room_snapshot_fingerprint": room_snapshot_fingerprint,
             "source_register_sha256": file_sha256(register_path),
         }
     )
     started = start_stage(run_path, "extract", input_checksum=input_checksum)
     if started["stages"]["extract"]["state"] == "completed":
         return _existing_outcome(run_path, input_checksum)
+    if room_snapshot_errors:
+        diagnostic = (
+            "source room no longer matches the completed register; rerun register before "
+            "extraction: " + "; ".join(room_snapshot_errors)
+        )
+        fail_stage(run_path, "extract", diagnostic)
+        raise ExtractionError(diagnostic)
 
     started_at = utc_now()
     extracts_dir = run_path / "extracts"

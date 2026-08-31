@@ -100,7 +100,8 @@ def _coordinate_in_range(row: int, column: int, coordinate: str) -> bool:
         return False
     normalized = coordinate.replace("$", "")
     try:
-        min_col, min_row, max_col, max_row = range_boundaries(normalized)
+        bounds = range_boundaries(normalized)
+        min_col, min_row, max_col, max_row = (int(value) for value in bounds)
     except (TypeError, ValueError):
         return False
     return min_row <= row <= max_row and min_col <= column <= max_col
@@ -238,7 +239,9 @@ def extract_xlsx(*, payload: bytes, source: JsonObject, run_id: str) -> SourceEx
                     sheet_cached += 1
                     totals["spreadsheet_cached_formula_values"] += 1
             merged_memberships = [
-                merged for merged in merged_ranges if _coordinate_in_range(cell.row, cell.column, merged)
+                merged
+                for merged in merged_ranges
+                if _coordinate_in_range(cell.row, cell.column, merged)
             ]
             unit_warnings: list[str] = []
             limitation = None

@@ -6,7 +6,6 @@ import csv
 import hashlib
 import io
 from pathlib import Path
-from typing import Any
 
 from docx import Document
 from PIL import ExifTags, Image
