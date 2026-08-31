@@ -4,7 +4,7 @@
 
 This matrix is the implementation-planning baseline for the due-diligence engine. A requirement is counted when a source sentence or list item creates an independently verifiable imperative, constraint, deliverable, evaluation expectation, or project condition. Compound sentences are split only where their clauses require different components, outputs, or checks. Descriptive background is not counted. Illustrative analyst examples and non-engine commercial terms are retained because they constrain evaluation or delivery.
 
-The matrix contains **138 requirements**: 103 from the trial brief, 21 from the room specification, and 14 from the current task directive. Component and path names are planned, not implemented.
+The matrix contains **163 requirements**: 103 from the trial brief, 21 from the room specification, 14 from the planning directive, and 25 from the Phase 7 directive. Component and path names are contracts; some are now implemented as described in the architecture status.
 
 ## Source register
 
@@ -13,6 +13,7 @@ The matrix contains **138 requirements**: 103 from the trial brief, 21 from the 
 | TB | [Founding Engineer Trial Project](../dd-engine-trial-brief.md.pdf), pages 1-4 | SHA-256 `ABF999C273012166AA9FD99CDA2AB9AB01EE968DC68D06FF78511F06C0358A0A` |
 | RS | [Real-room document specification](../specs_req_room.pdf), pages 1-2 | SHA-256 `F99A520DE1505412926341A4A51F2992A9BC96A0D98E1218526445BEDFC510B8` |
 | USR | Current task directive, 31 August 2026 | Conversation record |
+| P7 | Phase 7 evidence/calculation directive, 1 September 2026 | Conversation record |
 
 ## Trial brief requirements
 
@@ -167,6 +168,36 @@ The matrix contains **138 requirements**: 103 from the trial brief, 21 from the 
 | USR-013 | USR | Finish with files created, requirement count, unresolved ambiguities, architecture risks, keyless rationale and readiness. | Handover process | Final response and decisions summary | Six-item handover checklist. |
 | USR-014 | USR | Do not commit or push. | Git scope control | Uncommitted working-tree changes only | Final `git status`; no commits/remotes altered. |
 
+## Phase 7 evidence/calculation requirements
+
+| ID | Source | Normalized sentence-level requirement | Component | Output | Verification method |
+|---|---|---|---|---|---|
+| P7-001 | P7, before editing | Read authoritative planning/agent instructions, extraction outputs and intake schema; inspect Git status and preserve existing work. | Implementation process | Review/status record | Complete bounded reads and pre-edit `git status`. |
+| P7-002 | P7, before editing | Use available intake answers and preserve unanswered matters as gaps. | Evidence foundation | `gaps.jsonl` with answer provenance/status | Answered, unanswered, vague and absent-answer fixtures. |
+| P7-003 | P7, boundary | Do not read planted-issue files during implementation or the synthetic analytical run. | Operating boundary | No ground-truth dependency | Command/tool and code-path audit. |
+| P7-004 | P7, objective | Create an auditable layer between extracted documents and analytical prose so unsupported material claims cannot pass. | Evidence foundation and coverage validator | Six record stores plus validation/coverage | Unsupported-material-claim fixture fails. |
+| P7-005 | P7, records | Store claim ID, statement, type, workstream, materiality, confidence and status; limit claim type to fact, calculation, inference, recommendation or limitation. | Typed claim model | `evidence/claims.jsonl` | Schema/enumeration tests. |
+| P7-006 | P7, records | Store evidence ID, claim ID, source ID, exact locator, extracted value/text, support/contradiction direction, extraction confidence and source/version status. | Typed evidence model | `evidence/evidence.jsonl` | Schema and source-content matching tests. |
+| P7-007 | P7, records | Store calculation ID/description, source inputs/locators, units/currency, normalization, formula, result, rounding and independent recomputation status. | Typed calculation model | `evidence/calculations.jsonl` | Structural and recomputation tests. |
+| P7-008 | P7, records | Store contradiction ID, conflicting claims/values, sources, likely explanations, resolution status and applicable intake question. | Typed contradiction model | `evidence/contradictions.jsonl` | Schema/reference tests. |
+| P7-009 | P7, records | Store expected information, evidence of absence, importance, affected decision, requested follow-up and gap status. | Typed gap model | `evidence/gaps.jsonl` | Schema plus intake/extraction gap tests. |
+| P7-010 | P7, records | Store issue ID/conclusion/workstream, supporting and counterevidence, calculations, materiality/confidence, transaction implication, recommended action and unresolved question. | Typed issue model | `evidence/issues.jsonl` | Schema/reference tests. |
+| P7-011 | P7, citations | Validate that each cited source ID exists and its checksum matches the locked register/extraction source. | Citation validator | Citation result per evidence/input | Missing-source and checksum-mismatch tests. |
+| P7-012 | P7, citations | Validate PDF pages, XLSX sheets/cells/ranges, DOCX paragraphs/tables, CSV rows/columns and intrinsic image locators. | Format-native resolvers | Locator validation results | Valid/invalid format fixture matrix. |
+| P7-013 | P7, citations | Prevent silently superseded versions from being cited. | Version-aware validator | Failure or explicit acknowledgement warning | Superseded source tests. |
+| P7-014 | P7, citations | Require material claims to contain valid supporting evidence. | Claim coverage gate | Per-claim support result | Unsupported claim test. |
+| P7-015 | P7, citations | Require calculated values to identify source inputs and a formula. | Calculation validator | Input citations and recomputation result | Valid/invalid calculation citation tests. |
+| P7-016 | P7, citations | Do not count duplicate documents as independent corroboration. | Independence-key resolver | Duplicate exclusion ledger | Exact-duplicate two-citation test. |
+| P7-017 | P7, calculations | Preserve reported and recomputed numbers separately and never overwrite source values. | Calculation record/recomputer | Separate result fields; immutable inputs | Reported-versus-recomputed test. |
+| P7-018 | P7, calculations | Normalize periods, currency, signs and units explicitly. | Calculation schema | `normalisation` object | Missing-normalization tests. |
+| P7-019 | P7, calculations | Store formula/inputs and report missing inputs rather than assuming zero. | Safe deterministic recomputer | Formula/version and null missing inputs | Missing-input blocking test. |
+| P7-020 | P7, calculations | Record whether a calculation is deterministic or model-assisted. | Calculation schema | `calculation_method` | Enumeration test. |
+| P7-021 | P7, outputs | Create the six named JSONL record stores, `citation_validation.json` and `evidence_coverage.md`. | Evidence pipeline | Eight named artifacts | File-existence and run-ID checks. |
+| P7-022 | P7, tests | Test valid and invalid PDF, spreadsheet, DOCX, duplicate, superseded-version and calculation citations. | Test suite | `tests/test_evidence.py` | Focused fixture suite. |
+| P7-023 | P7, synthetic run | Run the evidence foundation against the synthetic room without consulting the answer key. | Canonical run procedure | Run-local evidence artifacts | Public-only validation plus evidence command. |
+| P7-024 | P7, scope | Do not draft workstream prose or the report in Phase 7. | Stage boundary | `analyse`/`report` remain unimplemented | CLI/state and output-tree assertions. |
+| P7-025 | P7, scope | Do not commit or push. | Git scope control | Uncommitted changes only | Final Git status/log inspection. |
+
 ## Coverage index for specifically named concerns
 
 | Concern | Primary requirement IDs | Planned owner |
@@ -176,6 +207,9 @@ The matrix contains **138 requirements**: 103 from the trial brief, 21 from the 
 | Tax handling | RS-016-RS-020; ADR-007 in decisions | Mandatory standalone Tax analytical module producing `tax/tax-findings.json`, `tax/tax-analysis.md`, its own `report.md` section, and cross-links to Financial, Legal, Operational/management and IT |
 | Two intake rounds | TB-020-TB-022 | Human pause/resume controller |
 | Source-level citations | TB-040-TB-043, TB-082 | Evidence-address service |
+| Phase 7 structured records | P7-005-P7-010 | Evidence foundation |
+| Citation validation and duplicate independence | P7-011-P7-016 | Format-native citation validator |
+| Calculation provenance | TB-027, P7-007, P7-015, P7-017-P7-020 | Safe deterministic recomputation ledger |
 | Model routing | TB-019, TB-053-TB-057, TB-088 | Routing policy and invocation ledger |
 | Token and cost logging | TB-033, TB-088 | Invocation/cost ledger |
 | Privacy restrictions | TB-062-TB-065, RS-015 | Egress guard and local artifact store |

@@ -162,6 +162,28 @@ Answers are stored verbatim beside conservative normalisation, provenance, ambig
 
 **Consequences:** The question set changes with observed room evidence instead of disguising a fixed questionnaire as dynamic intake. The seven question/answer/unresolved artifacts form the completed intake contract. The canonical synthetic run must stop after round-one generation until Gavin supplies an actual answer file; analysis cannot start from fabricated replies.
 
+### ADR-019 - Phase 7 is a pre-analysis evidence foundation
+
+**Status:** Accepted by user directive on 1 September 2026.
+
+Phase 7 adds a dedicated deterministic `evidence` command after extraction. It
+stores typed claims, evidence, calculations, contradictions, gaps and issues;
+validates native citations and calculation provenance; and produces coverage and
+failure ledgers. It may run while intake is paused only to preserve available
+answers and unanswered/ambiguous matters as gaps. It does not complete intake or
+the `analyse` stage.
+
+Source/version identity is resolved against the locked register and extraction
+outputs. Potentially superseded sources require explicit acknowledgement. Exact
+duplicates share an independence key and never increase independent corroboration.
+Reported and recomputed numbers remain separate, missing inputs remain null, and
+every calculation declares normalization, formula/version, rounding and method.
+
+**Consequences:** Workstreams and reports must consume these records rather than
+make free-standing material claims. Phase 7 can be exercised safely on the
+canonical room while round one remains `awaiting_input`, but it cannot be
+represented as workstream analysis or used to bypass the deal-lead gate.
+
 ## Assumption register
 
 | ID | Assumption | Basis | If false |

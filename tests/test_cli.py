@@ -23,6 +23,7 @@ def test_module_cli_starts() -> None:
 
     assert result.returncode == 0
     assert "doctor" in result.stdout
+    assert "evidence" in result.stdout
     assert "init-run" in result.stdout
     assert "status" in result.stdout
 

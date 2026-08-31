@@ -56,6 +56,16 @@ def atomic_write_text(path: Path, value: str) -> None:
             temporary.unlink()
 
 
+def atomic_write_jsonl(path: Path, records: Iterable[Mapping[str, Any]]) -> None:
+    """Write a complete JSONL collection atomically, including an empty collection."""
+
+    encoded = "".join(
+        json.dumps(record, sort_keys=True, ensure_ascii=False, separators=(",", ":")) + "\n"
+        for record in records
+    )
+    atomic_write_text(path, encoded)
+
+
 def atomic_write_bytes(path: Path, value: bytes) -> None:
     """Write binary content through an adjacent file and atomically replace it."""
 

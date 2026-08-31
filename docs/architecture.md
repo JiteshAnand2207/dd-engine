@@ -2,7 +2,7 @@
 
 ## Status and scope
 
-This document defines the implementation architecture. Phase 6 implements the deterministic source register, tiered local-first extraction and two-round evidence-grounded intake with real human pauses; analysis, reporting and validation remain later-stage contracts. The chosen runtime harness is **Codex**. Deterministic supporting code targets **Python 3.11 or later**. The native path works without Docker; a container may later be offered only as an optional convenience.
+This document defines the implementation architecture. Phase 7 implements the deterministic source register, tiered local-first extraction, two-round evidence-grounded intake with real human pauses, and an extraction-dependent evidence/calculation foundation. Workstream analysis, reporting and final validation remain later-stage contracts. The chosen runtime harness is **Codex**. Deterministic supporting code targets **Python 3.11 or later**. The native path works without Docker; a container may later be offered only as an optional convenience.
 
 The design optimizes for an auditable cold run over an unseen, confidential room. It separates repeatable mechanics from model judgment, makes human pauses resumable, isolates red-team context, and never turns a partial or privacy-unsafe run into an apparent success.
 
@@ -37,7 +37,9 @@ flowchart TD
     D1 --> H1["Human pause: intake round 1"]
     H1 --> R1["Stage 1B: final source register"]
     R1 --> E["Stage 2: tiered extraction and evidence index"]
-    E --> H2["Human pause: intake round 2"]
+    E --> EF["Evidence foundation: citations, calculations and gaps"]
+    H1 -.-> EF
+    EF --> H2["Human pause: intake round 2"]
     H2 --> W["Stage 4: five formal workstreams plus standalone Tax module"]
     W --> DR["Draft claim index, report and IC brief"]
     DR --> S["Sealed red-team packet"]
@@ -64,9 +66,7 @@ src/dd_engine/
   bootstrap/                     configuration and capability discovery
   inventory/                     file walk, hashes, duplicates, versions, archives
   extraction/                    native parsers, confidence and escalation packets
-  evidence/                      immutable document IDs and native locators
-  citations/                     format-specific citation encoding and resolution
-  calculations/                  financial/tax tie-outs and reproducible tables
+  evidence/                      typed records, native citations and calculation validation
   tax/                           standalone structured tax analysis and cross-links
   state/                         resumable run state and stage manifests
   logging/                       local run, route, cost and research ledgers
@@ -136,9 +136,23 @@ Archive members also retain their container/member path, but that path does not 
 
 Every material claim receives a stable `claim_id`, at least one resolvable evidence address, evidence strength, confidence, inference/direct-observation label, workstream owner and decision impact. Validators reject dangling addresses and flag unsupported or overconfident claims. Source text is quoted only minimally; the report points back to the source location.
 
+Phase 7 stores six typed run-local JSONL collections: claims, evidence,
+calculations, contradictions, gaps and issues. Evidence records retain the exact
+extracted value/text, extraction confidence, source/version status and whether
+they support or contradict a claim. Potentially superseded citations require an
+explicit acknowledgement. Exact duplicates share one independence key derived
+from the register duplicate group or checksum and therefore count only once as
+corroboration.
+
+The `evidence` command depends on completed registration and extraction but may
+run while intake is paused. It carries every available answer verbatim through
+answer provenance and represents absent, vague or narrowed replies as gaps. It
+does not change stage state, complete intake, start `analyse`, generate workstream
+prose or create report artifacts.
+
 ### Calculations
 
-Python calculation modules create transparent input tables and formula outputs for EBITDA bridges, customer concentration, debt/net-debt, working capital, payroll/headcount, tax tie-outs and other headline figures. Each result records source cells, formula/version and output hash. Codex interprets the result; it does not replace the arithmetic ledger.
+Python calculation modules create transparent input tables and formula outputs for EBITDA bridges, customer concentration, debt/net-debt, working capital, payroll/headcount, tax tie-outs and other headline figures. Each result records source cells, formula/version and output hash. Reported and recomputed results remain separate. Period, currency, sign and unit normalization is explicit; missing inputs stay null and block recomputation; rounding and deterministic/model-assisted method are recorded. Codex interprets the result; it does not replace the arithmetic ledger.
 
 ## Codex reasoning
 
@@ -266,7 +280,7 @@ runs/<run-id>/
   source_register/              source register CSV/JSON and inventory metadata
   extracts/                     manifest, JSONL units, failures, vision queue, renders and cache
   intake/                       both question, answer and resume records
-  evidence/                     evidence and citation indexes
+  evidence/                     six record stores, citation validation and coverage ledger
   workstreams/                  five workstreams, Tax module and calculations
   red_team/                     sealed packet, isolation proof and challenge log
   outputs/                      report, IC brief and final validation artifacts

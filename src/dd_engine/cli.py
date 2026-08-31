@@ -1,4 +1,4 @@
-"""Command-line interface for registration, extraction and human intake pauses."""
+"""CLI for registration, extraction, intake and the evidence foundation."""
 
 from __future__ import annotations
 
@@ -13,6 +13,7 @@ from dd_engine.config import load_config
 from dd_engine.constants import STAGE_ORDER
 from dd_engine.doctor import format_doctor_report, run_doctor
 from dd_engine.errors import DDEngineError
+from dd_engine.evidence import build_evidence_foundation
 from dd_engine.extraction import extract_run
 from dd_engine.intake import generate_intake_questions, ingest_intake_answers
 from dd_engine.inventory import RegisterLimits, register_room
@@ -49,6 +50,13 @@ def build_parser() -> argparse.ArgumentParser:
     status_parser.add_argument("--run", required=True, type=Path, help="run directory or manifest")
     status_parser.add_argument("--json", action="store_true", help="emit machine-readable JSON")
 
+    evidence_parser = subparsers.add_parser(
+        "evidence",
+        help="build and validate the extraction-dependent evidence/calculation foundation",
+    )
+    evidence_parser.add_argument("--run", required=True, type=Path, help="run directory")
+    evidence_parser.add_argument("--json", action="store_true", help="emit machine-readable JSON")
+
     for stage_name in STAGE_ORDER:
         stage_parser = subparsers.add_parser(
             stage_name,
@@ -61,7 +69,7 @@ def build_parser() -> argparse.ArgumentParser:
                     else (
                         "generate or ingest one evidence-grounded intake round"
                         if stage_name == "intake"
-                        else f"run the {stage_name} stage (interface only after Phase 6)"
+                        else f"run the {stage_name} stage (interface only after Phase 7)"
                     )
                 )
             ),
@@ -224,6 +232,33 @@ def _intake_command(arguments: argparse.Namespace) -> int:
     return 0
 
 
+def _evidence_command(arguments: argparse.Namespace) -> int:
+    outcome = build_evidence_foundation(arguments.run)
+    payload = {
+        "input_fingerprint": outcome.input_fingerprint,
+        "path": str(outcome.run_path / "evidence"),
+        "reused": outcome.reused,
+        "run_id": outcome.run_path.name,
+        "summary": outcome.summary,
+        "validation_passed": outcome.validation_passed,
+    }
+    if arguments.json:
+        print(json.dumps(payload, indent=2, sort_keys=True))
+    else:
+        action = "Reused" if outcome.reused else "Completed"
+        print(f"{action} evidence foundation for run {outcome.run_path.name}")
+        print(f"Path: {outcome.run_path / 'evidence'}")
+        print(
+            "Records: "
+            f"{outcome.summary['claim_count']} claims; "
+            f"{outcome.summary['evidence_count']} evidence; "
+            f"{outcome.summary['calculation_count']} calculations; "
+            f"{outcome.summary['gap_count']} gaps"
+        )
+        print(f"Citation validation: {'passed' if outcome.validation_passed else 'failed'}")
+    return 0 if outcome.validation_passed else 1
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     """Run the CLI and return a process exit code."""
 
@@ -245,6 +280,8 @@ def main(argv: Sequence[str] | None = None) -> int:
             return _extract_command(arguments)
         if arguments.command == "intake":
             return _intake_command(arguments)
+        if arguments.command == "evidence":
+            return _evidence_command(arguments)
         if arguments.command in STAGE_ORDER:
             print(f"{arguments.command}: stage not implemented", file=sys.stderr)
             return NOT_IMPLEMENTED_EXIT

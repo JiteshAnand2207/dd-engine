@@ -47,3 +47,7 @@ class SourceIntegrityError(ExtractionError):
 
 class IntakeError(DDEngineError):
     """Raised when intake cannot safely generate or ingest its human packet."""
+
+
+class EvidenceError(DDEngineError):
+    """Raised when the evidence foundation cannot be built or trusted."""

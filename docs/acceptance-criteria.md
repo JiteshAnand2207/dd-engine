@@ -244,6 +244,70 @@ A delivery manifest enumerates all five deliverables, hashes every artifact and 
 
 The engine completes the same acceptance flow on an unseen mixed-input fixture with no filenames, paths, company values or planted-issue knowledge hard-coded from the synthetic room. (TB-076-TB-089)
 
+## I. Phase 7 evidence and calculation foundation
+
+### AC-056 - Six typed record contracts
+
+The run-local evidence directory contains schema-valid claims, evidence,
+calculations, contradictions, gaps and issues JSONL stores with all Phase 7 fields,
+stable IDs and the run ID in every record. Empty analytical stores remain explicit
+rather than containing placeholder claims. (P7-005-P7-010)
+
+### AC-057 - Pre-analysis boundary and intake gaps
+
+Given completed extraction and intake in `awaiting_input`, the `evidence` command
+may complete its own validation artifacts but leaves intake paused and `analyse`
+not started. Every available answer retains verbatim/provenance fields; unanswered,
+vague and narrowed matters remain open/narrowed gaps. No workstream prose or report
+is created. (P7-002, P7-004, P7-024)
+
+### AC-058 - Native citation resolution and version safety
+
+Each evidence and calculation-input citation resolves its source ID and checksum
+against both register and extraction. PDF page, XLSX sheet/cell/range, DOCX
+paragraph/table, CSV row/column and intrinsic image-region locators are validated.
+A potentially superseded source fails unless explicitly acknowledged; acknowledgement
+remains a warning visible in the result. (TB-043, TB-082, P7-011-P7-015)
+
+### AC-059 - Material support and duplicate independence
+
+An active high/critical claim with no valid supporting citation fails. Multiple
+citations from the same exact-duplicate group/checksum count as one independent
+source and appear in the duplicate-exclusion ledger. (TB-040, TB-045, TB-081,
+P7-014, P7-016)
+
+### AC-060 - Calculation provenance and missing inputs
+
+Every calculation has source inputs/locators, explicit period/currency/sign/unit
+normalization, a versioned formula, separate reported/recomputed results, rounding,
+method and independent recomputation status. Deterministic formulas use only the
+safe arithmetic expression subset. A missing input stays null, is named with a
+reason and blocks recomputation rather than becoming zero. (TB-027, AC-033,
+P7-007, P7-015, P7-017-P7-020)
+
+### AC-061 - Phase 7 output and coverage ledger
+
+The command creates `claims.jsonl`, `evidence.jsonl`, `calculations.jsonl`,
+`contradictions.jsonl`, `gaps.jsonl`, `issues.jsonl`,
+`citation_validation.json` and `evidence_coverage.md`. The validation artifact
+reports failed citations, material-claim coverage, structural/reference failures
+and duplicate exclusions; zero material claims reports coverage as not applicable,
+not a fabricated 100%. (P7-021)
+
+### AC-062 - Citation fixture matrix
+
+Automated tests include valid and invalid PDF, XLSX and DOCX locators; valid CSV
+and image locators; exact-duplicate corroboration; superseded-version citation;
+valid/invalid calculation citations; and missing-input behavior. (P7-022)
+
+### AC-063 - Synthetic evidence-foundation run
+
+The public-only synthetic validator and canonical register/extract/evidence commands
+complete without reading the sealed issue key. The resulting foundation records
+all unanswered round-one matters and pending extraction/vision limitations as gaps,
+while intake stays `awaiting_input` and analysis/reporting remain unstarted.
+(P7-003, P7-023-P7-024)
+
 ## Release gate
 
-Implementation is eligible for trial handover only when AC-002 through AC-055 pass, every locked architecture decision in [decisions.md](decisions.md) is implemented, remaining open risks have recorded dispositions, and the final Git status contains no confidential room data, generated run data or credentials. AC-001 applies only to the current planning task.
+Implementation is eligible for trial handover only when AC-002 through AC-063 pass, every locked architecture decision in [decisions.md](decisions.md) is implemented, remaining open risks have recorded dispositions, and the final Git status contains no confidential room data, generated run data or credentials. AC-001 applies only to the original planning task.

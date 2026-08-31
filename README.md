@@ -5,13 +5,12 @@ due-diligence workflow. Codex is the primary harness; Claude Code can follow the
 same file-backed operating contract. Python never invokes a model API, and the
 required path uses no provider API key, Docker, database or cloud service.
 
-Phase 6 adds two evidence-grounded intake rounds and real deal-lead pauses to the
-complete deterministic register/extraction path. Round one uses early material
-signals plus essential transaction-context gaps; round two requires full
-extraction and explicit round-one answer ingestion. Question selection is
-source-linked, duplicate-suppressed and capped. Deal-lead replies remain verbatim
-with conservative normalisation. Analysis and later stages remain interfaces
-only.
+Phase 7 adds an auditable evidence and calculation foundation to the complete
+deterministic register/extraction and two-round intake path. It stores typed claims,
+evidence, calculations, contradictions, gaps and issues; resolves format-native
+citations; separates reported and recomputed values; and prevents exact duplicates
+from inflating corroboration. Unanswered intake matters remain gaps. Analysis and
+later stages remain interfaces only.
 
 ## Requirements and installation
 
@@ -56,7 +55,7 @@ drafting or red-team reasoning.
 `dd-engine.toml` is the checked-in safe default. Relative `runs_dir` values are
 resolved from the configuration file's directory. Unknown settings are rejected.
 Telemetry, external logging and provider API-key requirements cannot be enabled.
-Public research is disabled by default and is not implemented in Phase 6. The
+Public research is disabled by default and is not implemented in Phase 7. The
 `[register]` section configures maximum archive member count, total declared and
 observed uncompressed bytes, and per-member uncompressed bytes. Limit breaches
 are registered as terminal blocked rows rather than silently omitted.
@@ -76,13 +75,14 @@ python -m dd_engine init-run
 python -m dd_engine register --run runs/<run_id> --room /absolute/or/relative/path/to/room
 python -m dd_engine extract --run runs/<run_id> --room /absolute/or/relative/path/to/room
 python -m dd_engine intake --run runs/<run_id> --round 1
+python -m dd_engine evidence --run runs/<run_id>
 python -m dd_engine status --run runs/<run_id>
 ```
 
 `init-run` prints the absolute run path and immutable run ID. `--runs-root` can
 select a different local output directory. `--config` can select another TOML
-file. `doctor`, `init-run`, `register`, `extract`, `intake` and `status` also accept
-`--json`.
+file. `doctor`, `init-run`, `register`, `extract`, `intake`, `evidence` and `status`
+also accept `--json`.
 
 The register stage writes under `runs/<run_id>/source_register/`:
 
@@ -162,6 +162,33 @@ Excluded candidates retain a reason. Re-ingesting the identical answer hash is
 idempotent; changed answers invalidate only their declared affected stages and
 dependants.
 
+The evidence foundation can be refreshed after extraction and after either intake
+answer ingestion. Running it while intake is paused records silence, vague replies,
+pending vision and extraction failures as gaps; it does not complete intake or
+start analysis. It writes under `runs/<run_id>/evidence/`:
+
+```text
+claims.jsonl
+evidence.jsonl
+calculations.jsonl
+contradictions.jsonl
+gaps.jsonl
+issues.jsonl
+citation_validation.json
+evidence_coverage.md
+```
+
+Empty analytical record files are intentional until a Codex workstream supplies
+records. Citation validation checks source/checksum identity, PDF pages, XLSX
+sheets/cells/ranges, DOCX paragraphs/tables, CSV rows/columns and intrinsic image
+regions. A citation to a potentially superseded source fails unless the record
+explicitly acknowledges that status. Exact duplicates share one independence key.
+
+Calculation records require explicit period, currency, sign and unit
+normalisation; a versioned formula; separate reported and recomputed values;
+rounding; source inputs and locators; and a deterministic or model-assisted method.
+A missing input stays null and blocks recomputation rather than becoming zero.
+
 The remaining stage interfaces are:
 
 ```text
@@ -170,7 +197,7 @@ python -m dd_engine report --run runs/<run_id>
 python -m dd_engine validate --run runs/<run_id>
 ```
 
-In Phase 6 each command in this remaining-stage list exits with status 3 and
+In Phase 7 each command in this remaining-stage list exits with status 3 and
 `stage not implemented`. This is an intentional scope boundary, not a successful
 stage result.
 
