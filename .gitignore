@@ -1,2 +1,54 @@
 specs_req_room.pdf
 dd-engine-trial-brief.md.pdf
+
+# Confidential or real data rooms. The approved synthetic fixture is explicit.
+data-rooms/**
+data_rooms/**
+real-data-rooms/**
+rooms/**
+!data-rooms/
+!data-rooms/approved-synthetic-room/
+!data-rooms/approved-synthetic-room/**
+!synthetic-room/
+!synthetic-room/**
+
+# Arbitrary local runs. Approved example output must be copied deliberately.
+runs/**
+!examples/
+!examples/approved-output/
+!examples/approved-output/**
+
+# Secrets and local environment files.
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+secrets/
+.secrets/
+
+# Temporary renders and OCR caches.
+.renders/
+tmp/renders/
+temp/renders/
+*.render.png
+.ocr-cache/
+ocr-cache/
+**/.ocr-cache/
+
+# Python caches, tooling state and virtual environments.
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+env/
+
+# Generated local logs.
+*.log
+logs/

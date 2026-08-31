@@ -253,40 +253,25 @@ The target operator journey is:
 
 No `OPENAI_API_KEY` or other provider key is requested because Codex itself supplies model access through the user's subscription. Python performs local deterministic work only. Docker cannot be part of this acceptance path. A fresh-clone test records wall-clock time and fails if the engine is not running within 20 minutes.
 
-## Planned run artifact contract
+## Run artifact contract
 
 ```text
 runs/<run-id>/
-  run-manifest.json
-  source-register.csv
-  source-register.json
-  extraction/evidence.jsonl
-  citations/index.jsonl
-  intake/round-1-questions.md
-  intake/round-1-answers.md
-  intake/round-2-questions.md
-  intake/round-2-answers.md
-  workstreams/financial.md
-  workstreams/commercial.md
-  workstreams/legal-contractual.md
-  workstreams/operational-management.md
-  workstreams/it.md
-  tax/tax-findings.json
-  tax/tax-analysis.md
-  calculations/
-  report.md
-  ic-brief.md
-  ic-brief.pdf
-  validation/ic-brief-page-check.json
-  red-team/packet-allowlist.json
-  red-team/sealed-packet-manifest.json
-  red-team/isolation-manifest.json
-  red-team/challenge-log.md
-  run-log.jsonl
-  run-log.md
-  public-research-log.jsonl
-  validation-report.md
+  manifest.json
+  checkpoints/                  versioned stage-state records
+  logs/                         local run, route, cost and research ledgers
+  source_register/              source register CSV/JSON and inventory metadata
+  extracts/                     deterministic extraction records
+  intake/                       both question, answer and resume records
+  evidence/                     evidence and citation indexes
+  workstreams/                  five workstreams, Tax module and calculations
+  red_team/                     sealed packet, isolation proof and challenge log
+  outputs/                      report, IC brief and final validation artifacts
 ```
+
+Every generated run artifact records the immutable run ID. Later analytical
+artifacts retain the names and validation contracts described elsewhere in this
+document, nested under the owning directory above.
 
 ## Architecture risks
 

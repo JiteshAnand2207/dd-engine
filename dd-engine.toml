@@ -1,0 +1,30 @@
+[dd_engine]
+schema_version = 1
+runs_dir = "runs"
+telemetry_enabled = false
+external_logging_enabled = false
+public_research_enabled = false
+require_api_key = false
+
+[extraction]
+native_first = true
+optional_ocr = true
+unsupported_policy = "quarantine"
+
+[analysis]
+jurisdiction = "IE"
+workstreams = ["financial", "commercial", "legal_contractual", "operational_management", "it"]
+tax_mode = "standalone"
+
+[reporting]
+report_format = "markdown"
+ic_brief_format = "pdf"
+ic_brief_pages = 2
+page_size = "A4"
+
+[model_routing]
+deterministic_profile = "deterministic"
+mechanical_profile = "economy_mechanical"
+judgment_profile = "frontier_judgment"
+red_team_profile = "frontier_red_team"
+direct_api_enabled = false
