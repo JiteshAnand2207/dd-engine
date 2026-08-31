@@ -1,0 +1,1275 @@
+{
+  "as_of_date": "2026-06-30",
+  "company": {
+    "business": "Route optimisation and fleet analytics software",
+    "directors": [
+      "Nessa Brannock",
+      "Ciar Mollen",
+      "Orla Fenwick"
+    ],
+    "governance": {
+      "board_meetings_per_year": 6,
+      "reserved_matters_threshold": 0.75
+    },
+    "incorporated": "2017-02-14",
+    "legal_name": "Larkspur Transit Analytics Limited",
+    "registered_address": "14 Alder Quay, Kilnmore Business Park, Dublin D99 SYN4",
+    "registration_id": "IE-SYN-748291",
+    "shareholders": [
+      {
+        "name": "Nessa Brannock",
+        "ordinary_shares": 520000,
+        "ownership": 0.52
+      },
+      {
+        "name": "Ciar Mollen",
+        "ordinary_shares": 280000,
+        "ownership": 0.28
+      },
+      {
+        "name": "Alder Quay Ventures (Synthetic) LP",
+        "ordinary_shares": 200000,
+        "ownership": 0.2
+      }
+    ],
+    "vat_id": "IE-SYN-VAT-912345"
+  },
+  "contractors": [
+    {
+      "client_code": "HBL",
+      "contractor_id": "CTR-001",
+      "end_date": "2026-07-15",
+      "monthly_fee": 6500,
+      "name": "Tomas Advisory 1"
+    },
+    {
+      "client_code": "GCH",
+      "contractor_id": "CTR-002",
+      "end_date": "2026-08-16",
+      "monthly_fee": 6750,
+      "name": "Maeve Advisory 2"
+    },
+    {
+      "client_code": "MNR",
+      "contractor_id": "CTR-003",
+      "end_date": "2026-09-17",
+      "monthly_fee": 7000,
+      "name": "Ronan Advisory 3"
+    },
+    {
+      "client_code": "MST",
+      "contractor_id": "CTR-004",
+      "end_date": "2026-10-18",
+      "monthly_fee": 7250,
+      "name": "Eimear Advisory 4"
+    },
+    {
+      "client_code": "RMF",
+      "contractor_id": "CTR-005",
+      "end_date": "2026-11-19",
+      "monthly_fee": 7500,
+      "name": "Dara Advisory 5"
+    },
+    {
+      "client_code": "CFL",
+      "contractor_id": "CTR-006",
+      "end_date": "2026-07-20",
+      "monthly_fee": 7750,
+      "name": "Sive Advisory 6"
+    },
+    {
+      "client_code": "HBL",
+      "contractor_id": "CTR-007",
+      "end_date": "2026-08-21",
+      "monthly_fee": 8000,
+      "name": "Oisin Advisory 7"
+    },
+    {
+      "client_code": "GCH",
+      "contractor_id": "CTR-008",
+      "end_date": "2026-09-22",
+      "monthly_fee": 8250,
+      "name": "Una Advisory 8"
+    },
+    {
+      "client_code": "MNR",
+      "contractor_id": "CTR-009",
+      "end_date": "2026-10-23",
+      "monthly_fee": 8500,
+      "name": "Fiach Advisory 9"
+    },
+    {
+      "client_code": "MST",
+      "contractor_id": "CTR-010",
+      "end_date": "2026-11-24",
+      "monthly_fee": 8750,
+      "name": "Ailbhe Advisory 10"
+    },
+    {
+      "client_code": "RMF",
+      "contractor_id": "CTR-011",
+      "end_date": "2026-07-15",
+      "monthly_fee": 9000,
+      "name": "Cormac Advisory 11"
+    },
+    {
+      "client_code": "CFL",
+      "contractor_id": "CTR-012",
+      "end_date": "2026-08-16",
+      "monthly_fee": 9250,
+      "name": "Liadan Advisory 12"
+    }
+  ],
+  "creditors": [
+    {
+      "balance": 265000,
+      "days": 42,
+      "supplier": "Juniper Hosting Services Limited"
+    },
+    {
+      "balance": 105000,
+      "days": 31,
+      "supplier": "Northmere HR Services Limited"
+    },
+    {
+      "balance": 180000,
+      "days": 55,
+      "supplier": "Fleetcraft Leasing Limited"
+    },
+    {
+      "balance": 380000,
+      "days": 28,
+      "supplier": "Other fictional suppliers"
+    }
+  ],
+  "customers": [
+    {
+      "code": "HBL",
+      "debtor_balance": 410000,
+      "group_id": "GRP-HBL",
+      "group_name": "Harbourlight Mutual Group",
+      "legal_name": "Harbourlight Stores Limited",
+      "revenue_2025": 3100000,
+      "revenue_2026_ytd": 1900000,
+      "terms_days": 45,
+      "trading_name": "Harbourlight"
+    },
+    {
+      "code": "GCH",
+      "debtor_balance": 320000,
+      "group_id": "GRP-GCH",
+      "group_name": "Glencree Health Systems",
+      "legal_name": "Glencree Health Systems Limited",
+      "revenue_2025": 2600000,
+      "revenue_2026_ytd": 1550000,
+      "terms_days": 30,
+      "trading_name": "Glencree Health"
+    },
+    {
+      "code": "MNR",
+      "debtor_balance": 230000,
+      "group_id": "GRP-MOSAIC",
+      "group_name": "Mosaic Arc Group",
+      "legal_name": "Mosaic North Retail Limited",
+      "revenue_2025": 2000000,
+      "revenue_2026_ytd": 1250000,
+      "terms_days": 30,
+      "trading_name": "Mosaic North"
+    },
+    {
+      "code": "MST",
+      "debtor_balance": 210000,
+      "group_id": "GRP-MOSAIC",
+      "group_name": "Mosaic Arc Group",
+      "legal_name": "Mosaic South Trading Limited",
+      "revenue_2025": 1700000,
+      "revenue_2026_ytd": 1100000,
+      "terms_days": 30,
+      "trading_name": "Mosaic South"
+    },
+    {
+      "code": "RMF",
+      "debtor_balance": 160000,
+      "group_id": "GRP-RMF",
+      "group_name": "Rowanmere Foods",
+      "legal_name": "Rowanmere Foods Limited",
+      "revenue_2025": 1600000,
+      "revenue_2026_ytd": 900000,
+      "terms_days": 30,
+      "trading_name": "Rowanmere"
+    },
+    {
+      "code": "CFL",
+      "debtor_balance": 90000,
+      "group_id": "GRP-CFL",
+      "group_name": "Copper Finch Logistics",
+      "legal_name": "Copper Finch Logistics Limited",
+      "revenue_2025": 1200000,
+      "revenue_2026_ytd": 550000,
+      "terms_days": 60,
+      "trading_name": "Copper Finch"
+    },
+    {
+      "code": "OTH",
+      "debtor_balance": 60000,
+      "group_id": "GRP-OTHER",
+      "group_name": "Other",
+      "legal_name": "Other fictional customers",
+      "revenue_2025": 900000,
+      "revenue_2026_ytd": 400000,
+      "terms_days": 30,
+      "trading_name": "Other"
+    }
+  ],
+  "dataset_id": "SYN-LARKSPUR-2026-314159",
+  "debt": {
+    "director_current_account": 120000,
+    "hp_agreements": [
+      {
+        "asset": "18 service vehicles",
+        "balance": 215000,
+        "maturity": "2028-06-30",
+        "provider": "Fleetcraft Leasing Limited"
+      },
+      {
+        "asset": "Server and test equipment",
+        "balance": 75000,
+        "maturity": "2027-09-30",
+        "provider": "Quayside Equipment Finance"
+      }
+    ],
+    "loans": [
+      {
+        "balance": 1450000,
+        "facility": "Term loan",
+        "lender": "Fictional Atlantic Bank",
+        "maturity": "2029-03-31",
+        "rate": 0.0575
+      },
+      {
+        "balance": 360000,
+        "facility": "Innovation loan",
+        "lender": "Synthetic Enterprise Finance",
+        "maturity": "2028-11-30",
+        "rate": 0.0425
+      }
+    ]
+  },
+  "disposals": [
+    {
+      "asset": "Five route-survey vehicles",
+      "nbv": 121000,
+      "proceeds": 148000,
+      "profit": 27000
+    },
+    {
+      "asset": "Legacy server rack",
+      "nbv": 45000,
+      "proceeds": 38000,
+      "profit": -7000
+    }
+  ],
+  "employees": [
+    {
+      "annual_salary": 46000,
+      "client_code": "HBL",
+      "department": "Delivery",
+      "employee_id": "EMP-001",
+      "name": "Nessa Brannock",
+      "personal_email": "nessa.brannock@personal.invalid",
+      "start_date": "2018-01-01",
+      "synthetic_pps_like_id": "SYN000001A",
+      "work_email": "nessa.brannock@larkspur.invalid"
+    },
+    {
+      "annual_salary": 48750,
+      "client_code": "HBL",
+      "department": "Engineering",
+      "employee_id": "EMP-002",
+      "name": "Ciar Brannock",
+      "personal_email": "ciar.brannock@personal.invalid",
+      "start_date": "2019-02-02",
+      "synthetic_pps_like_id": "SYN000002B",
+      "work_email": "ciar.brannock@larkspur.invalid"
+    },
+    {
+      "annual_salary": 51500,
+      "client_code": "HBL",
+      "department": "Operations",
+      "employee_id": "EMP-003",
+      "name": "Orla Brannock",
+      "personal_email": "orla.brannock@personal.invalid",
+      "start_date": "2020-03-03",
+      "synthetic_pps_like_id": "SYN000003C",
+      "work_email": "orla.brannock@larkspur.invalid"
+    },
+    {
+      "annual_salary": 54250,
+      "client_code": "HBL",
+      "department": "Commercial",
+      "employee_id": "EMP-004",
+      "name": "Tomas Brannock",
+      "personal_email": "tomas.brannock@personal.invalid",
+      "start_date": "2021-04-04",
+      "synthetic_pps_like_id": "SYN000004D",
+      "work_email": "tomas.brannock@larkspur.invalid"
+    },
+    {
+      "annual_salary": 57000,
+      "client_code": "HBL",
+      "department": "Delivery",
+      "employee_id": "EMP-005",
+      "name": "Maeve Brannock",
+      "personal_email": "maeve.brannock@personal.invalid",
+      "start_date": "2022-05-05",
+      "synthetic_pps_like_id": "SYN000005E",
+      "work_email": "maeve.brannock@larkspur.invalid"
+    },
+    {
+      "annual_salary": 59750,
+      "client_code": "HBL",
+      "department": "Engineering",
+      "employee_id": "EMP-006",
+      "name": "Ronan Brannock",
+      "personal_email": "ronan.brannock@personal.invalid",
+      "start_date": "2023-06-06",
+      "synthetic_pps_like_id": "SYN000006F",
+      "work_email": "ronan.brannock@larkspur.invalid"
+    },
+    {
+      "annual_salary": 62500,
+      "client_code": "HBL",
+      "department": "Operations",
+      "employee_id": "EMP-007",
+      "name": "Eimear Brannock",
+      "personal_email": "eimear.brannock@personal.invalid",
+      "start_date": "2024-07-07",
+      "synthetic_pps_like_id": "SYN000007G",
+      "work_email": "eimear.brannock@larkspur.invalid"
+    },
+    {
+      "annual_salary": 65250,
+      "client_code": "HBL",
+      "department": "Commercial",
+      "employee_id": "EMP-008",
+      "name": "Dara Brannock",
+      "personal_email": "dara.brannock@personal.invalid",
+      "start_date": "2025-08-08",
+      "synthetic_pps_like_id": "SYN000008H",
+      "work_email": "dara.brannock@larkspur.invalid"
+    },
+    {
+      "annual_salary": 68000,
+      "client_code": "HBL",
+      "department": "Delivery",
+      "employee_id": "EMP-009",
+      "name": "Sive Brannock",
+      "personal_email": "sive.brannock@personal.invalid",
+      "start_date": "2018-09-09",
+      "synthetic_pps_like_id": "SYN000009I",
+      "work_email": "sive.brannock@larkspur.invalid"
+    },
+    {
+      "annual_salary": 70750,
+      "client_code": "HBL",
+      "department": "Engineering",
+      "employee_id": "EMP-010",
+      "name": "Oisin Brannock",
+      "personal_email": "oisin.brannock@personal.invalid",
+      "start_date": "2019-10-10",
+      "synthetic_pps_like_id": "SYN000010J",
+      "work_email": "oisin.brannock@larkspur.invalid"
+    },
+    {
+      "annual_salary": 73500,
+      "client_code": "HBL",
+      "department": "Operations",
+      "employee_id": "EMP-011",
+      "name": "Una Brannock",
+      "personal_email": "una.brannock@personal.invalid",
+      "start_date": "2020-11-11",
+      "synthetic_pps_like_id": "SYN000011K",
+      "work_email": "una.brannock@larkspur.invalid"
+    },
+    {
+      "annual_salary": 46000,
+      "client_code": "HBL",
+      "department": "Commercial",
+      "employee_id": "EMP-012",
+      "name": "Fiach Brannock",
+      "personal_email": "fiach.brannock@personal.invalid",
+      "start_date": "2021-12-12",
+      "synthetic_pps_like_id": "SYN000012L",
+      "work_email": "fiach.brannock@larkspur.invalid"
+    },
+    {
+      "annual_salary": 48750,
+      "client_code": "HBL",
+      "department": "Delivery",
+      "employee_id": "EMP-013",
+      "name": "Ailbhe Brannock",
+      "personal_email": "ailbhe.brannock@personal.invalid",
+      "start_date": "2022-01-13",
+      "synthetic_pps_like_id": "SYN000013M",
+      "work_email": "ailbhe.brannock@larkspur.invalid"
+    },
+    {
+      "annual_salary": 51500,
+      "client_code": "HBL",
+      "department": "Engineering",
+      "employee_id": "EMP-014",
+      "name": "Cormac Brannock",
+      "personal_email": "cormac.brannock@personal.invalid",
+      "start_date": "2023-02-14",
+      "synthetic_pps_like_id": "SYN000014N",
+      "work_email": "cormac.brannock@larkspur.invalid"
+    },
+    {
+      "annual_salary": 54250,
+      "client_code": "HBL",
+      "department": "Operations",
+      "employee_id": "EMP-015",
+      "name": "Liadan Brannock",
+      "personal_email": "liadan.brannock@personal.invalid",
+      "start_date": "2024-03-15",
+      "synthetic_pps_like_id": "SYN000015O",
+      "work_email": "liadan.brannock@larkspur.invalid"
+    },
+    {
+      "annual_salary": 57000,
+      "client_code": "HBL",
+      "department": "Commercial",
+      "employee_id": "EMP-016",
+      "name": "Senan Brannock",
+      "personal_email": "senan.brannock@personal.invalid",
+      "start_date": "2025-04-16",
+      "synthetic_pps_like_id": "SYN000016P",
+      "work_email": "senan.brannock@larkspur.invalid"
+    },
+    {
+      "annual_salary": 59750,
+      "client_code": "HBL",
+      "department": "Delivery",
+      "employee_id": "EMP-017",
+      "name": "Nessa Mollen",
+      "personal_email": "nessa.mollen@personal.invalid",
+      "start_date": "2018-05-17",
+      "synthetic_pps_like_id": "SYN000017Q",
+      "work_email": "nessa.mollen@larkspur.invalid"
+    },
+    {
+      "annual_salary": 62500,
+      "client_code": "HBL",
+      "department": "Engineering",
+      "employee_id": "EMP-018",
+      "name": "Ciar Mollen",
+      "personal_email": "ciar.mollen@personal.invalid",
+      "start_date": "2019-06-18",
+      "synthetic_pps_like_id": "SYN000018R",
+      "work_email": "ciar.mollen@larkspur.invalid"
+    },
+    {
+      "annual_salary": 65250,
+      "client_code": "GCH",
+      "department": "Operations",
+      "employee_id": "EMP-019",
+      "name": "Orla Mollen",
+      "personal_email": "orla.mollen@personal.invalid",
+      "start_date": "2020-07-19",
+      "synthetic_pps_like_id": "SYN000019S",
+      "work_email": "orla.mollen@larkspur.invalid"
+    },
+    {
+      "annual_salary": 68000,
+      "client_code": "GCH",
+      "department": "Commercial",
+      "employee_id": "EMP-020",
+      "name": "Tomas Mollen",
+      "personal_email": "tomas.mollen@personal.invalid",
+      "start_date": "2021-08-20",
+      "synthetic_pps_like_id": "SYN000020T",
+      "work_email": "tomas.mollen@larkspur.invalid"
+    },
+    {
+      "annual_salary": 70750,
+      "client_code": "GCH",
+      "department": "Delivery",
+      "employee_id": "EMP-021",
+      "name": "Maeve Mollen",
+      "personal_email": "maeve.mollen@personal.invalid",
+      "start_date": "2022-09-21",
+      "synthetic_pps_like_id": "SYN000021U",
+      "work_email": "maeve.mollen@larkspur.invalid"
+    },
+    {
+      "annual_salary": 73500,
+      "client_code": "GCH",
+      "department": "Engineering",
+      "employee_id": "EMP-022",
+      "name": "Ronan Mollen",
+      "personal_email": "ronan.mollen@personal.invalid",
+      "start_date": "2023-10-22",
+      "synthetic_pps_like_id": "SYN000022V",
+      "work_email": "ronan.mollen@larkspur.invalid"
+    },
+    {
+      "annual_salary": 46000,
+      "client_code": "GCH",
+      "department": "Operations",
+      "employee_id": "EMP-023",
+      "name": "Eimear Mollen",
+      "personal_email": "eimear.mollen@personal.invalid",
+      "start_date": "2024-11-23",
+      "synthetic_pps_like_id": "SYN000023W",
+      "work_email": "eimear.mollen@larkspur.invalid"
+    },
+    {
+      "annual_salary": 48750,
+      "client_code": "GCH",
+      "department": "Commercial",
+      "employee_id": "EMP-024",
+      "name": "Dara Mollen",
+      "personal_email": "dara.mollen@personal.invalid",
+      "start_date": "2025-12-24",
+      "synthetic_pps_like_id": "SYN000024X",
+      "work_email": "dara.mollen@larkspur.invalid"
+    },
+    {
+      "annual_salary": 51500,
+      "client_code": "GCH",
+      "department": "Delivery",
+      "employee_id": "EMP-025",
+      "name": "Sive Mollen",
+      "personal_email": "sive.mollen@personal.invalid",
+      "start_date": "2018-01-25",
+      "synthetic_pps_like_id": "SYN000025Y",
+      "work_email": "sive.mollen@larkspur.invalid"
+    },
+    {
+      "annual_salary": 54250,
+      "client_code": "GCH",
+      "department": "Engineering",
+      "employee_id": "EMP-026",
+      "name": "Oisin Mollen",
+      "personal_email": "oisin.mollen@personal.invalid",
+      "start_date": "2019-02-26",
+      "synthetic_pps_like_id": "SYN000026Z",
+      "work_email": "oisin.mollen@larkspur.invalid"
+    },
+    {
+      "annual_salary": 57000,
+      "client_code": "GCH",
+      "department": "Operations",
+      "employee_id": "EMP-027",
+      "name": "Una Mollen",
+      "personal_email": "una.mollen@personal.invalid",
+      "start_date": "2020-03-27",
+      "synthetic_pps_like_id": "SYN000027A",
+      "work_email": "una.mollen@larkspur.invalid"
+    },
+    {
+      "annual_salary": 59750,
+      "client_code": "GCH",
+      "department": "Commercial",
+      "employee_id": "EMP-028",
+      "name": "Fiach Mollen",
+      "personal_email": "fiach.mollen@personal.invalid",
+      "start_date": "2021-04-01",
+      "synthetic_pps_like_id": "SYN000028B",
+      "work_email": "fiach.mollen@larkspur.invalid"
+    },
+    {
+      "annual_salary": 62500,
+      "client_code": "GCH",
+      "department": "Delivery",
+      "employee_id": "EMP-029",
+      "name": "Ailbhe Mollen",
+      "personal_email": "ailbhe.mollen@personal.invalid",
+      "start_date": "2022-05-02",
+      "synthetic_pps_like_id": "SYN000029C",
+      "work_email": "ailbhe.mollen@larkspur.invalid"
+    },
+    {
+      "annual_salary": 65250,
+      "client_code": "GCH",
+      "department": "Engineering",
+      "employee_id": "EMP-030",
+      "name": "Cormac Mollen",
+      "personal_email": "cormac.mollen@personal.invalid",
+      "start_date": "2023-06-03",
+      "synthetic_pps_like_id": "SYN000030D",
+      "work_email": "cormac.mollen@larkspur.invalid"
+    },
+    {
+      "annual_salary": 68000,
+      "client_code": "GCH",
+      "department": "Operations",
+      "employee_id": "EMP-031",
+      "name": "Liadan Mollen",
+      "personal_email": "liadan.mollen@personal.invalid",
+      "start_date": "2024-07-04",
+      "synthetic_pps_like_id": "SYN000031E",
+      "work_email": "liadan.mollen@larkspur.invalid"
+    },
+    {
+      "annual_salary": 70750,
+      "client_code": "MNR",
+      "department": "Commercial",
+      "employee_id": "EMP-032",
+      "name": "Senan Mollen",
+      "personal_email": "senan.mollen@personal.invalid",
+      "start_date": "2025-08-05",
+      "synthetic_pps_like_id": "SYN000032F",
+      "work_email": "senan.mollen@larkspur.invalid"
+    },
+    {
+      "annual_salary": 73500,
+      "client_code": "MNR",
+      "department": "Delivery",
+      "employee_id": "EMP-033",
+      "name": "Nessa Fenwick",
+      "personal_email": "nessa.fenwick@personal.invalid",
+      "start_date": "2018-09-06",
+      "synthetic_pps_like_id": "SYN000033G",
+      "work_email": "nessa.fenwick@larkspur.invalid"
+    },
+    {
+      "annual_salary": 46000,
+      "client_code": "MNR",
+      "department": "Engineering",
+      "employee_id": "EMP-034",
+      "name": "Ciar Fenwick",
+      "personal_email": "ciar.fenwick@personal.invalid",
+      "start_date": "2019-10-07",
+      "synthetic_pps_like_id": "SYN000034H",
+      "work_email": "ciar.fenwick@larkspur.invalid"
+    },
+    {
+      "annual_salary": 48750,
+      "client_code": "MNR",
+      "department": "Operations",
+      "employee_id": "EMP-035",
+      "name": "Orla Fenwick",
+      "personal_email": "orla.fenwick@personal.invalid",
+      "start_date": "2020-11-08",
+      "synthetic_pps_like_id": "SYN000035I",
+      "work_email": "orla.fenwick@larkspur.invalid"
+    },
+    {
+      "annual_salary": 51500,
+      "client_code": "MNR",
+      "department": "Commercial",
+      "employee_id": "EMP-036",
+      "name": "Tomas Fenwick",
+      "personal_email": "tomas.fenwick@personal.invalid",
+      "start_date": "2021-12-09",
+      "synthetic_pps_like_id": "SYN000036J",
+      "work_email": "tomas.fenwick@larkspur.invalid"
+    },
+    {
+      "annual_salary": 54250,
+      "client_code": "MNR",
+      "department": "Delivery",
+      "employee_id": "EMP-037",
+      "name": "Maeve Fenwick",
+      "personal_email": "maeve.fenwick@personal.invalid",
+      "start_date": "2022-01-10",
+      "synthetic_pps_like_id": "SYN000037K",
+      "work_email": "maeve.fenwick@larkspur.invalid"
+    },
+    {
+      "annual_salary": 57000,
+      "client_code": "MNR",
+      "department": "Engineering",
+      "employee_id": "EMP-038",
+      "name": "Ronan Fenwick",
+      "personal_email": "ronan.fenwick@personal.invalid",
+      "start_date": "2023-02-11",
+      "synthetic_pps_like_id": "SYN000038L",
+      "work_email": "ronan.fenwick@larkspur.invalid"
+    },
+    {
+      "annual_salary": 59750,
+      "client_code": "MNR",
+      "department": "Operations",
+      "employee_id": "EMP-039",
+      "name": "Eimear Fenwick",
+      "personal_email": "eimear.fenwick@personal.invalid",
+      "start_date": "2024-03-12",
+      "synthetic_pps_like_id": "SYN000039M",
+      "work_email": "eimear.fenwick@larkspur.invalid"
+    },
+    {
+      "annual_salary": 62500,
+      "client_code": "MNR",
+      "department": "Commercial",
+      "employee_id": "EMP-040",
+      "name": "Dara Fenwick",
+      "personal_email": "dara.fenwick@personal.invalid",
+      "start_date": "2025-04-13",
+      "synthetic_pps_like_id": "SYN000040N",
+      "work_email": "dara.fenwick@larkspur.invalid"
+    },
+    {
+      "annual_salary": 65250,
+      "client_code": "MST",
+      "department": "Delivery",
+      "employee_id": "EMP-041",
+      "name": "Sive Fenwick",
+      "personal_email": "sive.fenwick@personal.invalid",
+      "start_date": "2018-05-14",
+      "synthetic_pps_like_id": "SYN000041O",
+      "work_email": "sive.fenwick@larkspur.invalid"
+    },
+    {
+      "annual_salary": 68000,
+      "client_code": "MST",
+      "department": "Engineering",
+      "employee_id": "EMP-042",
+      "name": "Oisin Fenwick",
+      "personal_email": "oisin.fenwick@personal.invalid",
+      "start_date": "2019-06-15",
+      "synthetic_pps_like_id": "SYN000042P",
+      "work_email": "oisin.fenwick@larkspur.invalid"
+    },
+    {
+      "annual_salary": 70750,
+      "client_code": "MST",
+      "department": "Operations",
+      "employee_id": "EMP-043",
+      "name": "Una Fenwick",
+      "personal_email": "una.fenwick@personal.invalid",
+      "start_date": "2020-07-16",
+      "synthetic_pps_like_id": "SYN000043Q",
+      "work_email": "una.fenwick@larkspur.invalid"
+    },
+    {
+      "annual_salary": 73500,
+      "client_code": "MST",
+      "department": "Commercial",
+      "employee_id": "EMP-044",
+      "name": "Fiach Fenwick",
+      "personal_email": "fiach.fenwick@personal.invalid",
+      "start_date": "2021-08-17",
+      "synthetic_pps_like_id": "SYN000044R",
+      "work_email": "fiach.fenwick@larkspur.invalid"
+    },
+    {
+      "annual_salary": 46000,
+      "client_code": "MST",
+      "department": "Delivery",
+      "employee_id": "EMP-045",
+      "name": "Ailbhe Fenwick",
+      "personal_email": "ailbhe.fenwick@personal.invalid",
+      "start_date": "2022-09-18",
+      "synthetic_pps_like_id": "SYN000045S",
+      "work_email": "ailbhe.fenwick@larkspur.invalid"
+    },
+    {
+      "annual_salary": 48750,
+      "client_code": "MST",
+      "department": "Engineering",
+      "employee_id": "EMP-046",
+      "name": "Cormac Fenwick",
+      "personal_email": "cormac.fenwick@personal.invalid",
+      "start_date": "2023-10-19",
+      "synthetic_pps_like_id": "SYN000046T",
+      "work_email": "cormac.fenwick@larkspur.invalid"
+    },
+    {
+      "annual_salary": 51500,
+      "client_code": "MST",
+      "department": "Operations",
+      "employee_id": "EMP-047",
+      "name": "Liadan Fenwick",
+      "personal_email": "liadan.fenwick@personal.invalid",
+      "start_date": "2024-11-20",
+      "synthetic_pps_like_id": "SYN000047U",
+      "work_email": "liadan.fenwick@larkspur.invalid"
+    },
+    {
+      "annual_salary": 54250,
+      "client_code": "RMF",
+      "department": "Commercial",
+      "employee_id": "EMP-048",
+      "name": "Senan Fenwick",
+      "personal_email": "senan.fenwick@personal.invalid",
+      "start_date": "2025-12-21",
+      "synthetic_pps_like_id": "SYN000048V",
+      "work_email": "senan.fenwick@larkspur.invalid"
+    },
+    {
+      "annual_salary": 57000,
+      "client_code": "RMF",
+      "department": "Delivery",
+      "employee_id": "EMP-049",
+      "name": "Nessa Tallis",
+      "personal_email": "nessa.tallis@personal.invalid",
+      "start_date": "2018-01-22",
+      "synthetic_pps_like_id": "SYN000049W",
+      "work_email": "nessa.tallis@larkspur.invalid"
+    },
+    {
+      "annual_salary": 59750,
+      "client_code": "RMF",
+      "department": "Engineering",
+      "employee_id": "EMP-050",
+      "name": "Ciar Tallis",
+      "personal_email": "ciar.tallis@personal.invalid",
+      "start_date": "2019-02-23",
+      "synthetic_pps_like_id": "SYN000050X",
+      "work_email": "ciar.tallis@larkspur.invalid"
+    },
+    {
+      "annual_salary": 62500,
+      "client_code": "RMF",
+      "department": "Operations",
+      "employee_id": "EMP-051",
+      "name": "Orla Tallis",
+      "personal_email": "orla.tallis@personal.invalid",
+      "start_date": "2020-03-24",
+      "synthetic_pps_like_id": "SYN000051Y",
+      "work_email": "orla.tallis@larkspur.invalid"
+    },
+    {
+      "annual_salary": 65250,
+      "client_code": "RMF",
+      "department": "Commercial",
+      "employee_id": "EMP-052",
+      "name": "Tomas Tallis",
+      "personal_email": "tomas.tallis@personal.invalid",
+      "start_date": "2021-04-25",
+      "synthetic_pps_like_id": "SYN000052Z",
+      "work_email": "tomas.tallis@larkspur.invalid"
+    },
+    {
+      "annual_salary": 68000,
+      "client_code": "RMF",
+      "department": "Delivery",
+      "employee_id": "EMP-053",
+      "name": "Maeve Tallis",
+      "personal_email": "maeve.tallis@personal.invalid",
+      "start_date": "2022-05-26",
+      "synthetic_pps_like_id": "SYN000053A",
+      "work_email": "maeve.tallis@larkspur.invalid"
+    },
+    {
+      "annual_salary": 70750,
+      "client_code": "RMF",
+      "department": "Engineering",
+      "employee_id": "EMP-054",
+      "name": "Ronan Tallis",
+      "personal_email": "ronan.tallis@personal.invalid",
+      "start_date": "2023-06-27",
+      "synthetic_pps_like_id": "SYN000054B",
+      "work_email": "ronan.tallis@larkspur.invalid"
+    },
+    {
+      "annual_salary": 73500,
+      "client_code": "RMF",
+      "department": "Operations",
+      "employee_id": "EMP-055",
+      "name": "Eimear Tallis",
+      "personal_email": "eimear.tallis@personal.invalid",
+      "start_date": "2024-07-01",
+      "synthetic_pps_like_id": "SYN000055C",
+      "work_email": "eimear.tallis@larkspur.invalid"
+    },
+    {
+      "annual_salary": 46000,
+      "client_code": "CFL",
+      "department": "Commercial",
+      "employee_id": "EMP-056",
+      "name": "Dara Tallis",
+      "personal_email": "dara.tallis@personal.invalid",
+      "start_date": "2025-08-02",
+      "synthetic_pps_like_id": "SYN000056D",
+      "work_email": "dara.tallis@larkspur.invalid"
+    },
+    {
+      "annual_salary": 48750,
+      "client_code": "CFL",
+      "department": "Delivery",
+      "employee_id": "EMP-057",
+      "name": "Sive Tallis",
+      "personal_email": "sive.tallis@personal.invalid",
+      "start_date": "2018-09-03",
+      "synthetic_pps_like_id": "SYN000057E",
+      "work_email": "sive.tallis@larkspur.invalid"
+    },
+    {
+      "annual_salary": 51500,
+      "client_code": "CFL",
+      "department": "Engineering",
+      "employee_id": "EMP-058",
+      "name": "Oisin Tallis",
+      "personal_email": "oisin.tallis@personal.invalid",
+      "start_date": "2019-10-04",
+      "synthetic_pps_like_id": "SYN000058F",
+      "work_email": "oisin.tallis@larkspur.invalid"
+    },
+    {
+      "annual_salary": 54250,
+      "client_code": "CFL",
+      "department": "Operations",
+      "employee_id": "EMP-059",
+      "name": "Una Tallis",
+      "personal_email": "una.tallis@personal.invalid",
+      "start_date": "2020-11-05",
+      "synthetic_pps_like_id": "SYN000059G",
+      "work_email": "una.tallis@larkspur.invalid"
+    },
+    {
+      "annual_salary": 57000,
+      "client_code": "INT",
+      "department": "Commercial",
+      "employee_id": "EMP-060",
+      "name": "Fiach Tallis",
+      "personal_email": "fiach.tallis@personal.invalid",
+      "start_date": "2021-12-06",
+      "synthetic_pps_like_id": "SYN000060H",
+      "work_email": "fiach.tallis@larkspur.invalid"
+    },
+    {
+      "annual_salary": 59750,
+      "client_code": "INT",
+      "department": "Delivery",
+      "employee_id": "EMP-061",
+      "name": "Ailbhe Tallis",
+      "personal_email": "ailbhe.tallis@personal.invalid",
+      "start_date": "2022-01-07",
+      "synthetic_pps_like_id": "SYN000061I",
+      "work_email": "ailbhe.tallis@larkspur.invalid"
+    },
+    {
+      "annual_salary": 62500,
+      "client_code": "INT",
+      "department": "Engineering",
+      "employee_id": "EMP-062",
+      "name": "Cormac Tallis",
+      "personal_email": "cormac.tallis@personal.invalid",
+      "start_date": "2023-02-08",
+      "synthetic_pps_like_id": "SYN000062J",
+      "work_email": "cormac.tallis@larkspur.invalid"
+    },
+    {
+      "annual_salary": 65250,
+      "client_code": "INT",
+      "department": "Operations",
+      "employee_id": "EMP-063",
+      "name": "Liadan Tallis",
+      "personal_email": "liadan.tallis@personal.invalid",
+      "start_date": "2024-03-09",
+      "synthetic_pps_like_id": "SYN000063K",
+      "work_email": "liadan.tallis@larkspur.invalid"
+    },
+    {
+      "annual_salary": 68000,
+      "client_code": "INT",
+      "department": "Commercial",
+      "employee_id": "EMP-064",
+      "name": "Senan Tallis",
+      "personal_email": "senan.tallis@personal.invalid",
+      "start_date": "2025-04-10",
+      "synthetic_pps_like_id": "SYN000064L",
+      "work_email": "senan.tallis@larkspur.invalid"
+    }
+  ],
+  "financial_years": [
+    {
+      "average_headcount": 41,
+      "corporation_tax": 0,
+      "cost_of_sales": 2480000,
+      "depreciation_amortisation": 310000,
+      "ebit": 410000,
+      "ebitda": 720000,
+      "gross_profit": 3720000,
+      "net_interest": 82000,
+      "operating_expenses_before_da": 3000000,
+      "profit_after_tax": 328000,
+      "profit_before_tax": 328000,
+      "revenue": 6200000,
+      "year": 2020
+    },
+    {
+      "average_headcount": 45,
+      "corporation_tax": 94800,
+      "cost_of_sales": 2800200,
+      "depreciation_amortisation": 345000,
+      "ebit": 565000,
+      "ebitda": 910000,
+      "gross_profit": 4379800,
+      "net_interest": 91000,
+      "operating_expenses_before_da": 3469800,
+      "profit_after_tax": 379200,
+      "profit_before_tax": 474000,
+      "revenue": 7180000,
+      "year": 2021
+    },
+    {
+      "average_headcount": 50,
+      "corporation_tax": 126400,
+      "cost_of_sales": 3173000,
+      "depreciation_amortisation": 382000,
+      "ebit": 738000,
+      "ebitda": 1120000,
+      "gross_profit": 5177000,
+      "net_interest": 106000,
+      "operating_expenses_before_da": 4057000,
+      "profit_after_tax": 505600,
+      "profit_before_tax": 632000,
+      "revenue": 8350000,
+      "year": 2022
+    },
+    {
+      "average_headcount": 55,
+      "corporation_tax": 175400,
+      "cost_of_sales": 3559400,
+      "depreciation_amortisation": 425000,
+      "ebit": 925000,
+      "ebitda": 1350000,
+      "gross_profit": 6060600,
+      "net_interest": 128000,
+      "operating_expenses_before_da": 4710600,
+      "profit_after_tax": 621600,
+      "profit_before_tax": 797000,
+      "revenue": 9620000,
+      "year": 2023
+    },
+    {
+      "average_headcount": 60,
+      "corporation_tax": 273600,
+      "cost_of_sales": 3990000,
+      "depreciation_amortisation": 470000,
+      "ebit": 1250000,
+      "ebitda": 1720000,
+      "gross_profit": 7410000,
+      "net_interest": 152000,
+      "operating_expenses_before_da": 5690000,
+      "profit_after_tax": 824400,
+      "profit_before_tax": 1098000,
+      "revenue": 11400000,
+      "year": 2024
+    },
+    {
+      "average_headcount": 64,
+      "corporation_tax": 348200,
+      "cost_of_sales": 4454000,
+      "depreciation_amortisation": 515000,
+      "ebit": 1565000,
+      "ebitda": 2080000,
+      "gross_profit": 8646000,
+      "net_interest": 171000,
+      "operating_expenses_before_da": 6566000,
+      "profit_after_tax": 1045800,
+      "profit_before_tax": 1394000,
+      "revenue": 13100000,
+      "year": 2025
+    }
+  ],
+  "fixed_assets": [
+    {
+      "accumulated_depreciation": 720000,
+      "class": "Computer equipment",
+      "cost": 1280000,
+      "nbv": 560000
+    },
+    {
+      "accumulated_depreciation": 540000,
+      "class": "Motor vehicles",
+      "cost": 1050000,
+      "nbv": 510000
+    },
+    {
+      "accumulated_depreciation": 210000,
+      "class": "Leasehold improvements",
+      "cost": 540000,
+      "nbv": 330000
+    },
+    {
+      "accumulated_depreciation": 180000,
+      "class": "Test equipment",
+      "cost": 330000,
+      "nbv": 150000
+    }
+  ],
+  "forecasts": [
+    {
+      "ebitda": 2760000,
+      "gross_profit": 10494000,
+      "revenue": 15900000,
+      "year": 2026
+    },
+    {
+      "ebitda": 3350000,
+      "gross_profit": 12126000,
+      "revenue": 18100000,
+      "year": 2027
+    },
+    {
+      "ebitda": 3980000,
+      "gross_profit": 13804000,
+      "revenue": 20300000,
+      "year": 2028
+    }
+  ],
+  "generator_version": "3.0.0",
+  "insurance": [
+    {
+      "expiry": "2027-02-28",
+      "limit": 10000000,
+      "type": "Employers and public liability"
+    },
+    {
+      "expiry": "2027-02-28",
+      "limit": 2000000,
+      "type": "Cyber liability"
+    },
+    {
+      "expiry": "2027-01-31",
+      "type": "Fleet",
+      "vehicles": 18
+    }
+  ],
+  "licences": [
+    {
+      "expiry": "2027-05-31",
+      "id": "SYN-LIC-44218",
+      "name": "Synthetic road-data processing registration"
+    }
+  ],
+  "management_accounts": {
+    "baseline_ebitda": 1230000,
+    "cost_of_sales": 2601000,
+    "gross_profit": 5049000,
+    "period_end": "2026-06-30",
+    "reported_adjusted_ebitda": 1410000,
+    "revenue": 7650000,
+    "transformation_adjustment": 180000
+  },
+  "pipeline": [
+    {
+      "annual_value": 1250000,
+      "opportunity": "Harbourlight route expansion",
+      "probability": 0.85,
+      "stage": "Contracting"
+    },
+    {
+      "annual_value": 920000,
+      "opportunity": "Bracken County mobility",
+      "probability": 0.55,
+      "stage": "Proposal"
+    },
+    {
+      "annual_value": 1100000,
+      "opportunity": "Mosaic Arc renewals",
+      "probability": 0.7,
+      "stage": "Verbal"
+    },
+    {
+      "annual_value": 680000,
+      "opportunity": "Copper Finch optimisation",
+      "probability": 0.3,
+      "stage": "Discovery"
+    }
+  ],
+  "properties": [
+    {
+      "address": "14 Alder Quay, Kilnmore Business Park, Dublin D99 SYN4",
+      "annual_rent": 310000,
+      "expiry": "2031-12-31",
+      "tenure": "leasehold"
+    },
+    {
+      "address": "Unit 6, Bracken Loop, Cork C99 SYN8",
+      "proceeds": 820000,
+      "sale_date": "2024-10-15",
+      "tenure": "sold"
+    }
+  ],
+  "provenance": {
+    "classification": "entirely fictional synthetic fixture",
+    "external_research_used": false,
+    "notice": "FICTIONAL SYNTHETIC DATA - NOT A REAL COMPANY",
+    "real_source_material_used": false
+  },
+  "providers": [
+    {
+      "annual_fee": 420000,
+      "name": "Juniper Hosting Services Limited",
+      "notice_days": 90,
+      "service": "Managed hosting"
+    },
+    {
+      "annual_fee": 96000,
+      "name": "Northmere HR Services Limited",
+      "notice_days": 60,
+      "service": "Payroll and HR support"
+    }
+  ],
+  "related_parties": [
+    {
+      "balance": 120000,
+      "party": "Nessa Brannock",
+      "relationship": "Director",
+      "transaction": "Current account"
+    },
+    {
+      "annual_value": 36000,
+      "party": "Alder Quay Properties (Synthetic) Limited",
+      "relationship": "Shareholder affiliate",
+      "transaction": "Temporary office licence"
+    }
+  ],
+  "schema_version": 1,
+  "seed": 314159,
+  "tax": {
+    "corporation_tax": {
+      "charge": 12500,
+      "payments": 420000,
+      "period": "2025",
+      "refund": 18300,
+      "return_liability": 389200
+    },
+    "paye": {
+      "annual_liability_2025": 1584000,
+      "paid_2025": 1584000,
+      "registered_headcount": 64
+    },
+    "tax_clearance_expiry": "2027-04-30",
+    "vat_periods": [
+      {
+        "input_vat": 272000,
+        "output_vat": 438000,
+        "payable": 166000,
+        "period": "2025-P1"
+      },
+      {
+        "amended_payable": 182000,
+        "input_vat": 281000,
+        "output_vat": 455000,
+        "payable": 174000,
+        "period": "2025-P2"
+      },
+      {
+        "input_vat": 293000,
+        "output_vat": 472000,
+        "payable": 179000,
+        "period": "2025-P3"
+      },
+      {
+        "input_vat": 306000,
+        "output_vat": 498000,
+        "payable": 192000,
+        "period": "2025-P4"
+      }
+    ]
+  },
+  "working_capital": {
+    "correct_net_working_capital": 830000,
+    "other_debtors": 95000,
+    "prepayments": 185000,
+    "trade_creditors": 930000,
+    "trade_debtors": 1480000
+  }
+}

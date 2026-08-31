@@ -1,4 +1,4 @@
-"""Command-line interface for the Phase 2 engine foundation."""
+"""Command-line interface for the Phase 3 engine foundation."""
 
 from __future__ import annotations
 
@@ -14,6 +14,7 @@ from dd_engine.constants import STAGE_ORDER
 from dd_engine.doctor import format_doctor_report, run_doctor
 from dd_engine.errors import DDEngineError
 from dd_engine.runs import create_run, load_manifest
+from dd_engine.source_paths import validate_data_room_path
 from dd_engine.state import overall_state
 
 NOT_IMPLEMENTED_EXIT = 3
@@ -48,9 +49,16 @@ def build_parser() -> argparse.ArgumentParser:
 
     for stage_name in STAGE_ORDER:
         stage_parser = subparsers.add_parser(
-            stage_name, help=f"run the {stage_name} stage (interface only in Phase 2)"
+            stage_name, help=f"run the {stage_name} stage (interface only in Phase 3)"
         )
         stage_parser.add_argument("--run", required=True, type=Path, help="run directory")
+        if stage_name == "register":
+            stage_parser.add_argument(
+                "--data-room",
+                required=True,
+                type=Path,
+                help="explicit read-only source-room directory",
+            )
     return parser
 
 
@@ -112,6 +120,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         if arguments.command == "status":
             return _status_command(arguments)
         if arguments.command in STAGE_ORDER:
+            if arguments.command == "register":
+                validate_data_room_path(arguments.data_room)
             print(f"{arguments.command}: stage not implemented", file=sys.stderr)
             return NOT_IMPLEMENTED_EXIT
     except (DDEngineError, OSError) as exc:

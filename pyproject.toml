@@ -4,11 +4,16 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "dd-engine"
-version = "0.2.0"
+version = "0.3.0"
 description = "Codex-native due-diligence engine foundation"
 readme = "README.md"
 requires-python = ">=3.11"
-dependencies = []
+dependencies = [
+  "Pillow==12.2.0",
+  "pypdf==6.10.0",
+  "python-docx==1.2.0",
+  "reportlab==4.4.9",
+]
 
 [project.optional-dependencies]
 dev = [
@@ -36,6 +41,10 @@ line-length = 100
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.ruff.lint.per-file-ignores]
+"scripts/generate_synthetic_room.py" = ["E501"]
+"scripts/synthetic_formats.py" = ["E501"]
 
 [tool.mypy]
 python_version = "3.11"

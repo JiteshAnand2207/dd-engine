@@ -23,3 +23,7 @@ class StageTransitionError(RunError):
 
 class ArtifactValidationError(StageTransitionError):
     """Raised when completion artifacts do not pass validation."""
+
+
+class SourcePathError(DDEngineError):
+    """Raised when an explicit source-room path is missing or unsafe."""

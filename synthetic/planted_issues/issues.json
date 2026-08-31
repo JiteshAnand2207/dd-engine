@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "dataset_id": "SYN-LARKSPUR-2026-314159",
+  "sealed_ground_truth": true,
+  "issue_count": 10,
+  "issues": [
+    {
+      "id": "PI-001",
+      "title": "Reported EBITDA includes an unsupported adjustment and does not reconcile",
+      "workstreams": ["financial"],
+      "evidence": [
+        {"path": "Financial/Management_Accounts_2026_YTD.pdf", "contains": "Reported adjusted EBITDA: EUR 1,410,000"},
+        {"path": "Financial/Financial_Request_List.xlsx", "contains": "transformation adjustment"}
+      ]
+    },
+    {
+      "id": "PI-002",
+      "title": "Debt schedule omits HP and a director balance",
+      "workstreams": ["financial", "legal_contractual"],
+      "evidence": [
+        {"path": "Financial/Loan_Summary.xlsx", "contains": "HP agreements are excluded"},
+        {"path": "Financial/HP_Summary.xlsx", "contains": "Total HP exposure"},
+        {"path": "Financial/Related_Party_Transactions.docx", "contains": "director current account"}
+      ]
+    },
+    {
+      "id": "PI-003",
+      "title": "Working-capital workbook uses an incomplete formula range",
+      "workstreams": ["financial"],
+      "evidence": [
+        {"path": "Financial/Working_Capital_Calculation.xlsx", "contains": "SUM(B5:B7)"},
+        {"path": "Financial/Other_Debtors_and_Prepayments.xlsx", "contains": "Prepayments"}
+      ]
+    },
+    {
+      "id": "PI-004",
+      "title": "Two customer names belong to one corporate group",
+      "workstreams": ["commercial", "financial"],
+      "evidence": [
+        {"path": "Financial/Revenue_by_Customer.xlsx", "contains": "Mosaic North Retail Limited"},
+        {"path": "Legal/Customer Contracts/Customer_Framework_Mosaic_North.pdf", "contains": "Mosaic Arc Group"},
+        {"path": "Legal/Customer Contracts/Customer_Framework_Mosaic_South.pdf", "contains": "Mosaic Arc Group"}
+      ]
+    },
+    {
+      "id": "PI-005",
+      "title": "A material customer contract requires change-of-control consent",
+      "workstreams": ["legal_contractual", "commercial"],
+      "evidence": [
+        {"path": "Legal/Customer Contracts/Customer_Framework_Harbourlight.pdf", "contains": "prior written consent following any change of control"},
+        {"path": "Legal/Customer Contracts/Amendment_Harbourlight_2025.pdf", "contains": "Clause 14.2 remains in full force"}
+      ]
+    },
+    {
+      "id": "PI-006",
+      "title": "A later amendment supersedes favourable original liability terms",
+      "workstreams": ["legal_contractual", "commercial"],
+      "evidence": [
+        {"path": "Legal/Customer Contracts/Customer_Framework_Mosaic_North.pdf", "contains": "liability shall not exceed three months of fees"},
+        {"path": "Legal/Customer Contracts/Amendment_Mosaic_2026.pdf", "contains": "supersedes Clause 11 in its entirety"}
+      ]
+    },
+    {
+      "id": "PI-007",
+      "title": "Employee, PAYE and contractor populations do not agree",
+      "workstreams": ["operational_management", "financial", "legal_contractual"],
+      "evidence": [
+        {"path": "Financial/PAYE_Headcount_by_Client.xlsx", "contains": "Total PAYE headcount"},
+        {"path": "Legal/Employment/Employee_Master_Redacted.xlsx", "contains": "61 records supplied"},
+        {"path": "Legal/Employment/Contractor_List.xlsx", "contains": "12 active contractors"},
+        {"path": "Financial/Contractor_Headcount_by_Client.xlsx", "contains": "10 contractors allocated"}
+      ]
+    },
+    {
+      "id": "PI-008",
+      "title": "Updated response archive contains unredacted synthetic personal data",
+      "workstreams": ["legal_contractual", "it", "operational_management"],
+      "evidence": [
+        {"path": "Legal/Updated_Responses.zip!Updated Responses/Employee_Master_Unredacted.xlsx", "contains": "Synthetic PPS-like ID"},
+        {"path": "Legal/Updated_Responses.zip!Updated Responses/Employee_Master_Unredacted.xlsx", "contains": "Personal email"}
+      ]
+    },
+    {
+      "id": "PI-009",
+      "title": "Amended VAT evidence conflicts with the tax response summary",
+      "workstreams": ["tax", "financial"],
+      "evidence": [
+        {"path": "Tax/VAT/VAT3_2025_P2_AMENDED.pdf", "contains": "Amended payable: EUR 182,000"},
+        {"path": "Tax/Tax_Response_Summary_Rev2.xlsx", "contains": "No VAT returns have been amended"}
+      ]
+    },
+    {
+      "id": "PI-010",
+      "title": "Hosting, security testing and recovery evidence is weak",
+      "workstreams": ["it", "operational_management", "legal_contractual"],
+      "evidence": [
+        {"path": "Legal/Operational Providers/Web_Hosting_Agreement.pdf", "contains": "No contractual recovery time objective"},
+        {"path": "Legal/Legal_Questionnaire_Completed.docx", "contains": "No independent penetration test report is available"}
+      ]
+    }
+  ]
+}

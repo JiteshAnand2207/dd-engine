@@ -131,7 +131,7 @@ def _require_locked_value(
 ) -> Any:
     value = section.get(key, default)
     if value != default:
-        raise ConfigError(f"{section_name}.{key} must be {default!r} in Phase 2")
+        raise ConfigError(f"{section_name}.{key} must be {default!r} in Phase 3")
     return value
 
 

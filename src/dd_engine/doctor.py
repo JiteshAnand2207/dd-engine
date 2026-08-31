@@ -58,7 +58,7 @@ def _python_check() -> DoctorCheck:
 
 
 def _required_packages_check() -> DoctorCheck:
-    required_packages: tuple[str, ...] = ()
+    required_packages = ("Pillow", "pypdf", "python-docx", "reportlab")
     missing: list[str] = []
     for package in required_packages:
         try:
@@ -72,7 +72,7 @@ def _required_packages_check() -> DoctorCheck:
     return DoctorCheck(
         "Required packages",
         "pass",
-        "no third-party runtime packages are required for the Phase 2 foundation",
+        "required local document-generation and validation packages are installed",
     )
 
 
