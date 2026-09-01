@@ -1,0 +1,369 @@
+{
+  "analysis_version": "phase14-generalised-analysis-v5",
+  "coverage": [
+    {
+      "issue_ids": [],
+      "status": "limitation",
+      "topic": "six_year_statutory_performance"
+    },
+    {
+      "issue_ids": [
+        "FIN-002",
+        "FIN-008"
+      ],
+      "status": "analysed",
+      "topic": "management_vs_statutory"
+    },
+    {
+      "issue_ids": [
+        "FIN-002"
+      ],
+      "status": "analysed",
+      "topic": "revenue_and_ebitda_bridges"
+    },
+    {
+      "issue_ids": [
+        "FIN-002"
+      ],
+      "status": "analysed",
+      "topic": "adjustments_and_quality_of_earnings"
+    },
+    {
+      "issue_ids": [],
+      "status": "limitation",
+      "topic": "gross_margin_trends"
+    },
+    {
+      "issue_ids": [
+        "COMM-001"
+      ],
+      "status": "analysed",
+      "topic": "customer_concentration"
+    },
+    {
+      "issue_ids": [
+        "FIN-004"
+      ],
+      "status": "analysed",
+      "topic": "aged_debtors_and_recoverability"
+    },
+    {
+      "issue_ids": [],
+      "status": "limitation",
+      "topic": "aged_creditors"
+    },
+    {
+      "issue_ids": [
+        "FIN-003"
+      ],
+      "status": "analysed",
+      "topic": "other_debtors_and_prepayments"
+    },
+    {
+      "issue_ids": [
+        "FIN-003",
+        "FIN-004"
+      ],
+      "status": "analysed",
+      "topic": "normalised_working_capital"
+    },
+    {
+      "issue_ids": [
+        "FIN-005"
+      ],
+      "status": "analysed",
+      "topic": "debt_loans_hp_and_debt_like"
+    },
+    {
+      "issue_ids": [
+        "FIN-005"
+      ],
+      "status": "analysed",
+      "topic": "cash_and_restricted_cash"
+    },
+    {
+      "issue_ids": [],
+      "status": "limitation",
+      "topic": "fixed_assets_and_disposals"
+    },
+    {
+      "issue_ids": [
+        "FIN-005"
+      ],
+      "status": "analysed",
+      "topic": "related_party_transactions"
+    },
+    {
+      "issue_ids": [],
+      "status": "limitation",
+      "topic": "paye_and_contractor_headcount"
+    },
+    {
+      "issue_ids": [
+        "FIN-007"
+      ],
+      "status": "analysed",
+      "topic": "forecast_and_pipeline_support"
+    },
+    {
+      "issue_ids": [
+        "FIN-008"
+      ],
+      "status": "analysed",
+      "topic": "missing_monthly_performance"
+    },
+    {
+      "issue_ids": [],
+      "status": "limitation",
+      "topic": "tax_figures_affecting_financial_conclusions"
+    }
+  ],
+  "findings": [
+    {
+      "action": "Obtain the approved restructuring plan, invoice/payroll detail, implementation dates and evidence of cessation; classify each cost as recurring or exceptional and rebuild the bridge.",
+      "analysis_conclusion": "The EUR 75,000 transformation add-back is unsupported in the room; the management-reported unadjusted YTD EBITDA is EUR 430,000, 14.9% below reported adjusted EBITDA.",
+      "analytical_reasoning": "Without invoices, approvals or evidence that the cost is non-recurring, the add-back does not meet a supportable quality-of-earnings standard. The unadjusted figure is still a management-pack number and is not a ledger-reconciled QoE baseline.",
+      "calculation_ids": [
+        "CALC-FIN-003"
+      ],
+      "claim_ids": [
+        "CLM-FIN-002"
+      ],
+      "confidence": 0.85,
+      "confidence_basis": [
+        "Capped at 0.85 because one or more intake answers remain open or narrowed."
+      ],
+      "counterevidence_ids": [],
+      "issue_id": "FIN-002",
+      "materiality": "critical",
+      "opinion_status": null,
+      "source_fact": "The YTD pack reports adjusted EBITDA of EUR 505,000 and baseline ledger EBITDA of EUR 430,000; it states that invoices and an approved plan were absent.",
+      "supporting_evidence_ids": [
+        "EVD-FIN-002-01",
+        "EVD-FIN-002-02"
+      ],
+      "transaction_implication": "Exclude the adjustment from price assumptions. If the seller seeks value for the benefit, defer it into an earn-out tied to realized savings and require a warranty covering the completeness of adjustment support.",
+      "transaction_levers": [
+        "price_assumptions",
+        "earn_out",
+        "warranty",
+        "further_diligence"
+      ],
+      "uncertainty": "No adjustment support or ledger-to-management reconciliation has been supplied; neither the add-back nor the unadjusted management figure is independently verified.",
+      "why_it_matters": "An unsupported add-back directly inflates the earnings base used in price discussions."
+    },
+    {
+      "action": "Lock an account-level NWC definition, agree treatment of other debtors/prepayments, recompute a monthly twelve-month peg and attach the validated workbook to the transaction documents.",
+      "analysis_conclusion": "The submitted working-capital formula is wrong: it reports EUR -531,000 instead of a recomputed point-in-time net working-capital snapshot of EUR 522,000, a EUR 1,053,000 variance. The corrected snapshot is not a normalized completion-accounts peg.",
+      "analytical_reasoning": "The error reverses the direction and scale of the submitted snapshot. Correcting that formula does not establish seasonality, normalizations or the SPA definition.",
+      "calculation_ids": [
+        "CALC-FIN-004"
+      ],
+      "claim_ids": [
+        "CLM-FIN-003"
+      ],
+      "confidence": 0.85,
+      "confidence_basis": [
+        "Capped at 0.85 because one or more intake answers remain open or narrowed."
+      ],
+      "counterevidence_ids": [],
+      "issue_id": "FIN-003",
+      "materiality": "critical",
+      "opinion_status": null,
+      "source_fact": "The workbook formula sums rows 5-7 and explicitly notes that trade debtors and a hidden prepayment row are omitted; the control row reports the correct baseline.",
+      "supporting_evidence_ids": [
+        "EVD-FIN-003-01",
+        "EVD-FIN-003-02",
+        "EVD-FIN-003-03"
+      ],
+      "transaction_implication": "Do not use the vendor formula in the SPA. Define the working-capital schedule at account level, attach the corrected baseline, and require a specific completion-accounts warranty.",
+      "transaction_levers": [
+        "price_assumptions",
+        "working_capital_mechanism",
+        "warranty"
+      ],
+      "uncertainty": "A monthly bridge, seasonality analysis, account-level SPA definition and agreed normalizations are still required before setting a peg.",
+      "why_it_matters": "An incorrect baseline can transfer value mechanically through the completion accounts."
+    },
+    {
+      "action": "Obtain invoice-level ageing with post-cut-off cash receipts, dispute status and credit notes; reconcile it to the ledger and agree balance-specific provisions.",
+      "analysis_conclusion": "The 90+ debtor bucket is understated: customer rows total EUR 157,000 (18.4% of debtors), versus the stored total of EUR 129,000.",
+      "analytical_reasoning": "The error understates overdue exposure and prevents reliance on the submitted ageing for recoverability or normalized working-capital analysis.",
+      "calculation_ids": [
+        "CALC-FIN-005"
+      ],
+      "claim_ids": [
+        "CLM-FIN-004"
+      ],
+      "confidence": 0.85,
+      "confidence_basis": [
+        "Capped at 0.85 because one or more intake answers remain open or narrowed."
+      ],
+      "counterevidence_ids": [],
+      "issue_id": "FIN-004",
+      "materiality": "high",
+      "opinion_status": null,
+      "source_fact": "The aged-debtors schedule reports total receivables of EUR 854,000; its 90+ formula cache does not equal the visible customer rows.",
+      "supporting_evidence_ids": [
+        "EVD-FIN-004-01",
+        "EVD-FIN-004-02",
+        "EVD-FIN-004-03"
+      ],
+      "transaction_implication": "Use the recomputed ageing for price and completion accounts, reserve specifically against disputed/aged balances, and consider an escrow or receivables indemnity for unrecovered 90+ debt.",
+      "transaction_levers": [
+        "price_assumptions",
+        "escrow",
+        "indemnity",
+        "working_capital_mechanism"
+      ],
+      "uncertainty": null,
+      "why_it_matters": "Overdue debt affects cash conversion, bad-debt risk and the working-capital peg."
+    },
+    {
+      "action": "Obtain dated lender statements, HP payoff schedules, security/covenant details, the director settlement agreement and bank evidence distinguishing unrestricted from restricted cash.",
+      "analysis_conclusion": "Identified debt and debt-like items total EUR 970,000 before cash, including EUR 164,000 HP and a EUR 96,000 on-demand director balance excluded from management's loan summary. A non-contemporaneous arithmetic offset against the latest ledger cash identified is EUR 970,000; this is not completion-date net debt or proof that cash is unrestricted.",
+      "analytical_reasoning": "HP and an on-demand related-party balance are debt-like regardless of management's classification. The cash date mismatch prevents a defensible completion-date net debt conclusion. Reviewed lender pages also identify security, title-retention and change-of-control review mechanics where present.",
+      "calculation_ids": [
+        "CALC-FIN-006"
+      ],
+      "claim_ids": [
+        "CLM-FIN-005"
+      ],
+      "confidence": 0.85,
+      "confidence_basis": [
+        "Capped at 0.85 because one or more intake answers remain open or narrowed."
+      ],
+      "counterevidence_ids": [],
+      "issue_id": "FIN-005",
+      "materiality": "critical",
+      "opinion_status": null,
+      "source_fact": "Loan, HP and related-party sources report EUR 710,000, EUR 164,000 and EUR 96,000 respectively; the trial balance reports cash of EUR 0.",
+      "supporting_evidence_ids": [
+        "EVD-FIN-005-01",
+        "EVD-FIN-005-02",
+        "EVD-FIN-005-03",
+        "EVD-FIN-005-04"
+      ],
+      "transaction_implication": "Include HP and the director account in the debt-free/cash-free mechanism, require payoff letters and releases, and retain escrow until lender balances and unrestricted cash are confirmed.",
+      "transaction_levers": [
+        "price_assumptions",
+        "escrow",
+        "consent",
+        "closing_condition"
+      ],
+      "uncertainty": "No completion-date lender statements, payoff evidence or restricted-cash analysis is available, and the cash period differs from the debt schedules.",
+      "why_it_matters": "Debt-like classification changes equity proceeds, consent analysis and funds flow."
+    },
+    {
+      "action": "Correct the pipeline total and provide signed orders, stage history, historical conversion rates, expected close dates and margin by opportunity.",
+      "analysis_conclusion": "Probability-weighted pipeline is understated by EUR 60,000: the opportunity rows sum to EUR 609,000, not the stored EUR 549,000 total. The two largest rows comprise 90.1% of the recomputed weighted pipeline.",
+      "analytical_reasoning": "The stored-total variance is 9.9% of the recomputed total. Its severity is therefore distinct from the more material concentration and absence of probability calibration.",
+      "calculation_ids": [
+        "CALC-FIN-008",
+        "CALC-FIN-009"
+      ],
+      "claim_ids": [
+        "CLM-FIN-007"
+      ],
+      "confidence": 0.85,
+      "confidence_basis": [
+        "Capped at 0.85 because one or more intake answers remain open or narrowed."
+      ],
+      "counterevidence_ids": [],
+      "issue_id": "FIN-007",
+      "materiality": "high",
+      "opinion_status": null,
+      "source_fact": "The pipeline supplies opportunity values and management probabilities but no win-rate support.",
+      "supporting_evidence_ids": [
+        "EVD-FIN-007-01",
+        "EVD-FIN-007-02"
+      ],
+      "transaction_implication": "Exclude uncontracted pipeline from fixed price and base any earn-out only on collected revenue or gross profit, with customer-level anti-double-counting rules.",
+      "transaction_levers": [
+        "price_assumptions",
+        "earn_out",
+        "further_diligence"
+      ],
+      "uncertainty": "No historical probability calibration or signed-order evidence was supplied.",
+      "why_it_matters": "Forecast support affects confidence in forward revenue and any performance-linked consideration."
+    },
+    {
+      "action": "Provide monthly trial balances and revenue/gross-margin/EBITDA/cash bridges for the latest 24 months, including budget and prior-year comparatives.",
+      "analysis_conclusion": "No monthly management-account pack was prepared; current trading, seasonality, margin movement and cash conversion cannot be tested at an adviser-quality monthly cadence.",
+      "analytical_reasoning": "A single six-month total cannot reveal monthly volatility or cut-off effects.",
+      "calculation_ids": [],
+      "claim_ids": [
+        "CLM-FIN-008"
+      ],
+      "confidence": 0.85,
+      "confidence_basis": [
+        "Capped at 0.85 because one or more intake answers remain open or narrowed."
+      ],
+      "counterevidence_ids": [],
+      "issue_id": "FIN-008",
+      "materiality": "high",
+      "opinion_status": null,
+      "source_fact": "The financial request response says only a YTD pack is prepared.",
+      "supporting_evidence_ids": [
+        "EVD-FIN-008-01"
+      ],
+      "transaction_implication": "Do not annualize the YTD pack for fixed price. Use a completion condition or tightly defined earn-out measurement until monthly ledger extracts are validated.",
+      "transaction_levers": [
+        "price_assumptions",
+        "earn_out",
+        "closing_condition"
+      ],
+      "uncertainty": null,
+      "why_it_matters": "Missing monthly data weakens the reliability of run-rate and forecast conclusions."
+    }
+  ],
+  "generated_by": "deterministic local analytical rules; Python made no model call",
+  "independent_valuation_provided": false,
+  "limitations": [
+    "Intake must be explicitly completed; unanswered or narrowed answers remain limitations.",
+    "No independent valuation is provided.",
+    "Cash restrictions, monthly performance and several visual debt sources require further evidence.",
+    "Topics marked limitation had no source-backed adverse conclusion; absence is not treated as a clean bill of health."
+  ],
+  "run_id": "20260901T081036940718Z-ea9100a654cb",
+  "schema_version": 1,
+  "tax_cross_workstream_links": [
+    {
+      "affected_workstreams": [
+        "financial",
+        "legal_contractual",
+        "operational_management"
+      ],
+      "tax_issue_id": "TAX-001"
+    },
+    {
+      "affected_workstreams": [
+        "financial",
+        "legal_contractual"
+      ],
+      "tax_issue_id": "TAX-002"
+    },
+    {
+      "affected_workstreams": [
+        "financial",
+        "operational_management"
+      ],
+      "tax_issue_id": "TAX-003"
+    },
+    {
+      "affected_workstreams": [
+        "financial",
+        "legal_contractual"
+      ],
+      "tax_issue_id": "TAX-004"
+    }
+  ],
+  "unresolved_intake_question_ids": [
+    "INT-R1-001",
+    "INT-R1-002",
+    "INT-R1-004",
+    "INT-R2-003"
+  ],
+  "untrusted_source_data_was_executed": false,
+  "workstream": "financial"
+}

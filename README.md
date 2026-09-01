@@ -322,8 +322,37 @@ checksum invalidates affected downstream results.
 Source rooms are read-only and must remain outside the run directory. All
 derived extraction assets stay under that run's `extracts/` tree. Arbitrary runs,
 real rooms, secrets, caches, renders, OCR caches and local logs are ignored by
-Git. Only the specifically allowlisted approved synthetic/example locations may
+Git. Only the specifically allowlisted synthetic/example locations may
 be committed later.
+
+## Evaluation paths
+
+### 1. Quick evaluation using the completed synthetic example
+
+Open [`example_outputs/README.md`](example_outputs/README.md) and review the
+completed synthetic demonstration package for run
+`20260901T081036940718Z-ea9100a654cb`. It includes the full due-diligence
+report, exactly two-page IC brief PDF, source register, extraction summary,
+two intake rounds, structured ledgers, all workstreams and validation results.
+
+Gavin does **not** need to answer anything before receiving this repository.
+The included answers are prominently named **TEST-ONLY SYNTHETIC ANSWERS** and
+are fictional test fixtures, not Gavin's responses or live deal-lead input. The
+full example output comes only from this completed test-only run. It remains a
+candidate bundle: its validation records `release_ready: false` because no
+independent red-team isolation proof is present.
+
+### 2. Interactive run with evaluator answers at both intake rounds
+
+For a new room, use the primary runtime flow above with a separate run directory.
+The engine intentionally pauses after Round 1 and again after Round 2. At each
+pause, provide a JSON answer file through `intake --answers` before continuing;
+the engine never manufactures a response from silence.
+
+The canonical unanswered synthetic run
+`runs/20260831T225933370390Z-a3b4274aee33` is deliberately left in
+`awaiting_input`. It is not a completed report run and is not the source of the
+shipped example outputs.
 
 ## Finding the outputs
 
@@ -333,12 +362,11 @@ register is under `source_register/`; both intake rounds are under `intake/`;
 task and public-research ledgers are under `logs/`; and independent red-team
 artifacts belong under `red_team/`.
 
-The checked-in evaluator example is
-[`examples/approved-output/`](examples/approved-output/README.md). It uses run ID
-`20260901T040928457675Z-dede88eb959c` and includes the report, exactly two-page
-IC brief, source register, both intake rounds, red-team challenge/resolution
-records, honest run/research logs and validation evidence. Read its limitation:
-it is a reconciled candidate, not proof of independent red-team isolation.
+The checked-in evaluator example is [`example_outputs/`](example_outputs/README.md).
+It is derived only from completed demonstration run
+`20260901T081036940718Z-ea9100a654cb`; its two answer artifacts are explicitly
+labelled test-only synthetic fixtures. The example excludes raw extracted text,
+caches and rendered assets, while retaining source IDs and citation relationships.
 
 ## Troubleshooting
 

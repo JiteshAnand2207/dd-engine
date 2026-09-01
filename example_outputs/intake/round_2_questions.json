@@ -1,0 +1,307 @@
+{
+  "evidence_scope": "complete register, full extraction and verbatim round-one answers",
+  "excluded_candidates": [
+    {
+      "candidate_topic": "followup-INT-R1-003",
+      "reason": "Round-one answer is closed; asking again would duplicate known information.",
+      "supporting_source_ids": []
+    },
+    {
+      "candidate_topic": "followup-INT-R1-005",
+      "reason": "Round-one answer is closed; asking again would duplicate known information.",
+      "supporting_source_ids": []
+    },
+    {
+      "candidate_topic": "followup-INT-R1-006",
+      "reason": "Round-one answer is closed; asking again would duplicate known information.",
+      "supporting_source_ids": []
+    },
+    {
+      "candidate_topic": "contract-consents",
+      "reason": "Already asked in round one; it remains in unresolved_questions.md and is not duplicated without a narrowing answer.",
+      "supporting_source_ids": [
+        "SRC-0049"
+      ]
+    },
+    {
+      "candidate_topic": "critical-unreadable-sources",
+      "reason": "Already asked in round one; it remains in unresolved_questions.md and is not duplicated without a narrowing answer.",
+      "supporting_source_ids": [
+        "SRC-0034"
+      ]
+    }
+  ],
+  "generated_at": "2026-09-01T08:14:34.000849Z",
+  "generator_version": "6.0.0",
+  "input_artifacts": [
+    {
+      "path": "source_register/source_register.json",
+      "sha256": "49da87bcffea1ff3c831eb88742559bdc5e94a0c81507c4f826f8154d58d3317"
+    },
+    {
+      "path": "source_register/room_structure.json",
+      "sha256": "9aa34a0d5bc80a37147c192c12f49e88f6b120082b5856f0de2585966b0a248c"
+    },
+    {
+      "path": "source_register/version_families.json",
+      "sha256": "ccb1a367d7ae735d71aab7fa31c160dd7128ff5477cc52623311b98f2a4de04f"
+    },
+    {
+      "path": "extracts/extraction_manifest.json",
+      "sha256": "bb4517e1254e13d63adf5ca420a97f9cd307d6312a6a2cb26c2d2b83c4241f19"
+    },
+    {
+      "path": "extracts/extracted_units.jsonl",
+      "sha256": "9164bbd689aef607c02764e7cda2055c56ecbc00c1258c304a3f3485a6f802be"
+    },
+    {
+      "path": "extracts/needs_vision.json",
+      "sha256": "900360840a5a8e16ddde745b033a062b23c3234627db3ded1ae9a653a53917c0"
+    },
+    {
+      "path": "intake/round_1_answers.json",
+      "sha256": "4d3b4c00aae173db555670eb94a50742ba1b02ca58d6ba2ed072916b974e402d"
+    }
+  ],
+  "input_fingerprint": "908bd00710ff3be22cad40e0e7ee01b35b45f375e3faf290ddc5a3a44dde181f",
+  "question_count": 4,
+  "question_limit": 15,
+  "questions": [
+    {
+      "blocks_analysis": true,
+      "decision_potentially_affected": [
+        "scope",
+        "go_no_go",
+        "transaction_structure"
+      ],
+      "exact_question": "Your answer to INT-R1-001 remains ambiguous or partial. Please state the precise facts needed as document purpose/status plus readable replacement or explicit unavailability, identify what is still unknown, and cite the supporting source.",
+      "expected_answer_type": "document purpose/status plus readable replacement or explicit unavailability",
+      "invalidate_if_answer_changes_evidence": [
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "priority": "critical",
+      "question_id": "INT-R2-001",
+      "round_number": 2,
+      "structured_gap": {
+        "description": "The answer to INT-R1-001 is open.",
+        "gap_id": "GAP-R2-ANSWER-INT-R1-001",
+        "gap_type": "ambiguous_deal_lead_answer"
+      },
+      "supporting_evidence": [
+        {
+          "evidence_kind": "registered_source",
+          "relative_path": "04_Compliance_Archive/Damaged-Source.pdf",
+          "source_ids": [
+            "SRC-0034"
+          ],
+          "summary": "Extraction failed: invalid PDF: EOF marker not found",
+          "unit_ids": []
+        }
+      ],
+      "supporting_source_ids": [
+        "SRC-0034"
+      ],
+      "topic_key": "followup-INT-R1-001",
+      "why_it_matters": "The explicit deal-lead response to INT-R1-001 is evidence, but its unresolved ambiguity cannot be silently completed by the engine."
+    },
+    {
+      "blocks_analysis": true,
+      "decision_potentially_affected": [
+        "scope",
+        "go_no_go",
+        "transaction_structure"
+      ],
+      "exact_question": "Your answer to INT-R1-002 remains ambiguous or partial. Please state the precise facts needed as structured list of included/excluded perimeter items and deal form, identify what is still unknown, and cite the supporting source.",
+      "expected_answer_type": "structured list of included/excluded perimeter items and deal form",
+      "invalidate_if_answer_changes_evidence": [
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "priority": "critical",
+      "question_id": "INT-R2-002",
+      "round_number": 2,
+      "structured_gap": {
+        "description": "The answer to INT-R1-002 is open.",
+        "gap_id": "GAP-R2-ANSWER-INT-R1-002",
+        "gap_type": "essential_transaction_context"
+      },
+      "supporting_evidence": [],
+      "supporting_source_ids": [],
+      "topic_key": "followup-INT-R1-002",
+      "why_it_matters": "The explicit deal-lead response to INT-R1-002 is evidence, but its unresolved ambiguity cannot be silently completed by the engine."
+    },
+    {
+      "blocks_analysis": true,
+      "decision_potentially_affected": [
+        "go_no_go",
+        "transaction_structure",
+        "closing_conditions"
+      ],
+      "exact_question": "Your answer to INT-R1-004 cross-referenced another location but did not resolve the underlying point. Which exact registered source ID/path and locator contains the answer, and what fact should the analysis rely on?",
+      "expected_answer_type": "contract-by-contract consent matrix with clause/source and status",
+      "invalidate_if_answer_changes_evidence": [
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "priority": "critical",
+      "question_id": "INT-R2-003",
+      "round_number": 2,
+      "structured_gap": {
+        "description": "The answer to INT-R1-004 is narrowed.",
+        "gap_id": "GAP-R2-ANSWER-INT-R1-004",
+        "gap_type": "ambiguous_deal_lead_answer"
+      },
+      "supporting_evidence": [
+        {
+          "evidence_kind": "extracted_unit",
+          "locator": {
+            "page_label": "1",
+            "page_number": 1,
+            "type": "pdf_page"
+          },
+          "relative_path": "zip://04_Compliance_Archive/Responses-2024.zip!/answer-bundle/customer-note.pdf",
+          "source_ids": [
+            "SRC-0049"
+          ],
+          "summary": "Customer consent response Orchard Lantern Systems Limited FICTIONAL SYNTHETIC DATA - NOT A REAL COMPANY Page 1 DATASET SYN-ORCHARD-2024-271828 Response Consent has not been requested.",
+          "unit_ids": [
+            "SRC-0049-UNIT-000001"
+          ]
+        }
+      ],
+      "supporting_source_ids": [
+        "SRC-0049"
+      ],
+      "topic_key": "followup-INT-R1-004",
+      "why_it_matters": "The explicit deal-lead response to INT-R1-004 is evidence, but its unresolved ambiguity cannot be silently completed by the engine."
+    },
+    {
+      "blocks_analysis": true,
+      "decision_potentially_affected": [
+        "go_no_go",
+        "transaction_structure",
+        "price"
+      ],
+      "exact_question": "The register links original agreements and amendments in candidate version families VER-0001. For each family, which documents are executed and operative, are any side letters or later amendments missing, and which provisions control consent, liability, termination and pricing?",
+      "expected_answer_type": "executed-document/version matrix with missing amendments identified",
+      "invalidate_if_answer_changes_evidence": [
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "priority": "critical",
+      "question_id": "INT-R2-004",
+      "round_number": 2,
+      "structured_gap": {
+        "description": "Agreement supersession is candidate-only and not established as source truth.",
+        "gap_id": "GAP-CONTRACT-AMENDMENT-CONTROL",
+        "gap_type": "contract_version_gap"
+      },
+      "supporting_evidence": [
+        {
+          "evidence_kind": "registered_source",
+          "relative_path": "02_Contracts_Corporate/CX-17.pdf",
+          "source_ids": [
+            "SRC-0017"
+          ],
+          "summary": "Candidate agreement/amendment family; registrar status is not authoritative.",
+          "unit_ids": []
+        },
+        {
+          "evidence_kind": "registered_source",
+          "relative_path": "02_Contracts_Corporate/CX-18.pdf",
+          "source_ids": [
+            "SRC-0018"
+          ],
+          "summary": "Candidate agreement/amendment family; registrar status is not authoritative.",
+          "unit_ids": []
+        },
+        {
+          "evidence_kind": "registered_source",
+          "relative_path": "02_Contracts_Corporate/CX-21.pdf",
+          "source_ids": [
+            "SRC-0019"
+          ],
+          "summary": "Candidate agreement/amendment family; registrar status is not authoritative.",
+          "unit_ids": []
+        },
+        {
+          "evidence_kind": "registered_source",
+          "relative_path": "02_Contracts_Corporate/CX-23.pdf",
+          "source_ids": [
+            "SRC-0021"
+          ],
+          "summary": "Candidate agreement/amendment family; registrar status is not authoritative.",
+          "unit_ids": []
+        },
+        {
+          "evidence_kind": "registered_source",
+          "relative_path": "02_Contracts_Corporate/CX-24.pdf",
+          "source_ids": [
+            "SRC-0022"
+          ],
+          "summary": "Candidate agreement/amendment family; registrar status is not authoritative.",
+          "unit_ids": []
+        },
+        {
+          "evidence_kind": "registered_source",
+          "relative_path": "02_Contracts_Corporate/CX-25.pdf",
+          "source_ids": [
+            "SRC-0023"
+          ],
+          "summary": "Candidate agreement/amendment family; registrar status is not authoritative.",
+          "unit_ids": []
+        },
+        {
+          "evidence_kind": "registered_source",
+          "relative_path": "02_Contracts_Corporate/CX-31.pdf",
+          "source_ids": [
+            "SRC-0024"
+          ],
+          "summary": "Candidate agreement/amendment family; registrar status is not authoritative.",
+          "unit_ids": []
+        },
+        {
+          "evidence_kind": "registered_source",
+          "relative_path": "02_Contracts_Corporate/CX-32.pdf",
+          "source_ids": [
+            "SRC-0025"
+          ],
+          "summary": "Candidate agreement/amendment family; registrar status is not authoritative.",
+          "unit_ids": []
+        },
+        {
+          "evidence_kind": "registered_source",
+          "relative_path": "02_Contracts_Corporate/CX-17-Rev2.pdf",
+          "source_ids": [
+            "SRC-0016"
+          ],
+          "summary": "Candidate agreement/amendment family; registrar status is not authoritative.",
+          "unit_ids": []
+        }
+      ],
+      "supporting_source_ids": [
+        "SRC-0017",
+        "SRC-0018",
+        "SRC-0019",
+        "SRC-0021",
+        "SRC-0022",
+        "SRC-0023",
+        "SRC-0024",
+        "SRC-0025",
+        "SRC-0016"
+      ],
+      "topic_key": "contract-amendment-control",
+      "why_it_matters": "The register deliberately does not choose an authoritative version; applying a stale contract can reverse consent, liability and commercial conclusions."
+    }
+  ],
+  "round_number": 2,
+  "run_id": "20260901T081036940718Z-ea9100a654cb",
+  "schema_version": 1,
+  "status": "awaiting_input",
+  "untrusted_source_data_was_executed": false
+}

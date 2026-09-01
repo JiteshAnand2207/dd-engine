@@ -1,0 +1,137 @@
+{
+  "answer_input_sha256": "d28cce1d815feb8f4da9cd0b2c81c4c0cfa6417ea6d741e2bfd49db9a0b53aaf",
+  "answer_normalization_version": "answer-normalization-v2",
+  "answered_at": "2026-09-01T08:15:10.914914Z",
+  "answered_by": "Phase 14 shadow rehearsal - explicit test-only operator answers",
+  "answers": [
+    {
+      "affected_claims": [],
+      "affected_gaps": [
+        "GAP-R2-ANSWER-INT-R1-001"
+      ],
+      "affected_stages": [
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "ambiguity": [],
+      "normalised_interpretation": {
+        "kind": "substantive_text",
+        "value": "TEST-ONLY ANSWER: SRC-0034 at 04_Compliance_Archive/Damaged-Source.pdf is unreadable and no replacement exists. Its purpose, current status, operative status and contents are unknown. No fact should be inferred from it; retain a blocking document-completeness limitation and require a readable original before signing. Supporting source: SRC-0034 registration and extraction failure record."
+      },
+      "provenance": {
+        "answer_input_filename": "test_only_round_2_reply.json",
+        "answer_input_sha256": "d28cce1d815feb8f4da9cd0b2c81c4c0cfa6417ea6d741e2bfd49db9a0b53aaf",
+        "answered_at": "2026-09-01T08:15:10.914914Z",
+        "answered_by": "Phase 14 shadow rehearsal - explicit test-only operator answers",
+        "ingested_at": "2026-09-01T08:15:39.491312Z",
+        "source_kind": "deal_lead_answer_file"
+      },
+      "question_id": "INT-R2-001",
+      "resolution_status": "closed",
+      "round_number": 2,
+      "verbatim_answer": "TEST-ONLY ANSWER: SRC-0034 at 04_Compliance_Archive/Damaged-Source.pdf is unreadable and no replacement exists. Its purpose, current status, operative status and contents are unknown. No fact should be inferred from it; retain a blocking document-completeness limitation and require a readable original before signing. Supporting source: SRC-0034 registration and extraction failure record.",
+      "verbatim_answer_sha256": "d0e0842a03517c820d21d601db81e2eabc3beb2828dcee8dbcb9894769856cef"
+    },
+    {
+      "affected_claims": [],
+      "affected_gaps": [
+        "GAP-R2-ANSWER-INT-R1-002"
+      ],
+      "affected_stages": [
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "ambiguity": [],
+      "normalised_interpretation": {
+        "kind": "substantive_text",
+        "value": "TEST-ONLY DEAL-LEAD INSTRUCTION: Deal form is a purchase of 100% of the shares of the single target entity described in the room. Included: that entity's entire operating business, contracts, employees, intellectual property, plant and equipment, receivables, payables, cash, borrowings, leases, tax balances, claims and all other assets and liabilities at completion. Excluded: no legal entity, business line, asset or liability. This perimeter instruction is supplied by the test operator and has no room source; it remains subject to confirmation in transaction documents."
+      },
+      "provenance": {
+        "answer_input_filename": "test_only_round_2_reply.json",
+        "answer_input_sha256": "d28cce1d815feb8f4da9cd0b2c81c4c0cfa6417ea6d741e2bfd49db9a0b53aaf",
+        "answered_at": "2026-09-01T08:15:10.914914Z",
+        "answered_by": "Phase 14 shadow rehearsal - explicit test-only operator answers",
+        "ingested_at": "2026-09-01T08:15:39.491312Z",
+        "source_kind": "deal_lead_answer_file"
+      },
+      "question_id": "INT-R2-002",
+      "resolution_status": "closed",
+      "round_number": 2,
+      "verbatim_answer": "TEST-ONLY DEAL-LEAD INSTRUCTION: Deal form is a purchase of 100% of the shares of the single target entity described in the room. Included: that entity's entire operating business, contracts, employees, intellectual property, plant and equipment, receivables, payables, cash, borrowings, leases, tax balances, claims and all other assets and liabilities at completion. Excluded: no legal entity, business line, asset or liability. This perimeter instruction is supplied by the test operator and has no room source; it remains subject to confirmation in transaction documents.",
+      "verbatim_answer_sha256": "73f4edd044ea970931a03b37b3deb9dd7c06eecf8e9b22c2027b2f12de658739"
+    },
+    {
+      "affected_claims": [],
+      "affected_gaps": [
+        "GAP-R2-ANSWER-INT-R1-004"
+      ],
+      "affected_stages": [
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "ambiguity": [
+        "The reply explicitly says that requested evidence or confirmation is absent or that the matter remains open."
+      ],
+      "normalised_interpretation": {
+        "kind": "explicitly_unresolved",
+        "value": "TEST-ONLY ANSWER: Rely on SRC-0049, zip://04_Compliance_Archive/Responses-2024.zip!/answer-bundle/customer-note.pdf, PDF page 1, solely for the fact that the customer consent had not been requested. No executed consent or completed wider consent matrix is evidenced. Treat that consent as outstanding and require the transaction lead to verify every customer, lease, financing and licence consent before signing."
+      },
+      "provenance": {
+        "answer_input_filename": "test_only_round_2_reply.json",
+        "answer_input_sha256": "d28cce1d815feb8f4da9cd0b2c81c4c0cfa6417ea6d741e2bfd49db9a0b53aaf",
+        "answered_at": "2026-09-01T08:15:10.914914Z",
+        "answered_by": "Phase 14 shadow rehearsal - explicit test-only operator answers",
+        "ingested_at": "2026-09-01T08:15:39.491312Z",
+        "source_kind": "deal_lead_answer_file"
+      },
+      "question_id": "INT-R2-003",
+      "resolution_status": "open",
+      "round_number": 2,
+      "verbatim_answer": "TEST-ONLY ANSWER: Rely on SRC-0049, zip://04_Compliance_Archive/Responses-2024.zip!/answer-bundle/customer-note.pdf, PDF page 1, solely for the fact that the customer consent had not been requested. No executed consent or completed wider consent matrix is evidenced. Treat that consent as outstanding and require the transaction lead to verify every customer, lease, financing and licence consent before signing.",
+      "verbatim_answer_sha256": "9ef0b9ab8fb0b2f67ba50b5111f6922a2c604d031b9f5caf0668525dec5bcc15"
+    },
+    {
+      "affected_claims": [],
+      "affected_gaps": [
+        "GAP-CONTRACT-AMENDMENT-CONTROL"
+      ],
+      "affected_stages": [
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "ambiguity": [],
+      "normalised_interpretation": {
+        "kind": "substantive_text",
+        "value": "TEST-ONLY ANSWER: VER-0001 is an over-broad registrar candidate family, not one agreement family. SRC-0017 is the base services agreement and SRC-0016 is its Rev2 amendment; assume both are executed and operative together for this rehearsal. SRC-0018 is a separate customer agreement; SRC-0019 is a constitution extract; SRC-0021 is shareholder terms; SRC-0022 is a contractor form; SRC-0023 is premises terms; SRC-0024 and SRC-0025 are complaint correspondence. They are not amendments to SRC-0017. No later side letter is known. Under SRC-0016 page 1, clause 14.2 and its change-of-control consent remain in force, and clause 11 liability is replaced by twelve months of fees with uncapped service credits. Termination and pricing are not shown as amended. Signed originals and completeness of side letters still require confirmation."
+      },
+      "provenance": {
+        "answer_input_filename": "test_only_round_2_reply.json",
+        "answer_input_sha256": "d28cce1d815feb8f4da9cd0b2c81c4c0cfa6417ea6d741e2bfd49db9a0b53aaf",
+        "answered_at": "2026-09-01T08:15:10.914914Z",
+        "answered_by": "Phase 14 shadow rehearsal - explicit test-only operator answers",
+        "ingested_at": "2026-09-01T08:15:39.491312Z",
+        "source_kind": "deal_lead_answer_file"
+      },
+      "question_id": "INT-R2-004",
+      "resolution_status": "closed",
+      "round_number": 2,
+      "verbatim_answer": "TEST-ONLY ANSWER: VER-0001 is an over-broad registrar candidate family, not one agreement family. SRC-0017 is the base services agreement and SRC-0016 is its Rev2 amendment; assume both are executed and operative together for this rehearsal. SRC-0018 is a separate customer agreement; SRC-0019 is a constitution extract; SRC-0021 is shareholder terms; SRC-0022 is a contractor form; SRC-0023 is premises terms; SRC-0024 and SRC-0025 are complaint correspondence. They are not amendments to SRC-0017. No later side letter is known. Under SRC-0016 page 1, clause 14.2 and its change-of-control consent remain in force, and clause 11 liability is replaced by twelve months of fees with uncapped service credits. Termination and pricing are not shown as amended. Signed originals and completeness of side letters still require confirmation.",
+      "verbatim_answer_sha256": "161866a4d3757e9fdc9e9af03f4f40b0029da7bdc6d7b6a1f587640978f62884"
+    }
+  ],
+  "explicit_ingestion": true,
+  "ingested_at": "2026-09-01T08:15:39.491312Z",
+  "round_number": 2,
+  "run_id": "20260901T081036940718Z-ea9100a654cb",
+  "schema_version": 1,
+  "status": "ingested",
+  "status_counts": {
+    "closed": 3,
+    "narrowed": 0,
+    "open": 1
+  }
+}

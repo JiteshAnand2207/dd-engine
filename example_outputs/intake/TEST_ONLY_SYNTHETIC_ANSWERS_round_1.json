@@ -1,0 +1,204 @@
+{
+  "answer_input_sha256": "60fdf71e39cf35829cbf1ea874c1b6c5a61d3ecce8718e6eace24615d23d1229",
+  "answer_normalization_version": "answer-normalization-v2",
+  "answered_at": "2026-09-01T08:13:46.942710Z",
+  "answered_by": "Phase 14 shadow rehearsal - explicit test-only operator answers",
+  "answers": [
+    {
+      "affected_claims": [],
+      "affected_gaps": [
+        "GAP-UNREADABLE-SOURCES"
+      ],
+      "affected_stages": [
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "ambiguity": [
+        "The reply explicitly says that requested evidence or confirmation is absent or that the matter remains open."
+      ],
+      "normalised_interpretation": {
+        "kind": "explicitly_unresolved",
+        "value": "TEST-ONLY ANSWER: No readable replacement for SRC-0034 is available. Its purpose and operative status cannot be established; keep it as an unresolved scope limitation and require a readable original before signing."
+      },
+      "provenance": {
+        "answer_input_filename": "test_only_round_1_reply.json",
+        "answer_input_sha256": "60fdf71e39cf35829cbf1ea874c1b6c5a61d3ecce8718e6eace24615d23d1229",
+        "answered_at": "2026-09-01T08:13:46.942710Z",
+        "answered_by": "Phase 14 shadow rehearsal - explicit test-only operator answers",
+        "ingested_at": "2026-09-01T08:14:24.232942Z",
+        "source_kind": "deal_lead_answer_file"
+      },
+      "question_id": "INT-R1-001",
+      "resolution_status": "open",
+      "round_number": 1,
+      "verbatim_answer": "TEST-ONLY ANSWER: No readable replacement for SRC-0034 is available. Its purpose and operative status cannot be established; keep it as an unresolved scope limitation and require a readable original before signing.",
+      "verbatim_answer_sha256": "18750b75c3c663cf5a074bbefe447285a415a85f50b594094bd96d4334e0cc32"
+    },
+    {
+      "affected_claims": [],
+      "affected_gaps": [
+        "GAP-R1-TRANSACTION-PERIMETER"
+      ],
+      "affected_stages": [
+        "intake_round_2",
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "ambiguity": [
+        "The reply explicitly says that requested evidence or confirmation is absent or that the matter remains open."
+      ],
+      "normalised_interpretation": {
+        "kind": "explicitly_unresolved",
+        "value": "TEST-ONLY ASSUMPTION: The contemplated transaction is a share purchase of 100% of the target entity described in the room, including its operating assets, contracts, employees, cash, debt, tax liabilities and other recorded liabilities. No other legal entity or carved-out business is included; no assets or liabilities are assumed excluded unless specifically documented."
+      },
+      "provenance": {
+        "answer_input_filename": "test_only_round_1_reply.json",
+        "answer_input_sha256": "60fdf71e39cf35829cbf1ea874c1b6c5a61d3ecce8718e6eace24615d23d1229",
+        "answered_at": "2026-09-01T08:13:46.942710Z",
+        "answered_by": "Phase 14 shadow rehearsal - explicit test-only operator answers",
+        "ingested_at": "2026-09-01T08:14:24.232942Z",
+        "source_kind": "deal_lead_answer_file"
+      },
+      "question_id": "INT-R1-002",
+      "resolution_status": "open",
+      "round_number": 1,
+      "verbatim_answer": "TEST-ONLY ASSUMPTION: The contemplated transaction is a share purchase of 100% of the target entity described in the room, including its operating assets, contracts, employees, cash, debt, tax liabilities and other recorded liabilities. No other legal entity or carved-out business is included; no assets or liabilities are assumed excluded unless specifically documented.",
+      "verbatim_answer_sha256": "31f8c9106fb277556981bfe570c9a808f9c5c77638d0b823c93ce4d59ecec370"
+    },
+    {
+      "affected_claims": [],
+      "affected_gaps": [
+        "GAP-R1-PRICE-STRUCTURE"
+      ],
+      "affected_stages": [
+        "intake_round_2",
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "ambiguity": [],
+      "normalised_interpretation": {
+        "kind": "substantive_text",
+        "value": "TEST-ONLY ASSUMPTION: Headline enterprise-value reference is EUR 9,000,000. The proposal is cash-free/debt-free with a normalized working-capital adjustment at completion. Debt, leases and other debt-like items reduce equity value euro-for-euro. There is no earn-out or rollover. These are open negotiating assumptions, not a valuation opinion or agreed terms."
+      },
+      "provenance": {
+        "answer_input_filename": "test_only_round_1_reply.json",
+        "answer_input_sha256": "60fdf71e39cf35829cbf1ea874c1b6c5a61d3ecce8718e6eace24615d23d1229",
+        "answered_at": "2026-09-01T08:13:46.942710Z",
+        "answered_by": "Phase 14 shadow rehearsal - explicit test-only operator answers",
+        "ingested_at": "2026-09-01T08:14:24.232942Z",
+        "source_kind": "deal_lead_answer_file"
+      },
+      "question_id": "INT-R1-003",
+      "resolution_status": "closed",
+      "round_number": 1,
+      "verbatim_answer": "TEST-ONLY ASSUMPTION: Headline enterprise-value reference is EUR 9,000,000. The proposal is cash-free/debt-free with a normalized working-capital adjustment at completion. Debt, leases and other debt-like items reduce equity value euro-for-euro. There is no earn-out or rollover. These are open negotiating assumptions, not a valuation opinion or agreed terms.",
+      "verbatim_answer_sha256": "ef6880ac1c7cbbbeeb73a32fe4809e09f75405e6877383be0edc93c11a2f7ad6"
+    },
+    {
+      "affected_claims": [],
+      "affected_gaps": [
+        "GAP-CONTRACT-CONSENTS"
+      ],
+      "affected_stages": [
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "ambiguity": [
+        "The referenced location must be resolved to a registered source and does not automatically close the question."
+      ],
+      "normalised_interpretation": {
+        "kind": "cross_reference",
+        "reference_text": "referred to in SRC-0049",
+        "value": "TEST-ONLY ANSWER: Treat all transaction-triggered customer, lease, financing and licence consents identified in the room as outstanding unless written evidence shows otherwise. The deal team has not requested the customer consent referred to in SRC-0049. The transaction lead owns a contract-by-contract matrix, with required consents to be obtained as conditions precedent before signing or completion as appropriate."
+      },
+      "provenance": {
+        "answer_input_filename": "test_only_round_1_reply.json",
+        "answer_input_sha256": "60fdf71e39cf35829cbf1ea874c1b6c5a61d3ecce8718e6eace24615d23d1229",
+        "answered_at": "2026-09-01T08:13:46.942710Z",
+        "answered_by": "Phase 14 shadow rehearsal - explicit test-only operator answers",
+        "ingested_at": "2026-09-01T08:14:24.232942Z",
+        "source_kind": "deal_lead_answer_file"
+      },
+      "question_id": "INT-R1-004",
+      "resolution_status": "narrowed",
+      "round_number": 1,
+      "verbatim_answer": "TEST-ONLY ANSWER: Treat all transaction-triggered customer, lease, financing and licence consents identified in the room as outstanding unless written evidence shows otherwise. The deal team has not requested the customer consent referred to in SRC-0049. The transaction lead owns a contract-by-contract matrix, with required consents to be obtained as conditions precedent before signing or completion as appropriate.",
+      "verbatim_answer_sha256": "68c1e347249e8451af953a9109e60070e49140f8cde7a4986b61890ac79e7e7f"
+    },
+    {
+      "affected_claims": [],
+      "affected_gaps": [
+        "GAP-R1-INVESTMENT-THESIS"
+      ],
+      "affected_stages": [
+        "intake_round_2",
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "ambiguity": [],
+      "normalised_interpretation": {
+        "kind": "substantive_text",
+        "value": "TEST-ONLY ASSUMPTION: The thesis is acquisition of a profitable recurring-services business with defensible customer relationships and scalable delivery. Prove sustainable earnings, cash conversion, customer retention, contract transferability and operational resilience. Deal-breakers are unremedied material consent failures, unsupported earnings, undisclosed debt-like liabilities, or compliance exposures that cannot be bounded; quantified issues should drive price reductions, escrows, indemnities or conditions precedent."
+      },
+      "provenance": {
+        "answer_input_filename": "test_only_round_1_reply.json",
+        "answer_input_sha256": "60fdf71e39cf35829cbf1ea874c1b6c5a61d3ecce8718e6eace24615d23d1229",
+        "answered_at": "2026-09-01T08:13:46.942710Z",
+        "answered_by": "Phase 14 shadow rehearsal - explicit test-only operator answers",
+        "ingested_at": "2026-09-01T08:14:24.232942Z",
+        "source_kind": "deal_lead_answer_file"
+      },
+      "question_id": "INT-R1-005",
+      "resolution_status": "closed",
+      "round_number": 1,
+      "verbatim_answer": "TEST-ONLY ASSUMPTION: The thesis is acquisition of a profitable recurring-services business with defensible customer relationships and scalable delivery. Prove sustainable earnings, cash conversion, customer retention, contract transferability and operational resilience. Deal-breakers are unremedied material consent failures, unsupported earnings, undisclosed debt-like liabilities, or compliance exposures that cannot be bounded; quantified issues should drive price reductions, escrows, indemnities or conditions precedent.",
+      "verbatim_answer_sha256": "fd056a6de4a93bcba5defc108a5bf4ccc98a5e91f27d24f4fe51dfdf8c3b1f9f"
+    },
+    {
+      "affected_claims": [],
+      "affected_gaps": [
+        "GAP-R1-SCOPE-MATERIALITY"
+      ],
+      "affected_stages": [
+        "intake_round_2",
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "ambiguity": [],
+      "normalised_interpretation": {
+        "kind": "substantive_text",
+        "value": "TEST-ONLY ASSUMPTION: Use a diligence cut-off of 31 August 2026, a quantitative materiality threshold of EUR 100,000, and qualitative materiality for customer loss, regulatory, tax, data/privacy, title, ownership, fraud and business-continuity risks regardless of amount. Use the forecast horizon available in the room. Nothing is excluded and no topic is assumed covered by another adviser."
+      },
+      "provenance": {
+        "answer_input_filename": "test_only_round_1_reply.json",
+        "answer_input_sha256": "60fdf71e39cf35829cbf1ea874c1b6c5a61d3ecce8718e6eace24615d23d1229",
+        "answered_at": "2026-09-01T08:13:46.942710Z",
+        "answered_by": "Phase 14 shadow rehearsal - explicit test-only operator answers",
+        "ingested_at": "2026-09-01T08:14:24.232942Z",
+        "source_kind": "deal_lead_answer_file"
+      },
+      "question_id": "INT-R1-006",
+      "resolution_status": "closed",
+      "round_number": 1,
+      "verbatim_answer": "TEST-ONLY ASSUMPTION: Use a diligence cut-off of 31 August 2026, a quantitative materiality threshold of EUR 100,000, and qualitative materiality for customer loss, regulatory, tax, data/privacy, title, ownership, fraud and business-continuity risks regardless of amount. Use the forecast horizon available in the room. Nothing is excluded and no topic is assumed covered by another adviser.",
+      "verbatim_answer_sha256": "5a301ac0d768dd95dbc63a68fa394dd027b9db946b32c7ebf0b706e675a01fdf"
+    }
+  ],
+  "explicit_ingestion": true,
+  "ingested_at": "2026-09-01T08:14:24.232942Z",
+  "round_number": 1,
+  "run_id": "20260901T081036940718Z-ea9100a654cb",
+  "schema_version": 1,
+  "status": "ingested",
+  "status_counts": {
+    "closed": 3,
+    "narrowed": 1,
+    "open": 2
+  }
+}

@@ -1,0 +1,172 @@
+{
+  "analysis_version": "phase14-generalised-analysis-v5",
+  "coverage": [
+    {
+      "issue_ids": [],
+      "status": "limitation",
+      "topic": "key_person_dependency"
+    },
+    {
+      "issue_ids": [
+        "LEGAL-004"
+      ],
+      "status": "analysed",
+      "topic": "paye_contractor_workforce"
+    },
+    {
+      "issue_ids": [],
+      "status": "limitation",
+      "topic": "client_linked_headcount"
+    },
+    {
+      "issue_ids": [
+        "LEGAL-004"
+      ],
+      "status": "analysed",
+      "topic": "workforce_inconsistencies"
+    },
+    {
+      "issue_ids": [
+        "OPS-002"
+      ],
+      "status": "analysed",
+      "topic": "supplier_dependency"
+    },
+    {
+      "issue_ids": [
+        "OPS-001",
+        "OPS-002"
+      ],
+      "status": "analysed",
+      "topic": "capacity_delivery_risk"
+    },
+    {
+      "issue_ids": [
+        "OPS-001"
+      ],
+      "status": "analysed",
+      "topic": "management_controls"
+    },
+    {
+      "issue_ids": [
+        "FIN-005"
+      ],
+      "status": "analysed",
+      "topic": "related_party_arrangements"
+    },
+    {
+      "issue_ids": [
+        "OPS-001"
+      ],
+      "status": "analysed",
+      "topic": "business_continuity"
+    },
+    {
+      "issue_ids": [],
+      "status": "limitation",
+      "topic": "missing_operational_evidence"
+    }
+  ],
+  "effective_version_decisions": [],
+  "findings": [
+    {
+      "action": "Run and evidence a time-bound restore and failover exercise, capture actual RTO/RPO, owners and defects, and approve a tested continuity plan.",
+      "analysis_conclusion": "Business-continuity governance is incomplete: the board left the restore-test action without an approved date or accountable delivery evidence.",
+      "analytical_reasoning": "This is the management-control and ownership failure around scheduling, escalation and evidence. The separate IT finding addresses the technical assurance and recovery-control gap.",
+      "calculation_ids": [],
+      "claim_ids": [
+        "CLM-OPS-001"
+      ],
+      "confidence": 0.85,
+      "confidence_basis": [
+        "Capped at 0.85 because one or more intake answers remain open or narrowed."
+      ],
+      "counterevidence_ids": [],
+      "issue_id": "OPS-001",
+      "materiality": "high",
+      "opinion_status": null,
+      "source_fact": "Board minutes record the open restore-test action; the hosting agreement supplies backups but no committed witnessed test.",
+      "supporting_evidence_ids": [
+        "EVD-OPS-001-01",
+        "EVD-OPS-001-02"
+      ],
+      "transaction_implication": "Make a successful witnessed restore/DR exercise a pre-completion condition or retain escrow until remediation and evidence are delivered.",
+      "transaction_levers": [
+        "closing_condition",
+        "escrow",
+        "warranty"
+      ],
+      "uncertainty": null,
+      "why_it_matters": "A failed restoration can interrupt concentrated customer services and trigger credits/churn."
+    },
+    {
+      "action": "Obtain service performance, payment status, renewal/termination rights, data-export terms, subprocessors, portability architecture and a costed exit/migration plan.",
+      "analysis_conclusion": "A single hosting provider carries an annual fee of EUR 288,000 and an aggregate creditor exposure of EUR 96,000, of which EUR 48,000 is aged beyond current. This supports payment-status diligence, but not an inference of default or threatened suspension.",
+      "analytical_reasoning": "The dependency and overdue amount are evidenced. The room does not establish whether the balance is disputed, contractually overdue, subject to agreed terms or linked to any suspension threat.",
+      "calculation_ids": [
+        "CALC-OPS-001"
+      ],
+      "claim_ids": [
+        "CLM-OPS-002"
+      ],
+      "confidence": 0.85,
+      "confidence_basis": [
+        "Capped at 0.85 because one or more intake answers remain open or narrowed."
+      ],
+      "counterevidence_ids": [],
+      "issue_id": "OPS-002",
+      "materiality": "high",
+      "opinion_status": null,
+      "source_fact": "The hosting contract and creditor ageing identify the same provider and amounts.",
+      "supporting_evidence_ids": [
+        "EVD-OPS-002-01",
+        "EVD-OPS-002-02",
+        "EVD-OPS-002-03",
+        "EVD-OPS-002-04"
+      ],
+      "transaction_implication": "Test downside in price assumptions and require transition assistance, continuity warranties and a funded migration plan.",
+      "transaction_levers": [
+        "price_assumptions",
+        "warranty",
+        "closing_condition"
+      ],
+      "uncertainty": "No evidence establishes contractual due dates, payment dispute/status, provider substitutability or migration duration.",
+      "why_it_matters": "Supplier disruption or repricing can affect delivery capacity, margin and customer SLAs."
+    }
+  ],
+  "generated_by": "deterministic local analytical rules; Python made no model call",
+  "irish_jurisdiction_scope": "Commercial due diligence in an Irish transaction context; this is not a formal Irish legal or tax opinion and specialist advisers must confirm conclusions used in transaction documents.",
+  "limitations": [
+    "No formal Irish legal or tax opinion is provided.",
+    "Unreadable sources remain unresolved; reviewed visual evidence is limited to its recorded transcription and citation.",
+    "Topics marked limitation had insufficient source evidence for an adverse conclusion."
+  ],
+  "public_research_performed": false,
+  "run_id": "20260901T081036940718Z-ea9100a654cb",
+  "schema_version": 1,
+  "tax_cross_workstream_links": [
+    {
+      "affected_workstreams": [
+        "financial",
+        "legal_contractual",
+        "operational_management"
+      ],
+      "tax_issue_id": "TAX-001"
+    },
+    {
+      "affected_workstreams": [
+        "financial",
+        "operational_management"
+      ],
+      "tax_issue_id": "TAX-003"
+    }
+  ],
+  "unresolved_intake_question_ids": [
+    "INT-R1-001",
+    "INT-R1-002",
+    "INT-R1-004",
+    "INT-R2-003"
+  ],
+  "untrusted_source_data_was_executed": false,
+  "workstream": "operational_management"
+}

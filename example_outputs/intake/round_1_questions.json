@@ -1,0 +1,247 @@
+{
+  "evidence_scope": "complete register plus early material extraction signals",
+  "excluded_candidates": [
+    {
+      "candidate_topic": "non-debt-vision-queue",
+      "reason": "Deferred to round two: these visual sources are not yet shown to change the early price/structure decision and remain visible in needs_vision.json.",
+      "supporting_source_ids": [
+        "SRC-0037"
+      ]
+    }
+  ],
+  "generated_at": "2026-09-01T08:13:32.283149Z",
+  "generator_version": "6.0.0",
+  "input_artifacts": [
+    {
+      "path": "source_register/source_register.json",
+      "sha256": "49da87bcffea1ff3c831eb88742559bdc5e94a0c81507c4f826f8154d58d3317"
+    },
+    {
+      "path": "source_register/room_structure.json",
+      "sha256": "9aa34a0d5bc80a37147c192c12f49e88f6b120082b5856f0de2585966b0a248c"
+    },
+    {
+      "path": "source_register/version_families.json",
+      "sha256": "ccb1a367d7ae735d71aab7fa31c160dd7128ff5477cc52623311b98f2a4de04f"
+    },
+    {
+      "path": "extracts/extraction_manifest.json",
+      "sha256": "bb4517e1254e13d63adf5ca420a97f9cd307d6312a6a2cb26c2d2b83c4241f19"
+    },
+    {
+      "path": "extracts/extracted_units.jsonl",
+      "sha256": "9164bbd689aef607c02764e7cda2055c56ecbc00c1258c304a3f3485a6f802be"
+    },
+    {
+      "path": "extracts/needs_vision.json",
+      "sha256": "900360840a5a8e16ddde745b033a062b23c3234627db3ded1ae9a653a53917c0"
+    }
+  ],
+  "input_fingerprint": "b5d1f0d588f6491503c45dfd499de05731b3d8ad748a7f355885000281c9a2a0",
+  "question_count": 6,
+  "question_limit": 12,
+  "questions": [
+    {
+      "blocks_analysis": true,
+      "decision_potentially_affected": [
+        "scope",
+        "go_no_go",
+        "transaction_structure"
+      ],
+      "exact_question": "The following registered source could not be read: SRC-0034 (04_Compliance_Archive/Damaged-Source.pdf). What does each document cover, is it current or operative, and can you provide a readable original or replacement?",
+      "expected_answer_type": "document purpose/status plus readable replacement or explicit unavailability",
+      "invalidate_if_answer_changes_evidence": [
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "priority": "critical",
+      "question_id": "INT-R1-001",
+      "round_number": 1,
+      "structured_gap": {
+        "description": "1 registered source(s) failed extraction.",
+        "gap_id": "GAP-UNREADABLE-SOURCES",
+        "gap_type": "critical_unreadable_source"
+      },
+      "supporting_evidence": [
+        {
+          "evidence_kind": "registered_source",
+          "relative_path": "04_Compliance_Archive/Damaged-Source.pdf",
+          "source_ids": [
+            "SRC-0034"
+          ],
+          "summary": "Extraction failed: invalid PDF: EOF marker not found",
+          "unit_ids": []
+        }
+      ],
+      "supporting_source_ids": [
+        "SRC-0034"
+      ],
+      "topic_key": "critical-unreadable-sources",
+      "why_it_matters": "An unreadable source can conceal a material obligation; its relevance must be established before analysis can rely on the room as complete."
+    },
+    {
+      "blocks_analysis": true,
+      "decision_potentially_affected": [
+        "scope",
+        "go_no_go",
+        "transaction_structure"
+      ],
+      "exact_question": "What legal entities, businesses, assets and liabilities are inside and outside the proposed transaction perimeter, and is the contemplated deal a share purchase, asset purchase or another structure?",
+      "expected_answer_type": "structured list of included/excluded perimeter items and deal form",
+      "invalidate_if_answer_changes_evidence": [
+        "intake_round_2",
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "priority": "critical",
+      "question_id": "INT-R1-002",
+      "round_number": 1,
+      "structured_gap": {
+        "description": "No deal-lead transaction perimeter is stored in the room or run artifacts.",
+        "gap_id": "GAP-R1-TRANSACTION-PERIMETER",
+        "gap_type": "essential_transaction_context"
+      },
+      "supporting_evidence": [],
+      "supporting_source_ids": [],
+      "topic_key": "transaction-perimeter",
+      "why_it_matters": "The room identifies the target evidence but not the buyer's agreed perimeter; scope and transaction form determine which liabilities and consents matter."
+    },
+    {
+      "blocks_analysis": true,
+      "decision_potentially_affected": [
+        "price",
+        "transaction_structure",
+        "negotiating_terms"
+      ],
+      "exact_question": "What headline price or valuation reference should the diligence test, and what cash, debt, debt-like, working-capital, earn-out, rollover or other consideration assumptions are currently proposed? Please distinguish fixed terms from open negotiating positions.",
+      "expected_answer_type": "currency amounts plus a structured description of consideration mechanics",
+      "invalidate_if_answer_changes_evidence": [
+        "intake_round_2",
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "priority": "critical",
+      "question_id": "INT-R1-003",
+      "round_number": 1,
+      "structured_gap": {
+        "description": "No committee price or consideration mechanics are stored in the observed evidence.",
+        "gap_id": "GAP-R1-PRICE-STRUCTURE",
+        "gap_type": "essential_transaction_context"
+      },
+      "supporting_evidence": [],
+      "supporting_source_ids": [],
+      "topic_key": "price-structure-assumptions",
+      "why_it_matters": "Material findings cannot be translated into price or structure implications without the committee's assumptions, and the engine must not invent a valuation."
+    },
+    {
+      "blocks_analysis": true,
+      "decision_potentially_affected": [
+        "go_no_go",
+        "transaction_structure",
+        "closing_conditions"
+      ],
+      "exact_question": "The room states that at least one customer-consent review is outstanding or a consent has not been requested. Which contracts, amendments, leases, debt documents or licences require notice or consent for the contemplated transaction, what is the legal/commercial basis, and what is the owner and timetable for obtaining each consent?",
+      "expected_answer_type": "contract-by-contract consent matrix with clause/source and status",
+      "invalidate_if_answer_changes_evidence": [
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "priority": "critical",
+      "question_id": "INT-R1-004",
+      "round_number": 1,
+      "structured_gap": {
+        "description": "Extracted vendor evidence says a material consent review is incomplete or not requested.",
+        "gap_id": "GAP-CONTRACT-CONSENTS",
+        "gap_type": "contract_consent_gap"
+      },
+      "supporting_evidence": [
+        {
+          "evidence_kind": "extracted_unit",
+          "locator": {
+            "page_label": "1",
+            "page_number": 1,
+            "type": "pdf_page"
+          },
+          "relative_path": "zip://04_Compliance_Archive/Responses-2024.zip!/answer-bundle/customer-note.pdf",
+          "source_ids": [
+            "SRC-0049"
+          ],
+          "summary": "Customer consent response Orchard Lantern Systems Limited FICTIONAL SYNTHETIC DATA - NOT A REAL COMPANY Page 1 DATASET SYN-ORCHARD-2024-271828 Response Consent has not been requested.",
+          "unit_ids": [
+            "SRC-0049-UNIT-000001"
+          ]
+        }
+      ],
+      "supporting_source_ids": [
+        "SRC-0049"
+      ],
+      "topic_key": "contract-consents",
+      "why_it_matters": "Unobtained transaction consents can affect deliverability, closing conditions, customer retention and negotiating leverage."
+    },
+    {
+      "blocks_analysis": true,
+      "decision_potentially_affected": [
+        "go_no_go",
+        "price",
+        "diligence_priority"
+      ],
+      "exact_question": "What is the investment thesis, which value drivers must be proven, and which specific findings would be deal-breakers or require a price or structure change?",
+      "expected_answer_type": "short thesis, ranked value drivers and explicit deal-breakers",
+      "invalidate_if_answer_changes_evidence": [
+        "intake_round_2",
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "priority": "high",
+      "question_id": "INT-R1-005",
+      "round_number": 1,
+      "structured_gap": {
+        "description": "No deal-lead investment thesis or deal-breaker criteria are stored in the run.",
+        "gap_id": "GAP-R1-INVESTMENT-THESIS",
+        "gap_type": "essential_transaction_context"
+      },
+      "supporting_evidence": [],
+      "supporting_source_ids": [],
+      "topic_key": "investment-thesis",
+      "why_it_matters": "The room cannot reveal the committee's thesis or risk appetite; these are needed to prioritize material contradictions without a generic diligence script."
+    },
+    {
+      "blocks_analysis": false,
+      "decision_potentially_affected": [
+        "scope",
+        "diligence_priority",
+        "go_no_go"
+      ],
+      "exact_question": "What diligence cut-off date, materiality thresholds, forecast horizon and scope exclusions should apply, including any topics already covered by another adviser?",
+      "expected_answer_type": "dates, monetary/qualitative thresholds and scoped exclusions",
+      "invalidate_if_answer_changes_evidence": [
+        "intake_round_2",
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "priority": "high",
+      "question_id": "INT-R1-006",
+      "round_number": 1,
+      "structured_gap": {
+        "description": "No deal-specific cut-off, materiality threshold or scope exclusion is stored.",
+        "gap_id": "GAP-R1-SCOPE-MATERIALITY",
+        "gap_type": "essential_transaction_context"
+      },
+      "supporting_evidence": [],
+      "supporting_source_ids": [],
+      "topic_key": "scope-materiality",
+      "why_it_matters": "A defined cut-off and materiality lens prevents low-value questions and makes omissions, stale evidence and out-of-scope matters explicit."
+    }
+  ],
+  "round_number": 1,
+  "run_id": "20260901T081036940718Z-ea9100a654cb",
+  "schema_version": 1,
+  "status": "awaiting_input",
+  "untrusted_source_data_was_executed": false
+}
