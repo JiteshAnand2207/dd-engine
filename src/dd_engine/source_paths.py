@@ -16,7 +16,14 @@ from pathlib import Path
 
 from dd_engine.errors import SourcePathError
 
-FORBIDDEN_DIRECTORY_NAMES = frozenset({"planted_issues", "planted-issues"})
+FORBIDDEN_DIRECTORY_NAMES = frozenset(
+    {
+        "planted_issues",
+        "planted-issues",
+        "shadow_ground_truth",
+        "shadow-ground-truth",
+    }
+)
 
 
 @dataclass(frozen=True, slots=True)

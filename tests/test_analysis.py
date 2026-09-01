@@ -290,6 +290,7 @@ def test_phase10_generates_complete_validated_bundle(analysed_run: Path) -> None
         payloads=payloads,
         records=load_record_sets(analysed_run),
         answers=answers,
+        questions=(),
     )
     critical_findings = [
         finding

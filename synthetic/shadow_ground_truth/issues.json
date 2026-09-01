@@ -1,0 +1,14 @@
+{
+  "dataset": "SYN-ORCHARD-2024-271828",
+  "issues": [
+    "unsupported EBITDA adjustment",
+    "working-capital formula omission",
+    "aged-debtor total understatement",
+    "customer-group concentration",
+    "change-of-control consent not requested",
+    "VAT response contradicted by amendment",
+    "untested recovery controls",
+    "unredacted synthetic employee fields"
+  ],
+  "sealed": true
+}

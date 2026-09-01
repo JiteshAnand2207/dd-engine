@@ -1,0 +1,285 @@
+{
+  "company": "Orchard Lantern Systems Limited",
+  "dataset": "SYN-ORCHARD-2024-271828",
+  "fictional": true,
+  "files": [
+    {
+      "path": "01_Performance_Pack/PX-A11.pdf",
+      "sha256": "98643bb49aa3d8987899ea0fae86a7764515f2a30e9cd371f9ee8ada948e2c8f",
+      "size_bytes": 2234
+    },
+    {
+      "path": "01_Performance_Pack/PX-A12.pdf",
+      "sha256": "9a433d8c576c56dbe3993d381d699e5b8f18b2e976ef622634a29f815704312d",
+      "size_bytes": 2236
+    },
+    {
+      "path": "01_Performance_Pack/PX-B04.pdf",
+      "sha256": "f62cf8c67853009b4583e0e8c65e05b9bddaa105b570528227ec637eb021284a",
+      "size_bytes": 2334
+    },
+    {
+      "path": "01_Performance_Pack/PX-C19.xlsx",
+      "sha256": "73f2f3fa8373da66de6bcef3a0cc121abf5c68fb80bf29d11f7e1308b7ff2ff5",
+      "size_bytes": 4734
+    },
+    {
+      "path": "01_Performance_Pack/PX-D02.xlsx",
+      "sha256": "8a37ab787e731e7db42445ec1177a73255ce1527c0fbaebcfefd7e26258084a3",
+      "size_bytes": 4010
+    },
+    {
+      "path": "01_Performance_Pack/PX-E07.xlsx",
+      "sha256": "0f0328b88eebfa4d280dc7e8ce9dfbe43f83bb84ee3c4cf1bca3c754299657ae",
+      "size_bytes": 3736
+    },
+    {
+      "path": "01_Performance_Pack/PX-E08.xlsx",
+      "sha256": "a1699d1f4dfad6d2f746839cf06499e5a2e104f76d67360b3233601c88e0b723",
+      "size_bytes": 3738
+    },
+    {
+      "path": "01_Performance_Pack/PX-E09.xlsx",
+      "sha256": "1e230fb3dc3d43bf9863835bfca69fb6cc84567b764222e1a298f7818001500f",
+      "size_bytes": 3706
+    },
+    {
+      "path": "01_Performance_Pack/PX-E10.docx",
+      "sha256": "a8a851a8616981ae4382a53a2c6850e0605c93f63599faa8c3e968cacb959643",
+      "size_bytes": 38236
+    },
+    {
+      "path": "01_Performance_Pack/PX-F01.xlsx",
+      "sha256": "56f83ea84d545f8317569756e5f350889e426600bcb336556de9b15180247d3e",
+      "size_bytes": 3742
+    },
+    {
+      "path": "01_Performance_Pack/PX-F02.xlsx",
+      "sha256": "40b3785d7b48086f8399a1e4aa1b7b203c2fa7232716e329849b3c361dbe5b28",
+      "size_bytes": 3749
+    },
+    {
+      "path": "01_Performance_Pack/PX-F03.xlsx",
+      "sha256": "e4944034707224eedbb23b0df523b77c86b66dbc0e542f190eee0f046ef3aa00",
+      "size_bytes": 3924
+    },
+    {
+      "path": "01_Performance_Pack/PX-F04.xlsx",
+      "sha256": "842bc20e13b11134b2e61f3e02f2ccadef2ab99b97bd85de0e687dad8cb2f2aa",
+      "size_bytes": 3765
+    },
+    {
+      "path": "01_Performance_Pack/PX-F05.xlsx",
+      "sha256": "30d6d0015632285c16156d8f451639cbfbf4b9f1805ef4c305f6772c4e82cce1",
+      "size_bytes": 4018
+    },
+    {
+      "path": "01_Performance_Pack/PX-F06.xlsx",
+      "sha256": "b15f18ca80c025cbfff37d8426d3598247e0259ce2cd271b6aa467599a5475bf",
+      "size_bytes": 3852
+    },
+    {
+      "path": "02_Contracts_Corporate/CX-17-Rev2.pdf",
+      "sha256": "d99613fe929a2f828b3b15bdd27c1bf05e17757016274c098277e1359a6159d6",
+      "size_bytes": 2328
+    },
+    {
+      "path": "02_Contracts_Corporate/CX-17.pdf",
+      "sha256": "f64e95225891165f78508b3c51344833b469ed4fb9c5bfb2c1273cc2cf155079",
+      "size_bytes": 2322
+    },
+    {
+      "path": "02_Contracts_Corporate/CX-18.pdf",
+      "sha256": "21a3a110fc1849dd15c8d3b4d08583707fc931d9c4fc52a9ef25e7df296fd741",
+      "size_bytes": 2208
+    },
+    {
+      "path": "02_Contracts_Corporate/CX-21.pdf",
+      "sha256": "be10eea6fa8f3d082f1f8ce0825343c162741889033be6bde1905ce38eedc235",
+      "size_bytes": 2172
+    },
+    {
+      "path": "02_Contracts_Corporate/CX-22-Rev2.xlsx",
+      "sha256": "9d711f9e7335076fbd9a3aaf90a90e8a52fe613326adb0f7b51453da486092c4",
+      "size_bytes": 3775
+    },
+    {
+      "path": "02_Contracts_Corporate/CX-23.pdf",
+      "sha256": "3bb0104a46824875a5719ff574bcfb8c740d8e28b29eced8144b882ea5dce849",
+      "size_bytes": 2264
+    },
+    {
+      "path": "02_Contracts_Corporate/CX-24.pdf",
+      "sha256": "4991ebc69a80f45b6ba6cfdae877b03fef2b77d9295eb4f68d9ca436a0dfeb67",
+      "size_bytes": 2232
+    },
+    {
+      "path": "02_Contracts_Corporate/CX-25.pdf",
+      "sha256": "b319ceef647c4c42b1044b0cc9b7c954c708fec153037b7569f69138a4a5cc39",
+      "size_bytes": 2146
+    },
+    {
+      "path": "02_Contracts_Corporate/CX-31.pdf",
+      "sha256": "2e2015c32010859275dae34646d30adbf43232bc6a3bd6482e327f3b27e74e27",
+      "size_bytes": 2213
+    },
+    {
+      "path": "02_Contracts_Corporate/CX-32.pdf",
+      "sha256": "422afc8755500073736cdc29f57ee2a68dd3e63259486dc5e81a241b928931f0",
+      "size_bytes": 2234
+    },
+    {
+      "path": "03_People_Systems/HX-02.xlsx",
+      "sha256": "bf7bd21b6c80fc615bad74accf1e11f3dd7ea7fe296594a3f6546ea9998887a6",
+      "size_bytes": 3746
+    },
+    {
+      "path": "03_People_Systems/SX-10.pdf",
+      "sha256": "5ed930e9f7afc05800487d37177f773375e457acca4d8619a68250dd27fc95c5",
+      "size_bytes": 2344
+    },
+    {
+      "path": "03_People_Systems/SX-11.docx",
+      "sha256": "1b62b68d253d59f06db4f3147a209ee73122fbec643fcf01037fd564e2eaa323",
+      "size_bytes": 38281
+    },
+    {
+      "path": "03_People_Systems/SX-12.docx",
+      "sha256": "2ac4984d005e1da6b03a5d0bf10afe33e362c3baf2593716593bed3e23341ec4",
+      "size_bytes": 38242
+    },
+    {
+      "path": "03_People_Systems/SX-13.docx",
+      "sha256": "480c3f6b41334359a87df8a18f1f1eabcdd98dee4de18714307f7386c0149b3b",
+      "size_bytes": 38232
+    },
+    {
+      "path": "03_People_Systems/SX-99.docx",
+      "sha256": "baba694e09369036dd9aeb769ece1a90e69790d2fe5606402419c9559c0439e7",
+      "size_bytes": 38279
+    },
+    {
+      "path": "04_Compliance_Archive/ArchiveAlias-991.pdf",
+      "sha256": "f64e95225891165f78508b3c51344833b469ed4fb9c5bfb2c1273cc2cf155079",
+      "size_bytes": 2322
+    },
+    {
+      "path": "04_Compliance_Archive/Cafeteria-Menu.pdf",
+      "sha256": "a195624a5a48a4d2fed46925a8c9bdf69098bdd469fb8b8bfd2c4e3580cf53da",
+      "size_bytes": 2144
+    },
+    {
+      "path": "04_Compliance_Archive/Damaged-Source.pdf",
+      "sha256": "85a4088661a0b60c987f222df56f01eff17c84db9e34198329fd353840737910",
+      "size_bytes": 66
+    },
+    {
+      "path": "04_Compliance_Archive/Mislabelled-Register.xlsx",
+      "sha256": "4447580b07a1e1c7ce745beff2d085189c537d512c8dd42b4c926fc5d9de5673",
+      "size_bytes": 58
+    },
+    {
+      "path": "04_Compliance_Archive/Responses-2024.zip",
+      "sha256": "ad0bdd4dcde74df90c38ec91653c4d41d465ae73a919d8731119f5c0b517354f",
+      "size_bytes": 6500
+    },
+    {
+      "path": "04_Compliance_Archive/Scan-47.pdf",
+      "sha256": "288251162791e7dd6dfff0fcd5c55299a19a43642882898b2404f794e37fc1a8",
+      "size_bytes": 69246
+    },
+    {
+      "path": "04_Compliance_Archive/SI-731.pdf",
+      "sha256": "8c96944793da74432af1d1911c3bbe9c551161b981c7cd593be09e5fae1a31ad",
+      "size_bytes": 2147
+    },
+    {
+      "path": "04_Compliance_Archive/SI-732.pdf",
+      "sha256": "df58fbbf3b6463e116dc8e648b163dd92be8d66f8f8b470989f7b70e02efb130",
+      "size_bytes": 2147
+    },
+    {
+      "path": "04_Compliance_Archive/TX-01-Rev2.pdf",
+      "sha256": "69d862f6ad38559d986c0669bb6d6ef3acf11bcd7f378436ae9865cfb04bdada",
+      "size_bytes": 2151
+    },
+    {
+      "path": "04_Compliance_Archive/TX-01.pdf",
+      "sha256": "a7a0eb32f68b76d8bad2dc9400dd24bf90e406f451cb07f9ee0cf06bfa48c773",
+      "size_bytes": 2124
+    },
+    {
+      "path": "04_Compliance_Archive/TX-02-Rev2.xlsx",
+      "sha256": "e34dc8f1f1ae25b59cd281d6e6591b22f3add8fef97014297d55896c7ed0d5be",
+      "size_bytes": 3696
+    },
+    {
+      "path": "04_Compliance_Archive/TX-03.pdf",
+      "sha256": "c50f03a514106563c803281294804b01c72f5d8d642f1029874490a00620ed45",
+      "size_bytes": 2155
+    },
+    {
+      "path": "04_Compliance_Archive/TX-04.xlsx",
+      "sha256": "7b4c9eef3ace89a6798983e7417147a8708b7e3ef9427fe2044d40dc36ae8055",
+      "size_bytes": 3705
+    },
+    {
+      "path": "04_Compliance_Archive/TX-05.pdf",
+      "sha256": "c6b7aa4918a87cc3610897e86621c0b92885e9a000271da322759d1399bb10ef",
+      "size_bytes": 2148
+    },
+    {
+      "path": "04_Compliance_Archive/TX-06.pdf",
+      "sha256": "537d5fbfcf88ea84ceb3ab8300689b539fd872357fe88df53d2c19b3e90eb4c1",
+      "size_bytes": 2133
+    },
+    {
+      "path": "04_Compliance_Archive/TX-07.xlsx",
+      "sha256": "5543da9dfaf1e87bdb6d3c63d6ebbf04f24b4bf46ac8cfb0f27ad37b5d25d36e",
+      "size_bytes": 3817
+    },
+    {
+      "path": "04_Compliance_Archive/TX-08.pdf",
+      "sha256": "46c7b0f0e2175209cd674aea726100a46222765307b58eac2c25ac95b7f0d690",
+      "size_bytes": 2129
+    }
+  ],
+  "logical_source_count": 52,
+  "physical_file_count": 48,
+  "quirks": {
+    "additional_irrelevant_document": "04_Compliance_Archive/Cafeteria-Menu.pdf",
+    "corrupted_source": "04_Compliance_Archive/Damaged-Source.pdf",
+    "duplicate_different_name": [
+      "02_Contracts_Corporate/CX-17.pdf",
+      "04_Compliance_Archive/ArchiveAlias-991.pdf"
+    ],
+    "hidden_sheet": "01_Performance_Pack/PX-C19.xlsx#Reviewer Notes",
+    "image_only_scan": "04_Compliance_Archive/Scan-47.pdf",
+    "misleading_extension": "04_Compliance_Archive/Mislabelled-Register.xlsx",
+    "missing_expected_document": "monthly bank statements",
+    "prompt_injection_text": "03_People_Systems/SX-99.docx",
+    "zip_member_count": 4
+  },
+  "zip_members": [
+    {
+      "container": "04_Compliance_Archive/Responses-2024.zip",
+      "member": "answer-bundle/customer-note.pdf",
+      "size_bytes": 2082
+    },
+    {
+      "container": "04_Compliance_Archive/Responses-2024.zip",
+      "member": "answer-bundle/lease-note.pdf",
+      "size_bytes": 2107
+    },
+    {
+      "container": "04_Compliance_Archive/Responses-2024.zip",
+      "member": "reconciliations/workforce_rollforward.csv",
+      "size_bytes": 42
+    },
+    {
+      "container": "04_Compliance_Archive/Responses-2024.zip",
+      "member": "restricted/people_register.xlsx",
+      "size_bytes": 3807
+    }
+  ]
+}

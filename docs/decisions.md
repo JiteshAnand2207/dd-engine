@@ -275,6 +275,48 @@ a provider SDK or key. The repository can prove which local and reasoning tasks
 were actually recorded, but cannot recover hidden model identifiers, token usage
 or billing from Codex/Claude. Null plus a reason is the accepted honest result.
 
+### ADR-024 - Phase 14 proves generalisation with a sealed independent shadow room
+
+**Status:** Accepted by user directive on 1 September 2026.
+
+The second fictional room has a different identity, periods, names, values,
+folders, filenames and issue distribution. Semantic content is the selection
+contract; filenames may only break ties between otherwise equivalent semantic
+matches. Report transaction context resolves saved answers by intake `topic_key`,
+not generated question number. The public manifest exposes hashes and structural
+quirks, while truth stays in a separately forbidden directory.
+
+A qualifying shadow rehearsal must run in a brand-new analytical context that
+does not read, list, search or hash any truth path. Any contaminated attempt is
+recorded as failed and cannot be used for acceptance, even if its engine stages
+pass mechanically.
+
+**Consequences:** Generalisation failures are fixed in source and protected by the
+shadow integration test. Candidate validation remains insufficient on its own:
+manual review may identify wording, semantic-mapping or stale-state defects that
+must be recorded and repaired.
+
+### ADR-025 - Scale, clean-clone and hostile-input evidence are separate gates
+
+**Status:** Accepted by user directive on 1 September 2026.
+
+Scale proof uses exactly 150 logical sources but compact fixture bytes. It records
+registration/hashing, ZIP members, extraction, cache reuse/change invalidation,
+peak Python allocation and isolated source failure. The clean-clone timer starts
+before clone/environment/install/doctor and ends before a separately timed
+analysis rehearsal. The clone is made from committed HEAD so pre-existing local
+uncommitted Phase 14 files cannot make the baseline appear reproducible.
+
+Bad-input behavior is verified through explicit terminal states, including a
+portable simulated permission error where Windows ACL semantics would make a
+chmod-only test unreliable. Optional OCR absence must preserve a pending/reviewed
+vision record, never fabricated native text. Prompt-like document text is flagged
+as untrusted evidence and never executed.
+
+**Consequences:** A passing test suite proves candidate robustness, not final
+release readiness. Independent red-team isolation evidence and all manual audit
+blockers still govern handover/release claims.
+
 ## Assumption register
 
 | ID | Assumption | Basis | If false |
@@ -322,7 +364,7 @@ or billing from Codex/Claude. Null plus a reason is the accepted honest result.
 | R-004 | Workbook cached values are stale or formulas cannot be reproduced. | High | High | Record formula/cache state; explicit Python calculations for material figures; gap flags. |
 | R-005 | Optional public research leaks confidential query context. | Low-Medium | Critical | Disabled by default, target/market-only fields, preflight filter and complete attempted/rejected/completed action log. |
 | R-006 | Package setup exceeds 20 minutes on an unknown evaluator machine. | Medium | High | Minimal native path, locked dependencies, no Docker/system tools, clean-clone benchmark. |
-| R-007 | The synthetic room overfits prompts and does not generalize to the unseen room. | Medium | High | Sealed ground truth, generator variation, unseen fixtures, no filename/value hard-coding. |
+| R-007 | The synthetic room overfits prompts and does not generalize to the unseen room. | Low-Medium | High | Independent shadow room, semantic selectors, topic-key answer mapping, sealed truth boundary and 150-source/bad-input fixtures. |
 | R-008 | Model context limits omit evidence or create inconsistent cross-workstream facts. | Medium | High | Structured evidence index, claim store, retrieval by IDs, deterministic cross-checks. |
 | R-009 | Unreadable or malicious files destabilize the run. | Medium | High | Read-only input, no macro execution, safe archive handling, quarantine and bounded retries. |
 | R-010 | Legal/tax language is overconfident or treated as professional advice. | Medium | High | Irish scope prompt, evidence/confidence rubric, limitations and specialist-review flags. |
@@ -332,11 +374,12 @@ or billing from Codex/Claude. Null plus a reason is the accepted honest result.
 
 ## Implementation-readiness decision
 
-**Status: Phases 7-11 implemented; not ready to claim final trial acceptance.**
+**Status: Phase 14 implemented and mechanically accepted; not ready to claim final trial release.**
 
-The Phase 11 runtime and honest-ledger contract is implemented. Remaining final-
-release work includes an actually isolated red-team execution and reconciliation
-plus empirical or evaluator-specific matters: discover active-harness model
-visibility (U-005), benchmark the unknown clean-clone environment (U-009),
-confirm archive limits (U-010), and obtain retention/evaluation thresholds where
-needed (U-013-U-015). None justifies inventing an environmental prerequisite.
+The Phase 14 shadow, scale, clean-clone, bad-input and manual-audit contracts are
+implemented. The known evaluator-independent release blocker is the absence of a
+verified brand-new-context red-team isolation packet/manifest for the final
+candidate. Remaining evaluator-specific matters are active-harness model visibility
+(U-005), offline/other-OS expectations (U-009), production archive limits (U-010),
+retention policy and quantitative evaluation thresholds (U-013-U-015). None
+justifies inventing an environmental prerequisite or a release-ready claim.

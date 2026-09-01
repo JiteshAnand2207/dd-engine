@@ -34,7 +34,7 @@ from dd_engine.state import (
 )
 from dd_engine.time import utc_now
 
-REPORT_VERSION = "phase13-report-v6"
+REPORT_VERSION = "phase14-report-v7"
 
 REPORT_OUTPUTS = (
     "outputs/due_diligence_report.md",
@@ -56,6 +56,7 @@ _PAYLOAD_PATHS = {
 _UPSTREAM_PATHS = (
     "source_register/source_register.json",
     "extracts/extraction_manifest.json",
+    "extracts/needs_vision.json",
     "intake/round_1_questions.json",
     "intake/round_1_answers.json",
     "intake/round_2_questions.json",
@@ -167,9 +168,23 @@ def _summaries(run_path: Path) -> tuple[dict[str, object], dict[str, object]]:
     extraction = load_json(run_path / "extracts" / "extraction_manifest.json")
     register_summary = register.get("summary")
     extraction_summary = extraction.get("summary")
+    extraction_values = dict(extraction_summary) if isinstance(extraction_summary, dict) else {}
+    vision = load_json(run_path / "extracts" / "needs_vision.json")
+    tasks = vision.get("tasks")
+    vision_tasks = (
+        [item for item in tasks if isinstance(item, dict)] if isinstance(tasks, list) else []
+    )
+    extraction_values["vision_queue_count"] = sum(
+        item.get("status") != "reviewed" or not isinstance(item.get("model_result"), dict)
+        for item in vision_tasks
+    )
+    extraction_values["vision_reviewed_count"] = sum(
+        item.get("status") == "reviewed" and isinstance(item.get("model_result"), dict)
+        for item in vision_tasks
+    )
     return (
         dict(register_summary) if isinstance(register_summary, dict) else {},
-        dict(extraction_summary) if isinstance(extraction_summary, dict) else {},
+        extraction_values,
     )
 
 
@@ -370,6 +385,7 @@ def generate_report(run: str | Path) -> ReportOutcome:
             payloads=payloads,
             records=records,
             answers=answers,
+            questions=questions,
         )
         brief_text = render_ic_brief_markdown(brief_content)
         outputs = run_path / "outputs"

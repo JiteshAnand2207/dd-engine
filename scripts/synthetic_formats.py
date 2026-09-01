@@ -115,7 +115,7 @@ def write_text_pdf(
     path.parent.mkdir(parents=True, exist_ok=True)
     pdf = canvas.Canvas(str(path), pagesize=A4, invariant=1, pageCompression=1, pdfVersion=(1, 5))
     pdf.setTitle(title)
-    pdf.setAuthor("Larkspur synthetic fixture generator")
+    pdf.setAuthor("dd-engine fictional fixture generator")
     page = 1
 
     def new_page(*, continuation: bool = False) -> float:
@@ -392,8 +392,8 @@ def write_docx(
         document.add_paragraph()
 
     properties = document.core_properties
-    properties.author = "Larkspur Synthetic Fixture Generator"
-    properties.last_modified_by = "Larkspur Synthetic Fixture Generator"
+    properties.author = "dd-engine fictional fixture generator"
+    properties.last_modified_by = "dd-engine fictional fixture generator"
     properties.created = FIXED_DT
     properties.modified = FIXED_DT
     properties.title = title
@@ -594,7 +594,7 @@ def write_xlsx(path: Path, sheets: Sequence[SheetSpec]) -> None:
     ).encode()
     members["xl/styles.xml"] = _xlsx_styles()
     members["docProps/core.xml"] = b"""<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><dc:title>Synthetic diligence workbook</dc:title><dc:creator>Larkspur Synthetic Fixture Generator</dc:creator><dc:subject>FICTIONAL SYNTHETIC DATA</dc:subject><dcterms:created xsi:type="dcterms:W3CDTF">2026-08-31T09:00:00Z</dcterms:created><dcterms:modified xsi:type="dcterms:W3CDTF">2026-08-31T09:00:00Z</dcterms:modified></cp:coreProperties>"""
+<cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><dc:title>Synthetic diligence workbook</dc:title><dc:creator>dd-engine fictional fixture generator</dc:creator><dc:subject>FICTIONAL SYNTHETIC DATA</dc:subject><dcterms:created xsi:type="dcterms:W3CDTF">2026-08-31T09:00:00Z</dcterms:created><dcterms:modified xsi:type="dcterms:W3CDTF">2026-08-31T09:00:00Z</dcterms:modified></cp:coreProperties>"""
     members["docProps/app.xml"] = b"""<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties" xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes"><Application>dd-engine synthetic generator</Application><DocSecurity>0</DocSecurity><ScaleCrop>false</ScaleCrop></Properties>"""
     write_stable_zip(path, members)

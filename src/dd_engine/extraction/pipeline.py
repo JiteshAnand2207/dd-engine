@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import importlib.metadata
 import json
+import re
 from collections import Counter
 from contextlib import suppress
 from dataclasses import asdict
@@ -35,13 +36,20 @@ from dd_engine.source_paths import validate_data_room_path, walk_data_room
 from dd_engine.state import complete_stage, fail_stage, start_stage
 from dd_engine.time import utc_now
 
-EXTRACTOR_VERSION = "phase5-local-v1"
+EXTRACTOR_VERSION = "phase14-local-v2"
 EXTRACTION_SCHEMA_VERSION = 1
 EXTRACTION_OUTPUTS = (
     "extracts/extraction_manifest.json",
     "extracts/extracted_units.jsonl",
     "extracts/extraction_failures.json",
     "extracts/needs_vision.json",
+)
+_PROMPT_INJECTION_PATTERN = re.compile(
+    r"(?:ignore\s+(?:all\s+|any\s+|the\s+)?previous\s+instructions|"
+    r"(?:system|developer)\s+prompt|"
+    r"(?:execute|run)\s+(?:this\s+)?(?:command|script)|"
+    r"(?:upload|send|exfiltrate)\s+(?:the\s+)?(?:room|data|files?))",
+    re.I,
 )
 
 
@@ -152,6 +160,31 @@ def _dispatch(
     )
 
 
+def _mark_prompt_injection_like_content(result: SourceExtraction) -> None:
+    """Flag instruction-shaped text while retaining it strictly as untrusted evidence."""
+
+    detected = False
+    for unit in result.units:
+        content = unit.get("content")
+        if not isinstance(content, dict):
+            continue
+        if any(
+            isinstance(value, str) and _PROMPT_INJECTION_PATTERN.search(value)
+            for value in content.values()
+        ):
+            warnings = unit.get("warnings")
+            if not isinstance(warnings, list):
+                warnings = []
+                unit["warnings"] = warnings
+            if "prompt_injection_like_text_untrusted" not in warnings:
+                warnings.append("prompt_injection_like_text_untrusted")
+            detected = True
+    if detected:
+        if "prompt_injection_like_text_untrusted" not in result.warnings:
+            result.warnings.append("prompt_injection_like_text_untrusted")
+        result.metrics["prompt_injection_like_sources"] = 1
+
+
 def _source_manifest_record(
     source: JsonObject, result: SourceExtraction, *, cache_status: str
 ) -> JsonObject:
@@ -251,6 +284,7 @@ def _aggregate_summary(
         "pdf_pages_ocr",
         "pdf_pages_total",
         "pdf_pages_vision_queued",
+        "prompt_injection_like_sources",
         "spreadsheet_cached_formula_values",
         "spreadsheet_cell_units",
         "spreadsheet_currency_formatted_cells",
@@ -439,6 +473,7 @@ def extract_run(
                             config_namespace=config_namespace,
                             ocr=ocr,
                         )
+                        _mark_prompt_injection_like_content(result)
                         cache_status = "miss"
                         if result.status not in {"failed", "unsupported"}:
                             cache.store(source, result)

@@ -4,7 +4,7 @@
 
 This matrix is the implementation-planning baseline for the due-diligence engine. A requirement is counted when a source sentence or list item creates an independently verifiable imperative, constraint, deliverable, evaluation expectation, or project condition. Compound sentences are split only where their clauses require different components, outputs, or checks. Descriptive background is not counted. Illustrative analyst examples and non-engine commercial terms are retained because they constrain evaluation or delivery.
 
-The matrix contains **240 requirements**: 103 from the trial brief, 21 from the room specification, 14 from the planning directive, 25 from the Phase 7 directive, 15 from the Phase 8 directive, 16 from the Phase 9 directive, 22 from the Phase 10 directive and 24 from the Phase 11 directive. Component and path names are contracts; some are now implemented as described in the architecture status.
+The matrix contains **271 requirements**: 103 from the trial brief, 21 from the room specification, 14 from the planning directive, 25 from the Phase 7 directive, 15 from the Phase 8 directive, 16 from the Phase 9 directive, 22 from the Phase 10 directive, 24 from the Phase 11 directive and 31 from the Phase 14 generalisation/acceptance directive. Component and path names are contracts; some are now implemented as described in the architecture status.
 
 ## Source register
 
@@ -18,6 +18,7 @@ The matrix contains **240 requirements**: 103 from the trial brief, 21 from the 
 | P9 | Phase 9 Irish legal/tax/operational/IT analysis directive, 1 September 2026 | Conversation record |
 | P10 | Phase 10 report and investment-committee brief directive, 1 September 2026 | Conversation record |
 | P11 | Phase 11 model-routing, run-logging and runtime-orchestration directive, 1 September 2026 | Conversation record |
+| P14 | Phase 14 generalisation, scale and acceptance directive, 1 September 2026 | Conversation record |
 
 ## Trial brief requirements
 
@@ -299,6 +300,42 @@ The matrix contains **240 requirements**: 103 from the trial brief, 21 from the 
 | P11-023 | P11, scope | Do not run or simulate the independent red team in this chat. | Scope boundary | Candidate status remains unreconciled | Red-team artifact/access review. |
 | P11-024 | P11, Git boundary | Do not commit or push. | Repository safety | Uncommitted local changes | Final Git status/log review. |
 
+## Phase 14 generalisation, scale and acceptance requirements
+
+| ID | Source | Normalized sentence-level requirement | Component | Output | Verification method |
+|---|---|---|---|---|---|
+| P14-001 | P14, before editing | Read the authoritative requirements and agent instructions, inspect the final synthetic run and preserve existing work before editing. | Implementation workflow | Baseline audit | Read audit, run inspection and Git status. |
+| P14-002 | P14, evidence boundary | Do not read planted-issue files during analysis. | Truth boundary | Public-only analytical contexts | Command/path audit; disclose any boundary failure. |
+| P14-003 | P14, shadow identity | Create a second fictional shadow room with a different company identity. | Shadow-room generator | `synthetic/shadow/data_room/` | Public-manifest and content assertions. |
+| P14-004 | P14, shadow variation | Use different periods, customer/employee names and values. | Shadow-room generator | Independent evidence values | Primary-name/value exclusion tests. |
+| P14-005 | P14, shadow layout | Use different folder names/order, issue distribution and renamed documents. | Shadow-room generator | Shuffled neutral document tree | Manifest and semantic-analysis tests. |
+| P14-006 | P14, shadow omissions/noise | Include a missing expected document and an additional irrelevant document. | Shadow-room generator | Explicit public quirks | Manifest assertions and intake review. |
+| P14-007 | P14, shadow file traps | Include a renamed duplicate, hidden sheet and misleading extension. | Registration/extraction fixtures | Duplicate group, hidden-sheet metric, detected-type mismatch | Integration assertions. |
+| P14-008 | P14, shadow hostile formats | Include a corrupted source, image-only scan, ZIP member and prompt-injection text. | Extraction/security fixtures | Isolated failures, vision queue, archive members and warning | Integration assertions. |
+| P14-009 | P14, non-overfitting | The shadow room and analysis must not depend on primary-room filenames or exact values. | Semantic analysis context | Generalised workstreams | Source scan plus shadow-flow assertions. |
+| P14-010 | P14, fresh run | Run the shadow engine in a fresh analytical context without reading its truth file. | Isolated rehearsal | New run and saved answers | Context/path audit; invalidate contaminated attempts. |
+| P14-011 | P14, scale | Create a separate 150-logical-file stress variant or safe additional corpus. | Scale generator | Temporary 150-source room | Exact registration-count assertion. |
+| P14-012 | P14, scale mechanics | Test registration and hashing at 150 logical sources. | Register benchmark | 150 terminal register records with SHA-256 | Integration and checksum-shape assertions. |
+| P14-013 | P14, scale extraction | Test ZIP handling, extraction and cache behaviour at scale. | Extract/cache benchmark | ZIP counts and cache metrics | Cold/reuse/changed-source assertions. |
+| P14-014 | P14, scale stability | Test memory stability and isolate a source failure without limiting logic to 100 files. | Bounded scale test | Peak-memory threshold and one-source failure | `tracemalloc` and terminal-count assertions. |
+| P14-015 | P14, clone safety | Create a clean temporary clone in a safe, explicit temporary directory. | Clean-clone rehearsal | Resolved temporary clone path | Path-prefix check and clean Git status. |
+| P14-016 | P14, clone setup | Follow README only, create a new environment, install dependencies and run doctor. | README bootstrap | Fresh editable install and doctor JSON | Timed command log. |
+| P14-017 | P14, clone run | Point the clone engine at an arbitrary absolute room path and start a run. | CLI rehearsal | Registered explicit room/run paths | Run manifest and CLI output. |
+| P14-018 | P14, clone analysis | Complete a saved-answer synthetic rehearsal. | CLI rehearsal | Both answers, Phases 8-10 and audit | Completed manifest and passing validation. |
+| P14-019 | P14, timing | Record setup separately from analysis and confirm setup is below 20 minutes. | Timing harness | Two wall-clock durations | Stopwatch evidence. |
+| P14-020 | P14, clone independence | Confirm no local uncommitted file is required. | Git clone boundary | Committed-HEAD execution | Initial clean status and clone commit ID. |
+| P14-021 | P14, bad inputs A | Verify unsupported, corrupted, encrypted and empty files. | Bad-input matrix | Explicit terminal classifications | Integration assertions. |
+| P14-022 | P14, bad inputs B | Verify a within-limit large spreadsheet, archive traversal, duplicate and same-basename sources. | Bad-input matrix | 40,000 cells and isolated register states | Integration assertions. |
+| P14-023 | P14, bad inputs C | Verify no-native-text PDF, missing optional OCR and read-only output handling. | Bad-input matrix | Vision queue and explicit permission error | Integration assertions. |
+| P14-024 | P14, bad inputs D | Verify interruption/resume, changed-source cache invalidation and prompt-injection content. | Failure/cache/security tests | Resumed stage, one miss and untrusted warning | Integration assertions. |
+| P14-025 | P14, citation audit | Spot-check at least 20 material citations across every workstream. | Manual audit | Source/locator/outcome matrix | Native hash and extracted-locator review. |
+| P14-026 | P14, calculation audit | Spot-check five headline calculations. | Manual audit | Formula/input/result table | Independent arithmetic recomputation. |
+| P14-027 | P14, version/tax audit | Spot-check three contract/version decisions and three tax reconciliations. | Manual audit | Six decision/reconciliation outcomes | Paired-source and arithmetic review. |
+| P14-028 | P14, intake/report audit | Audit both intake rounds and the IC brief against the full report. | Manual audit | Intake provenance and exact critical-issue comparison | Artifact checksum/count/content review. |
+| P14-029 | P14, deliverables | Create the four named Phase 14 acceptance reports. | Documentation | Four Markdown reports | Path and content checks. |
+| P14-030 | P14, honesty | Mark every acceptance criterion pass, fail or blocked with evidence and do not hide failures. | Acceptance governance | Status/evidence matrix | Manual completeness review. |
+| P14-031 | P14, handover/Git | Report the eleven requested final items and do not commit or push. | Handover | Final response and uncommitted diff | Response checklist and Git log/status. |
+
 ## Coverage index for specifically named concerns
 
 | Concern | Primary requirement IDs | Planned owner |
@@ -313,6 +350,7 @@ The matrix contains **240 requirements**: 103 from the trial brief, 21 from the 
 | Phase 9 Legal/Tax/Operations/IT analysis | P9-001-P9-016 | Sequential analytical pipeline and standalone Tax module |
 | Phase 10 report and IC brief | P10-001-P10-022 | Structured report assembly, deterministic A4 renderer and fail-closed bundle validation |
 | Phase 11 runtime and honest logging | P11-001-P11-024 | Three-class routing policy, append-only task/research ledgers and Codex/Claude file-backed orchestration |
+| Phase 14 unseen-room proof | P14-001-P14-031 | Independent shadow room, 150-source benchmark, clean clone, bad-input matrix and manual acceptance audit |
 | Citation validation and duplicate independence | P7-011-P7-016 | Format-native citation validator |
 | Calculation provenance | TB-027, P7-007, P7-015, P7-017-P7-020 | Safe deterministic recomputation ledger |
 | Model routing | TB-019, TB-053-TB-057, TB-088, P11-004-P11-008 | Routing policy and invocation ledger |

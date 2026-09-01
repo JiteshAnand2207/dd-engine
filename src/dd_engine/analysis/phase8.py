@@ -17,7 +17,7 @@ from dd_engine.analysis.context import (
 from dd_engine.analysis.records import AnalysisRecords, CitationSpec
 from dd_engine.evidence.models import JsonObject
 
-PHASE8_VERSION = "phase8-analysis-v4"
+PHASE8_VERSION = "phase14-generalised-analysis-v5"
 
 
 def _money(value: float) -> str:
@@ -26,6 +26,24 @@ def _money(value: float) -> str:
 
 def _percent(value: float) -> str:
     return f"{value:.1f}%"
+
+
+def _period_label(value: object, fallback: str) -> str:
+    """Normalize a column heading for prose without repeating its measure name."""
+
+    label = re.sub(r"\s+revenue\s*$", "", str(value or ""), flags=re.I).strip()
+    return label or fallback
+
+
+def _source_period(unit: JsonObject, fallback: str) -> str:
+    text = str(unit_value(unit) or "")
+    detailed = re.search(
+        r"\b((?:year|six months|three months|quarter|period) ended [^\n\.]+)", text, re.I
+    )
+    if detailed:
+        return detailed.group(1)
+    year = re.search(r"\b((?:19|20)\d{2})\b", text)
+    return year.group(1) if year else fallback
 
 
 def _cell_by_label(
@@ -44,6 +62,41 @@ def _cell_by_label(
 
 def _cell(sheet: SheetRef, coordinate: str) -> JsonObject | None:
     return sheet.cell(coordinate)
+
+
+def _sheet_cell_by_label(
+    context: AnalysisContext, sheet: SheetRef, label: str, *, offset: int = 1
+) -> JsonObject | None:
+    anchor = next(
+        (
+            unit
+            for unit in sheet.cells.values()
+            if str(unit_value(unit) or "").strip().casefold() == label.casefold()
+        ),
+        None,
+    )
+    return context.offset_cell(sheet, anchor, offset) if anchor is not None else None
+
+
+def _total_cell(context: AnalysisContext, sheet: SheetRef, *, offset: int) -> JsonObject | None:
+    """Return a value on the row labelled Total without assuming a fixed row number."""
+
+    anchors = [
+        unit
+        for unit in sheet.cells.values()
+        if str(unit_value(unit) or "").strip().casefold().startswith("total")
+    ]
+    if not anchors:
+        return None
+    row_anchor = next(
+        (
+            unit
+            for unit in sorted(anchors, key=_row_number, reverse=True)
+            if str(unit.get("locator", {}).get("cell", "")).upper().startswith("A")
+        ),
+        max(anchors, key=_row_number),
+    )
+    return context.offset_cell(sheet, row_anchor, offset)
 
 
 def _row_number(unit: JsonObject) -> int:
@@ -200,7 +253,7 @@ def _add_statutory_finding(context: AnalysisContext, records: AnalysisRecords) -
         conclusion=(
             f"Statutory revenue increased {_percent(revenue_growth)} from {first.year} to "
             f"{last.year}, and EBITDA margin expanded from {_percent(first_margin)} to "
-            f"{_percent(last_margin)}; the six-year direction is positive, but annual filings "
+            f"{_percent(last_margin)}; the multi-period direction is positive, but annual filings "
             "alone do not establish current run-rate quality."
         ),
         source_fact=(
@@ -220,8 +273,8 @@ def _add_statutory_finding(context: AnalysisContext, records: AnalysisRecords) -
             "trend."
         ),
         action=(
-            "Obtain the general-ledger-to-statutory bridge for each year and monthly 2025/2026 "
-            "management accounts, then rerun margin and cash-conversion analysis."
+            "Obtain the general-ledger-to-statutory bridge for each year and the latest 24 months "
+            "of management accounts, then rerun margin and cash-conversion analysis."
         ),
         materiality="high",
         confidence=0.92,
@@ -263,7 +316,7 @@ def _add_ebitda_finding(context: AnalysisContext, records: AnalysisRecords) -> N
         expression="baseline_ebitda + transformation_adjustment",
         recomputed_value=adjusted,
         reported_value=adjusted,
-        period="six months ended 30 June 2026",
+        period=_source_period(unit, "management-account source period"),
         claim_ids=("CLM-FIN-002",),
     )
     records.add_finding(
@@ -313,8 +366,12 @@ def _add_working_capital_finding(context: AnalysisContext, records: AnalysisReco
     if not sheets:
         return
     sheet = sheets[0]
-    cells = tuple(_cell(sheet, coordinate) for coordinate in ("B4", "B5", "B6", "B8", "B9", "B10"))
-    debtors_unit, other_unit, creditors_unit, prepayments_unit, reported_unit, formula_unit = cells
+    debtors_unit = _sheet_cell_by_label(context, sheet, "Trade debtors")
+    other_unit = _sheet_cell_by_label(context, sheet, "Other debtors")
+    creditors_unit = _sheet_cell_by_label(context, sheet, "Trade creditors")
+    prepayments_unit = _sheet_cell_by_label(context, sheet, "Prepayments")
+    reported_unit = _sheet_cell_by_label(context, sheet, "Calculated net working capital")
+    formula_unit = reported_unit
     if (
         debtors_unit is None
         or other_unit is None
@@ -343,6 +400,8 @@ def _add_working_capital_finding(context: AnalysisContext, records: AnalysisReco
     prepayments = float(prepayments_value)
     reported = float(reported_value)
     recomputed = debtors + other + creditors + prepayments
+    if abs(recomputed - reported) < 0.5:
+        return
     calculation = records.add_calculation(
         calculation_id="CALC-FIN-004",
         description="Recompute submitted net working capital including trade debtors and "
@@ -359,7 +418,16 @@ def _add_working_capital_finding(context: AnalysisContext, records: AnalysisReco
         period="point-in-time source snapshot",
         claim_ids=("CLM-FIN-003",),
     )
-    note = _cell(sheet, "D9")
+    note_anchor = next(
+        (
+            unit
+            for unit in sheet.cells.values()
+            if str(unit_value(unit) or "").strip().casefold()
+            == "calculated net working capital"
+        ),
+        None,
+    )
+    note = context.offset_cell(sheet, note_anchor, 3) if note_anchor is not None else None
     supporting = [
         CitationSpec(reported_unit, exact_value=unit_value(reported_unit)),
         CitationSpec(formula_unit, exact_value=unit_value(formula_unit)),
@@ -424,14 +492,16 @@ def _add_aged_debtors_finding(context: AnalysisContext, records: AnalysisRecords
     sheet = sheets[0]
     rows = _rows_below(sheet, "Customer")
     over_units = [row["E"] for row in rows if "E" in row and numeric_value(row["E"]) is not None]
-    total_unit = sheet.cell("F11")
-    reported_over_unit = sheet.cell("E11")
+    total_unit = _total_cell(context, sheet, offset=5)
+    reported_over_unit = _total_cell(context, sheet, offset=4)
     if not over_units or total_unit is None or reported_over_unit is None:
         return
     over_values = [float(numeric_value(unit) or 0) for unit in over_units]
     total = float(numeric_value(total_unit) or 0)
     reported_over = float(numeric_value(reported_over_unit) or 0)
     recomputed_over = sum(over_values)
+    if abs(recomputed_over - reported_over) < 0.5:
+        return
     inputs = [
         (f"over_90_{index}", unit, value, None)
         for index, (unit, value) in enumerate(zip(over_units, over_values, strict=True), start=1)
@@ -443,7 +513,7 @@ def _add_aged_debtors_finding(context: AnalysisContext, records: AnalysisRecords
         expression=" + ".join(item[0] for item in inputs),
         recomputed_value=recomputed_over,
         reported_value=reported_over,
-        period="30 June 2026",
+        period="aged-debtor source snapshot",
         claim_ids=("CLM-FIN-004",),
     )
     records.add_finding(
@@ -503,7 +573,7 @@ def _add_aged_debtors_finding(context: AnalysisContext, records: AnalysisRecords
 def _add_debt_finding(context: AnalysisContext, records: AnalysisRecords) -> None:
     loan = _cell_by_label(context, "Total loans", offset=2, path_hint="loan_summary")
     hp = _cell_by_label(context, "Total HP exposure", offset=2, path_hint="hp_summary")
-    cash = _cell_by_label(context, "Cash", path_hint="trial_balance_2025")
+    cash = _cell_by_label(context, "Cash", path_hint="trial_balance")
     director_matches = context.units_matching(
         r"director current account of EUR ([\d,]+) is repayable on demand",
         path_hint="related_party",
@@ -533,7 +603,7 @@ def _add_debt_finding(context: AnalysisContext, records: AnalysisRecords) -> Non
         ],
         expression="loans + hp + director_account - cash",
         recomputed_value=net,
-        period="loan/HP schedules at 30 June 2026; cash at 31 December 2025",
+        period="loan, HP and cash source periods as supplied",
         claim_ids=("CLM-FIN-005",),
     )
     records.add_finding(
@@ -622,7 +692,7 @@ def _add_headcount_finding(context: AnalysisContext, records: AnalysisRecords) -
         recomputed_value=legal_value - allocated_value,
         currency=None,
         units="people",
-        period="30 June 2026",
+        period="workforce source snapshots as supplied",
         claim_ids=("CLM-FIN-006",),
     )
     records.add_finding(
@@ -685,12 +755,15 @@ def _add_pipeline_finding(context: AnalysisContext, records: AnalysisRecords) ->
     weighted_units = [
         row["E"] for row in rows if "E" in row and numeric_value(row["E"]) is not None
     ]
-    total = sheet.cell("E8")
+    total = _total_cell(context, sheet, offset=4)
     if not weighted_units or total is None:
         return
     values = [float(numeric_value(unit) or 0) for unit in weighted_units]
     recomputed = sum(values)
     reported = float(numeric_value(total) or 0)
+    variance_rate = abs(reported - recomputed) / recomputed * 100 if recomputed else 100
+    if abs(reported - recomputed) < 0.5:
+        return
     top_weighted = sum(sorted(values, reverse=True)[: min(2, len(values))])
     concentration = top_weighted / recomputed * 100 if recomputed else 0
     inputs = [
@@ -704,7 +777,7 @@ def _add_pipeline_finding(context: AnalysisContext, records: AnalysisRecords) ->
         expression=" + ".join(item[0] for item in inputs),
         recomputed_value=recomputed,
         reported_value=reported,
-        period="pipeline snapshot at 30 June 2026",
+        period="pipeline source snapshot",
         claim_ids=("CLM-FIN-007",),
     )
     concentration_calculation = records.add_calculation(
@@ -735,12 +808,13 @@ def _add_pipeline_finding(context: AnalysisContext, records: AnalysisRecords) ->
         period="pipeline snapshot",
         claim_ids=("CLM-FIN-007",),
     )
-    variance_rate = abs(reported - recomputed) / recomputed * 100 if recomputed else 100
     records.add_finding(
         workstream="financial",
         issue_id="FIN-007",
         conclusion=(
-            f"Probability-weighted pipeline is overstated by {_money(reported - recomputed)}: "
+            f"Probability-weighted pipeline is "
+            f"{'overstated' if reported > recomputed else 'understated'} by "
+            f"{_money(abs(reported - recomputed))}: "
             f"the opportunity rows sum to {_money(recomputed)}, not the stored "
             f"{_money(reported)} total. The two largest rows comprise "
             f"{_percent(concentration)} of the recomputed weighted pipeline."
@@ -807,8 +881,7 @@ def _add_monthly_gap_finding(context: AnalysisContext, records: AnalysisRecords)
         ),
         action=(
             "Provide monthly trial balances and revenue/gross-margin/EBITDA/cash bridges for "
-            "January "
-            "2024 through the latest month, including budget and prior-year comparatives."
+            "the latest 24 months, including budget and prior-year comparatives."
         ),
         materiality="high",
         confidence=0.99,
@@ -818,7 +891,7 @@ def _add_monthly_gap_finding(context: AnalysisContext, records: AnalysisRecords)
 
 
 def _customer_rows(context: AnalysisContext) -> tuple[SheetRef | None, list[dict[str, JsonObject]]]:
-    sheets = context.sheets_with("Customer", "FY2025 revenue", "Group ID", "Group name")
+    sheets = context.sheets_with("Customer", "Group ID", "Group name")
     if not sheets:
         return None, []
     return sheets[0], _rows_below(sheets[0], "Customer")
@@ -830,7 +903,10 @@ def _add_customer_concentration(
     sheet, rows = _customer_rows(context)
     if sheet is None or not rows:
         return []
-    totals = {"fy": sheet.cell("B11"), "ytd": sheet.cell("C11")}
+    totals = {
+        "fy": _total_cell(context, sheet, offset=1),
+        "ytd": _total_cell(context, sheet, offset=2),
+    }
     if totals["fy"] is None or totals["ytd"] is None:
         return []
     group_rows: dict[str, list[dict[str, JsonObject]]] = defaultdict(list)
@@ -900,10 +976,12 @@ def _add_customer_concentration(
     ytd_total = float(numeric_value(totals["ytd"]) or 0)
     fy_share = sum(fy_values) / fy_total * 100
     ytd_share = sum(ytd_values) / ytd_total * 100
+    prior_header = _period_label(unit_value(sheet.cell("B3") or {}), "prior period")
+    current_header = _period_label(unit_value(sheet.cell("C3") or {}), "current period")
     calculation_ids = [
         records.add_calculation(
             calculation_id="CALC-COMM-001",
-            description=f"FY2025 revenue concentration for confirmed group {group}.",
+            description=f"{prior_header} revenue concentration for confirmed group {group}.",
             inputs=[
                 *[
                     (f"member_{index}", row["B"], value, None)
@@ -921,12 +999,12 @@ def _add_customer_concentration(
             recomputed_value=round(fy_share, 2),
             currency=None,
             units="percent",
-            period="FY2025",
+            period=prior_header,
             claim_ids=("CLM-COMM-001",),
         ),
         records.add_calculation(
             calculation_id="CALC-COMM-002",
-            description=f"2026 YTD revenue concentration for confirmed group {group}.",
+            description=f"{current_header} revenue concentration for confirmed group {group}.",
             inputs=[
                 *[
                     (f"member_{index}", row["C"], value, None)
@@ -944,7 +1022,7 @@ def _add_customer_concentration(
             recomputed_value=round(ytd_share, 2),
             currency=None,
             units="percent",
-            period="six months ended 30 June 2026",
+            period=current_header,
             claim_ids=("CLM-COMM-001",),
         ),
     ]
@@ -957,7 +1035,8 @@ def _add_customer_concentration(
         issue_id="COMM-001",
         conclusion=(
             f"Evidence-backed group normalization raises {unit_value(members[0]['E'])} to "
-            f"{_percent(fy_share)} of FY2025 revenue and {_percent(ytd_share)} of 2026 YTD "
+            f"{_percent(fy_share)} of {prior_header} revenue and {_percent(ytd_share)} of "
+            f"{current_header} "
             "revenue; "
             "the separately named customers should be treated as one concentration exposure."
         ),
@@ -1174,10 +1253,26 @@ def _add_complaint_finding(context: AnalysisContext, records: AnalysisRecords) -
 
 
 def _add_commercial_pipeline_finding(context: AnalysisContext, records: AnalysisRecords) -> None:
-    probability = context.cell_matching(r"^0\.85$", path_hint="pipeline")
-    stage = context.cell_matching(r"Contracting", path_hint="pipeline")
+    sheets = context.sheets_with("Opportunity", "Probability", "Weighted value")
+    if not sheets:
+        return
+    rows = _rows_below(sheets[0], "Opportunity")
+    candidates: list[tuple[JsonObject, JsonObject]] = []
+    for row in rows:
+        probability_cell = row.get("C")
+        stage_cell = row.get("B")
+        if (
+            probability_cell is not None
+            and stage_cell is not None
+            and numeric_value(probability_cell) is not None
+        ):
+            candidates.append((probability_cell, stage_cell))
+    if not candidates:
+        return
+    probability, stage = max(candidates, key=lambda item: float(numeric_value(item[0]) or 0))
     if probability is None or stage is None:
         return
+    probability_value = float(numeric_value(probability) or 0)
     records.add_finding(
         workstream="commercial",
         issue_id="COMM-003",
@@ -1186,8 +1281,10 @@ def _add_commercial_pipeline_finding(context: AnalysisContext, records: Analysis
             "opportunities depend on an existing concentrated customer and renewals, so they "
             "cannot support fixed consideration."
         ),
-        source_fact="The pipeline contains management stages and probabilities, including an "
-        "85% contracting-stage opportunity.",
+        source_fact=(
+            "The pipeline contains management stages and probabilities, including a "
+            f"{_percent(probability_value * 100)} {unit_value(stage)}-stage opportunity."
+        ),
         analysis="No signed order, conversion history or probability governance is cited in "
         "the room.",
         why_it_matters="Pipeline concentration can magnify downside if a key customer delays, "

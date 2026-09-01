@@ -178,6 +178,19 @@ def _answer_value(answers: Mapping[str, JsonObject], question_id: str) -> str:
     return _plain(answer.get("verbatim_answer"))
 
 
+def _answer_for_topic(
+    questions: Sequence[JsonObject],
+    answers: Mapping[str, JsonObject],
+    topic_key: str,
+) -> str:
+    """Resolve a deal-context answer by semantic topic rather than generated position."""
+
+    question = next((item for item in questions if item.get("topic_key") == topic_key), None)
+    if not isinstance(question, dict) or not isinstance(question.get("question_id"), str):
+        return ""
+    return _answer_value(answers, str(question["question_id"]))
+
+
 def _calculation_text(
     identifiers: Sequence[str], calculations_by_id: Mapping[str, JsonObject]
 ) -> str:
@@ -406,10 +419,18 @@ def render_due_diligence_report(
     material_findings = [
         item for item in findings if item[1].get("materiality") in {"critical", "high"}
     ]
-    transaction = _answer_value(answers, "INT-R1-003") or "Transaction perimeter not supplied."
-    price = _answer_value(answers, "INT-R1-004") or "No price/structure assumption supplied."
-    thesis = _answer_value(answers, "INT-R1-010") or "Investment thesis not supplied."
-    scope = _answer_value(answers, "INT-R1-011") or "Cut-off and materiality not supplied."
+    transaction = _answer_for_topic(questions, answers, "transaction-perimeter") or (
+        "Transaction perimeter not supplied."
+    )
+    price = _answer_for_topic(questions, answers, "price-structure-assumptions") or (
+        "No price/structure assumption supplied."
+    )
+    thesis = _answer_for_topic(questions, answers, "investment-thesis") or (
+        "Investment thesis not supplied."
+    )
+    scope = _answer_for_topic(questions, answers, "scope-materiality") or (
+        "Cut-off and materiality not supplied."
+    )
     critical = [item for item in findings if item[1].get("materiality") == "critical"]
     high = [item for item in findings if item[1].get("materiality") == "high"]
     raw_coverage = citation_summary.get("material_claim_coverage")
@@ -480,9 +501,13 @@ def render_due_diligence_report(
             "",
             "### Principal limitations",
             "",
-            f"- {extraction_summary.get('vision_queue_count', 'Unknown')} visual-review tasks "
-            "remain pending; reviewed visual evidence is identified separately in the extraction "
-            "manifest.",
+            (
+                f"- {extraction_summary.get('vision_queue_count')} visual-review tasks remain "
+                "pending; no unreviewed visual content is treated as evidence."
+                if extraction_summary.get("vision_queue_count")
+                else "- No visual-review task remains pending; reviewed visual evidence is "
+                "limited to its recorded transcription and citation."
+            ),
             "- One corrupt legacy PDF could not be read safely.",
             "- No monthly management-account pack, complete lender schedule, official current CRO "
             "extract, complete IP/privacy evidence, or tested disaster-recovery evidence was "
@@ -675,6 +700,7 @@ def build_ic_brief_content(
     payloads: Mapping[str, JsonObject],
     records: Mapping[str, list[JsonObject]],
     answers: Mapping[str, JsonObject],
+    questions: Sequence[JsonObject] = (),
 ) -> JsonObject:
     evidence_by_id = evidence_index(records.get("evidence", []))
     findings = sorted_findings(payloads)
@@ -737,9 +763,11 @@ def build_ic_brief_content(
             "closing until consent, earnings, debt, tax and IT-resilience conditions are satisfied."
         ),
         "run_id": run_id,
-        "thesis": _answer_value(answers, "INT-R1-010") or "Investment thesis not supplied.",
+        "thesis": _answer_for_topic(questions, answers, "investment-thesis")
+        or "Investment thesis not supplied.",
         "transaction": (
-            _answer_value(answers, "INT-R1-003") or "Transaction perimeter not supplied."
+            _answer_for_topic(questions, answers, "transaction-perimeter")
+            or "Transaction perimeter not supplied."
         ),
         "unanswered": unanswered,
     }

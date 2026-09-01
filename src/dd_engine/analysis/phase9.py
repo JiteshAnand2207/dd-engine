@@ -10,7 +10,7 @@ from dd_engine.analysis.records import AnalysisRecords, CitationSpec
 from dd_engine.evidence.models import JsonObject
 from dd_engine.evidence.store import load_record_sets
 
-PHASE9_VERSION = "phase9-analysis-v4"
+PHASE9_VERSION = "phase14-generalised-analysis-v5"
 IRISH_SCOPE = (
     "Commercial due diligence in an Irish transaction context; this is not a formal Irish legal "
     "or tax opinion and specialist advisers must confirm conclusions used in transaction documents."
@@ -50,6 +50,22 @@ def _cell_by_label(
     return context.offset_cell(sheet, anchor, offset) if sheet else None
 
 
+def _document_party(unit: JsonObject, fallback: str) -> str:
+    """Extract a non-personal contract party label from the source page when present."""
+
+    text = str(unit_value(unit) or "")
+    customer = re.search(r"Customer:\s*([^\.\r\n]+)", text, re.I)
+    if customer:
+        return customer.group(1).strip()
+    return fallback
+
+
+def _source_period(unit: JsonObject, fallback: str) -> str:
+    text = str(unit_value(unit) or "")
+    period = re.search(r"\b((?:19|20)\d{2}(?:[- ](?:P|Q)\d)?)\b", text, re.I)
+    return period.group(1) if period else fallback
+
+
 def _add_change_of_control(context: AnalysisContext, records: AnalysisRecords) -> None:
     clause = _first_match(
         context,
@@ -73,17 +89,18 @@ def _add_change_of_control(context: AnalysisContext, records: AnalysisRecords) -
     )
     if not clause or not continuing or not response:
         return
+    customer = _document_party(clause[0], "the affected customer")
     records.add_finding(
         workstream="legal_contractual",
         issue_id="LEGAL-001",
         conclusion=(
-            "The operative Harbourlight contract requires prior written customer consent following "
+            f"The operative {customer} contract requires prior written customer consent following "
             "a supplier change of control, the amendment preserves that clause, and consent "
             "has not been requested."
         ),
         source_fact=(
-            "The base framework contains the consent clause; the 2025 amendment expressly keeps it "
-            "in force; the updated vendor response confirms no request."
+            "The base framework contains the consent clause; the later amendment expressly "
+            "keeps it in force; the updated vendor response confirms no request."
         ),
         analysis=(
             "On the contract text supplied, this is a transaction deliverability issue, not a "
@@ -117,23 +134,24 @@ def _add_liability_amendment(context: AnalysisContext, records: AnalysisRecords)
     original = _first_match(
         context,
         r"aggregate liability shall not exceed three months of fees",
-        path_hint="mosaic_north",
+        path_hint="customer",
         locator_type="pdf_page",
     )
     amendment = _first_match(
         context,
         r"supersedes Clause 11 in its entirety\. The supplier's liability for service failure is\s*"
         r"increased to twelve months of fees and service credits are uncapped",
-        path_hint="amendment_mosaic_2026",
+        path_hint="amendment",
         locator_type="pdf_page",
     )
     if not original or not amendment:
         return
+    customer = _document_party(original[0], "the affected customer")
     records.add_finding(
         workstream="legal_contractual",
         issue_id="LEGAL-002",
         conclusion=(
-            "The later Mosaic North amendment replaces the three-month liability cap with twelve "
+            f"The later {customer} amendment replaces the three-month liability cap with twelve "
             "months of fees and uncapped service credits; citing the base cap as current would "
             "materially understate exposure."
         ),
@@ -248,8 +266,10 @@ def _add_corporate_records(context: AnalysisContext, records: AnalysisRecords) -
             ),
         ],
         calculation_ids=[calculation],
-        uncertainty="The CRO screenshot/refresh remains pending visual review and is an exact "
-        "duplicate, not independent corroboration.",
+        uncertainty=(
+            "No current official registry extract independently corroborates the supplied "
+            "ownership evidence; an exact duplicate would not provide independent support."
+        ),
         transaction_levers=["closing_condition", "warranty", "further_diligence"],
         opinion_status="commercial_diligence_not_formal_legal_opinion",
     )
@@ -371,7 +391,10 @@ def _add_property_and_ip_limitations(context: AnalysisContext, records: Analysis
                 CitationSpec(lease[0], exact_text=lease[1].group(0)),
                 CitationSpec(response[0], exact_text=response[1].group(0)),
             ],
-            uncertainty="Property purchase/sale scans remain pending visual review.",
+            uncertainty=(
+                "Complete executed property documents, side letters and superior-landlord terms "
+                "were not established from the cited readable sources."
+            ),
             transaction_levers=["consent", "closing_condition", "further_diligence"],
             opinion_status="commercial_diligence_not_formal_legal_opinion",
         )
@@ -475,7 +498,13 @@ def _add_property_and_ip_limitations(context: AnalysisContext, records: Analysis
                 opinion_status="commercial_diligence_not_formal_legal_opinion",
             )
 
-    customer_contract_units = context.text_units(path_hint="customer contracts")
+    customer_contract_units = [
+        unit
+        for unit, _ in context.units_matching(
+            r"(?:Customer:\s*[^.]+\.\s*Corporate group:|customer framework agreement)",
+            locator_type="pdf_page",
+        )
+    ]
     if customer_contract_units:
         records.add_finding(
             workstream="legal_contractual",
@@ -535,21 +564,17 @@ def _add_property_and_ip_limitations(context: AnalysisContext, records: Analysis
 
 def _add_vat_finding(context: AnalysisContext, records: AnalysisRecords) -> None:
     original_candidates = context.units_matching(
-        r"VAT payable: EUR ([\d,]+)", path_hint="vat3", locator_type="pdf_page"
+        r"VAT payable: EUR ([\d,]+)", locator_type="pdf_page"
     )
     amended = _first_match(
         context,
         r"Original payable: EUR ([\d,]+)\. Amended payable: EUR ([\d,]+)\. Increase: EUR ([\d,]+)",
-        path_hint="amended",
         locator_type="pdf_page",
     )
-    rev2 = context.cell_matching(
-        r"No VAT returns have been amended", path_hint="tax_response_summary_rev2"
-    )
+    rev2 = context.cell_matching(r"No VAT returns have been amended")
     paid = _first_match(
         context,
         r"All listed charges were paid\. No enforcement balance is shown",
-        path_hint="vat_charges",
         locator_type="pdf_page",
     )
     vat_control = _cell_by_label(context, "VAT control", path_hint="tax/trial balance")
@@ -569,9 +594,10 @@ def _add_vat_finding(context: AnalysisContext, records: AnalysisRecords) -> None
     )
     if original is None:
         return
+    vat_period = _source_period(amended[0], "the amended VAT period")
     calculation = records.add_calculation(
         calculation_id="CALC-TAX-001",
-        description="Recompute the P2 VAT amendment from original and amended documents.",
+        description="Recompute the VAT amendment from original and amended documents.",
         inputs=[
             (
                 "amended_payable",
@@ -589,16 +615,18 @@ def _add_vat_finding(context: AnalysisContext, records: AnalysisRecords) -> None
         expression="amended_payable - original_payable",
         recomputed_value=increase,
         reported_value=increase,
-        period="2025-P2",
+        period=vat_period,
         claim_ids=("CLM-TAX-001",),
     )
     records.add_finding(
         workstream="tax",
         issue_id="TAX-001",
         conclusion=(
-            f"The Rev2 tax response is demonstrably wrong: a 2025-P2 VAT amendment increased "
-            f"payable VAT by {_money(increase)}, although Rev2 states that no VAT returns "
-            f"were amended. The tax trial balance also carries a {_money(vat_control_value)} "
+            f"The current tax response is demonstrably wrong: a {vat_period} VAT amendment "
+            "increased "
+            f"payable VAT by {_money(increase)}, although the current response states that no "
+            f"VAT returns were amended. The tax trial balance also carries a "
+            f"{_money(vat_control_value)} "
             "VAT-control balance that the payment-status evidence does not reconcile."
         ),
         source_fact=(
@@ -640,8 +668,8 @@ def _add_vat_finding(context: AnalysisContext, records: AnalysisRecords) -> None
         contradiction_id="CON-TAX-001",
         issue_id="TAX-001",
         conflicting_values=[
-            f"P2 original {_money(original_value)}; amended {_money(amended_value)}",
-            "Rev2: no VAT returns amended",
+            f"{vat_period} original {_money(original_value)}; amended {_money(amended_value)}",
+            "Current response: no VAT returns amended",
         ],
         source_units=[original[0], amended[0], rev2, vat_control],
         likely_explanations=[
@@ -656,7 +684,7 @@ def _add_ct_finding(context: AnalysisContext, records: AnalysisRecords) -> None:
     liability = _first_match(
         context,
         r"Corporation tax liability EUR ([\d,]+)",
-        path_hint="ct_return_2025",
+        path_hint="ct_return",
         locator_type="pdf_page",
     )
     charge = _first_match(
@@ -680,7 +708,7 @@ def _add_ct_finding(context: AnalysisContext, records: AnalysisRecords) -> None:
     computation = _first_match(
         context,
         r"corporation tax at 12\.5%: EUR ([\d,]+)",
-        path_hint="tax_computation_2025",
+        path_hint="tax_computation",
         locator_type="pdf_page",
     )
     tb = _cell_by_label(context, "Corporation tax", path_hint="financial/trial_balance")
@@ -704,7 +732,10 @@ def _add_ct_finding(context: AnalysisContext, records: AnalysisRecords) -> None:
     )
     calculation = records.add_calculation(
         calculation_id="CALC-TAX-002",
-        description="Reconcile 2025 CT return and amendment charge to net ROS cash.",
+        description=(
+            "Reconcile the CT return and amendment charge to net account cash for "
+            f"{_source_period(liability[0], 'the supplied period')}."
+        ),
         inputs=[
             ("payment", payment[0], payment_value, payment[1].group(0)),
             ("refund", refund[0], refund_value, refund[1].group(0)),
@@ -714,7 +745,7 @@ def _add_ct_finding(context: AnalysisContext, records: AnalysisRecords) -> None:
         expression="payment - refund - return_liability - amendment_charge",
         recomputed_value=residual,
         reported_value=0,
-        period="2025 corporation tax account evidence",
+        period=_source_period(liability[0], "corporation-tax account period"),
         claim_ids=("CLM-TAX-002",),
     )
     records.add_finding(
@@ -826,14 +857,15 @@ def _add_paye_reconciliation(context: AnalysisContext, records: AnalysisRecords)
         expression="return_liability - payments",
         recomputed_value=liability_value - payment_value,
         reported_value=0,
-        period="2025 PAYE return and payment evidence",
+        period=_source_period(returns[0], "PAYE return and payment evidence period"),
         claim_ids=("CLM-TAX-003",),
     )
     records.add_finding(
         workstream="tax",
         issue_id="TAX-003",
         conclusion=(
-            f"PAYE returns and payments agree at {_money(liability_value)} and the 64-person "
+            f"PAYE returns and payments agree at {_money(liability_value)} and the "
+            f"{int(returns[1].group(1))}-person "
             "count is "
             "corroborated by "
             f"the updated reconciliation. The annual tie-out does not resolve the "
@@ -994,7 +1026,14 @@ def _add_operational_findings(context: AnalysisContext, records: AnalysisRecords
         path_hint="web_hosting",
         locator_type="pdf_page",
     )
-    creditors = context.cell_matching(r"Juniper Hosting Services", path_hint="aged_creditors")
+    hosting_text = str(unit_value(hosting[0]) or "") if hosting else ""
+    provider_match = re.search(r"\n([^\n|]+)\s*\|\s*effective\b", hosting_text, re.I)
+    provider = provider_match.group(1).strip() if provider_match else ""
+    creditors = (
+        context.cell_matching(rf"^{re.escape(provider)}$", path_hint="aged_creditors")
+        if provider
+        else context.cell_matching(r"(?:hosting|cloud|infrastructure)", path_hint="aged_creditors")
+    )
     creditor_total = None
     creditor_31_60 = None
     creditor_61_plus = None
@@ -1408,38 +1447,23 @@ def build_phase9(context: AnalysisContext) -> tuple[AnalysisRecords, dict[str, J
         "untrusted_source_data_was_executed": False,
     }
 
-    def source_ids(*path_fragments: str) -> list[str]:
-        return sorted(
-            source_id
-            for source_id, source in context.sources.items()
-            if any(
-                fragment.casefold() in str(source.get("relative_path", "")).casefold()
-                for fragment in path_fragments
-            )
-        )
-
     effective_versions = [
         {
-            "decision": "base framework plus 2025 amendment; consent clause expressly continues",
-            "family": "Harbourlight customer contract",
-            "source_ids": source_ids("Customer_Framework_Harbourlight", "Amendment_Harbourlight"),
-        },
-        {
-            "decision": "2026 amendment replaces the original liability clause",
-            "family": "Mosaic North customer contract",
-            "source_ids": source_ids("Customer_Framework_Mosaic_North", "Amendment_Mosaic_2026"),
-        },
-        {
-            "decision": "2025 amendment extends scope/term; other terms continue",
-            "family": "Mosaic South customer contract",
-            "source_ids": source_ids("Customer_Framework_Mosaic_South", "Amendment_Mosaic_South"),
-        },
-        {
-            "decision": "Rev2 is the current response, but its no-amendment VAT answer is "
-            "contradicted",
-            "family": "Tax response summary",
-            "source_ids": source_ids("Tax_Response_Summary_Original", "Tax_Response_Summary_Rev2"),
-        },
+            "decision": (
+                f"The register identifies {family.get('probable_current_source_id')} as the "
+                "probable current source from version markers. This remains a candidate "
+                "decision; operative legal or tax effect is stated only where content evidence "
+                "separately resolves it."
+            ),
+            "family": str(family.get("family_key") or family.get("version_family")),
+            "source_ids": [
+                str(source_id)
+                for source_id in family.get("source_ids", [])
+                if isinstance(source_id, str)
+            ],
+        }
+        for family in context.version_families
+        if isinstance(family, dict) and family.get("source_ids")
     ]
     payloads: dict[str, JsonObject] = {}
     for workstream in ("legal_contractual", "tax", "operational_management", "it"):
@@ -1452,7 +1476,8 @@ def build_phase9(context: AnalysisContext) -> tuple[AnalysisRecords, dict[str, J
             "findings": records.findings.get(workstream, []),
             "limitations": [
                 "No formal Irish legal or tax opinion is provided.",
-                "Visual property/CRO evidence and the unreadable legacy policy remain unresolved.",
+                "Unreadable sources remain unresolved; reviewed visual evidence is limited to "
+                "its recorded transcription and citation.",
                 "Topics marked limitation had insufficient source evidence for an adverse "
                 "conclusion.",
             ],

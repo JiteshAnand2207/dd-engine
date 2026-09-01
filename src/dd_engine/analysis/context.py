@@ -147,19 +147,27 @@ class AnalysisContext:
         return str(self.source(source_id).get("relative_path", ""))
 
     def sheets_with(self, *labels: str, path_hint: str | None = None) -> list[SheetRef]:
-        """Find grids containing every semantic label, independent of filename."""
+        """Find grids containing every semantic label, using paths only as a preference.
+
+        A path hint is allowed to disambiguate two semantically equivalent sources, but it must
+        never make an otherwise unique content match disappear.  This is important for unseen
+        rooms whose folders and filenames do not resemble the synthetic development room.
+        """
 
         wanted = [_normalized(label) for label in labels]
-        result: list[SheetRef] = []
+        matches: list[SheetRef] = []
         for sheet in self.sheets:
-            if path_hint and _normalized(path_hint) not in _normalized(
-                self.source_path(sheet.source_id)
-            ):
-                continue
             values = sheet.values()
             if all(any(label in value for value in values) for label in wanted):
-                result.append(sheet)
-        return result
+                matches.append(sheet)
+        if not path_hint:
+            return matches
+        preferred = [
+            sheet
+            for sheet in matches
+            if _normalized(path_hint) in _normalized(self.source_path(sheet.source_id))
+        ]
+        return preferred or matches
 
     def units_matching(
         self,
@@ -172,12 +180,8 @@ class AnalysisContext:
         """Return exact units and matches; extracted text remains data, never instructions."""
 
         compiled = re.compile(pattern, flags)
-        result: list[tuple[JsonObject, re.Match[str]]] = []
+        matches: list[tuple[JsonObject, re.Match[str]]] = []
         for unit in self.units:
-            if path_hint and _normalized(path_hint) not in _normalized(
-                str(unit.get("relative_path"))
-            ):
-                continue
             locator = unit.get("locator")
             if locator_type and (
                 not isinstance(locator, dict) or locator.get("type") != locator_type
@@ -188,11 +192,19 @@ class AnalysisContext:
                 continue
             match = compiled.search(value)
             if match:
-                result.append((unit, match))
-        return result
+                matches.append((unit, match))
+        if not path_hint:
+            return matches
+        preferred = [
+            item
+            for item in matches
+            if _normalized(path_hint) in _normalized(str(item[0].get("relative_path")))
+        ]
+        return preferred or matches
 
     def cell_matching(self, pattern: str, *, path_hint: str | None = None) -> JsonObject | None:
         compiled = re.compile(pattern, re.I)
+        matches: list[JsonObject] = []
         for unit in self.units:
             locator = unit.get("locator")
             if not isinstance(locator, dict) or locator.get("type") not in {
@@ -200,12 +212,20 @@ class AnalysisContext:
                 "csv_cell",
             }:
                 continue
-            if path_hint and _normalized(path_hint) not in _normalized(unit.get("relative_path")):
-                continue
             value = unit_value(unit)
             if value is not None and compiled.search(str(value)):
-                return unit
-        return None
+                matches.append(unit)
+        if not matches:
+            return None
+        if path_hint:
+            preferred = [
+                unit
+                for unit in matches
+                if _normalized(path_hint) in _normalized(unit.get("relative_path"))
+            ]
+            if preferred:
+                return preferred[0]
+        return matches[0]
 
     @staticmethod
     def offset_cell(sheet: SheetRef, anchor: JsonObject, column_offset: int) -> JsonObject | None:
@@ -248,15 +268,15 @@ class AnalysisContext:
         raise AnalysisError(f"extracted cell not found: {source_id} {sheet or '*'}!{coordinate}")
 
     def text_units(self, *, path_hint: str | None = None) -> list[JsonObject]:
-        return [
+        matches = [unit for unit in self.units if isinstance(unit_value(unit), str)]
+        if path_hint is None:
+            return matches
+        preferred = [
             unit
-            for unit in self.units
-            if isinstance(unit_value(unit), str)
-            and (
-                path_hint is None
-                or _normalized(path_hint) in _normalized(str(unit.get("relative_path")))
-            )
+            for unit in matches
+            if _normalized(path_hint) in _normalized(str(unit.get("relative_path")))
         ]
+        return preferred or matches
 
     def unresolved_answer_ids(self) -> list[str]:
         return sorted(

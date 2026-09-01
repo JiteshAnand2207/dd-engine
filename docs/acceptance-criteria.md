@@ -536,12 +536,106 @@ completed stage to at least one successful real task record. The run does not
 open planted truth, execute red team, commit or push. (P11-001-P11-002,
 P11-021-P11-024)
 
+## M. Phase 14 unseen-room generalisation and acceptance
+
+### AC-094 - Independent shadow room
+
+A second fictional room uses a different company, periods, customer/employee
+names, values, folder order, issue distribution and document names. It includes
+the required missing, irrelevant, duplicate, hidden, misleading-extension,
+corrupt, image-only, ZIP and prompt-injection cases. (P14-003-P14-008)
+
+### AC-095 - Truth-isolated semantic shadow rehearsal
+
+A fresh analytical context completes the shadow flow using only the public room;
+it neither reads nor enumerates truth paths. Workstreams contain no primary-room
+company/customer/provider names, and source selection does not require primary
+filenames or exact values. A contaminated attempt is a recorded failure and
+cannot supply acceptance evidence. (P14-002, P14-009-P14-010)
+
+### AC-096 - Exactly 150 logical sources
+
+A separately generated stress corpus registers exactly 150 logical sources,
+including direct ZIP members, and every record carries a SHA-256 checksum.
+(P14-011-P14-012)
+
+### AC-097 - Scale extraction and cache invalidation
+
+All 150 sources reach a terminal extraction state; an immediate rerun reuses the
+stage, and one changed source invalidates the stage while reusing all unaffected
+cached extractions. (P14-013, P14-024)
+
+### AC-098 - Scale memory and failure isolation
+
+The 150-source cold register/extract path remains below the configured Phase 14
+512 MiB peak-memory ceiling, and one intentionally corrupted source fails without
+preventing the other sources from reaching terminal states. (P14-014)
+
+### AC-099 - Clean-clone rehearsal and timing
+
+A resolved explicit temporary clone of committed HEAD begins clean, creates a new
+environment, installs from README, passes doctor, accepts an absolute room path,
+completes both saved-answer rounds through report validation/log audit and records
+setup separately from analysis. Setup must be under 20 minutes and no pre-existing
+uncommitted file may be consumed. (P14-015-P14-020)
+
+### AC-100 - Bad-input type isolation
+
+Unsupported, corrupted, encrypted and empty inputs receive explicit terminal
+classifications without aborting the room. (P14-021)
+
+### AC-101 - Large, archive and identity edge cases
+
+A within-limit spreadsheet yields at least 40,000 cell units; archive traversal is
+blocked; renamed exact duplicates share a duplicate group; and same basenames in
+different folders remain distinct with a recorded conflict. (P14-022)
+
+### AC-102 - Vision, optional OCR and output permission
+
+An image-only PDF with optional OCR disabled remains in the vision workflow rather
+than gaining fabricated text, and a read-only output target raises an explicit
+run-creation error. (P14-023)
+
+### AC-103 - Resume, cache change and prompt-injection boundary
+
+A simulated interruption leaves the extraction stage resumable; the resumed run
+finishes; a changed source causes one cache miss; and prompt-injection-like text is
+flagged as untrusted without being executed. (P14-024)
+
+### AC-104 - Twenty-citation manual audit
+
+At least 20 material citations cover Financial, Commercial, Legal/contractual,
+Operational/management, IT and Tax. Each audited row resolves source ID, current
+checksum and native locator to the cited fact, with partial or failed support left
+explicit. (P14-025)
+
+### AC-105 - Calculation, version and tax manual audit
+
+Five headline calculations are independently recomputed from recorded inputs;
+three contract/version decisions are checked against paired documents; and VAT,
+corporation-tax and PAYE reconciliations are recomputed with limitations preserved.
+(P14-026-P14-027)
+
+### AC-106 - Intake and IC consistency audit
+
+Both question/answer rounds retain saved-input checksums and verbatim provenance.
+Every critical full-report issue appears in the IC brief with the same conclusion,
+go/no-go condition and headline amount; topic-to-answer mapping is semantic rather
+than dependent on question numbering. (P14-028)
+
+### AC-107 - Honest Phase 14 evidence pack
+
+The four named reports exist and label each criterion pass, fail, blocked or not
+applicable with evidence. The final handover reports all eleven requested items,
+including failures, fixes, remaining blockers, handover readiness and commit safety;
+no commit or push is performed. (P14-029-P14-031)
+
 ## Release gate
 
-The Phase 11 runtime candidate is eligible for handover when AC-002 through AC-093
+The Phase 14 runtime candidate is eligible for handover when AC-002 through AC-107
 applicable to implemented phases pass, every applicable locked architecture
 decision in [decisions.md](decisions.md) is implemented, remaining open risks have
 recorded dispositions, and final Git status contains no confidential room data,
-generated run data or credentials. This is not the final trial-release gate:
-independent red-team execution and reconciliation remain mandatory before a
+generated run data or credentials. Independent red-team execution with a verified
+brand-new-context/allowlisted-packet isolation manifest remains mandatory before a
 release-ready claim. AC-001 applies only to the original planning task.

@@ -13,7 +13,10 @@ explicitly ingested answers. Phase 10 assembles the full adviser report and
 exactly two-page A4 investment-committee brief, then validates the candidate
 bundle fail closed. Phase 11 adds the three-class model-routing contract,
 complete local task/research ledgers and one Codex-first, Claude-compatible
-runtime flow. Independent red-team execution remains a later release gate.
+runtime flow. Phase 14 adds a filename-independent shadow-room rehearsal, a
+150-logical-source stress corpus, hostile-input regressions and documented
+clean-clone/manual-audit evidence. Independent red-team execution remains a
+separate release gate.
 
 ## Requirements and installation
 
@@ -52,6 +55,21 @@ file members. All names, people, identifiers and figures are fictional;
 `synthetic/planted_issues/` is sealed ground truth. It may be read by the
 explicit post-analysis validator, but never by registration, extraction,
 drafting or red-team reasoning.
+
+The independent Phase 14 shadow room has a different fictional company,
+periods, people, values, names and issue distribution. Generate its public room
+and the separate 150-logical-source corpus with:
+
+```text
+python scripts/generate_phase14_rooms.py --shadow-root synthetic/shadow --scale-root synthetic/scale_150
+```
+
+Only `synthetic/shadow/data_room/` and its public room manifest may be inspected
+during the shadow rehearsal. `synthetic/shadow_ground_truth/` is a sealed scoring
+boundary: do not open, list, hash, search or otherwise inspect it until the
+fresh-context analysis is complete. The scale corpus deliberately uses small
+files while exercising registration, SHA-256 hashing, ten in-memory ZIP members,
+extraction, cache reuse/invalidation and failure isolation beyond 100 sources.
 
 ## Configuration
 
@@ -100,8 +118,10 @@ python -m dd_engine evidence --run runs/<run_id>
 python -m dd_engine status --run runs/<run_id>
 ```
 
-`init-run` prints the absolute run path and immutable run ID. `--runs-root` can
-select a different local output directory. `--config` can select another TOML
+`init-run` prints the absolute run path and immutable run ID. Pass that run path
+(or its exact `runs/<run_id>` equivalent) to every later command; a bare run ID
+is not accepted. `--runs-root` can select a different local output directory.
+`--config` can select another TOML
 file. `doctor`, `init-run`, `register`, `extract`, `intake`, `evidence` and `status`
 also accept `--json`.
 
@@ -279,6 +299,7 @@ be committed later.
 
 ```text
 python -m pytest
+python -m pytest tests/test_phase14.py
 python -m ruff check .
 python -m mypy
 ```

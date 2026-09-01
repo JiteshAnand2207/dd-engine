@@ -42,6 +42,15 @@ def test_nested_ground_truth_directory_fails_closed(tmp_path: Path) -> None:
         list(iter_data_room_files(room))
 
 
+def test_shadow_ground_truth_path_is_rejected_as_a_room(tmp_path: Path) -> None:
+    truth = tmp_path / "synthetic" / "shadow_ground_truth"
+    truth.mkdir(parents=True)
+    (truth / "issues.json").write_text("{}", encoding="utf-8")
+
+    with pytest.raises(SourcePathError):
+        validate_data_room_path(truth)
+
+
 def test_relative_room_path_is_resolved_from_current_directory(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:

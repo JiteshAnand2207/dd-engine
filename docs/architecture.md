@@ -2,7 +2,7 @@
 
 ## Status and scope
 
-This document defines the implementation architecture. Phase 7 implements the deterministic source register, tiered local-first extraction, two-round evidence-grounded intake with real human pauses, and an extraction-dependent evidence/calculation foundation. Phases 8 and 9 implement the sequential analytical workstreams and standalone Tax module. Phase 10 implements structured report assembly, the deterministic two-page IC brief and fail-closed candidate-bundle validation. Phase 11 implements the three-class routing contract, complete local task/research ledgers and one Codex-first, Claude-compatible file-backed runtime flow. Independent red-team execution and final release reconciliation remain later-stage contracts. The primary runtime harness is **Codex**. Deterministic supporting code targets **Python 3.11 or later**. The native path works without Docker; a container may later be offered only as an optional convenience.
+This document defines the implementation architecture. Phase 7 implements the deterministic source register, tiered local-first extraction, two-round evidence-grounded intake with real human pauses, and an extraction-dependent evidence/calculation foundation. Phases 8 and 9 implement the sequential analytical workstreams and standalone Tax module. Phase 10 implements structured report assembly, the deterministic two-page IC brief and fail-closed candidate-bundle validation. Phase 11 implements the three-class routing contract, complete local task/research ledgers and one Codex-first, Claude-compatible file-backed runtime flow. Phase 14 adds semantic unseen-room generalisation, a truth-isolated second synthetic room, a 150-logical-source scale path, clean-clone rehearsal, hostile-input coverage and manual acceptance evidence. Independent red-team isolation proof remains a release blocker. The primary runtime harness is **Codex**. Deterministic supporting code targets **Python 3.11 or later**. The native path works without Docker; a container may later be offered only as an optional convenience.
 
 The design optimizes for an auditable cold run over an unseen, confidential room. It separates repeatable mechanics from model judgment, makes human pauses resumable, isolates red-team context, and never turns a partial or privacy-unsafe run into an apparent success.
 
@@ -327,6 +327,42 @@ The target operator journey is defined completely in `docs/runtime-flow.md` and
 6. Complete the candidate report, request red team in a brand-new context, reconcile verified challenges and receive a validated local deliverable directory.
 
 No `OPENAI_API_KEY`, Anthropic key or provider SDK is requested because the authenticated harness supplies any model access. Python performs local deterministic work only. Docker cannot be part of this acceptance path. Harness-specific abilities such as exact model visibility, token counters, task creation or selectable model tiers are checked at runtime and recorded as available or unavailable rather than assumed. A fresh-clone test records wall-clock time and fails if the engine is not running within 20 minutes.
+
+## Phase 14 generalisation and scale architecture
+
+The analysis index selects sources by semantic content first. A path hint may rank
+otherwise equivalent candidates, but an absent primary-style filename cannot hide
+an otherwise unique content match. Rows, totals and periods are derived from
+labels/source content rather than fixed cell coordinates, years, customers or
+primary-room values. Intake answers used by the report and IC brief resolve by
+stable `topic_key`, never by the position-dependent `INT-R1-nnn` number.
+
+`scripts/generate_phase14_rooms.py` owns two independent, deterministic fixtures:
+
+1. `synthetic/shadow/data_room/` is a 52-logical-source fictional room with a
+   separate company identity and intentionally different document layout/content.
+   Its public manifest contains structure and hashes but no truth answer.
+2. A scale corpus is generated only into an explicit operator-supplied temporary
+   directory. It contains 140 physical files and ten direct ZIP members, for
+   exactly 150 logical sources without needlessly large binaries.
+
+Analytical contexts may open only the shadow `data_room/`; they must not list,
+search, hash or read any truth directory. A contaminated rehearsal is rejected as
+acceptance evidence. The source-room path remains read-only and all derived files
+remain inside a distinct run root.
+
+Extraction applies deterministic prompt-injection-like text detection to extracted
+content. A match adds `prompt_injection_like_text_untrusted` to the source/unit and
+increments a summary metric; it never changes the rule that document content is
+evidence, not an instruction. Corruption, encryption, unsupported formats, unsafe
+archive paths and permission failures stay explicit and isolated.
+
+The scale test measures cold registration/extraction peak Python allocations,
+terminal-source count, ZIP-member count and isolated failures. It then verifies
+complete-stage reuse and a single-source content change: registration invalidates
+the downstream stage, the changed source misses cache, and all unaffected source
+hashes remain eligible for cache reuse. No `100`-source ceiling exists in the
+inventory or extraction contract.
 
 ## Run artifact contract
 
