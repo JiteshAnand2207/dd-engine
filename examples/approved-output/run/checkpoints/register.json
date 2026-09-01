@@ -1,0 +1,68 @@
+{
+  "run_id": "20260901T040928457675Z-dede88eb959c",
+  "schema_version": 1,
+  "stage": "register",
+  "stage_record": {
+    "artifacts": [
+      {
+        "path": "source_register/source_register.json",
+        "run_id": "20260901T040928457675Z-dede88eb959c",
+        "sha256": "1281fbdc39b456039f2e068e8cb91454ba39999b7612d3768aceb57a57e3940e",
+        "size_bytes": 180733
+      },
+      {
+        "path": "source_register/source_register.csv",
+        "run_id": "20260901T040928457675Z-dede88eb959c",
+        "sha256": "01b138c636f48250b2ec669341a7bbb3de9ddb0eaafed976df02055612adbff3",
+        "size_bytes": 38685
+      },
+      {
+        "path": "source_register/source_register.md",
+        "run_id": "20260901T040928457675Z-dede88eb959c",
+        "sha256": "240ff37eaf3325350e7d331d0d43e5cd8acb46d0cbf1ac8a1b6581bc571a99db",
+        "size_bytes": 12712
+      },
+      {
+        "path": "source_register/room_structure.json",
+        "run_id": "20260901T040928457675Z-dede88eb959c",
+        "sha256": "8e5e87d13d56433ae228314e2b99bcdd9439acac3c3e657b5380a1213bd40e36",
+        "size_bytes": 1820
+      },
+      {
+        "path": "source_register/duplicate_groups.json",
+        "run_id": "20260901T040928457675Z-dede88eb959c",
+        "sha256": "0d2f302ccca2bcdef57e235adbbd1ca1ec588f9581a822ab4791291e6f7f7884",
+        "size_bytes": 3751
+      },
+      {
+        "path": "source_register/version_families.json",
+        "run_id": "20260901T040928457675Z-dede88eb959c",
+        "sha256": "9300035a1c24e20eea940841fb5def43215393d11f8ca3299ca34b5e9358a35c",
+        "size_bytes": 7685
+      },
+      {
+        "path": "source_register/unreadable_sources.json",
+        "run_id": "20260901T040928457675Z-dede88eb959c",
+        "sha256": "bee79c472bacd92db71d39b21bf06c7c242145b54b4a53aadd1213419fee3091",
+        "size_bytes": 1882
+      }
+    ],
+    "attempts": 1,
+    "completed_at": "2026-09-01T04:09:52.484407Z",
+    "error": null,
+    "error_history": [],
+    "input_checksum": "95533a82b0700097f6c35cab57299f383492839c9c388cdcc5dd257b00a9fdee",
+    "invalidated_at": null,
+    "invalidation_reason": null,
+    "output_checksum": "6bde5c43078ac9c8b254ab09486889f1ea0b00fdcf36d9e31ff42ed4fa0d31a9",
+    "started_at": "2026-09-01T04:09:52.411811Z",
+    "state": "completed",
+    "updated_at": "2026-09-01T04:09:52.484407Z",
+    "validation": {
+      "checked_at": "2026-09-01T04:09:52.484407Z",
+      "errors": [],
+      "passed": true
+    }
+  },
+  "updated_at": "2026-09-01T04:09:52.484407Z"
+}

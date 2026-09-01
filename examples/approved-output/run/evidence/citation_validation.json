@@ -1,0 +1,5845 @@
+{
+  "calculation_results": [
+    {
+      "calculation_id": "CALC-FIN-001",
+      "input_citations": [
+        {
+          "citation_id": "CALC-FIN-001:opening_revenue",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:32094b5de2b73c88dc478a3a12a49694490f150d069315125a9f3c2d8db4344e",
+          "locator": {
+            "page_label": "1",
+            "page_number": 1,
+            "type": "pdf_page"
+          },
+          "source_id": "SRC-0020",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-FIN-001:closing_revenue",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:1414d9ce588e555e7f60b1827f905bf5ee709a37c9c086e2f34e4969fa7c735a",
+          "locator": {
+            "page_label": "1",
+            "page_number": 1,
+            "type": "pdf_page"
+          },
+          "source_id": "SRC-0025",
+          "valid": true,
+          "warnings": []
+        }
+      ],
+      "recomputation": {
+        "calculation_id": "CALC-FIN-001",
+        "errors": [],
+        "formula_input_ids": [
+          "closing_revenue",
+          "opening_revenue"
+        ],
+        "observed_recomputed_value": "111.29",
+        "status": "verified"
+      },
+      "valid": true
+    },
+    {
+      "calculation_id": "CALC-FIN-002",
+      "input_citations": [
+        {
+          "citation_id": "CALC-FIN-002:ebitda",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:1414d9ce588e555e7f60b1827f905bf5ee709a37c9c086e2f34e4969fa7c735a",
+          "locator": {
+            "page_label": "1",
+            "page_number": 1,
+            "type": "pdf_page"
+          },
+          "source_id": "SRC-0025",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-FIN-002:revenue",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:1414d9ce588e555e7f60b1827f905bf5ee709a37c9c086e2f34e4969fa7c735a",
+          "locator": {
+            "page_label": "1",
+            "page_number": 1,
+            "type": "pdf_page"
+          },
+          "source_id": "SRC-0025",
+          "valid": true,
+          "warnings": []
+        }
+      ],
+      "recomputation": {
+        "calculation_id": "CALC-FIN-002",
+        "errors": [],
+        "formula_input_ids": [
+          "ebitda",
+          "revenue"
+        ],
+        "observed_recomputed_value": "15.88",
+        "status": "verified"
+      },
+      "valid": true
+    },
+    {
+      "calculation_id": "CALC-FIN-003",
+      "input_citations": [
+        {
+          "citation_id": "CALC-FIN-003:baseline_ebitda",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:97cff696c06a9aee3aa83e3e446b1eaa08a53ec6d93734ba08ff9a3661b4d0e8",
+          "locator": {
+            "page_label": "1",
+            "page_number": 1,
+            "type": "pdf_page"
+          },
+          "source_id": "SRC-0012",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-FIN-003:transformation_adjustment",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:97cff696c06a9aee3aa83e3e446b1eaa08a53ec6d93734ba08ff9a3661b4d0e8",
+          "locator": {
+            "page_label": "1",
+            "page_number": 1,
+            "type": "pdf_page"
+          },
+          "source_id": "SRC-0012",
+          "valid": true,
+          "warnings": []
+        }
+      ],
+      "recomputation": {
+        "calculation_id": "CALC-FIN-003",
+        "errors": [],
+        "formula_input_ids": [
+          "baseline_ebitda",
+          "transformation_adjustment"
+        ],
+        "observed_recomputed_value": "1410000.00",
+        "status": "verified"
+      },
+      "valid": true
+    },
+    {
+      "calculation_id": "CALC-FIN-004",
+      "input_citations": [
+        {
+          "citation_id": "CALC-FIN-004:trade_debtors",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:8c13cb3f3053c228e88fbc25f11de835765a8f79c4d51bb5e0eef68de9143f8f",
+          "locator": {
+            "cell": "B4",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "B4",
+            "row_hidden": false,
+            "sheet": "Calculation",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Working_Capital_Calculation.xlsx"
+          },
+          "source_id": "SRC-0027",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-FIN-004:other_debtors",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:8c13cb3f3053c228e88fbc25f11de835765a8f79c4d51bb5e0eef68de9143f8f",
+          "locator": {
+            "cell": "B5",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "B5",
+            "row_hidden": false,
+            "sheet": "Calculation",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Working_Capital_Calculation.xlsx"
+          },
+          "source_id": "SRC-0027",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-FIN-004:trade_creditors",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:8c13cb3f3053c228e88fbc25f11de835765a8f79c4d51bb5e0eef68de9143f8f",
+          "locator": {
+            "cell": "B6",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "B6",
+            "row_hidden": false,
+            "sheet": "Calculation",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Working_Capital_Calculation.xlsx"
+          },
+          "source_id": "SRC-0027",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-FIN-004:prepayments",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:8c13cb3f3053c228e88fbc25f11de835765a8f79c4d51bb5e0eef68de9143f8f",
+          "locator": {
+            "cell": "B8",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "B8",
+            "row_hidden": true,
+            "sheet": "Calculation",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Working_Capital_Calculation.xlsx"
+          },
+          "source_id": "SRC-0027",
+          "valid": true,
+          "warnings": []
+        }
+      ],
+      "recomputation": {
+        "calculation_id": "CALC-FIN-004",
+        "errors": [],
+        "formula_input_ids": [
+          "other_debtors",
+          "prepayments",
+          "trade_creditors",
+          "trade_debtors"
+        ],
+        "observed_recomputed_value": "830000.00",
+        "status": "verified"
+      },
+      "valid": true
+    },
+    {
+      "calculation_id": "CALC-FIN-005",
+      "input_citations": [
+        {
+          "citation_id": "CALC-FIN-005:over_90_1",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:ed95d48e673c0399ff7fb2387d7259b8a4fc387a0e2bb154dd0f5b853c9e42a3",
+          "locator": {
+            "cell": "E4",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "E4",
+            "row_hidden": false,
+            "sheet": "Aged Debtors",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Aged_Debtors.xlsx"
+          },
+          "source_id": "SRC-0002",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-FIN-005:over_90_2",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:ed95d48e673c0399ff7fb2387d7259b8a4fc387a0e2bb154dd0f5b853c9e42a3",
+          "locator": {
+            "cell": "E5",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "E5",
+            "row_hidden": false,
+            "sheet": "Aged Debtors",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Aged_Debtors.xlsx"
+          },
+          "source_id": "SRC-0002",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-FIN-005:over_90_3",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:ed95d48e673c0399ff7fb2387d7259b8a4fc387a0e2bb154dd0f5b853c9e42a3",
+          "locator": {
+            "cell": "E6",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "E6",
+            "row_hidden": false,
+            "sheet": "Aged Debtors",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Aged_Debtors.xlsx"
+          },
+          "source_id": "SRC-0002",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-FIN-005:over_90_4",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:ed95d48e673c0399ff7fb2387d7259b8a4fc387a0e2bb154dd0f5b853c9e42a3",
+          "locator": {
+            "cell": "E7",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "E7",
+            "row_hidden": false,
+            "sheet": "Aged Debtors",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Aged_Debtors.xlsx"
+          },
+          "source_id": "SRC-0002",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-FIN-005:over_90_5",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:ed95d48e673c0399ff7fb2387d7259b8a4fc387a0e2bb154dd0f5b853c9e42a3",
+          "locator": {
+            "cell": "E8",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "E8",
+            "row_hidden": false,
+            "sheet": "Aged Debtors",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Aged_Debtors.xlsx"
+          },
+          "source_id": "SRC-0002",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-FIN-005:over_90_6",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:ed95d48e673c0399ff7fb2387d7259b8a4fc387a0e2bb154dd0f5b853c9e42a3",
+          "locator": {
+            "cell": "E9",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "E9",
+            "row_hidden": false,
+            "sheet": "Aged Debtors",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Aged_Debtors.xlsx"
+          },
+          "source_id": "SRC-0002",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-FIN-005:over_90_7",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:ed95d48e673c0399ff7fb2387d7259b8a4fc387a0e2bb154dd0f5b853c9e42a3",
+          "locator": {
+            "cell": "E10",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "E10",
+            "row_hidden": false,
+            "sheet": "Aged Debtors",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Aged_Debtors.xlsx"
+          },
+          "source_id": "SRC-0002",
+          "valid": true,
+          "warnings": []
+        }
+      ],
+      "recomputation": {
+        "calculation_id": "CALC-FIN-005",
+        "errors": [],
+        "formula_input_ids": [
+          "over_90_1",
+          "over_90_2",
+          "over_90_3",
+          "over_90_4",
+          "over_90_5",
+          "over_90_6",
+          "over_90_7"
+        ],
+        "observed_recomputed_value": "176500.00",
+        "status": "verified"
+      },
+      "valid": true
+    },
+    {
+      "calculation_id": "CALC-FIN-006",
+      "input_citations": [
+        {
+          "citation_id": "CALC-FIN-006:loans",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "duplicate_group:DUP-0001",
+          "locator": {
+            "cell": "C6",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "C6",
+            "row_hidden": false,
+            "sheet": "Loans",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Loan_Summary.xlsx"
+          },
+          "source_id": "SRC-0010",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-FIN-006:hp",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:7819b2d9cae33f1150b08745ea85a9554cde8816546a7ec11c6377cb59fe5690",
+          "locator": {
+            "cell": "C6",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "C6",
+            "row_hidden": false,
+            "sheet": "HP",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/HP_Summary.xlsx"
+          },
+          "source_id": "SRC-0006",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-FIN-006:director_account",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:c057b36ab550a0ea7865aee42c8fda161fdc8307f74db8f2d9f681a12b1fb37b",
+          "locator": {
+            "heading": {
+              "heading_index": 2,
+              "heading_level": 1,
+              "paragraph_index": 9,
+              "text": "Observation"
+            },
+            "heading_level": null,
+            "paragraph_index": 10,
+            "type": "docx_paragraph"
+          },
+          "source_id": "SRC-0017",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-FIN-006:cash",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:3c27332419e3563c13d01def322e4a2f55ba8fbfbbb98fabf2af050321d11ca2",
+          "locator": {
+            "cell": "C4",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "C4",
+            "row_hidden": false,
+            "sheet": "Trial Balance",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Trial_Balance_2025.xlsx"
+          },
+          "source_id": "SRC-0026",
+          "valid": true,
+          "warnings": []
+        }
+      ],
+      "recomputation": {
+        "calculation_id": "CALC-FIN-006",
+        "errors": [],
+        "formula_input_ids": [
+          "cash",
+          "director_account",
+          "hp",
+          "loans"
+        ],
+        "observed_recomputed_value": "1260000.00",
+        "status": "verified"
+      },
+      "valid": true
+    },
+    {
+      "calculation_id": "CALC-FIN-007",
+      "input_citations": [
+        {
+          "citation_id": "CALC-FIN-007:allocated_contractors",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:59386fcdfc0cb4b825446af0611b71583b386aa2241063a2a828380243c0f4e5",
+          "locator": {
+            "cell": "B10",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "B10",
+            "row_hidden": false,
+            "sheet": "Contractors",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Contractor_Headcount_by_Client.xlsx"
+          },
+          "source_id": "SRC-0003",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-FIN-007:active_contractors",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:85a9d8b4f329b213dbb8152bdfa7a90920f716c3f393749ccf8374bd828d299c",
+          "locator": {
+            "cell": "B2",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "B2",
+            "row_hidden": false,
+            "sheet": "Contractors",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Legal/Employment/Contractor_List.xlsx"
+          },
+          "source_id": "SRC-0043",
+          "valid": true,
+          "warnings": []
+        }
+      ],
+      "recomputation": {
+        "calculation_id": "CALC-FIN-007",
+        "errors": [],
+        "formula_input_ids": [
+          "active_contractors",
+          "allocated_contractors"
+        ],
+        "observed_recomputed_value": "2.00",
+        "status": "verified"
+      },
+      "valid": true
+    },
+    {
+      "calculation_id": "CALC-FIN-008",
+      "input_citations": [
+        {
+          "citation_id": "CALC-FIN-008:weighted_1",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:db56ee614205a047737e518d3ca4b27076eb55c414d83b7e16d9d361147e839d",
+          "locator": {
+            "cell": "E4",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "E4",
+            "row_hidden": false,
+            "sheet": "Pipeline",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Revenue_Pipeline.xlsx"
+          },
+          "source_id": "SRC-0019",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-FIN-008:weighted_2",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:db56ee614205a047737e518d3ca4b27076eb55c414d83b7e16d9d361147e839d",
+          "locator": {
+            "cell": "E5",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "E5",
+            "row_hidden": false,
+            "sheet": "Pipeline",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Revenue_Pipeline.xlsx"
+          },
+          "source_id": "SRC-0019",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-FIN-008:weighted_3",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:db56ee614205a047737e518d3ca4b27076eb55c414d83b7e16d9d361147e839d",
+          "locator": {
+            "cell": "E6",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "E6",
+            "row_hidden": false,
+            "sheet": "Pipeline",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Revenue_Pipeline.xlsx"
+          },
+          "source_id": "SRC-0019",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-FIN-008:weighted_4",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:db56ee614205a047737e518d3ca4b27076eb55c414d83b7e16d9d361147e839d",
+          "locator": {
+            "cell": "E7",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "E7",
+            "row_hidden": false,
+            "sheet": "Pipeline",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Revenue_Pipeline.xlsx"
+          },
+          "source_id": "SRC-0019",
+          "valid": true,
+          "warnings": []
+        }
+      ],
+      "recomputation": {
+        "calculation_id": "CALC-FIN-008",
+        "errors": [],
+        "formula_input_ids": [
+          "weighted_1",
+          "weighted_2",
+          "weighted_3",
+          "weighted_4"
+        ],
+        "observed_recomputed_value": "2542500.00",
+        "status": "verified"
+      },
+      "valid": true
+    },
+    {
+      "calculation_id": "CALC-FIN-009",
+      "input_citations": [
+        {
+          "citation_id": "CALC-FIN-009:top_weighted_1",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:db56ee614205a047737e518d3ca4b27076eb55c414d83b7e16d9d361147e839d",
+          "locator": {
+            "cell": "E4",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "E4",
+            "row_hidden": false,
+            "sheet": "Pipeline",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Revenue_Pipeline.xlsx"
+          },
+          "source_id": "SRC-0019",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-FIN-009:top_weighted_2",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:db56ee614205a047737e518d3ca4b27076eb55c414d83b7e16d9d361147e839d",
+          "locator": {
+            "cell": "E6",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "E6",
+            "row_hidden": false,
+            "sheet": "Pipeline",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Revenue_Pipeline.xlsx"
+          },
+          "source_id": "SRC-0019",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-FIN-009:recomputed_pipeline",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:db56ee614205a047737e518d3ca4b27076eb55c414d83b7e16d9d361147e839d",
+          "locator": {
+            "cell": "E8",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "E8",
+            "row_hidden": false,
+            "sheet": "Pipeline",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Revenue_Pipeline.xlsx"
+          },
+          "source_id": "SRC-0019",
+          "valid": true,
+          "warnings": []
+        }
+      ],
+      "recomputation": {
+        "calculation_id": "CALC-FIN-009",
+        "errors": [],
+        "formula_input_ids": [
+          "recomputed_pipeline",
+          "top_weighted_1",
+          "top_weighted_2"
+        ],
+        "observed_recomputed_value": "72.07",
+        "status": "verified"
+      },
+      "valid": true
+    },
+    {
+      "calculation_id": "CALC-COMM-001",
+      "input_citations": [
+        {
+          "citation_id": "CALC-COMM-001:member_1",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+          "locator": {
+            "cell": "B6",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "B6",
+            "row_hidden": false,
+            "sheet": "Revenue",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Revenue_by_Customer.xlsx"
+          },
+          "source_id": "SRC-0018",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-COMM-001:member_2",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+          "locator": {
+            "cell": "B7",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "B7",
+            "row_hidden": false,
+            "sheet": "Revenue",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Revenue_by_Customer.xlsx"
+          },
+          "source_id": "SRC-0018",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-COMM-001:total_revenue",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+          "locator": {
+            "cell": "B11",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "B11",
+            "row_hidden": false,
+            "sheet": "Revenue",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Revenue_by_Customer.xlsx"
+          },
+          "source_id": "SRC-0018",
+          "valid": true,
+          "warnings": []
+        }
+      ],
+      "recomputation": {
+        "calculation_id": "CALC-COMM-001",
+        "errors": [],
+        "formula_input_ids": [
+          "member_1",
+          "member_2",
+          "total_revenue"
+        ],
+        "observed_recomputed_value": "28.24",
+        "status": "verified"
+      },
+      "valid": true
+    },
+    {
+      "calculation_id": "CALC-COMM-002",
+      "input_citations": [
+        {
+          "citation_id": "CALC-COMM-002:member_1",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+          "locator": {
+            "cell": "C6",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "C6",
+            "row_hidden": false,
+            "sheet": "Revenue",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Revenue_by_Customer.xlsx"
+          },
+          "source_id": "SRC-0018",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-COMM-002:member_2",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+          "locator": {
+            "cell": "C7",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "C7",
+            "row_hidden": false,
+            "sheet": "Revenue",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Revenue_by_Customer.xlsx"
+          },
+          "source_id": "SRC-0018",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-COMM-002:total_revenue",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+          "locator": {
+            "cell": "C11",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "C11",
+            "row_hidden": false,
+            "sheet": "Revenue",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Revenue_by_Customer.xlsx"
+          },
+          "source_id": "SRC-0018",
+          "valid": true,
+          "warnings": []
+        }
+      ],
+      "recomputation": {
+        "calculation_id": "CALC-COMM-002",
+        "errors": [],
+        "formula_input_ids": [
+          "member_1",
+          "member_2",
+          "total_revenue"
+        ],
+        "observed_recomputed_value": "30.72",
+        "status": "verified"
+      },
+      "valid": true
+    },
+    {
+      "calculation_id": "CALC-COMM-004",
+      "input_citations": [
+        {
+          "citation_id": "CALC-COMM-004:fy_row_1",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+          "locator": {
+            "cell": "B6",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "B6",
+            "row_hidden": false,
+            "sheet": "Revenue",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Revenue_by_Customer.xlsx"
+          },
+          "source_id": "SRC-0018",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-COMM-004:fy_row_2",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+          "locator": {
+            "cell": "B7",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "B7",
+            "row_hidden": false,
+            "sheet": "Revenue",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Revenue_by_Customer.xlsx"
+          },
+          "source_id": "SRC-0018",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-COMM-004:fy_row_3",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+          "locator": {
+            "cell": "B4",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "B4",
+            "row_hidden": false,
+            "sheet": "Revenue",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Revenue_by_Customer.xlsx"
+          },
+          "source_id": "SRC-0018",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-COMM-004:fy_total",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+          "locator": {
+            "cell": "B11",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "B11",
+            "row_hidden": false,
+            "sheet": "Revenue",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Revenue_by_Customer.xlsx"
+          },
+          "source_id": "SRC-0018",
+          "valid": true,
+          "warnings": []
+        }
+      ],
+      "recomputation": {
+        "calculation_id": "CALC-COMM-004",
+        "errors": [],
+        "formula_input_ids": [
+          "fy_row_1",
+          "fy_row_2",
+          "fy_row_3",
+          "fy_total"
+        ],
+        "observed_recomputed_value": "51.91",
+        "status": "verified"
+      },
+      "valid": true
+    },
+    {
+      "calculation_id": "CALC-COMM-005",
+      "input_citations": [
+        {
+          "citation_id": "CALC-COMM-005:current_row_1",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+          "locator": {
+            "cell": "C6",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "C6",
+            "row_hidden": false,
+            "sheet": "Revenue",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Revenue_by_Customer.xlsx"
+          },
+          "source_id": "SRC-0018",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-COMM-005:current_row_2",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+          "locator": {
+            "cell": "C7",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "C7",
+            "row_hidden": false,
+            "sheet": "Revenue",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Revenue_by_Customer.xlsx"
+          },
+          "source_id": "SRC-0018",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-COMM-005:current_row_3",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+          "locator": {
+            "cell": "C4",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "C4",
+            "row_hidden": false,
+            "sheet": "Revenue",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Revenue_by_Customer.xlsx"
+          },
+          "source_id": "SRC-0018",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-COMM-005:current_row_4",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+          "locator": {
+            "cell": "C5",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "C5",
+            "row_hidden": false,
+            "sheet": "Revenue",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Revenue_by_Customer.xlsx"
+          },
+          "source_id": "SRC-0018",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-COMM-005:current_total",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+          "locator": {
+            "cell": "C11",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "C11",
+            "row_hidden": false,
+            "sheet": "Revenue",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Revenue_by_Customer.xlsx"
+          },
+          "source_id": "SRC-0018",
+          "valid": true,
+          "warnings": []
+        }
+      ],
+      "recomputation": {
+        "calculation_id": "CALC-COMM-005",
+        "errors": [],
+        "formula_input_ids": [
+          "current_row_1",
+          "current_row_2",
+          "current_row_3",
+          "current_row_4",
+          "current_total"
+        ],
+        "observed_recomputed_value": "75.82",
+        "status": "verified"
+      },
+      "valid": true
+    },
+    {
+      "calculation_id": "CALC-COMM-003",
+      "input_citations": [
+        {
+          "citation_id": "CALC-COMM-003:client_paye",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:673eb808737e9e03f2dee34e482eb16a05ef04eebb108351831db74db668b379",
+          "locator": {
+            "cell": "B4",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "B4",
+            "row_hidden": false,
+            "sheet": "PAYE",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/PAYE_Headcount_by_Client.xlsx"
+          },
+          "source_id": "SRC-0015",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-COMM-003:client_contractors",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:59386fcdfc0cb4b825446af0611b71583b386aa2241063a2a828380243c0f4e5",
+          "locator": {
+            "cell": "B4",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "B4",
+            "row_hidden": false,
+            "sheet": "Contractors",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Contractor_Headcount_by_Client.xlsx"
+          },
+          "source_id": "SRC-0003",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-COMM-003:total_paye",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:673eb808737e9e03f2dee34e482eb16a05ef04eebb108351831db74db668b379",
+          "locator": {
+            "cell": "B11",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "B11",
+            "row_hidden": false,
+            "sheet": "PAYE",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/PAYE_Headcount_by_Client.xlsx"
+          },
+          "source_id": "SRC-0015",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-COMM-003:legal_contractor_population",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:85a9d8b4f329b213dbb8152bdfa7a90920f716c3f393749ccf8374bd828d299c",
+          "locator": {
+            "cell": "B2",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "B2",
+            "row_hidden": false,
+            "sheet": "Contractors",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Legal/Employment/Contractor_List.xlsx"
+          },
+          "source_id": "SRC-0043",
+          "valid": true,
+          "warnings": []
+        }
+      ],
+      "recomputation": {
+        "calculation_id": "CALC-COMM-003",
+        "errors": [],
+        "formula_input_ids": [
+          "client_contractors",
+          "client_paye",
+          "legal_contractor_population",
+          "total_paye"
+        ],
+        "observed_recomputed_value": "26.32",
+        "status": "verified"
+      },
+      "valid": true
+    },
+    {
+      "calculation_id": "CALC-COMM-006",
+      "input_citations": [
+        {
+          "citation_id": "CALC-COMM-006:client_paye",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:673eb808737e9e03f2dee34e482eb16a05ef04eebb108351831db74db668b379",
+          "locator": {
+            "cell": "B4",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "B4",
+            "row_hidden": false,
+            "sheet": "PAYE",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/PAYE_Headcount_by_Client.xlsx"
+          },
+          "source_id": "SRC-0015",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-COMM-006:client_contractors",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:59386fcdfc0cb4b825446af0611b71583b386aa2241063a2a828380243c0f4e5",
+          "locator": {
+            "cell": "B4",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "B4",
+            "row_hidden": false,
+            "sheet": "Contractors",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Contractor_Headcount_by_Client.xlsx"
+          },
+          "source_id": "SRC-0003",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-COMM-006:total_paye",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:673eb808737e9e03f2dee34e482eb16a05ef04eebb108351831db74db668b379",
+          "locator": {
+            "cell": "B11",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "B11",
+            "row_hidden": false,
+            "sheet": "PAYE",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/PAYE_Headcount_by_Client.xlsx"
+          },
+          "source_id": "SRC-0015",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-COMM-006:submitted_contractor_population",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:59386fcdfc0cb4b825446af0611b71583b386aa2241063a2a828380243c0f4e5",
+          "locator": {
+            "cell": "B10",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "B10",
+            "row_hidden": false,
+            "sheet": "Contractors",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Contractor_Headcount_by_Client.xlsx"
+          },
+          "source_id": "SRC-0003",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-COMM-006:legal_contractor_population",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:85a9d8b4f329b213dbb8152bdfa7a90920f716c3f393749ccf8374bd828d299c",
+          "locator": {
+            "cell": "B2",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "B2",
+            "row_hidden": false,
+            "sheet": "Contractors",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Legal/Employment/Contractor_List.xlsx"
+          },
+          "source_id": "SRC-0043",
+          "valid": true,
+          "warnings": []
+        }
+      ],
+      "recomputation": {
+        "calculation_id": "CALC-COMM-006",
+        "errors": [],
+        "formula_input_ids": [
+          "client_contractors",
+          "client_paye",
+          "legal_contractor_population",
+          "submitted_contractor_population",
+          "total_paye"
+        ],
+        "observed_recomputed_value": "28.95",
+        "status": "verified"
+      },
+      "valid": true
+    },
+    {
+      "calculation_id": "CALC-LEGAL-001",
+      "input_citations": [
+        {
+          "citation_id": "CALC-LEGAL-001:holder_1",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:16eaeb6bc133f1cffd5ec0872a31ad57f4fb9d8d8fcd6030d0900b656f2c29c7",
+          "locator": {
+            "cell": "B4",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "B4",
+            "row_hidden": false,
+            "sheet": "Cap Table",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "zip://Legal/Updated_Responses.zip!/Updated Responses/Cap_Table_Rev2.xlsx"
+          },
+          "source_id": "SRC-0091",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-LEGAL-001:holder_2",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:16eaeb6bc133f1cffd5ec0872a31ad57f4fb9d8d8fcd6030d0900b656f2c29c7",
+          "locator": {
+            "cell": "B5",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "B5",
+            "row_hidden": false,
+            "sheet": "Cap Table",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "zip://Legal/Updated_Responses.zip!/Updated Responses/Cap_Table_Rev2.xlsx"
+          },
+          "source_id": "SRC-0091",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-LEGAL-001:holder_3",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:16eaeb6bc133f1cffd5ec0872a31ad57f4fb9d8d8fcd6030d0900b656f2c29c7",
+          "locator": {
+            "cell": "B6",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "B6",
+            "row_hidden": false,
+            "sheet": "Cap Table",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "zip://Legal/Updated_Responses.zip!/Updated Responses/Cap_Table_Rev2.xlsx"
+          },
+          "source_id": "SRC-0091",
+          "valid": true,
+          "warnings": []
+        }
+      ],
+      "recomputation": {
+        "calculation_id": "CALC-LEGAL-001",
+        "errors": [],
+        "formula_input_ids": [
+          "holder_1",
+          "holder_2",
+          "holder_3"
+        ],
+        "observed_recomputed_value": "1000000.00",
+        "status": "verified"
+      },
+      "valid": true
+    },
+    {
+      "calculation_id": "CALC-TAX-001",
+      "input_citations": [
+        {
+          "citation_id": "CALC-TAX-001:amended_payable",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:11e276d603c4bf426a8eb6ca6c05dcc11121d5c9559c48540a4b1b4f8b8b5e5c",
+          "locator": {
+            "page_label": "1",
+            "page_number": 1,
+            "type": "pdf_page"
+          },
+          "source_id": "SRC-0084",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-TAX-001:original_payable",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:1d4dd237ab06a214e89f8f6e54fa2d4f1f7e09d3abdca66708c8a79986327b41",
+          "locator": {
+            "page_label": "1",
+            "page_number": 1,
+            "type": "pdf_page"
+          },
+          "source_id": "SRC-0083",
+          "valid": true,
+          "warnings": [
+            {
+              "code": "superseded_source_acknowledged",
+              "message": "citation intentionally uses a potentially superseded source"
+            }
+          ]
+        }
+      ],
+      "recomputation": {
+        "calculation_id": "CALC-TAX-001",
+        "errors": [],
+        "formula_input_ids": [
+          "amended_payable",
+          "original_payable"
+        ],
+        "observed_recomputed_value": "8000.00",
+        "status": "verified"
+      },
+      "valid": true
+    },
+    {
+      "calculation_id": "CALC-TAX-002",
+      "input_citations": [
+        {
+          "citation_id": "CALC-TAX-002:payment",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:85377d2a88433b5bc0344a6f6387233b20e7d499eaff0b247d8855b2b2e71305",
+          "locator": {
+            "page_label": "1",
+            "page_number": 1,
+            "type": "pdf_page"
+          },
+          "source_id": "SRC-0072",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-TAX-002:refund",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:7eb74c4d390b2a9c2b70c8c71e4967e39976f557bcdefb653b38ef6782114757",
+          "locator": {
+            "page_label": "1",
+            "page_number": 1,
+            "type": "pdf_page"
+          },
+          "source_id": "SRC-0073",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-TAX-002:return_liability",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:a6026e86b9b65ec1dcea046eb97adb9aedec8f8f33235d3b65509a5746e907c2",
+          "locator": {
+            "page_label": "1",
+            "page_number": 1,
+            "type": "pdf_page"
+          },
+          "source_id": "SRC-0074",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-TAX-002:amendment_charge",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:a03c5f315860268c5fed9250a3b2e55bd131d42f33918b4b4a577c6d76c1ca7c",
+          "locator": {
+            "page_label": "1",
+            "page_number": 1,
+            "type": "pdf_page"
+          },
+          "source_id": "SRC-0071",
+          "valid": true,
+          "warnings": []
+        }
+      ],
+      "recomputation": {
+        "calculation_id": "CALC-TAX-002",
+        "errors": [],
+        "formula_input_ids": [
+          "amendment_charge",
+          "payment",
+          "refund",
+          "return_liability"
+        ],
+        "observed_recomputed_value": "0.00",
+        "status": "verified"
+      },
+      "valid": true
+    },
+    {
+      "calculation_id": "CALC-TAX-003",
+      "input_citations": [
+        {
+          "citation_id": "CALC-TAX-003:return_liability",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:f34d4beb58d17da8b3cc11ee4adb74e6062148aa31c2f221087b4f7575c33486",
+          "locator": {
+            "page_label": "1",
+            "page_number": 1,
+            "type": "pdf_page"
+          },
+          "source_id": "SRC-0076",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-TAX-003:payments",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:59bca9cbd4646f8e8dde92a3aa086ab4e467e5cff8a9706f52c37c186c6b00bd",
+          "locator": {
+            "page_label": "1",
+            "page_number": 1,
+            "type": "pdf_page"
+          },
+          "source_id": "SRC-0075",
+          "valid": true,
+          "warnings": []
+        }
+      ],
+      "recomputation": {
+        "calculation_id": "CALC-TAX-003",
+        "errors": [],
+        "formula_input_ids": [
+          "payments",
+          "return_liability"
+        ],
+        "observed_recomputed_value": "0.00",
+        "status": "verified"
+      },
+      "valid": true
+    },
+    {
+      "calculation_id": "CALC-TAX-004",
+      "input_citations": [
+        {
+          "citation_id": "CALC-TAX-004:invoice_gross_1",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:b78df18579d0e295be7b2dd69725ae089f58fda5309a2bd2a4f6069954271605",
+          "locator": {
+            "page_label": "1",
+            "page_number": 1,
+            "type": "pdf_page"
+          },
+          "source_id": "SRC-0064",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-TAX-004:invoice_gross_2",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:2c1b9b3648ee63545f6a2782f044d69f3d6a92da9f5451f6deb028e4ff586971",
+          "locator": {
+            "page_label": "1",
+            "page_number": 1,
+            "type": "pdf_page"
+          },
+          "source_id": "SRC-0065",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-TAX-004:invoice_gross_3",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:f13b22961b5811d59c805d9d938ead58ec6d90de7f60f7d9dd6ea1f84d476bb1",
+          "locator": {
+            "page_label": "1",
+            "page_number": 1,
+            "type": "pdf_page"
+          },
+          "source_id": "SRC-0066",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-TAX-004:invoice_gross_4",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:ee672804b0511b5c2b07417ce693bba845d507c6498e3507f14eb1312113e505",
+          "locator": {
+            "page_label": "1",
+            "page_number": 1,
+            "type": "pdf_page"
+          },
+          "source_id": "SRC-0067",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-TAX-004:register_gross",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:9f063bddb4ecd9f0a1480553e07fea9b530f28f4e26ac2c4ecc4ddc5f31724b5",
+          "locator": {
+            "cell": "E8",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "E8",
+            "row_hidden": false,
+            "sheet": "Register",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Tax/Invoice Samples/Invoice_Register.xlsx"
+          },
+          "source_id": "SRC-0068",
+          "valid": true,
+          "warnings": []
+        }
+      ],
+      "recomputation": {
+        "calculation_id": "CALC-TAX-004",
+        "errors": [],
+        "formula_input_ids": [
+          "invoice_gross_1",
+          "invoice_gross_2",
+          "invoice_gross_3",
+          "invoice_gross_4",
+          "register_gross"
+        ],
+        "observed_recomputed_value": "0.00",
+        "status": "verified"
+      },
+      "valid": true
+    },
+    {
+      "calculation_id": "CALC-OPS-001",
+      "input_citations": [
+        {
+          "citation_id": "CALC-OPS-001:aged_31_60",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:ef8d9779a0243573b90a927b6535581260e4d095bcaf19de8f6c987726902bf4",
+          "locator": {
+            "cell": "C4",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "C4",
+            "row_hidden": false,
+            "sheet": "Aged Creditors",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Aged_Creditors.xlsx"
+          },
+          "source_id": "SRC-0001",
+          "valid": true,
+          "warnings": []
+        },
+        {
+          "citation_id": "CALC-OPS-001:aged_61_plus",
+          "citation_kind": "calculation_input",
+          "claim_id": null,
+          "errors": [],
+          "independence_key": "sha256:ef8d9779a0243573b90a927b6535581260e4d095bcaf19de8f6c987726902bf4",
+          "locator": {
+            "cell": "D4",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "D4",
+            "row_hidden": false,
+            "sheet": "Aged Creditors",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Aged_Creditors.xlsx"
+          },
+          "source_id": "SRC-0001",
+          "valid": true,
+          "warnings": []
+        }
+      ],
+      "recomputation": {
+        "calculation_id": "CALC-OPS-001",
+        "errors": [],
+        "formula_input_ids": [
+          "aged_31_60",
+          "aged_61_plus"
+        ],
+        "observed_recomputed_value": "92750.00",
+        "status": "verified"
+      },
+      "valid": true
+    }
+  ],
+  "citation_results": [
+    {
+      "citation_id": "EVD-FIN-001-01",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-FIN-001",
+      "errors": [],
+      "independence_key": "sha256:32094b5de2b73c88dc478a3a12a49694490f150d069315125a9f3c2d8db4344e",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0020",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-FIN-001-02",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-FIN-001",
+      "errors": [],
+      "independence_key": "sha256:1414d9ce588e555e7f60b1827f905bf5ee709a37c9c086e2f34e4969fa7c735a",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0025",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-FIN-002-01",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-FIN-002",
+      "errors": [],
+      "independence_key": "sha256:97cff696c06a9aee3aa83e3e446b1eaa08a53ec6d93734ba08ff9a3661b4d0e8",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0012",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-FIN-002-02",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-FIN-002",
+      "errors": [],
+      "independence_key": "sha256:0a9a569c8a107c0b294b27a18b277fd93bc255efe96669a2bf309f5171fc1f8b",
+      "locator": {
+        "cell": "C5",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "C5",
+        "row_hidden": false,
+        "sheet": "Request List",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Financial_Request_List.xlsx"
+      },
+      "source_id": "SRC-0004",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-FIN-003-01",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-FIN-003",
+      "errors": [],
+      "independence_key": "sha256:8c13cb3f3053c228e88fbc25f11de835765a8f79c4d51bb5e0eef68de9143f8f",
+      "locator": {
+        "cell": "B9",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B9",
+        "row_hidden": false,
+        "sheet": "Calculation",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Working_Capital_Calculation.xlsx"
+      },
+      "source_id": "SRC-0027",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-FIN-003-02",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-FIN-003",
+      "errors": [],
+      "independence_key": "sha256:8c13cb3f3053c228e88fbc25f11de835765a8f79c4d51bb5e0eef68de9143f8f",
+      "locator": {
+        "cell": "B10",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B10",
+        "row_hidden": false,
+        "sheet": "Calculation",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Working_Capital_Calculation.xlsx"
+      },
+      "source_id": "SRC-0027",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-FIN-003-03",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-FIN-003",
+      "errors": [],
+      "independence_key": "sha256:8c13cb3f3053c228e88fbc25f11de835765a8f79c4d51bb5e0eef68de9143f8f",
+      "locator": {
+        "cell": "D9",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "D9",
+        "row_hidden": false,
+        "sheet": "Calculation",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Working_Capital_Calculation.xlsx"
+      },
+      "source_id": "SRC-0027",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-FIN-004-01",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-FIN-004",
+      "errors": [],
+      "independence_key": "sha256:ed95d48e673c0399ff7fb2387d7259b8a4fc387a0e2bb154dd0f5b853c9e42a3",
+      "locator": {
+        "cell": "E11",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "E11",
+        "row_hidden": false,
+        "sheet": "Aged Debtors",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Aged_Debtors.xlsx"
+      },
+      "source_id": "SRC-0002",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-FIN-004-02",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-FIN-004",
+      "errors": [],
+      "independence_key": "sha256:ed95d48e673c0399ff7fb2387d7259b8a4fc387a0e2bb154dd0f5b853c9e42a3",
+      "locator": {
+        "cell": "F11",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "F11",
+        "row_hidden": false,
+        "sheet": "Aged Debtors",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Aged_Debtors.xlsx"
+      },
+      "source_id": "SRC-0002",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-FIN-004-03",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-FIN-004",
+      "errors": [],
+      "independence_key": "sha256:ed95d48e673c0399ff7fb2387d7259b8a4fc387a0e2bb154dd0f5b853c9e42a3",
+      "locator": {
+        "cell": "E4",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "E4",
+        "row_hidden": false,
+        "sheet": "Aged Debtors",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Aged_Debtors.xlsx"
+      },
+      "source_id": "SRC-0002",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-FIN-005-01",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-FIN-005",
+      "errors": [],
+      "independence_key": "duplicate_group:DUP-0001",
+      "locator": {
+        "cell": "C6",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "C6",
+        "row_hidden": false,
+        "sheet": "Loans",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Loan_Summary.xlsx"
+      },
+      "source_id": "SRC-0010",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-FIN-005-02",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-FIN-005",
+      "errors": [],
+      "independence_key": "sha256:7819b2d9cae33f1150b08745ea85a9554cde8816546a7ec11c6377cb59fe5690",
+      "locator": {
+        "cell": "C6",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "C6",
+        "row_hidden": false,
+        "sheet": "HP",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/HP_Summary.xlsx"
+      },
+      "source_id": "SRC-0006",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-FIN-005-03",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-FIN-005",
+      "errors": [],
+      "independence_key": "sha256:c057b36ab550a0ea7865aee42c8fda161fdc8307f74db8f2d9f681a12b1fb37b",
+      "locator": {
+        "heading": {
+          "heading_index": 2,
+          "heading_level": 1,
+          "paragraph_index": 9,
+          "text": "Observation"
+        },
+        "heading_level": null,
+        "paragraph_index": 10,
+        "type": "docx_paragraph"
+      },
+      "source_id": "SRC-0017",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-FIN-005-04",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-FIN-005",
+      "errors": [],
+      "independence_key": "sha256:3c27332419e3563c13d01def322e4a2f55ba8fbfbbb98fabf2af050321d11ca2",
+      "locator": {
+        "cell": "C4",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "C4",
+        "row_hidden": false,
+        "sheet": "Trial Balance",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Trial_Balance_2025.xlsx"
+      },
+      "source_id": "SRC-0026",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-FIN-005-05",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-FIN-005",
+      "errors": [],
+      "independence_key": "sha256:ea38bd8e446ad3e19fa6067ad031f5dbf38317141ea9466521d7f6e2069cf5a5",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0009",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-FIN-005-06",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-FIN-005",
+      "errors": [],
+      "independence_key": "sha256:ea38bd8e446ad3e19fa6067ad031f5dbf38317141ea9466521d7f6e2069cf5a5",
+      "locator": {
+        "page_label": "2",
+        "page_number": 2,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0009",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-FIN-006-01",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-FIN-006",
+      "errors": [],
+      "independence_key": "sha256:59386fcdfc0cb4b825446af0611b71583b386aa2241063a2a828380243c0f4e5",
+      "locator": {
+        "cell": "B10",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B10",
+        "row_hidden": false,
+        "sheet": "Contractors",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Contractor_Headcount_by_Client.xlsx"
+      },
+      "source_id": "SRC-0003",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-FIN-006-02",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-FIN-006",
+      "errors": [],
+      "independence_key": "sha256:85a9d8b4f329b213dbb8152bdfa7a90920f716c3f393749ccf8374bd828d299c",
+      "locator": {
+        "cell": "B2",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B2",
+        "row_hidden": false,
+        "sheet": "Contractors",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Legal/Employment/Contractor_List.xlsx"
+      },
+      "source_id": "SRC-0043",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-FIN-006-03",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-FIN-006",
+      "errors": [],
+      "independence_key": "sha256:673eb808737e9e03f2dee34e482eb16a05ef04eebb108351831db74db668b379",
+      "locator": {
+        "cell": "B11",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B11",
+        "row_hidden": false,
+        "sheet": "PAYE",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/PAYE_Headcount_by_Client.xlsx"
+      },
+      "source_id": "SRC-0015",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-FIN-006-04",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-FIN-006",
+      "errors": [],
+      "independence_key": "sha256:b611a12356ef3829f6a52421e908552a39b1addb459edd943daa9b111cec10c4",
+      "locator": {
+        "cell": "B2",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B2",
+        "row_hidden": false,
+        "sheet": "Employees",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Legal/Employment/Employee_Master_Redacted.xlsx"
+      },
+      "source_id": "SRC-0044",
+      "valid": true,
+      "warnings": [
+        {
+          "code": "superseded_source_acknowledged",
+          "message": "citation intentionally uses a potentially superseded source"
+        }
+      ]
+    },
+    {
+      "citation_id": "EVD-FIN-006-05",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-FIN-006",
+      "errors": [],
+      "independence_key": "sha256:c70893e361bd9e60c9c36fab2db5e2f552968488401b1ab0e5e2880ffe2166ea",
+      "locator": {
+        "cell": "A1",
+        "column_hidden": false,
+        "merged_ranges": [
+          "A1:F1"
+        ],
+        "named_ranges": [],
+        "range": "A1",
+        "row_hidden": false,
+        "sheet": "Employees",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "zip://Legal/Updated_Responses.zip!/Updated Responses/Employee_Master_Unredacted.xlsx"
+      },
+      "source_id": "SRC-0095",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-FIN-007-01",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-FIN-007",
+      "errors": [],
+      "independence_key": "sha256:db56ee614205a047737e518d3ca4b27076eb55c414d83b7e16d9d361147e839d",
+      "locator": {
+        "cell": "E8",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "E8",
+        "row_hidden": false,
+        "sheet": "Pipeline",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Revenue_Pipeline.xlsx"
+      },
+      "source_id": "SRC-0019",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-FIN-007-02",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-FIN-007",
+      "errors": [],
+      "independence_key": "sha256:db56ee614205a047737e518d3ca4b27076eb55c414d83b7e16d9d361147e839d",
+      "locator": {
+        "cell": "E4",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "E4",
+        "row_hidden": false,
+        "sheet": "Pipeline",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Revenue_Pipeline.xlsx"
+      },
+      "source_id": "SRC-0019",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-FIN-008-01",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-FIN-008",
+      "errors": [],
+      "independence_key": "sha256:0a9a569c8a107c0b294b27a18b277fd93bc255efe96669a2bf309f5171fc1f8b",
+      "locator": {
+        "cell": "C4",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "C4",
+        "row_hidden": false,
+        "sheet": "Request List",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Financial_Request_List.xlsx"
+      },
+      "source_id": "SRC-0004",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-COMM-001-01",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-COMM-001",
+      "errors": [],
+      "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+      "locator": {
+        "cell": "D6",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "D6",
+        "row_hidden": false,
+        "sheet": "Revenue",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Revenue_by_Customer.xlsx"
+      },
+      "source_id": "SRC-0018",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-COMM-001-02",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-COMM-001",
+      "errors": [],
+      "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+      "locator": {
+        "cell": "D7",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "D7",
+        "row_hidden": false,
+        "sheet": "Revenue",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Revenue_by_Customer.xlsx"
+      },
+      "source_id": "SRC-0018",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-COMM-001-03",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-COMM-001",
+      "errors": [],
+      "independence_key": "sha256:1cd9f5b1ca8c3b3b7141c3caef05f99c7ae60771238f130bc1435e13195e8292",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0038",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-COMM-001-04",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-COMM-001",
+      "errors": [],
+      "independence_key": "sha256:a360541c18ac082596b3f850b3cbc123153f6c907778f9307257722d70ac308e",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0039",
+      "valid": true,
+      "warnings": [
+        {
+          "code": "superseded_source_acknowledged",
+          "message": "citation intentionally uses a potentially superseded source"
+        }
+      ]
+    },
+    {
+      "citation_id": "EVD-COMM-005-01",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-COMM-005",
+      "errors": [],
+      "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+      "locator": {
+        "cell": "B6",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B6",
+        "row_hidden": false,
+        "sheet": "Revenue",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Revenue_by_Customer.xlsx"
+      },
+      "source_id": "SRC-0018",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-COMM-005-02",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-COMM-005",
+      "errors": [],
+      "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+      "locator": {
+        "cell": "B7",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B7",
+        "row_hidden": false,
+        "sheet": "Revenue",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Revenue_by_Customer.xlsx"
+      },
+      "source_id": "SRC-0018",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-COMM-005-03",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-COMM-005",
+      "errors": [],
+      "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+      "locator": {
+        "cell": "B4",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B4",
+        "row_hidden": false,
+        "sheet": "Revenue",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Revenue_by_Customer.xlsx"
+      },
+      "source_id": "SRC-0018",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-COMM-005-04",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-COMM-005",
+      "errors": [],
+      "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+      "locator": {
+        "cell": "B5",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B5",
+        "row_hidden": false,
+        "sheet": "Revenue",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Revenue_by_Customer.xlsx"
+      },
+      "source_id": "SRC-0018",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-COMM-005-05",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-COMM-005",
+      "errors": [],
+      "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+      "locator": {
+        "cell": "C6",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "C6",
+        "row_hidden": false,
+        "sheet": "Revenue",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Revenue_by_Customer.xlsx"
+      },
+      "source_id": "SRC-0018",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-COMM-005-06",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-COMM-005",
+      "errors": [],
+      "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+      "locator": {
+        "cell": "C7",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "C7",
+        "row_hidden": false,
+        "sheet": "Revenue",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Revenue_by_Customer.xlsx"
+      },
+      "source_id": "SRC-0018",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-COMM-005-07",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-COMM-005",
+      "errors": [],
+      "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+      "locator": {
+        "cell": "C4",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "C4",
+        "row_hidden": false,
+        "sheet": "Revenue",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Revenue_by_Customer.xlsx"
+      },
+      "source_id": "SRC-0018",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-COMM-005-08",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-COMM-005",
+      "errors": [],
+      "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+      "locator": {
+        "cell": "C5",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "C5",
+        "row_hidden": false,
+        "sheet": "Revenue",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Revenue_by_Customer.xlsx"
+      },
+      "source_id": "SRC-0018",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-COMM-002-01",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-COMM-002",
+      "errors": [],
+      "independence_key": "sha256:016a429103b401c37609ac2f86e585eaf963b8ac6bd459ca9f68ecc64ef65135",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0040",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-COMM-002-02",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-COMM-002",
+      "errors": [],
+      "independence_key": "sha256:a5dfea93df53b049a228522bf4ddda52f979217f64775b91f122a722f5288583",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0041",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-COMM-003-01",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-COMM-003",
+      "errors": [],
+      "independence_key": "sha256:db56ee614205a047737e518d3ca4b27076eb55c414d83b7e16d9d361147e839d",
+      "locator": {
+        "cell": "C4",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "C4",
+        "row_hidden": false,
+        "sheet": "Pipeline",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Revenue_Pipeline.xlsx"
+      },
+      "source_id": "SRC-0019",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-COMM-003-02",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-COMM-003",
+      "errors": [],
+      "independence_key": "sha256:db56ee614205a047737e518d3ca4b27076eb55c414d83b7e16d9d361147e839d",
+      "locator": {
+        "cell": "B4",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B4",
+        "row_hidden": false,
+        "sheet": "Pipeline",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Revenue_Pipeline.xlsx"
+      },
+      "source_id": "SRC-0019",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-COMM-004-01",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-COMM-004",
+      "errors": [],
+      "independence_key": "sha256:673eb808737e9e03f2dee34e482eb16a05ef04eebb108351831db74db668b379",
+      "locator": {
+        "cell": "B4",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B4",
+        "row_hidden": false,
+        "sheet": "PAYE",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/PAYE_Headcount_by_Client.xlsx"
+      },
+      "source_id": "SRC-0015",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-COMM-004-02",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-COMM-004",
+      "errors": [],
+      "independence_key": "sha256:59386fcdfc0cb4b825446af0611b71583b386aa2241063a2a828380243c0f4e5",
+      "locator": {
+        "cell": "B4",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B4",
+        "row_hidden": false,
+        "sheet": "Contractors",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Contractor_Headcount_by_Client.xlsx"
+      },
+      "source_id": "SRC-0003",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-LEGAL-001-01",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-LEGAL-001",
+      "errors": [],
+      "independence_key": "sha256:6026df9b7b6489bdfab82b0f9f8ba2c2e29003176a6f8d3257d6cdbb5ef5dc73",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0037",
+      "valid": true,
+      "warnings": [
+        {
+          "code": "superseded_source_acknowledged",
+          "message": "citation intentionally uses a potentially superseded source"
+        }
+      ]
+    },
+    {
+      "citation_id": "EVD-LEGAL-001-02",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-LEGAL-001",
+      "errors": [],
+      "independence_key": "sha256:8a6ca9bf4e34833f494ce3329202ccc4ae6c6f775c2ccd4401be0a3900138d22",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0034",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-LEGAL-001-03",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-LEGAL-001",
+      "errors": [],
+      "independence_key": "sha256:958abbea1ac0e50c861113f84e674936043d5f666d2fcb01c69053cdf38a3a45",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0093",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-LEGAL-002-01",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-LEGAL-002",
+      "errors": [],
+      "independence_key": "sha256:1cd9f5b1ca8c3b3b7141c3caef05f99c7ae60771238f130bc1435e13195e8292",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0038",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-LEGAL-002-02",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-LEGAL-002",
+      "errors": [],
+      "independence_key": "sha256:192c6ef3402a570fa1620cdb8c58bd1029f5f852562ef5e327a87aa035ecd132",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0035",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-LEGAL-003-01",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-LEGAL-003",
+      "errors": [],
+      "independence_key": "sha256:31e834ef2f06ebe94d58ae39671da10c185d93e3637ff0f086b304d9a0766ac5",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0029",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-LEGAL-003-02",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-LEGAL-003",
+      "errors": [],
+      "independence_key": "sha256:16eaeb6bc133f1cffd5ec0872a31ad57f4fb9d8d8fcd6030d0900b656f2c29c7",
+      "locator": {
+        "cell": "B4",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B4",
+        "row_hidden": false,
+        "sheet": "Cap Table",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "zip://Legal/Updated_Responses.zip!/Updated Responses/Cap_Table_Rev2.xlsx"
+      },
+      "source_id": "SRC-0091",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-LEGAL-003-03",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-LEGAL-003",
+      "errors": [],
+      "independence_key": "sha256:16eaeb6bc133f1cffd5ec0872a31ad57f4fb9d8d8fcd6030d0900b656f2c29c7",
+      "locator": {
+        "cell": "B5",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B5",
+        "row_hidden": false,
+        "sheet": "Cap Table",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "zip://Legal/Updated_Responses.zip!/Updated Responses/Cap_Table_Rev2.xlsx"
+      },
+      "source_id": "SRC-0091",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-LEGAL-003-04",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-LEGAL-003",
+      "errors": [],
+      "independence_key": "sha256:16eaeb6bc133f1cffd5ec0872a31ad57f4fb9d8d8fcd6030d0900b656f2c29c7",
+      "locator": {
+        "cell": "B6",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B6",
+        "row_hidden": false,
+        "sheet": "Cap Table",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "zip://Legal/Updated_Responses.zip!/Updated Responses/Cap_Table_Rev2.xlsx"
+      },
+      "source_id": "SRC-0091",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-LEGAL-003-05",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-LEGAL-003",
+      "errors": [],
+      "independence_key": "sha256:3a4ff3735d1aa9b953141f9d14755f500bda66fc8cb93f0c2c6217a31ab0f884",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0031",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-LEGAL-004-01",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-LEGAL-004",
+      "errors": [],
+      "independence_key": "sha256:679acb9d1a4bfe5c7be9ff6f625e72c358c617fa7ad34bde81101ccfc7c16607",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0042",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-LEGAL-004-02",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-LEGAL-004",
+      "errors": [],
+      "independence_key": "sha256:85a9d8b4f329b213dbb8152bdfa7a90920f716c3f393749ccf8374bd828d299c",
+      "locator": {
+        "cell": "B2",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B2",
+        "row_hidden": false,
+        "sheet": "Contractors",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Legal/Employment/Contractor_List.xlsx"
+      },
+      "source_id": "SRC-0043",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-LEGAL-004-03",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-LEGAL-004",
+      "errors": [],
+      "independence_key": "sha256:85a9d8b4f329b213dbb8152bdfa7a90920f716c3f393749ccf8374bd828d299c",
+      "locator": {
+        "cell": "E4",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "E4",
+        "row_hidden": false,
+        "sheet": "Contractors",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Legal/Employment/Contractor_List.xlsx"
+      },
+      "source_id": "SRC-0043",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-LEGAL-004-04",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-LEGAL-004",
+      "errors": [],
+      "independence_key": "sha256:85a9d8b4f329b213dbb8152bdfa7a90920f716c3f393749ccf8374bd828d299c",
+      "locator": {
+        "cell": "E5",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "E5",
+        "row_hidden": false,
+        "sheet": "Contractors",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Legal/Employment/Contractor_List.xlsx"
+      },
+      "source_id": "SRC-0043",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-LEGAL-004-05",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-LEGAL-004",
+      "errors": [],
+      "independence_key": "sha256:85a9d8b4f329b213dbb8152bdfa7a90920f716c3f393749ccf8374bd828d299c",
+      "locator": {
+        "cell": "E9",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "E9",
+        "row_hidden": false,
+        "sheet": "Contractors",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Legal/Employment/Contractor_List.xlsx"
+      },
+      "source_id": "SRC-0043",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-LEGAL-004-06",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-LEGAL-004",
+      "errors": [],
+      "independence_key": "sha256:85a9d8b4f329b213dbb8152bdfa7a90920f716c3f393749ccf8374bd828d299c",
+      "locator": {
+        "cell": "E10",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "E10",
+        "row_hidden": false,
+        "sheet": "Contractors",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Legal/Employment/Contractor_List.xlsx"
+      },
+      "source_id": "SRC-0043",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-LEGAL-004-07",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-LEGAL-004",
+      "errors": [],
+      "independence_key": "sha256:85a9d8b4f329b213dbb8152bdfa7a90920f716c3f393749ccf8374bd828d299c",
+      "locator": {
+        "cell": "E14",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "E14",
+        "row_hidden": false,
+        "sheet": "Contractors",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Legal/Employment/Contractor_List.xlsx"
+      },
+      "source_id": "SRC-0043",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-LEGAL-004-08",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-LEGAL-004",
+      "errors": [],
+      "independence_key": "sha256:85a9d8b4f329b213dbb8152bdfa7a90920f716c3f393749ccf8374bd828d299c",
+      "locator": {
+        "cell": "E15",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "E15",
+        "row_hidden": false,
+        "sheet": "Contractors",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Legal/Employment/Contractor_List.xlsx"
+      },
+      "source_id": "SRC-0043",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-LEGAL-005-01",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-LEGAL-005",
+      "errors": [],
+      "independence_key": "sha256:2291d71bdd91b9532d9cefe45c723dc1b9b953cb416cf5957a8aa2c1a72249ab",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0056",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-LEGAL-005-02",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-LEGAL-005",
+      "errors": [],
+      "independence_key": "sha256:b9a4210cbd61b8ce370e67bb188b1126e31a6c37b1fe73baf3d5b5775c4dee7a",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0098",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-LEGAL-006-01",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-LEGAL-006",
+      "errors": [],
+      "independence_key": "sha256:74834b456e2a253491c7633d8bfa1a571d4fae3b4c292d31275964f0d0ef14aa",
+      "locator": {
+        "page_label": "3",
+        "page_number": 3,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0058",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-LEGAL-007-01",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-LEGAL-007",
+      "errors": [],
+      "independence_key": "sha256:679acb9d1a4bfe5c7be9ff6f625e72c358c617fa7ad34bde81101ccfc7c16607",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0042",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-LEGAL-008-01",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-LEGAL-008",
+      "errors": [],
+      "independence_key": "sha256:8a6ca9bf4e34833f494ce3329202ccc4ae6c6f775c2ccd4401be0a3900138d22",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0034",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-LEGAL-008-02",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-LEGAL-008",
+      "errors": [],
+      "independence_key": "sha256:192c6ef3402a570fa1620cdb8c58bd1029f5f852562ef5e327a87aa035ecd132",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0035",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-LEGAL-008-03",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-LEGAL-008",
+      "errors": [],
+      "independence_key": "sha256:8f8e9085612e021443f588f450a49797edd2272d84953f4e65e54f6539e520c9",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0036",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-TAX-001-01",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-TAX-001",
+      "errors": [],
+      "independence_key": "sha256:1d4dd237ab06a214e89f8f6e54fa2d4f1f7e09d3abdca66708c8a79986327b41",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0083",
+      "valid": true,
+      "warnings": [
+        {
+          "code": "superseded_source_acknowledged",
+          "message": "citation intentionally uses a potentially superseded source"
+        }
+      ]
+    },
+    {
+      "citation_id": "EVD-TAX-001-02",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-TAX-001",
+      "errors": [],
+      "independence_key": "sha256:11e276d603c4bf426a8eb6ca6c05dcc11121d5c9559c48540a4b1b4f8b8b5e5c",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0084",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-TAX-001-03",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-TAX-001",
+      "errors": [],
+      "independence_key": "sha256:10def81d50beee4e0e9dd3c5e0d9e6ec4116f7dbd3e72bf7050523176941a517",
+      "locator": {
+        "cell": "B5",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B5",
+        "row_hidden": false,
+        "sheet": "Responses",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Tax/Tax_Response_Summary_Rev2.xlsx"
+      },
+      "source_id": "SRC-0079",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-TAX-001-04",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-TAX-001",
+      "errors": [],
+      "independence_key": "sha256:aa2d6a3d6295968d7622583e19a207842f887cfd28778061fcf4b12b8e139209",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0077",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-TAX-001-05",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-TAX-001",
+      "errors": [],
+      "independence_key": "sha256:b3df3760e5fe3c2dd6271adc00bcd439b0f018de83038f606a5da77080216565",
+      "locator": {
+        "cell": "B6",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B6",
+        "row_hidden": false,
+        "sheet": "Tax TB",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Tax/Trial Balance/Trial_Balance_2025.xlsx"
+      },
+      "source_id": "SRC-0081",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-TAX-002-01",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-TAX-002",
+      "errors": [],
+      "independence_key": "sha256:a6026e86b9b65ec1dcea046eb97adb9aedec8f8f33235d3b65509a5746e907c2",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0074",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-TAX-002-02",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-TAX-002",
+      "errors": [],
+      "independence_key": "sha256:a03c5f315860268c5fed9250a3b2e55bd131d42f33918b4b4a577c6d76c1ca7c",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0071",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-TAX-002-03",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-TAX-002",
+      "errors": [],
+      "independence_key": "sha256:85377d2a88433b5bc0344a6f6387233b20e7d499eaff0b247d8855b2b2e71305",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0072",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-TAX-002-04",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-TAX-002",
+      "errors": [],
+      "independence_key": "sha256:7eb74c4d390b2a9c2b70c8c71e4967e39976f557bcdefb653b38ef6782114757",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0073",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-TAX-002-05",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-TAX-002",
+      "errors": [],
+      "independence_key": "sha256:38081b3f9d9329ee6ceec31dbd58d385cd0310c3d877d6c6c494e4527ba4897c",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0063",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-TAX-002-06",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-TAX-002",
+      "errors": [],
+      "independence_key": "sha256:3c27332419e3563c13d01def322e4a2f55ba8fbfbbb98fabf2af050321d11ca2",
+      "locator": {
+        "cell": "C16",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "C16",
+        "row_hidden": false,
+        "sheet": "Trial Balance",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Trial_Balance_2025.xlsx"
+      },
+      "source_id": "SRC-0026",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-TAX-002-07",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-TAX-002",
+      "errors": [],
+      "independence_key": "sha256:a965c7c835104878d03b65a5d4ed3e5ef65481b83f493bcdc209b75d65b6f884",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0033",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-TAX-003-01",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-TAX-003",
+      "errors": [],
+      "independence_key": "sha256:f34d4beb58d17da8b3cc11ee4adb74e6062148aa31c2f221087b4f7575c33486",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0076",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-TAX-003-02",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-TAX-003",
+      "errors": [],
+      "independence_key": "sha256:59bca9cbd4646f8e8dde92a3aa086ab4e467e5cff8a9706f52c37c186c6b00bd",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0075",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-TAX-003-03",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-TAX-003",
+      "errors": [],
+      "independence_key": "sha256:d65b8710934618fccb2225617cf88beb0e323e33b585ec49dcd87aad75319cee",
+      "locator": {
+        "cell": "B2",
+        "column_index": 2,
+        "column_letter": "B",
+        "column_name": "employee_count",
+        "row_index": 2,
+        "type": "csv_cell"
+      },
+      "source_id": "SRC-0100",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-TAX-003-04",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-TAX-003",
+      "errors": [],
+      "independence_key": "sha256:b3df3760e5fe3c2dd6271adc00bcd439b0f018de83038f606a5da77080216565",
+      "locator": {
+        "cell": "B7",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B7",
+        "row_hidden": false,
+        "sheet": "Tax TB",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Tax/Trial Balance/Trial_Balance_2025.xlsx"
+      },
+      "source_id": "SRC-0081",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-TAX-004-01",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-TAX-004",
+      "errors": [],
+      "independence_key": "sha256:b78df18579d0e295be7b2dd69725ae089f58fda5309a2bd2a4f6069954271605",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0064",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-TAX-004-02",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-TAX-004",
+      "errors": [],
+      "independence_key": "sha256:2c1b9b3648ee63545f6a2782f044d69f3d6a92da9f5451f6deb028e4ff586971",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0065",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-TAX-004-03",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-TAX-004",
+      "errors": [],
+      "independence_key": "sha256:f13b22961b5811d59c805d9d938ead58ec6d90de7f60f7d9dd6ea1f84d476bb1",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0066",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-TAX-004-04",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-TAX-004",
+      "errors": [],
+      "independence_key": "sha256:ee672804b0511b5c2b07417ce693bba845d507c6498e3507f14eb1312113e505",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0067",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-TAX-004-05",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-TAX-004",
+      "errors": [],
+      "independence_key": "sha256:9f063bddb4ecd9f0a1480553e07fea9b530f28f4e26ac2c4ecc4ddc5f31724b5",
+      "locator": {
+        "cell": "E8",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "E8",
+        "row_hidden": false,
+        "sheet": "Register",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Tax/Invoice Samples/Invoice_Register.xlsx"
+      },
+      "source_id": "SRC-0068",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-TAX-004-06",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-TAX-004",
+      "errors": [],
+      "independence_key": "sha256:6e2f8fe8c0c494e4cc545e23287b91f2c0eba422b797e18a9d5dc115335004cc",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0070",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-OPS-001-01",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-OPS-001",
+      "errors": [],
+      "independence_key": "sha256:d73f4d352f7920dc27d189e374b6a5c637fa30da37e76efbd37628a20aef32eb",
+      "locator": {
+        "heading": {
+          "heading_index": 4,
+          "heading_level": 1,
+          "paragraph_index": 13,
+          "text": "IT resilience"
+        },
+        "heading_level": null,
+        "paragraph_index": 14,
+        "type": "docx_paragraph"
+      },
+      "source_id": "SRC-0047",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-OPS-001-02",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-OPS-001",
+      "errors": [],
+      "independence_key": "sha256:c8ebc96835d0194089d0b6c5a0d7f60e12a2c484f864248fe56ebc252a1df23c",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0055",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-OPS-002-01",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-OPS-002",
+      "errors": [],
+      "independence_key": "sha256:c8ebc96835d0194089d0b6c5a0d7f60e12a2c484f864248fe56ebc252a1df23c",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0055",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-OPS-002-02",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-OPS-002",
+      "errors": [],
+      "independence_key": "sha256:ef8d9779a0243573b90a927b6535581260e4d095bcaf19de8f6c987726902bf4",
+      "locator": {
+        "cell": "E4",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "E4",
+        "row_hidden": false,
+        "sheet": "Aged Creditors",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Aged_Creditors.xlsx"
+      },
+      "source_id": "SRC-0001",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-OPS-002-03",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-OPS-002",
+      "errors": [],
+      "independence_key": "sha256:ef8d9779a0243573b90a927b6535581260e4d095bcaf19de8f6c987726902bf4",
+      "locator": {
+        "cell": "C4",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "C4",
+        "row_hidden": false,
+        "sheet": "Aged Creditors",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Aged_Creditors.xlsx"
+      },
+      "source_id": "SRC-0001",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-OPS-002-04",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-OPS-002",
+      "errors": [],
+      "independence_key": "sha256:ef8d9779a0243573b90a927b6535581260e4d095bcaf19de8f6c987726902bf4",
+      "locator": {
+        "cell": "D4",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "D4",
+        "row_hidden": false,
+        "sheet": "Aged Creditors",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Aged_Creditors.xlsx"
+      },
+      "source_id": "SRC-0001",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-IT-001-01",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-IT-001",
+      "errors": [],
+      "independence_key": "sha256:c8ebc96835d0194089d0b6c5a0d7f60e12a2c484f864248fe56ebc252a1df23c",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0055",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-IT-001-02",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-IT-001",
+      "errors": [],
+      "independence_key": "sha256:41944d7dc9e886646c901e4878000c16d1de6675091302a70f3dfe81ab467ad7",
+      "locator": {
+        "heading": {
+          "heading_index": 1,
+          "heading_level": 1,
+          "paragraph_index": 6,
+          "text": "Controls"
+        },
+        "heading_level": null,
+        "paragraph_index": 7,
+        "type": "docx_paragraph"
+      },
+      "source_id": "SRC-0097",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-IT-001-03",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-IT-001",
+      "errors": [],
+      "independence_key": "sha256:a3b086b570999b055b6124d144c0fe11b9cc1fcfb5b7bb1c3b9b214cbc51ec33",
+      "locator": {
+        "heading": {
+          "heading_index": 1,
+          "heading_level": 1,
+          "paragraph_index": 6,
+          "text": "Updates"
+        },
+        "heading_level": null,
+        "paragraph_index": 7,
+        "type": "docx_paragraph"
+      },
+      "source_id": "SRC-0099",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-IT-002-01",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-IT-002",
+      "errors": [],
+      "independence_key": "sha256:016a429103b401c37609ac2f86e585eaf963b8ac6bd459ca9f68ecc64ef65135",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0040",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-IT-002-02",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-IT-002",
+      "errors": [],
+      "independence_key": "sha256:a5dfea93df53b049a228522bf4ddda52f979217f64775b91f122a722f5288583",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0041",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-IT-003-01",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-IT-003",
+      "errors": [],
+      "independence_key": "sha256:c70893e361bd9e60c9c36fab2db5e2f552968488401b1ab0e5e2880ffe2166ea",
+      "locator": {
+        "cell": "B2",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B2",
+        "row_hidden": false,
+        "sheet": "Employees",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "zip://Legal/Updated_Responses.zip!/Updated Responses/Employee_Master_Unredacted.xlsx"
+      },
+      "source_id": "SRC-0095",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-IT-003-02",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-IT-003",
+      "errors": [],
+      "independence_key": "sha256:c70893e361bd9e60c9c36fab2db5e2f552968488401b1ab0e5e2880ffe2166ea",
+      "locator": {
+        "cell": "D3",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "D3",
+        "row_hidden": false,
+        "sheet": "Employees",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "zip://Legal/Updated_Responses.zip!/Updated Responses/Employee_Master_Unredacted.xlsx"
+      },
+      "source_id": "SRC-0095",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-IT-003-03",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-IT-003",
+      "errors": [],
+      "independence_key": "sha256:c70893e361bd9e60c9c36fab2db5e2f552968488401b1ab0e5e2880ffe2166ea",
+      "locator": {
+        "cell": "E3",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "E3",
+        "row_hidden": false,
+        "sheet": "Employees",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "zip://Legal/Updated_Responses.zip!/Updated Responses/Employee_Master_Unredacted.xlsx"
+      },
+      "source_id": "SRC-0095",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "EVD-IT-003-04",
+      "citation_kind": "evidence",
+      "claim_id": "CLM-IT-003",
+      "errors": [],
+      "independence_key": "sha256:c70893e361bd9e60c9c36fab2db5e2f552968488401b1ab0e5e2880ffe2166ea",
+      "locator": {
+        "cell": "F3",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "F3",
+        "row_hidden": false,
+        "sheet": "Employees",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "zip://Legal/Updated_Responses.zip!/Updated Responses/Employee_Master_Unredacted.xlsx"
+      },
+      "source_id": "SRC-0095",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-FIN-001:opening_revenue",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:32094b5de2b73c88dc478a3a12a49694490f150d069315125a9f3c2d8db4344e",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0020",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-FIN-001:closing_revenue",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:1414d9ce588e555e7f60b1827f905bf5ee709a37c9c086e2f34e4969fa7c735a",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0025",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-FIN-002:ebitda",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:1414d9ce588e555e7f60b1827f905bf5ee709a37c9c086e2f34e4969fa7c735a",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0025",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-FIN-002:revenue",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:1414d9ce588e555e7f60b1827f905bf5ee709a37c9c086e2f34e4969fa7c735a",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0025",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-FIN-003:baseline_ebitda",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:97cff696c06a9aee3aa83e3e446b1eaa08a53ec6d93734ba08ff9a3661b4d0e8",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0012",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-FIN-003:transformation_adjustment",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:97cff696c06a9aee3aa83e3e446b1eaa08a53ec6d93734ba08ff9a3661b4d0e8",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0012",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-FIN-004:trade_debtors",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:8c13cb3f3053c228e88fbc25f11de835765a8f79c4d51bb5e0eef68de9143f8f",
+      "locator": {
+        "cell": "B4",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B4",
+        "row_hidden": false,
+        "sheet": "Calculation",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Working_Capital_Calculation.xlsx"
+      },
+      "source_id": "SRC-0027",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-FIN-004:other_debtors",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:8c13cb3f3053c228e88fbc25f11de835765a8f79c4d51bb5e0eef68de9143f8f",
+      "locator": {
+        "cell": "B5",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B5",
+        "row_hidden": false,
+        "sheet": "Calculation",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Working_Capital_Calculation.xlsx"
+      },
+      "source_id": "SRC-0027",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-FIN-004:trade_creditors",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:8c13cb3f3053c228e88fbc25f11de835765a8f79c4d51bb5e0eef68de9143f8f",
+      "locator": {
+        "cell": "B6",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B6",
+        "row_hidden": false,
+        "sheet": "Calculation",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Working_Capital_Calculation.xlsx"
+      },
+      "source_id": "SRC-0027",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-FIN-004:prepayments",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:8c13cb3f3053c228e88fbc25f11de835765a8f79c4d51bb5e0eef68de9143f8f",
+      "locator": {
+        "cell": "B8",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B8",
+        "row_hidden": true,
+        "sheet": "Calculation",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Working_Capital_Calculation.xlsx"
+      },
+      "source_id": "SRC-0027",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-FIN-005:over_90_1",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:ed95d48e673c0399ff7fb2387d7259b8a4fc387a0e2bb154dd0f5b853c9e42a3",
+      "locator": {
+        "cell": "E4",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "E4",
+        "row_hidden": false,
+        "sheet": "Aged Debtors",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Aged_Debtors.xlsx"
+      },
+      "source_id": "SRC-0002",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-FIN-005:over_90_2",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:ed95d48e673c0399ff7fb2387d7259b8a4fc387a0e2bb154dd0f5b853c9e42a3",
+      "locator": {
+        "cell": "E5",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "E5",
+        "row_hidden": false,
+        "sheet": "Aged Debtors",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Aged_Debtors.xlsx"
+      },
+      "source_id": "SRC-0002",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-FIN-005:over_90_3",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:ed95d48e673c0399ff7fb2387d7259b8a4fc387a0e2bb154dd0f5b853c9e42a3",
+      "locator": {
+        "cell": "E6",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "E6",
+        "row_hidden": false,
+        "sheet": "Aged Debtors",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Aged_Debtors.xlsx"
+      },
+      "source_id": "SRC-0002",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-FIN-005:over_90_4",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:ed95d48e673c0399ff7fb2387d7259b8a4fc387a0e2bb154dd0f5b853c9e42a3",
+      "locator": {
+        "cell": "E7",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "E7",
+        "row_hidden": false,
+        "sheet": "Aged Debtors",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Aged_Debtors.xlsx"
+      },
+      "source_id": "SRC-0002",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-FIN-005:over_90_5",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:ed95d48e673c0399ff7fb2387d7259b8a4fc387a0e2bb154dd0f5b853c9e42a3",
+      "locator": {
+        "cell": "E8",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "E8",
+        "row_hidden": false,
+        "sheet": "Aged Debtors",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Aged_Debtors.xlsx"
+      },
+      "source_id": "SRC-0002",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-FIN-005:over_90_6",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:ed95d48e673c0399ff7fb2387d7259b8a4fc387a0e2bb154dd0f5b853c9e42a3",
+      "locator": {
+        "cell": "E9",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "E9",
+        "row_hidden": false,
+        "sheet": "Aged Debtors",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Aged_Debtors.xlsx"
+      },
+      "source_id": "SRC-0002",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-FIN-005:over_90_7",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:ed95d48e673c0399ff7fb2387d7259b8a4fc387a0e2bb154dd0f5b853c9e42a3",
+      "locator": {
+        "cell": "E10",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "E10",
+        "row_hidden": false,
+        "sheet": "Aged Debtors",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Aged_Debtors.xlsx"
+      },
+      "source_id": "SRC-0002",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-FIN-006:loans",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "duplicate_group:DUP-0001",
+      "locator": {
+        "cell": "C6",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "C6",
+        "row_hidden": false,
+        "sheet": "Loans",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Loan_Summary.xlsx"
+      },
+      "source_id": "SRC-0010",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-FIN-006:hp",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:7819b2d9cae33f1150b08745ea85a9554cde8816546a7ec11c6377cb59fe5690",
+      "locator": {
+        "cell": "C6",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "C6",
+        "row_hidden": false,
+        "sheet": "HP",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/HP_Summary.xlsx"
+      },
+      "source_id": "SRC-0006",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-FIN-006:director_account",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:c057b36ab550a0ea7865aee42c8fda161fdc8307f74db8f2d9f681a12b1fb37b",
+      "locator": {
+        "heading": {
+          "heading_index": 2,
+          "heading_level": 1,
+          "paragraph_index": 9,
+          "text": "Observation"
+        },
+        "heading_level": null,
+        "paragraph_index": 10,
+        "type": "docx_paragraph"
+      },
+      "source_id": "SRC-0017",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-FIN-006:cash",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:3c27332419e3563c13d01def322e4a2f55ba8fbfbbb98fabf2af050321d11ca2",
+      "locator": {
+        "cell": "C4",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "C4",
+        "row_hidden": false,
+        "sheet": "Trial Balance",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Trial_Balance_2025.xlsx"
+      },
+      "source_id": "SRC-0026",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-FIN-007:allocated_contractors",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:59386fcdfc0cb4b825446af0611b71583b386aa2241063a2a828380243c0f4e5",
+      "locator": {
+        "cell": "B10",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B10",
+        "row_hidden": false,
+        "sheet": "Contractors",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Contractor_Headcount_by_Client.xlsx"
+      },
+      "source_id": "SRC-0003",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-FIN-007:active_contractors",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:85a9d8b4f329b213dbb8152bdfa7a90920f716c3f393749ccf8374bd828d299c",
+      "locator": {
+        "cell": "B2",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B2",
+        "row_hidden": false,
+        "sheet": "Contractors",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Legal/Employment/Contractor_List.xlsx"
+      },
+      "source_id": "SRC-0043",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-FIN-008:weighted_1",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:db56ee614205a047737e518d3ca4b27076eb55c414d83b7e16d9d361147e839d",
+      "locator": {
+        "cell": "E4",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "E4",
+        "row_hidden": false,
+        "sheet": "Pipeline",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Revenue_Pipeline.xlsx"
+      },
+      "source_id": "SRC-0019",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-FIN-008:weighted_2",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:db56ee614205a047737e518d3ca4b27076eb55c414d83b7e16d9d361147e839d",
+      "locator": {
+        "cell": "E5",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "E5",
+        "row_hidden": false,
+        "sheet": "Pipeline",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Revenue_Pipeline.xlsx"
+      },
+      "source_id": "SRC-0019",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-FIN-008:weighted_3",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:db56ee614205a047737e518d3ca4b27076eb55c414d83b7e16d9d361147e839d",
+      "locator": {
+        "cell": "E6",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "E6",
+        "row_hidden": false,
+        "sheet": "Pipeline",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Revenue_Pipeline.xlsx"
+      },
+      "source_id": "SRC-0019",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-FIN-008:weighted_4",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:db56ee614205a047737e518d3ca4b27076eb55c414d83b7e16d9d361147e839d",
+      "locator": {
+        "cell": "E7",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "E7",
+        "row_hidden": false,
+        "sheet": "Pipeline",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Revenue_Pipeline.xlsx"
+      },
+      "source_id": "SRC-0019",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-FIN-009:top_weighted_1",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:db56ee614205a047737e518d3ca4b27076eb55c414d83b7e16d9d361147e839d",
+      "locator": {
+        "cell": "E4",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "E4",
+        "row_hidden": false,
+        "sheet": "Pipeline",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Revenue_Pipeline.xlsx"
+      },
+      "source_id": "SRC-0019",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-FIN-009:top_weighted_2",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:db56ee614205a047737e518d3ca4b27076eb55c414d83b7e16d9d361147e839d",
+      "locator": {
+        "cell": "E6",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "E6",
+        "row_hidden": false,
+        "sheet": "Pipeline",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Revenue_Pipeline.xlsx"
+      },
+      "source_id": "SRC-0019",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-FIN-009:recomputed_pipeline",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:db56ee614205a047737e518d3ca4b27076eb55c414d83b7e16d9d361147e839d",
+      "locator": {
+        "cell": "E8",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "E8",
+        "row_hidden": false,
+        "sheet": "Pipeline",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Revenue_Pipeline.xlsx"
+      },
+      "source_id": "SRC-0019",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-COMM-001:member_1",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+      "locator": {
+        "cell": "B6",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B6",
+        "row_hidden": false,
+        "sheet": "Revenue",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Revenue_by_Customer.xlsx"
+      },
+      "source_id": "SRC-0018",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-COMM-001:member_2",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+      "locator": {
+        "cell": "B7",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B7",
+        "row_hidden": false,
+        "sheet": "Revenue",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Revenue_by_Customer.xlsx"
+      },
+      "source_id": "SRC-0018",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-COMM-001:total_revenue",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+      "locator": {
+        "cell": "B11",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B11",
+        "row_hidden": false,
+        "sheet": "Revenue",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Revenue_by_Customer.xlsx"
+      },
+      "source_id": "SRC-0018",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-COMM-002:member_1",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+      "locator": {
+        "cell": "C6",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "C6",
+        "row_hidden": false,
+        "sheet": "Revenue",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Revenue_by_Customer.xlsx"
+      },
+      "source_id": "SRC-0018",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-COMM-002:member_2",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+      "locator": {
+        "cell": "C7",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "C7",
+        "row_hidden": false,
+        "sheet": "Revenue",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Revenue_by_Customer.xlsx"
+      },
+      "source_id": "SRC-0018",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-COMM-002:total_revenue",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+      "locator": {
+        "cell": "C11",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "C11",
+        "row_hidden": false,
+        "sheet": "Revenue",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Revenue_by_Customer.xlsx"
+      },
+      "source_id": "SRC-0018",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-COMM-004:fy_row_1",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+      "locator": {
+        "cell": "B6",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B6",
+        "row_hidden": false,
+        "sheet": "Revenue",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Revenue_by_Customer.xlsx"
+      },
+      "source_id": "SRC-0018",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-COMM-004:fy_row_2",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+      "locator": {
+        "cell": "B7",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B7",
+        "row_hidden": false,
+        "sheet": "Revenue",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Revenue_by_Customer.xlsx"
+      },
+      "source_id": "SRC-0018",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-COMM-004:fy_row_3",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+      "locator": {
+        "cell": "B4",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B4",
+        "row_hidden": false,
+        "sheet": "Revenue",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Revenue_by_Customer.xlsx"
+      },
+      "source_id": "SRC-0018",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-COMM-004:fy_total",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+      "locator": {
+        "cell": "B11",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B11",
+        "row_hidden": false,
+        "sheet": "Revenue",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Revenue_by_Customer.xlsx"
+      },
+      "source_id": "SRC-0018",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-COMM-005:current_row_1",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+      "locator": {
+        "cell": "C6",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "C6",
+        "row_hidden": false,
+        "sheet": "Revenue",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Revenue_by_Customer.xlsx"
+      },
+      "source_id": "SRC-0018",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-COMM-005:current_row_2",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+      "locator": {
+        "cell": "C7",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "C7",
+        "row_hidden": false,
+        "sheet": "Revenue",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Revenue_by_Customer.xlsx"
+      },
+      "source_id": "SRC-0018",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-COMM-005:current_row_3",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+      "locator": {
+        "cell": "C4",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "C4",
+        "row_hidden": false,
+        "sheet": "Revenue",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Revenue_by_Customer.xlsx"
+      },
+      "source_id": "SRC-0018",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-COMM-005:current_row_4",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+      "locator": {
+        "cell": "C5",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "C5",
+        "row_hidden": false,
+        "sheet": "Revenue",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Revenue_by_Customer.xlsx"
+      },
+      "source_id": "SRC-0018",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-COMM-005:current_total",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+      "locator": {
+        "cell": "C11",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "C11",
+        "row_hidden": false,
+        "sheet": "Revenue",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Revenue_by_Customer.xlsx"
+      },
+      "source_id": "SRC-0018",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-COMM-003:client_paye",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:673eb808737e9e03f2dee34e482eb16a05ef04eebb108351831db74db668b379",
+      "locator": {
+        "cell": "B4",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B4",
+        "row_hidden": false,
+        "sheet": "PAYE",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/PAYE_Headcount_by_Client.xlsx"
+      },
+      "source_id": "SRC-0015",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-COMM-003:client_contractors",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:59386fcdfc0cb4b825446af0611b71583b386aa2241063a2a828380243c0f4e5",
+      "locator": {
+        "cell": "B4",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B4",
+        "row_hidden": false,
+        "sheet": "Contractors",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Contractor_Headcount_by_Client.xlsx"
+      },
+      "source_id": "SRC-0003",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-COMM-003:total_paye",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:673eb808737e9e03f2dee34e482eb16a05ef04eebb108351831db74db668b379",
+      "locator": {
+        "cell": "B11",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B11",
+        "row_hidden": false,
+        "sheet": "PAYE",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/PAYE_Headcount_by_Client.xlsx"
+      },
+      "source_id": "SRC-0015",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-COMM-003:legal_contractor_population",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:85a9d8b4f329b213dbb8152bdfa7a90920f716c3f393749ccf8374bd828d299c",
+      "locator": {
+        "cell": "B2",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B2",
+        "row_hidden": false,
+        "sheet": "Contractors",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Legal/Employment/Contractor_List.xlsx"
+      },
+      "source_id": "SRC-0043",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-COMM-006:client_paye",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:673eb808737e9e03f2dee34e482eb16a05ef04eebb108351831db74db668b379",
+      "locator": {
+        "cell": "B4",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B4",
+        "row_hidden": false,
+        "sheet": "PAYE",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/PAYE_Headcount_by_Client.xlsx"
+      },
+      "source_id": "SRC-0015",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-COMM-006:client_contractors",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:59386fcdfc0cb4b825446af0611b71583b386aa2241063a2a828380243c0f4e5",
+      "locator": {
+        "cell": "B4",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B4",
+        "row_hidden": false,
+        "sheet": "Contractors",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Contractor_Headcount_by_Client.xlsx"
+      },
+      "source_id": "SRC-0003",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-COMM-006:total_paye",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:673eb808737e9e03f2dee34e482eb16a05ef04eebb108351831db74db668b379",
+      "locator": {
+        "cell": "B11",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B11",
+        "row_hidden": false,
+        "sheet": "PAYE",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/PAYE_Headcount_by_Client.xlsx"
+      },
+      "source_id": "SRC-0015",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-COMM-006:submitted_contractor_population",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:59386fcdfc0cb4b825446af0611b71583b386aa2241063a2a828380243c0f4e5",
+      "locator": {
+        "cell": "B10",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B10",
+        "row_hidden": false,
+        "sheet": "Contractors",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Contractor_Headcount_by_Client.xlsx"
+      },
+      "source_id": "SRC-0003",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-COMM-006:legal_contractor_population",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:85a9d8b4f329b213dbb8152bdfa7a90920f716c3f393749ccf8374bd828d299c",
+      "locator": {
+        "cell": "B2",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B2",
+        "row_hidden": false,
+        "sheet": "Contractors",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Legal/Employment/Contractor_List.xlsx"
+      },
+      "source_id": "SRC-0043",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-LEGAL-001:holder_1",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:16eaeb6bc133f1cffd5ec0872a31ad57f4fb9d8d8fcd6030d0900b656f2c29c7",
+      "locator": {
+        "cell": "B4",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B4",
+        "row_hidden": false,
+        "sheet": "Cap Table",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "zip://Legal/Updated_Responses.zip!/Updated Responses/Cap_Table_Rev2.xlsx"
+      },
+      "source_id": "SRC-0091",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-LEGAL-001:holder_2",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:16eaeb6bc133f1cffd5ec0872a31ad57f4fb9d8d8fcd6030d0900b656f2c29c7",
+      "locator": {
+        "cell": "B5",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B5",
+        "row_hidden": false,
+        "sheet": "Cap Table",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "zip://Legal/Updated_Responses.zip!/Updated Responses/Cap_Table_Rev2.xlsx"
+      },
+      "source_id": "SRC-0091",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-LEGAL-001:holder_3",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:16eaeb6bc133f1cffd5ec0872a31ad57f4fb9d8d8fcd6030d0900b656f2c29c7",
+      "locator": {
+        "cell": "B6",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "B6",
+        "row_hidden": false,
+        "sheet": "Cap Table",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "zip://Legal/Updated_Responses.zip!/Updated Responses/Cap_Table_Rev2.xlsx"
+      },
+      "source_id": "SRC-0091",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-TAX-001:amended_payable",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:11e276d603c4bf426a8eb6ca6c05dcc11121d5c9559c48540a4b1b4f8b8b5e5c",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0084",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-TAX-001:original_payable",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:1d4dd237ab06a214e89f8f6e54fa2d4f1f7e09d3abdca66708c8a79986327b41",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0083",
+      "valid": true,
+      "warnings": [
+        {
+          "code": "superseded_source_acknowledged",
+          "message": "citation intentionally uses a potentially superseded source"
+        }
+      ]
+    },
+    {
+      "citation_id": "CALC-TAX-002:payment",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:85377d2a88433b5bc0344a6f6387233b20e7d499eaff0b247d8855b2b2e71305",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0072",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-TAX-002:refund",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:7eb74c4d390b2a9c2b70c8c71e4967e39976f557bcdefb653b38ef6782114757",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0073",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-TAX-002:return_liability",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:a6026e86b9b65ec1dcea046eb97adb9aedec8f8f33235d3b65509a5746e907c2",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0074",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-TAX-002:amendment_charge",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:a03c5f315860268c5fed9250a3b2e55bd131d42f33918b4b4a577c6d76c1ca7c",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0071",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-TAX-003:return_liability",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:f34d4beb58d17da8b3cc11ee4adb74e6062148aa31c2f221087b4f7575c33486",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0076",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-TAX-003:payments",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:59bca9cbd4646f8e8dde92a3aa086ab4e467e5cff8a9706f52c37c186c6b00bd",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0075",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-TAX-004:invoice_gross_1",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:b78df18579d0e295be7b2dd69725ae089f58fda5309a2bd2a4f6069954271605",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0064",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-TAX-004:invoice_gross_2",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:2c1b9b3648ee63545f6a2782f044d69f3d6a92da9f5451f6deb028e4ff586971",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0065",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-TAX-004:invoice_gross_3",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:f13b22961b5811d59c805d9d938ead58ec6d90de7f60f7d9dd6ea1f84d476bb1",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0066",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-TAX-004:invoice_gross_4",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:ee672804b0511b5c2b07417ce693bba845d507c6498e3507f14eb1312113e505",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "source_id": "SRC-0067",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-TAX-004:register_gross",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:9f063bddb4ecd9f0a1480553e07fea9b530f28f4e26ac2c4ecc4ddc5f31724b5",
+      "locator": {
+        "cell": "E8",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "E8",
+        "row_hidden": false,
+        "sheet": "Register",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Tax/Invoice Samples/Invoice_Register.xlsx"
+      },
+      "source_id": "SRC-0068",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-OPS-001:aged_31_60",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:ef8d9779a0243573b90a927b6535581260e4d095bcaf19de8f6c987726902bf4",
+      "locator": {
+        "cell": "C4",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "C4",
+        "row_hidden": false,
+        "sheet": "Aged Creditors",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Aged_Creditors.xlsx"
+      },
+      "source_id": "SRC-0001",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "citation_id": "CALC-OPS-001:aged_61_plus",
+      "citation_kind": "calculation_input",
+      "claim_id": null,
+      "errors": [],
+      "independence_key": "sha256:ef8d9779a0243573b90a927b6535581260e4d095bcaf19de8f6c987726902bf4",
+      "locator": {
+        "cell": "D4",
+        "column_hidden": false,
+        "merged_ranges": [],
+        "named_ranges": [],
+        "range": "D4",
+        "row_hidden": false,
+        "sheet": "Aged Creditors",
+        "sheet_index": 1,
+        "sheet_state": "visible",
+        "type": "spreadsheet_cell",
+        "workbook": "Financial/Aged_Creditors.xlsx"
+      },
+      "source_id": "SRC-0001",
+      "valid": true,
+      "warnings": []
+    }
+  ],
+  "claim_results": [
+    {
+      "claim_id": "CLM-FIN-001",
+      "errors": [],
+      "independent_supporting_source_count": 2,
+      "material": true,
+      "required_independent_sources": 1,
+      "supporting_citation_count": 2,
+      "valid": true
+    },
+    {
+      "claim_id": "CLM-FIN-002",
+      "errors": [],
+      "independent_supporting_source_count": 2,
+      "material": true,
+      "required_independent_sources": 1,
+      "supporting_citation_count": 2,
+      "valid": true
+    },
+    {
+      "claim_id": "CLM-FIN-003",
+      "errors": [],
+      "independent_supporting_source_count": 1,
+      "material": true,
+      "required_independent_sources": 1,
+      "supporting_citation_count": 3,
+      "valid": true
+    },
+    {
+      "claim_id": "CLM-FIN-004",
+      "errors": [],
+      "independent_supporting_source_count": 1,
+      "material": true,
+      "required_independent_sources": 1,
+      "supporting_citation_count": 3,
+      "valid": true
+    },
+    {
+      "claim_id": "CLM-FIN-005",
+      "errors": [],
+      "independent_supporting_source_count": 5,
+      "material": true,
+      "required_independent_sources": 1,
+      "supporting_citation_count": 6,
+      "valid": true
+    },
+    {
+      "claim_id": "CLM-FIN-006",
+      "errors": [],
+      "independent_supporting_source_count": 5,
+      "material": true,
+      "required_independent_sources": 1,
+      "supporting_citation_count": 5,
+      "valid": true
+    },
+    {
+      "claim_id": "CLM-FIN-007",
+      "errors": [],
+      "independent_supporting_source_count": 1,
+      "material": false,
+      "required_independent_sources": 1,
+      "supporting_citation_count": 2,
+      "valid": true
+    },
+    {
+      "claim_id": "CLM-FIN-008",
+      "errors": [],
+      "independent_supporting_source_count": 1,
+      "material": true,
+      "required_independent_sources": 1,
+      "supporting_citation_count": 1,
+      "valid": true
+    },
+    {
+      "claim_id": "CLM-COMM-001",
+      "errors": [],
+      "independent_supporting_source_count": 3,
+      "material": true,
+      "required_independent_sources": 1,
+      "supporting_citation_count": 4,
+      "valid": true
+    },
+    {
+      "claim_id": "CLM-COMM-005",
+      "errors": [],
+      "independent_supporting_source_count": 1,
+      "material": true,
+      "required_independent_sources": 1,
+      "supporting_citation_count": 8,
+      "valid": true
+    },
+    {
+      "claim_id": "CLM-COMM-002",
+      "errors": [],
+      "independent_supporting_source_count": 2,
+      "material": true,
+      "required_independent_sources": 1,
+      "supporting_citation_count": 2,
+      "valid": true
+    },
+    {
+      "claim_id": "CLM-COMM-003",
+      "errors": [],
+      "independent_supporting_source_count": 1,
+      "material": true,
+      "required_independent_sources": 1,
+      "supporting_citation_count": 2,
+      "valid": true
+    },
+    {
+      "claim_id": "CLM-COMM-004",
+      "errors": [],
+      "independent_supporting_source_count": 2,
+      "material": true,
+      "required_independent_sources": 1,
+      "supporting_citation_count": 2,
+      "valid": true
+    },
+    {
+      "claim_id": "CLM-LEGAL-001",
+      "errors": [],
+      "independent_supporting_source_count": 3,
+      "material": true,
+      "required_independent_sources": 1,
+      "supporting_citation_count": 3,
+      "valid": true
+    },
+    {
+      "claim_id": "CLM-LEGAL-002",
+      "errors": [],
+      "independent_supporting_source_count": 2,
+      "material": true,
+      "required_independent_sources": 1,
+      "supporting_citation_count": 2,
+      "valid": true
+    },
+    {
+      "claim_id": "CLM-LEGAL-003",
+      "errors": [],
+      "independent_supporting_source_count": 3,
+      "material": true,
+      "required_independent_sources": 1,
+      "supporting_citation_count": 5,
+      "valid": true
+    },
+    {
+      "claim_id": "CLM-LEGAL-004",
+      "errors": [],
+      "independent_supporting_source_count": 2,
+      "material": true,
+      "required_independent_sources": 1,
+      "supporting_citation_count": 8,
+      "valid": true
+    },
+    {
+      "claim_id": "CLM-LEGAL-005",
+      "errors": [],
+      "independent_supporting_source_count": 2,
+      "material": false,
+      "required_independent_sources": 1,
+      "supporting_citation_count": 2,
+      "valid": true
+    },
+    {
+      "claim_id": "CLM-LEGAL-006",
+      "errors": [],
+      "independent_supporting_source_count": 1,
+      "material": true,
+      "required_independent_sources": 1,
+      "supporting_citation_count": 1,
+      "valid": true
+    },
+    {
+      "claim_id": "CLM-LEGAL-007",
+      "errors": [],
+      "independent_supporting_source_count": 1,
+      "material": true,
+      "required_independent_sources": 1,
+      "supporting_citation_count": 1,
+      "valid": true
+    },
+    {
+      "claim_id": "CLM-LEGAL-008",
+      "errors": [],
+      "independent_supporting_source_count": 3,
+      "material": true,
+      "required_independent_sources": 1,
+      "supporting_citation_count": 3,
+      "valid": true
+    },
+    {
+      "claim_id": "CLM-TAX-001",
+      "errors": [],
+      "independent_supporting_source_count": 5,
+      "material": true,
+      "required_independent_sources": 1,
+      "supporting_citation_count": 5,
+      "valid": true
+    },
+    {
+      "claim_id": "CLM-TAX-002",
+      "errors": [],
+      "independent_supporting_source_count": 7,
+      "material": true,
+      "required_independent_sources": 1,
+      "supporting_citation_count": 7,
+      "valid": true
+    },
+    {
+      "claim_id": "CLM-TAX-003",
+      "errors": [],
+      "independent_supporting_source_count": 4,
+      "material": true,
+      "required_independent_sources": 1,
+      "supporting_citation_count": 4,
+      "valid": true
+    },
+    {
+      "claim_id": "CLM-TAX-004",
+      "errors": [],
+      "independent_supporting_source_count": 6,
+      "material": false,
+      "required_independent_sources": 1,
+      "supporting_citation_count": 6,
+      "valid": true
+    },
+    {
+      "claim_id": "CLM-OPS-001",
+      "errors": [],
+      "independent_supporting_source_count": 2,
+      "material": true,
+      "required_independent_sources": 1,
+      "supporting_citation_count": 2,
+      "valid": true
+    },
+    {
+      "claim_id": "CLM-OPS-002",
+      "errors": [],
+      "independent_supporting_source_count": 2,
+      "material": true,
+      "required_independent_sources": 1,
+      "supporting_citation_count": 4,
+      "valid": true
+    },
+    {
+      "claim_id": "CLM-IT-001",
+      "errors": [],
+      "independent_supporting_source_count": 3,
+      "material": true,
+      "required_independent_sources": 1,
+      "supporting_citation_count": 3,
+      "valid": true
+    },
+    {
+      "claim_id": "CLM-IT-002",
+      "errors": [],
+      "independent_supporting_source_count": 2,
+      "material": true,
+      "required_independent_sources": 1,
+      "supporting_citation_count": 2,
+      "valid": true
+    },
+    {
+      "claim_id": "CLM-IT-003",
+      "errors": [],
+      "independent_supporting_source_count": 1,
+      "material": true,
+      "required_independent_sources": 1,
+      "supporting_citation_count": 4,
+      "valid": true
+    }
+  ],
+  "duplicate_corroboration_exclusions": [
+    {
+      "claim_id": "CLM-FIN-003",
+      "excluded_evidence_ids": [
+        "EVD-FIN-003-02",
+        "EVD-FIN-003-03"
+      ],
+      "independence_key": "sha256:8c13cb3f3053c228e88fbc25f11de835765a8f79c4d51bb5e0eef68de9143f8f",
+      "retained_evidence_id": "EVD-FIN-003-01"
+    },
+    {
+      "claim_id": "CLM-FIN-004",
+      "excluded_evidence_ids": [
+        "EVD-FIN-004-02",
+        "EVD-FIN-004-03"
+      ],
+      "independence_key": "sha256:ed95d48e673c0399ff7fb2387d7259b8a4fc387a0e2bb154dd0f5b853c9e42a3",
+      "retained_evidence_id": "EVD-FIN-004-01"
+    },
+    {
+      "claim_id": "CLM-FIN-005",
+      "excluded_evidence_ids": [
+        "EVD-FIN-005-06"
+      ],
+      "independence_key": "sha256:ea38bd8e446ad3e19fa6067ad031f5dbf38317141ea9466521d7f6e2069cf5a5",
+      "retained_evidence_id": "EVD-FIN-005-05"
+    },
+    {
+      "claim_id": "CLM-FIN-007",
+      "excluded_evidence_ids": [
+        "EVD-FIN-007-02"
+      ],
+      "independence_key": "sha256:db56ee614205a047737e518d3ca4b27076eb55c414d83b7e16d9d361147e839d",
+      "retained_evidence_id": "EVD-FIN-007-01"
+    },
+    {
+      "claim_id": "CLM-COMM-001",
+      "excluded_evidence_ids": [
+        "EVD-COMM-001-02"
+      ],
+      "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+      "retained_evidence_id": "EVD-COMM-001-01"
+    },
+    {
+      "claim_id": "CLM-COMM-005",
+      "excluded_evidence_ids": [
+        "EVD-COMM-005-02",
+        "EVD-COMM-005-03",
+        "EVD-COMM-005-04",
+        "EVD-COMM-005-05",
+        "EVD-COMM-005-06",
+        "EVD-COMM-005-07",
+        "EVD-COMM-005-08"
+      ],
+      "independence_key": "sha256:6d92e73e115381a22226044b45fd00b4eb5051f0ce92fdbe353df8da57535324",
+      "retained_evidence_id": "EVD-COMM-005-01"
+    },
+    {
+      "claim_id": "CLM-COMM-003",
+      "excluded_evidence_ids": [
+        "EVD-COMM-003-02"
+      ],
+      "independence_key": "sha256:db56ee614205a047737e518d3ca4b27076eb55c414d83b7e16d9d361147e839d",
+      "retained_evidence_id": "EVD-COMM-003-01"
+    },
+    {
+      "claim_id": "CLM-LEGAL-003",
+      "excluded_evidence_ids": [
+        "EVD-LEGAL-003-03",
+        "EVD-LEGAL-003-04"
+      ],
+      "independence_key": "sha256:16eaeb6bc133f1cffd5ec0872a31ad57f4fb9d8d8fcd6030d0900b656f2c29c7",
+      "retained_evidence_id": "EVD-LEGAL-003-02"
+    },
+    {
+      "claim_id": "CLM-LEGAL-004",
+      "excluded_evidence_ids": [
+        "EVD-LEGAL-004-03",
+        "EVD-LEGAL-004-04",
+        "EVD-LEGAL-004-05",
+        "EVD-LEGAL-004-06",
+        "EVD-LEGAL-004-07",
+        "EVD-LEGAL-004-08"
+      ],
+      "independence_key": "sha256:85a9d8b4f329b213dbb8152bdfa7a90920f716c3f393749ccf8374bd828d299c",
+      "retained_evidence_id": "EVD-LEGAL-004-02"
+    },
+    {
+      "claim_id": "CLM-OPS-002",
+      "excluded_evidence_ids": [
+        "EVD-OPS-002-03",
+        "EVD-OPS-002-04"
+      ],
+      "independence_key": "sha256:ef8d9779a0243573b90a927b6535581260e4d095bcaf19de8f6c987726902bf4",
+      "retained_evidence_id": "EVD-OPS-002-02"
+    },
+    {
+      "claim_id": "CLM-IT-003",
+      "excluded_evidence_ids": [
+        "EVD-IT-003-02",
+        "EVD-IT-003-03",
+        "EVD-IT-003-04"
+      ],
+      "independence_key": "sha256:c70893e361bd9e60c9c36fab2db5e2f552968488401b1ab0e5e2880ffe2166ea",
+      "retained_evidence_id": "EVD-IT-003-01"
+    }
+  ],
+  "failed_citations": [],
+  "record_errors": [],
+  "reference_errors": [],
+  "run_id": "20260901T040928457675Z-dede88eb959c",
+  "schema_version": 1,
+  "status": "passed",
+  "summary": {
+    "calculation_count": 21,
+    "calculation_failure_count": 0,
+    "citation_count": 176,
+    "claim_count": 30,
+    "contradiction_count": 5,
+    "duplicate_corroboration_exclusion_count": 11,
+    "evidence_count": 104,
+    "failed_citation_count": 0,
+    "gap_count": 26,
+    "issue_count": 30,
+    "material_claim_count": 27,
+    "material_claim_coverage": 1.0,
+    "material_claims_supported": 27,
+    "record_error_count": 0,
+    "reference_error_count": 0
+  }
+}

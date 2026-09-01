@@ -1,0 +1,827 @@
+{
+  "evidence_scope": "complete register plus early material extraction signals",
+  "excluded_candidates": [
+    {
+      "candidate_topic": "non-debt-vision-queue",
+      "reason": "Deferred to round two: these visual sources are not yet shown to change the early price/structure decision and remain visible in needs_vision.json.",
+      "supporting_source_ids": [
+        "SRC-0030",
+        "SRC-0057",
+        "SRC-0058",
+        "SRC-0092"
+      ]
+    },
+    {
+      "candidate_topic": "generic-questionnaire-non-answers",
+      "reason": "Excluded from round one as a bulk administrative request; only non-answers linked to a material observed matter are promoted.",
+      "supporting_source_ids": [
+        "SRC-0004",
+        "SRC-0078",
+        "SRC-0079"
+      ]
+    }
+  ],
+  "generated_at": "2026-09-01T04:10:01.204084Z",
+  "generator_version": "6.0.0",
+  "input_artifacts": [
+    {
+      "path": "source_register/source_register.json",
+      "sha256": "1281fbdc39b456039f2e068e8cb91454ba39999b7612d3768aceb57a57e3940e"
+    },
+    {
+      "path": "source_register/room_structure.json",
+      "sha256": "8e5e87d13d56433ae228314e2b99bcdd9439acac3c3e657b5380a1213bd40e36"
+    },
+    {
+      "path": "source_register/version_families.json",
+      "sha256": "9300035a1c24e20eea940841fb5def43215393d11f8ca3299ca34b5e9358a35c"
+    },
+    {
+      "path": "extracts/extraction_manifest.json",
+      "sha256": "4c14f3fc9511cb65deb7a41e72887a533f6d59e6988fe22094dd478beea8a839"
+    },
+    {
+      "path": "extracts/extracted_units.jsonl",
+      "sha256": "efd8e6e67dfe9ef8ba2e56d4b1cfb6a16d142b7d7454cc40f1d223e1b98b1b13"
+    },
+    {
+      "path": "extracts/needs_vision.json",
+      "sha256": "000085b5b393e914b9f9d151993ac3fa6cb0f15b4329514718b5eec1749c84f4"
+    }
+  ],
+  "input_fingerprint": "5c829e1aadc47bbba1421449ceef5860f6d12fe5bd2b280af16f3cc4dd105cb6",
+  "question_count": 11,
+  "question_limit": 12,
+  "questions": [
+    {
+      "blocks_analysis": true,
+      "decision_potentially_affected": [
+        "scope",
+        "go_no_go",
+        "transaction_structure"
+      ],
+      "exact_question": "The following registered source could not be read: SRC-0051 (Legal/Legacy/Unreadable_Policy_Archive.pdf). What does each document cover, is it current or operative, and can you provide a readable original or replacement?",
+      "expected_answer_type": "document purpose/status plus readable replacement or explicit unavailability",
+      "invalidate_if_answer_changes_evidence": [
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "priority": "critical",
+      "question_id": "INT-R1-001",
+      "round_number": 1,
+      "structured_gap": {
+        "description": "1 registered source(s) failed extraction.",
+        "gap_id": "GAP-UNREADABLE-SOURCES",
+        "gap_type": "critical_unreadable_source"
+      },
+      "supporting_evidence": [
+        {
+          "evidence_kind": "registered_source",
+          "relative_path": "Legal/Legacy/Unreadable_Policy_Archive.pdf",
+          "source_ids": [
+            "SRC-0051"
+          ],
+          "summary": "Extraction failed: invalid PDF: EOF marker not found",
+          "unit_ids": []
+        }
+      ],
+      "supporting_source_ids": [
+        "SRC-0051"
+      ],
+      "topic_key": "critical-unreadable-sources",
+      "why_it_matters": "An unreadable source can conceal a material obligation; its relevance must be established before analysis can rely on the room as complete."
+    },
+    {
+      "blocks_analysis": true,
+      "decision_potentially_affected": [
+        "price",
+        "net_debt",
+        "transaction_structure",
+        "go_no_go"
+      ],
+      "exact_question": "The room contains debt/HP documents still pending visual review and evidence that some HP or director balances may be excluded from loan summaries. Please provide a complete lender-by-lender debt and debt-like schedule, including HP, related-party balances, security, covenants, repayment dates and change-of-control requirements, and identify the controlling source for each balance.",
+      "expected_answer_type": "lender-level schedule with balances, terms and source references",
+      "invalidate_if_answer_changes_evidence": [
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "priority": "critical",
+      "question_id": "INT-R1-002",
+      "round_number": 1,
+      "structured_gap": {
+        "description": "Debt evidence is partly visual-only and submitted schedules state exclusions.",
+        "gap_id": "GAP-DEBT-HP-COMPLETENESS",
+        "gap_type": "debt_or_hp_gap"
+      },
+      "supporting_evidence": [
+        {
+          "evidence_kind": "extracted_unit",
+          "locator": {
+            "cell": "F6",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "F6",
+            "row_hidden": false,
+            "sheet": "Loans",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Loan_Summary.xlsx"
+          },
+          "relative_path": "Financial/Loan_Summary.xlsx",
+          "source_ids": [
+            "SRC-0010"
+          ],
+          "summary": "HP agreements are excluded; director balances are not debt per management",
+          "unit_ids": [
+            "SRC-0010-UNIT-000027"
+          ]
+        },
+        {
+          "evidence_kind": "extracted_unit",
+          "locator": {
+            "cell": "F6",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "F6",
+            "row_hidden": false,
+            "sheet": "Loans",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Loan_Summary_for_Bank.xlsx"
+          },
+          "relative_path": "Financial/Loan_Summary_for_Bank.xlsx",
+          "source_ids": [
+            "SRC-0011"
+          ],
+          "summary": "HP agreements are excluded; director balances are not debt per management",
+          "unit_ids": [
+            "SRC-0011-UNIT-000027"
+          ]
+        },
+        {
+          "evidence_kind": "extracted_unit",
+          "locator": {
+            "heading": {
+              "heading_index": 2,
+              "heading_level": 1,
+              "paragraph_index": 9,
+              "text": "Observation"
+            },
+            "heading_level": null,
+            "paragraph_index": 10,
+            "type": "docx_paragraph"
+          },
+          "relative_path": "Financial/Related_Party_Transactions.docx",
+          "source_ids": [
+            "SRC-0017"
+          ],
+          "summary": "The director current account of EUR 120,000 is repayable on demand but is excluded from the loan summary because management does not classify it as debt.",
+          "unit_ids": [
+            "SRC-0017-UNIT-000010"
+          ]
+        },
+        {
+          "evidence_kind": "registered_source",
+          "relative_path": "Financial/Loan Letters/Phone_Photo_Innovation_Loan.jpg",
+          "source_ids": [
+            "SRC-0007"
+          ],
+          "summary": "Debt/HP source remains pending local vision review.",
+          "unit_ids": []
+        },
+        {
+          "evidence_kind": "registered_source",
+          "relative_path": "Financial/Loan Letters/Phone_Photo_Term_Loan.jpg",
+          "source_ids": [
+            "SRC-0008"
+          ],
+          "summary": "Debt/HP source remains pending local vision review.",
+          "unit_ids": []
+        },
+        {
+          "evidence_kind": "registered_source",
+          "relative_path": "Financial/Loan Letters/Scanned_Loan_and_HP_Pack.pdf",
+          "source_ids": [
+            "SRC-0009"
+          ],
+          "summary": "Debt/HP source remains pending local vision review.",
+          "unit_ids": []
+        }
+      ],
+      "supporting_source_ids": [
+        "SRC-0010",
+        "SRC-0011",
+        "SRC-0017",
+        "SRC-0007",
+        "SRC-0008",
+        "SRC-0009"
+      ],
+      "topic_key": "debt-hp-completeness",
+      "why_it_matters": "Debt completeness affects net-debt treatment, equity value, consent requirements and transaction structure; a management classification alone is not source proof."
+    },
+    {
+      "blocks_analysis": true,
+      "decision_potentially_affected": [
+        "scope",
+        "go_no_go",
+        "transaction_structure"
+      ],
+      "exact_question": "What legal entities, businesses, assets and liabilities are inside and outside the proposed transaction perimeter, and is the contemplated deal a share purchase, asset purchase or another structure?",
+      "expected_answer_type": "structured list of included/excluded perimeter items and deal form",
+      "invalidate_if_answer_changes_evidence": [
+        "intake_round_2",
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "priority": "critical",
+      "question_id": "INT-R1-003",
+      "round_number": 1,
+      "structured_gap": {
+        "description": "No deal-lead transaction perimeter is stored in the room or run artifacts.",
+        "gap_id": "GAP-R1-TRANSACTION-PERIMETER",
+        "gap_type": "essential_transaction_context"
+      },
+      "supporting_evidence": [],
+      "supporting_source_ids": [],
+      "topic_key": "transaction-perimeter",
+      "why_it_matters": "The room identifies the target evidence but not the buyer's agreed perimeter; scope and transaction form determine which liabilities and consents matter."
+    },
+    {
+      "blocks_analysis": true,
+      "decision_potentially_affected": [
+        "price",
+        "transaction_structure",
+        "negotiating_terms"
+      ],
+      "exact_question": "What headline price or valuation reference should the diligence test, and what cash, debt, debt-like, working-capital, earn-out, rollover or other consideration assumptions are currently proposed? Please distinguish fixed terms from open negotiating positions.",
+      "expected_answer_type": "currency amounts plus a structured description of consideration mechanics",
+      "invalidate_if_answer_changes_evidence": [
+        "intake_round_2",
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "priority": "critical",
+      "question_id": "INT-R1-004",
+      "round_number": 1,
+      "structured_gap": {
+        "description": "No committee price or consideration mechanics are stored in the observed evidence.",
+        "gap_id": "GAP-R1-PRICE-STRUCTURE",
+        "gap_type": "essential_transaction_context"
+      },
+      "supporting_evidence": [],
+      "supporting_source_ids": [],
+      "topic_key": "price-structure-assumptions",
+      "why_it_matters": "Material findings cannot be translated into price or structure implications without the committee's assumptions, and the engine must not invent a valuation."
+    },
+    {
+      "blocks_analysis": true,
+      "decision_potentially_affected": [
+        "scope",
+        "go_no_go",
+        "price",
+        "transaction_structure"
+      ],
+      "exact_question": "Room responses refer to legal 2.1, but the corresponding location is absent or empty. Which documents were meant, and can you provide them or confirm explicitly that they do not exist?",
+      "expected_answer_type": "document list with source paths/files, or an explicit non-existence statement",
+      "invalidate_if_answer_changes_evidence": [
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "priority": "critical",
+      "question_id": "INT-R1-005",
+      "round_number": 1,
+      "structured_gap": {
+        "description": "Extracted answers point to a location with no registered document.",
+        "gap_id": "GAP-MISSING-CROSS-REFERENCE",
+        "gap_type": "missing_referenced_document"
+      },
+      "supporting_evidence": [
+        {
+          "evidence_kind": "extracted_unit",
+          "locator": {
+            "cell": "C7",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "C7",
+            "row_hidden": false,
+            "sheet": "Request List",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Financial_Request_List.xlsx"
+          },
+          "relative_path": "Financial/Financial_Request_List.xlsx",
+          "source_ids": [
+            "SRC-0004"
+          ],
+          "summary": "References missing location 'legal 2.1'.",
+          "unit_ids": [
+            "SRC-0004-UNIT-000022"
+          ]
+        },
+        {
+          "evidence_kind": "extracted_unit",
+          "locator": {
+            "cell": "C13",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "C13",
+            "row_hidden": false,
+            "sheet": "Request List",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Financial_Request_List.xlsx"
+          },
+          "relative_path": "Financial/Financial_Request_List.xlsx",
+          "source_ids": [
+            "SRC-0004"
+          ],
+          "summary": "References missing location 'legal 2.1'.",
+          "unit_ids": [
+            "SRC-0004-UNIT-000046"
+          ]
+        },
+        {
+          "evidence_kind": "extracted_unit",
+          "locator": {
+            "heading": {
+              "heading_index": 2,
+              "heading_level": 1,
+              "paragraph_index": 9,
+              "text": "Contracts"
+            },
+            "heading_level": null,
+            "paragraph_index": 10,
+            "type": "docx_paragraph"
+          },
+          "relative_path": "Legal/Legal_Questionnaire_Completed.docx",
+          "source_ids": [
+            "SRC-0052"
+          ],
+          "summary": "References missing location 'legal 2.1'.",
+          "unit_ids": [
+            "SRC-0052-UNIT-000010"
+          ]
+        }
+      ],
+      "supporting_source_ids": [
+        "SRC-0004",
+        "SRC-0052"
+      ],
+      "topic_key": "missing-cross-referenced-documents",
+      "why_it_matters": "A broken document reference is not evidence of the underlying matter and may hide property, contract, debt or other material support."
+    },
+    {
+      "blocks_analysis": true,
+      "decision_potentially_affected": [
+        "price",
+        "go_no_go",
+        "earnings_quality"
+      ],
+      "exact_question": "The observed financial evidence includes a material adjustment whose support is stated to be absent or still to follow. What is the amount and rationale, which costs are non-recurring, and where are the invoices, approvals and implementation plan?",
+      "expected_answer_type": "amount-by-item bridge plus supporting source files",
+      "invalidate_if_answer_changes_evidence": [
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "priority": "critical",
+      "question_id": "INT-R1-006",
+      "round_number": 1,
+      "structured_gap": {
+        "description": "A source asserts an adjustment but also says its supporting evidence is absent.",
+        "gap_id": "GAP-UNSUPPORTED-FINANCIAL-ADJUSTMENT",
+        "gap_type": "unsupported_figure"
+      },
+      "supporting_evidence": [
+        {
+          "evidence_kind": "extracted_unit",
+          "locator": {
+            "cell": "C5",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "C5",
+            "row_hidden": false,
+            "sheet": "Request List",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Financial_Request_List.xlsx"
+          },
+          "relative_path": "Financial/Financial_Request_List.xlsx",
+          "source_ids": [
+            "SRC-0004"
+          ],
+          "summary": "EUR 180,000 transformation adjustment; support to follow",
+          "unit_ids": [
+            "SRC-0004-UNIT-000014"
+          ]
+        },
+        {
+          "evidence_kind": "extracted_unit",
+          "locator": {
+            "page_label": "1",
+            "page_number": 1,
+            "type": "pdf_page"
+          },
+          "relative_path": "Financial/Management_Accounts_2026_YTD.pdf",
+          "source_ids": [
+            "SRC-0012"
+          ],
+          "summary": "Management Accounts - June 2026 YTD Larkspur Transit Analytics Limited | final management pack FICTIONAL SYNTHETIC DATA - NOT A REAL COMPANY Page 1 COMPANY Larkspur Transit Analytics Lim DATASET SYN-LARKSPUR-2026-314159 STATUS Synthetic Executive summary Revenue for the six mont…",
+          "unit_ids": [
+            "SRC-0012-UNIT-000001"
+          ]
+        }
+      ],
+      "supporting_source_ids": [
+        "SRC-0004",
+        "SRC-0012"
+      ],
+      "topic_key": "unsupported-financial-adjustments",
+      "why_it_matters": "An unsupported adjustment can change the supportable earnings base and therefore the committee's price and go/no-go assessment."
+    },
+    {
+      "blocks_analysis": true,
+      "decision_potentially_affected": [
+        "price",
+        "working_capital_mechanism",
+        "go_no_go"
+      ],
+      "exact_question": "A source explicitly flags an incorrect, non-tying or unreconciled calculation. What is the correct treatment and amount, who approved it, and can you provide the controlled replacement schedule without overwriting the submitted source?",
+      "expected_answer_type": "corrected amount/method, approver and replacement source reference",
+      "invalidate_if_answer_changes_evidence": [
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "priority": "critical",
+      "question_id": "INT-R1-007",
+      "round_number": 1,
+      "structured_gap": {
+        "description": "Extracted evidence explicitly describes a submitted calculation as incorrect or non-tying.",
+        "gap_id": "GAP-EXPLICIT-CALCULATION-CONTRADICTION",
+        "gap_type": "financial_contradiction"
+      },
+      "supporting_evidence": [
+        {
+          "evidence_kind": "extracted_unit",
+          "locator": {
+            "cell": "D9",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "D9",
+            "row_hidden": false,
+            "sheet": "Calculation",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Working_Capital_Calculation.xlsx"
+          },
+          "relative_path": "Financial/Working_Capital_Calculation.xlsx",
+          "source_ids": [
+            "SRC-0027"
+          ],
+          "summary": "Formula incorrectly excludes rows 4 and 8",
+          "unit_ids": [
+            "SRC-0027-UNIT-000033"
+          ]
+        }
+      ],
+      "supporting_source_ids": [
+        "SRC-0027"
+      ],
+      "topic_key": "explicit-calculation-contradiction",
+      "why_it_matters": "A source-labelled calculation error may directly change working capital, debt, tax or earnings adjustments; the engine will preserve the original and any correction separately."
+    },
+    {
+      "blocks_analysis": true,
+      "decision_potentially_affected": [
+        "go_no_go",
+        "transaction_structure",
+        "closing_conditions"
+      ],
+      "exact_question": "The room states that at least one customer-consent review is outstanding or a consent has not been requested. Which contracts, amendments, leases, debt documents or licences require notice or consent for the contemplated transaction, what is the legal/commercial basis, and what is the owner and timetable for obtaining each consent?",
+      "expected_answer_type": "contract-by-contract consent matrix with clause/source and status",
+      "invalidate_if_answer_changes_evidence": [
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "priority": "critical",
+      "question_id": "INT-R1-008",
+      "round_number": 1,
+      "structured_gap": {
+        "description": "Extracted vendor evidence says a material consent review is incomplete or not requested.",
+        "gap_id": "GAP-CONTRACT-CONSENTS",
+        "gap_type": "contract_consent_gap"
+      },
+      "supporting_evidence": [
+        {
+          "evidence_kind": "extracted_unit",
+          "locator": {
+            "cell_index": 1,
+            "cell_reference": "R3C1",
+            "row_index": 3,
+            "table_index": 1,
+            "type": "docx_table_cell"
+          },
+          "relative_path": "Legal/Legal_Questionnaire_Completed.docx",
+          "source_ids": [
+            "SRC-0052"
+          ],
+          "summary": "Any change-of-control consents?",
+          "unit_ids": [
+            "SRC-0052-UNIT-000017"
+          ]
+        },
+        {
+          "evidence_kind": "extracted_unit",
+          "locator": {
+            "page_label": "1",
+            "page_number": 1,
+            "type": "pdf_page"
+          },
+          "relative_path": "zip://Legal/Updated_Responses.zip!/Updated Responses/Customer_Consent_Response.pdf",
+          "source_ids": [
+            "SRC-0093"
+          ],
+          "summary": "Customer Consent Response Updated vendor response FICTIONAL SYNTHETIC DATA - NOT A REAL COMPANY Page 1 DATASET SYN-LARKSPUR-2026-314159 Status Harbourlight consent has not been requested. Management believed the transaction would not trigger the clause.",
+          "unit_ids": [
+            "SRC-0093-UNIT-000001"
+          ]
+        },
+        {
+          "evidence_kind": "extracted_unit",
+          "locator": {
+            "heading": {
+              "heading_index": 1,
+              "heading_level": 1,
+              "paragraph_index": 6,
+              "text": "Updates"
+            },
+            "heading_level": null,
+            "paragraph_index": 7,
+            "type": "docx_paragraph"
+          },
+          "relative_path": "zip://Legal/Updated_Responses.zip!/Updated Responses/Legal_Questionnaire_Rev2.docx",
+          "source_ids": [
+            "SRC-0099"
+          ],
+          "summary": "The customer consent review remains in progress. Hosting recovery metrics are not contractually documented.",
+          "unit_ids": [
+            "SRC-0099-UNIT-000007"
+          ]
+        },
+        {
+          "evidence_kind": "extracted_unit",
+          "locator": {
+            "cell_index": 1,
+            "cell_reference": "R2C1",
+            "row_index": 2,
+            "table_index": 1,
+            "type": "docx_table_cell"
+          },
+          "relative_path": "zip://Legal/Updated_Responses.zip!/Updated Responses/Legal_Questionnaire_Rev2.docx",
+          "source_ids": [
+            "SRC-0099"
+          ],
+          "summary": "Change-of-control consents",
+          "unit_ids": [
+            "SRC-0099-UNIT-000010"
+          ]
+        }
+      ],
+      "supporting_source_ids": [
+        "SRC-0052",
+        "SRC-0093",
+        "SRC-0099"
+      ],
+      "topic_key": "contract-consents",
+      "why_it_matters": "Unobtained transaction consents can affect deliverability, closing conditions, customer retention and negotiating leverage."
+    },
+    {
+      "blocks_analysis": false,
+      "decision_potentially_affected": [
+        "price",
+        "tax_indemnity",
+        "escrow",
+        "go_no_go"
+      ],
+      "exact_question": "The observed tax evidence includes amended/versioned returns or a late amendment entry. Which return is the filed controlling version, what caused each amendment, and have all resulting charges, interest and payments been fully settled?",
+      "expected_answer_type": "period-by-period filed status, reason and payment evidence",
+      "invalidate_if_answer_changes_evidence": [
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "priority": "high",
+      "question_id": "INT-R1-009",
+      "round_number": 1,
+      "structured_gap": {
+        "description": "Versioned/amended tax evidence does not itself establish filing and settlement status.",
+        "gap_id": "GAP-TAX-AMENDMENT-STATUS",
+        "gap_type": "tax_inconsistency"
+      },
+      "supporting_evidence": [
+        {
+          "evidence_kind": "extracted_unit",
+          "locator": {
+            "page_label": "1",
+            "page_number": 1,
+            "type": "pdf_page"
+          },
+          "relative_path": "Tax/ROS Screens/CT_Charge.pdf",
+          "source_ids": [
+            "SRC-0071"
+          ],
+          "summary": "Corporation Tax Charge ROS-style account entry FICTIONAL SYNTHETIC DATA - NOT A REAL COMPANY Page 1 COMPANY Larkspur Transit Analytics Lim DATASET SYN-LARKSPUR-2026-314159 STATUS Synthetic Charge Late amendment charge EUR 12,500.",
+          "unit_ids": [
+            "SRC-0071-UNIT-000001"
+          ]
+        },
+        {
+          "evidence_kind": "extracted_unit",
+          "locator": {
+            "cell": "A5",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "A5",
+            "row_hidden": false,
+            "sheet": "Responses",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Tax/Tax_Response_Summary_Original.xlsx"
+          },
+          "relative_path": "Tax/Tax_Response_Summary_Original.xlsx",
+          "source_ids": [
+            "SRC-0078"
+          ],
+          "summary": "Have any VAT returns been amended?",
+          "unit_ids": [
+            "SRC-0078-UNIT-000014"
+          ]
+        },
+        {
+          "evidence_kind": "extracted_unit",
+          "locator": {
+            "cell": "A5",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "A5",
+            "row_hidden": false,
+            "sheet": "Responses",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Tax/Tax_Response_Summary_Rev2.xlsx"
+          },
+          "relative_path": "Tax/Tax_Response_Summary_Rev2.xlsx",
+          "source_ids": [
+            "SRC-0079"
+          ],
+          "summary": "Have any VAT returns been amended?",
+          "unit_ids": [
+            "SRC-0079-UNIT-000014"
+          ]
+        },
+        {
+          "evidence_kind": "extracted_unit",
+          "locator": {
+            "cell": "B5",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "B5",
+            "row_hidden": false,
+            "sheet": "Responses",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Tax/Tax_Response_Summary_Rev2.xlsx"
+          },
+          "relative_path": "Tax/Tax_Response_Summary_Rev2.xlsx",
+          "source_ids": [
+            "SRC-0079"
+          ],
+          "summary": "No VAT returns have been amended",
+          "unit_ids": [
+            "SRC-0079-UNIT-000015"
+          ]
+        },
+        {
+          "evidence_kind": "extracted_unit",
+          "locator": {
+            "page_label": "1",
+            "page_number": 1,
+            "type": "pdf_page"
+          },
+          "relative_path": "Tax/VAT/VAT3_2025_P2_AMENDED.pdf",
+          "source_ids": [
+            "SRC-0084"
+          ],
+          "summary": "VAT3-Style Return 2025-P2 - AMENDED Amended on 19 August 2025 FICTIONAL SYNTHETIC DATA - NOT A REAL COMPANY Page 1 COMPANY Larkspur Transit Analytics Lim DATASET SYN-LARKSPUR-2026-314159 STATUS Synthetic Amendment Original payable: EUR 174,000. Amended payable: EUR 182,000. Incr…",
+          "unit_ids": [
+            "SRC-0084-UNIT-000001"
+          ]
+        },
+        {
+          "evidence_kind": "registered_source",
+          "relative_path": "Tax/VAT/VAT3_2025_P2.pdf",
+          "source_ids": [
+            "SRC-0083"
+          ],
+          "summary": "Member of a candidate tax version family.",
+          "unit_ids": []
+        }
+      ],
+      "supporting_source_ids": [
+        "SRC-0071",
+        "SRC-0078",
+        "SRC-0079",
+        "SRC-0084",
+        "SRC-0083"
+      ],
+      "topic_key": "tax-amendment-status",
+      "why_it_matters": "Unresolved amended filings can change tax liabilities, warranties/indemnities and the transaction's price or escrow structure."
+    },
+    {
+      "blocks_analysis": true,
+      "decision_potentially_affected": [
+        "go_no_go",
+        "price",
+        "diligence_priority"
+      ],
+      "exact_question": "What is the investment thesis, which value drivers must be proven, and which specific findings would be deal-breakers or require a price or structure change?",
+      "expected_answer_type": "short thesis, ranked value drivers and explicit deal-breakers",
+      "invalidate_if_answer_changes_evidence": [
+        "intake_round_2",
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "priority": "high",
+      "question_id": "INT-R1-010",
+      "round_number": 1,
+      "structured_gap": {
+        "description": "No deal-lead investment thesis or deal-breaker criteria are stored in the run.",
+        "gap_id": "GAP-R1-INVESTMENT-THESIS",
+        "gap_type": "essential_transaction_context"
+      },
+      "supporting_evidence": [],
+      "supporting_source_ids": [],
+      "topic_key": "investment-thesis",
+      "why_it_matters": "The room cannot reveal the committee's thesis or risk appetite; these are needed to prioritize material contradictions without a generic diligence script."
+    },
+    {
+      "blocks_analysis": false,
+      "decision_potentially_affected": [
+        "scope",
+        "diligence_priority",
+        "go_no_go"
+      ],
+      "exact_question": "What diligence cut-off date, materiality thresholds, forecast horizon and scope exclusions should apply, including any topics already covered by another adviser?",
+      "expected_answer_type": "dates, monetary/qualitative thresholds and scoped exclusions",
+      "invalidate_if_answer_changes_evidence": [
+        "intake_round_2",
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "priority": "high",
+      "question_id": "INT-R1-011",
+      "round_number": 1,
+      "structured_gap": {
+        "description": "No deal-specific cut-off, materiality threshold or scope exclusion is stored.",
+        "gap_id": "GAP-R1-SCOPE-MATERIALITY",
+        "gap_type": "essential_transaction_context"
+      },
+      "supporting_evidence": [],
+      "supporting_source_ids": [],
+      "topic_key": "scope-materiality",
+      "why_it_matters": "A defined cut-off and materiality lens prevents low-value questions and makes omissions, stale evidence and out-of-scope matters explicit."
+    }
+  ],
+  "round_number": 1,
+  "run_id": "20260901T040928457675Z-dede88eb959c",
+  "schema_version": 1,
+  "status": "awaiting_input",
+  "untrusted_source_data_was_executed": false
+}

@@ -16,10 +16,10 @@ and the task-log audit in 26.643 seconds. Setup and analysis were timed separate
 
 The resolved explicit directory was:
 
-`C:\Users\jites\AppData\Local\Temp\dd-engine-phase14-clean-20260901T132046560`
+`%LOCALAPPDATA%\Temp\dd-engine-phase14-clean-20260901T132046560`
 
 Before creation, the absolute target was checked to be a descendant of
-`C:\Users\jites\AppData\Local\Temp`, not the workspace, home directory or a
+`%LOCALAPPDATA%\Temp`, not the workspace, home directory or a
 computed broad path. The repository was cloned with `git clone --no-local` from
 committed HEAD. Initial `git status --short` was empty.
 
@@ -40,7 +40,7 @@ rendering and all pinned Python packages passed.
 The qualifying run ID was `20260901T082422670189Z-e68853f7aeb3`. Its explicit
 room path was:
 
-`C:\Users\jites\AppData\Local\Temp\dd-engine-phase14-clean-20260901T132046560\synthetic\data_room`
+`%LOCALAPPDATA%\Temp\dd-engine-phase14-clean-20260901T132046560\synthetic\data_room`
 
 ## Qualifying run evidence
 

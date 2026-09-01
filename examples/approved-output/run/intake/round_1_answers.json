@@ -1,0 +1,361 @@
+{
+  "answer_input_sha256": "f34a74576a8eb94a14d2e88b2d0448bf0ba5b89e45a31e96efd31117f7120e58",
+  "answer_normalization_version": "answer-normalization-v2",
+  "answered_at": "2026-09-01T04:10:00Z",
+  "answered_by": "Phase 11 synthetic test operator (not management)",
+  "answers": [
+    {
+      "affected_claims": [],
+      "affected_gaps": [
+        "GAP-UNREADABLE-SOURCES"
+      ],
+      "affected_stages": [
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "ambiguity": [
+        "The reply explicitly says that requested evidence or confirmation is absent or that the matter remains open."
+      ],
+      "normalised_interpretation": {
+        "kind": "explicitly_unresolved",
+        "value": "No readable replacement or further description was provided for the synthetic evaluation. Treat the document's purpose, currency and contents as unestablished and keep the limitation open."
+      },
+      "provenance": {
+        "answer_input_filename": "phase11_test_round_1_input.json",
+        "answer_input_sha256": "f34a74576a8eb94a14d2e88b2d0448bf0ba5b89e45a31e96efd31117f7120e58",
+        "answered_at": "2026-09-01T04:10:00Z",
+        "answered_by": "Phase 11 synthetic test operator (not management)",
+        "ingested_at": "2026-09-01T04:10:33.212263Z",
+        "source_kind": "deal_lead_answer_file"
+      },
+      "question_id": "INT-R1-001",
+      "resolution_status": "open",
+      "round_number": 1,
+      "verbatim_answer": "No readable replacement or further description was provided for the synthetic evaluation. Treat the document's purpose, currency and contents as unestablished and keep the limitation open.",
+      "verbatim_answer_sha256": "c12f83f9c08c8579702caa2af20dc9ee2f0b4ab48cdf83c896d721e8f6d393aa"
+    },
+    {
+      "affected_claims": [],
+      "affected_gaps": [
+        "GAP-DEBT-HP-COMPLETENESS"
+      ],
+      "affected_stages": [
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "ambiguity": [
+        "The reply explicitly says that requested evidence or confirmation is absent or that the matter remains open."
+      ],
+      "normalised_interpretation": {
+        "kind": "explicitly_unresolved",
+        "value": "No additional lender-by-lender schedule or visual transcription was provided for the synthetic evaluation. Use only the validated structured sources, do not assume the excluded HP or director balance is resolved, and keep debt completeness open."
+      },
+      "provenance": {
+        "answer_input_filename": "phase11_test_round_1_input.json",
+        "answer_input_sha256": "f34a74576a8eb94a14d2e88b2d0448bf0ba5b89e45a31e96efd31117f7120e58",
+        "answered_at": "2026-09-01T04:10:00Z",
+        "answered_by": "Phase 11 synthetic test operator (not management)",
+        "ingested_at": "2026-09-01T04:10:33.212263Z",
+        "source_kind": "deal_lead_answer_file"
+      },
+      "question_id": "INT-R1-002",
+      "resolution_status": "open",
+      "round_number": 1,
+      "verbatim_answer": "No additional lender-by-lender schedule or visual transcription was provided for the synthetic evaluation. Use only the validated structured sources, do not assume the excluded HP or director balance is resolved, and keep debt completeness open.",
+      "verbatim_answer_sha256": "fcd8cc34c001226c3c274eb13b643ac99cabfa8646d9bffd7784cc8dc1a0d8bf"
+    },
+    {
+      "affected_claims": [],
+      "affected_gaps": [
+        "GAP-R1-TRANSACTION-PERIMETER"
+      ],
+      "affected_stages": [
+        "intake_round_2",
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "ambiguity": [],
+      "normalised_interpretation": {
+        "kind": "substantive_text",
+        "value": "Synthetic IC assumption only: acquisition of 100% of the shares of Larkspur Transit Analytics Limited, including the assets and liabilities recorded for that entity. No carve-outs or excluded liabilities have been confirmed."
+      },
+      "provenance": {
+        "answer_input_filename": "phase11_test_round_1_input.json",
+        "answer_input_sha256": "f34a74576a8eb94a14d2e88b2d0448bf0ba5b89e45a31e96efd31117f7120e58",
+        "answered_at": "2026-09-01T04:10:00Z",
+        "answered_by": "Phase 11 synthetic test operator (not management)",
+        "ingested_at": "2026-09-01T04:10:33.212263Z",
+        "source_kind": "deal_lead_answer_file"
+      },
+      "question_id": "INT-R1-003",
+      "resolution_status": "closed",
+      "round_number": 1,
+      "verbatim_answer": "Synthetic IC assumption only: acquisition of 100% of the shares of Larkspur Transit Analytics Limited, including the assets and liabilities recorded for that entity. No carve-outs or excluded liabilities have been confirmed.",
+      "verbatim_answer_sha256": "d4ffce682b2e5080a777123dc75e4f4a691d885eeb106300744ad37e3583336f"
+    },
+    {
+      "affected_claims": [],
+      "affected_gaps": [
+        "GAP-R1-PRICE-STRUCTURE"
+      ],
+      "affected_stages": [
+        "intake_round_2",
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "ambiguity": [
+        "The reply explicitly says that requested evidence or confirmation is absent or that the matter remains open."
+      ],
+      "normalised_interpretation": {
+        "kind": "explicitly_unresolved",
+        "value": "No headline price or valuation reference has been supplied for this synthetic evaluation. The contemplated structure is a share purchase with cash, debt, debt-like items and working capital to be addressed through completion mechanics; all amounts and negotiating positions remain open."
+      },
+      "provenance": {
+        "answer_input_filename": "phase11_test_round_1_input.json",
+        "answer_input_sha256": "f34a74576a8eb94a14d2e88b2d0448bf0ba5b89e45a31e96efd31117f7120e58",
+        "answered_at": "2026-09-01T04:10:00Z",
+        "answered_by": "Phase 11 synthetic test operator (not management)",
+        "ingested_at": "2026-09-01T04:10:33.212263Z",
+        "source_kind": "deal_lead_answer_file"
+      },
+      "question_id": "INT-R1-004",
+      "resolution_status": "open",
+      "round_number": 1,
+      "verbatim_answer": "No headline price or valuation reference has been supplied for this synthetic evaluation. The contemplated structure is a share purchase with cash, debt, debt-like items and working capital to be addressed through completion mechanics; all amounts and negotiating positions remain open.",
+      "verbatim_answer_sha256": "dd4424fe5e753eaab868ea19c35035da835050a140f0c8322e80d1d31bd34162"
+    },
+    {
+      "affected_claims": [],
+      "affected_gaps": [
+        "GAP-MISSING-CROSS-REFERENCE"
+      ],
+      "affected_stages": [
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "ambiguity": [
+        "The reply explicitly says that requested evidence or confirmation is absent or that the matter remains open."
+      ],
+      "normalised_interpretation": {
+        "kind": "explicitly_unresolved",
+        "value": "No documents corresponding to legal 2.1 were provided and non-existence was not confirmed. Keep the broken cross-reference open."
+      },
+      "provenance": {
+        "answer_input_filename": "phase11_test_round_1_input.json",
+        "answer_input_sha256": "f34a74576a8eb94a14d2e88b2d0448bf0ba5b89e45a31e96efd31117f7120e58",
+        "answered_at": "2026-09-01T04:10:00Z",
+        "answered_by": "Phase 11 synthetic test operator (not management)",
+        "ingested_at": "2026-09-01T04:10:33.212263Z",
+        "source_kind": "deal_lead_answer_file"
+      },
+      "question_id": "INT-R1-005",
+      "resolution_status": "open",
+      "round_number": 1,
+      "verbatim_answer": "No documents corresponding to legal 2.1 were provided and non-existence was not confirmed. Keep the broken cross-reference open.",
+      "verbatim_answer_sha256": "0eac9fa34b47a90b088fba4180f9ebeae69977baf3b33117a4f51cbee2ec7558"
+    },
+    {
+      "affected_claims": [],
+      "affected_gaps": [
+        "GAP-UNSUPPORTED-FINANCIAL-ADJUSTMENT"
+      ],
+      "affected_stages": [
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "ambiguity": [
+        "The reply explicitly says that requested evidence or confirmation is absent or that the matter remains open."
+      ],
+      "normalised_interpretation": {
+        "kind": "explicitly_unresolved",
+        "value": "No invoices, approvals or implementation plan were provided for the EUR 180,000 adjustment. Do not accept the adjustment in the supportable earnings base and keep the request open."
+      },
+      "provenance": {
+        "answer_input_filename": "phase11_test_round_1_input.json",
+        "answer_input_sha256": "f34a74576a8eb94a14d2e88b2d0448bf0ba5b89e45a31e96efd31117f7120e58",
+        "answered_at": "2026-09-01T04:10:00Z",
+        "answered_by": "Phase 11 synthetic test operator (not management)",
+        "ingested_at": "2026-09-01T04:10:33.212263Z",
+        "source_kind": "deal_lead_answer_file"
+      },
+      "question_id": "INT-R1-006",
+      "resolution_status": "open",
+      "round_number": 1,
+      "verbatim_answer": "No invoices, approvals or implementation plan were provided for the EUR 180,000 adjustment. Do not accept the adjustment in the supportable earnings base and keep the request open.",
+      "verbatim_answer_sha256": "612325e68301d7f51294a4635ad14800db6b8c7f9157f9d479f90d1fbd9496f1"
+    },
+    {
+      "affected_claims": [],
+      "affected_gaps": [
+        "GAP-EXPLICIT-CALCULATION-CONTRADICTION"
+      ],
+      "affected_stages": [
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "ambiguity": [
+        "The reply explicitly says that requested evidence or confirmation is absent or that the matter remains open."
+      ],
+      "normalised_interpretation": {
+        "kind": "explicitly_unresolved",
+        "value": "No controlled replacement schedule or approval evidence was provided. Preserve the submitted workbook, use the deterministic recomputation separately, and keep the control deficiency open."
+      },
+      "provenance": {
+        "answer_input_filename": "phase11_test_round_1_input.json",
+        "answer_input_sha256": "f34a74576a8eb94a14d2e88b2d0448bf0ba5b89e45a31e96efd31117f7120e58",
+        "answered_at": "2026-09-01T04:10:00Z",
+        "answered_by": "Phase 11 synthetic test operator (not management)",
+        "ingested_at": "2026-09-01T04:10:33.212263Z",
+        "source_kind": "deal_lead_answer_file"
+      },
+      "question_id": "INT-R1-007",
+      "resolution_status": "open",
+      "round_number": 1,
+      "verbatim_answer": "No controlled replacement schedule or approval evidence was provided. Preserve the submitted workbook, use the deterministic recomputation separately, and keep the control deficiency open.",
+      "verbatim_answer_sha256": "093691cb531282235c97ba3ee4e736a03bdc6393344e02d80021dbda7c024f0e"
+    },
+    {
+      "affected_claims": [],
+      "affected_gaps": [
+        "GAP-CONTRACT-CONSENTS"
+      ],
+      "affected_stages": [
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "ambiguity": [
+        "The reply explicitly says that requested evidence or confirmation is absent or that the matter remains open."
+      ],
+      "normalised_interpretation": {
+        "kind": "explicitly_unresolved",
+        "value": "No complete consent matrix or further consent evidence was provided. Harbourlight consent has not been evidenced as requested or obtained; treat required material consents as pre-closing conditions."
+      },
+      "provenance": {
+        "answer_input_filename": "phase11_test_round_1_input.json",
+        "answer_input_sha256": "f34a74576a8eb94a14d2e88b2d0448bf0ba5b89e45a31e96efd31117f7120e58",
+        "answered_at": "2026-09-01T04:10:00Z",
+        "answered_by": "Phase 11 synthetic test operator (not management)",
+        "ingested_at": "2026-09-01T04:10:33.212263Z",
+        "source_kind": "deal_lead_answer_file"
+      },
+      "question_id": "INT-R1-008",
+      "resolution_status": "open",
+      "round_number": 1,
+      "verbatim_answer": "No complete consent matrix or further consent evidence was provided. Harbourlight consent has not been evidenced as requested or obtained; treat required material consents as pre-closing conditions.",
+      "verbatim_answer_sha256": "aeb919eb9a42a5bdeb8f80cdc7d5b204921704790333b578b1676309853027da"
+    },
+    {
+      "affected_claims": [],
+      "affected_gaps": [
+        "GAP-TAX-AMENDMENT-STATUS"
+      ],
+      "affected_stages": [
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "ambiguity": [
+        "The reply explicitly says that requested evidence or confirmation is absent or that the matter remains open."
+      ],
+      "normalised_interpretation": {
+        "kind": "explicitly_unresolved",
+        "value": "No additional filing confirmation or settlement evidence was provided. Use the amended P2 document as the latest registered source but keep filing, payment, interest and settlement status open."
+      },
+      "provenance": {
+        "answer_input_filename": "phase11_test_round_1_input.json",
+        "answer_input_sha256": "f34a74576a8eb94a14d2e88b2d0448bf0ba5b89e45a31e96efd31117f7120e58",
+        "answered_at": "2026-09-01T04:10:00Z",
+        "answered_by": "Phase 11 synthetic test operator (not management)",
+        "ingested_at": "2026-09-01T04:10:33.212263Z",
+        "source_kind": "deal_lead_answer_file"
+      },
+      "question_id": "INT-R1-009",
+      "resolution_status": "open",
+      "round_number": 1,
+      "verbatim_answer": "No additional filing confirmation or settlement evidence was provided. Use the amended P2 document as the latest registered source but keep filing, payment, interest and settlement status open.",
+      "verbatim_answer_sha256": "bf506aad61bde4eeb4301ef11035a0439b5a8c6d4b977b6a4f25f589030b08de"
+    },
+    {
+      "affected_claims": [],
+      "affected_gaps": [
+        "GAP-R1-INVESTMENT-THESIS"
+      ],
+      "affected_stages": [
+        "intake_round_2",
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "ambiguity": [],
+      "normalised_interpretation": {
+        "kind": "substantive_text",
+        "value": "Synthetic IC thesis only: acquire a recurring-revenue Irish transport-analytics business for its customer relationships and operating platform. The thesis requires supportable earnings, retained material customers and quantified debt/tax exposure. Unobtained material consents, unsupported earnings adjustments or unbounded debt/tax liabilities require a no-go, price change or contractual protection."
+      },
+      "provenance": {
+        "answer_input_filename": "phase11_test_round_1_input.json",
+        "answer_input_sha256": "f34a74576a8eb94a14d2e88b2d0448bf0ba5b89e45a31e96efd31117f7120e58",
+        "answered_at": "2026-09-01T04:10:00Z",
+        "answered_by": "Phase 11 synthetic test operator (not management)",
+        "ingested_at": "2026-09-01T04:10:33.212263Z",
+        "source_kind": "deal_lead_answer_file"
+      },
+      "question_id": "INT-R1-010",
+      "resolution_status": "closed",
+      "round_number": 1,
+      "verbatim_answer": "Synthetic IC thesis only: acquire a recurring-revenue Irish transport-analytics business for its customer relationships and operating platform. The thesis requires supportable earnings, retained material customers and quantified debt/tax exposure. Unobtained material consents, unsupported earnings adjustments or unbounded debt/tax liabilities require a no-go, price change or contractual protection.",
+      "verbatim_answer_sha256": "ac2ec2efb3ec8bdfb8b86c1c3d16ffdeb0ea829e1ae98aeb3ae107001a982bd0"
+    },
+    {
+      "affected_claims": [],
+      "affected_gaps": [
+        "GAP-R1-SCOPE-MATERIALITY"
+      ],
+      "affected_stages": [
+        "intake_round_2",
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "ambiguity": [
+        "The reply explicitly says that requested evidence or confirmation is absent or that the matter remains open."
+      ],
+      "normalised_interpretation": {
+        "kind": "explicitly_unresolved",
+        "value": "Synthetic evaluation cut-off: 1 September 2026. No monetary materiality threshold or scope exclusion was supplied; prioritize all high and critical findings and separately quantify every amount established by validated evidence. No other adviser coverage may be assumed."
+      },
+      "provenance": {
+        "answer_input_filename": "phase11_test_round_1_input.json",
+        "answer_input_sha256": "f34a74576a8eb94a14d2e88b2d0448bf0ba5b89e45a31e96efd31117f7120e58",
+        "answered_at": "2026-09-01T04:10:00Z",
+        "answered_by": "Phase 11 synthetic test operator (not management)",
+        "ingested_at": "2026-09-01T04:10:33.212263Z",
+        "source_kind": "deal_lead_answer_file"
+      },
+      "question_id": "INT-R1-011",
+      "resolution_status": "open",
+      "round_number": 1,
+      "verbatim_answer": "Synthetic evaluation cut-off: 1 September 2026. No monetary materiality threshold or scope exclusion was supplied; prioritize all high and critical findings and separately quantify every amount established by validated evidence. No other adviser coverage may be assumed.",
+      "verbatim_answer_sha256": "7a3701aecce143a78094f9e5af0628669906816c56f8c92a7a0ebe73c06d55b1"
+    }
+  ],
+  "explicit_ingestion": true,
+  "ingested_at": "2026-09-01T04:10:33.212263Z",
+  "renormalized_at": "2026-09-01T05:42:24.903191Z",
+  "round_number": 1,
+  "run_id": "20260901T040928457675Z-dede88eb959c",
+  "schema_version": 1,
+  "status": "ingested",
+  "status_counts": {
+    "closed": 2,
+    "narrowed": 0,
+    "open": 9
+  }
+}

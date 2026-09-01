@@ -1,0 +1,285 @@
+{
+  "analysis_version": "phase9-analysis-v4",
+  "coverage": [
+    {
+      "issue_ids": [
+        "TAX-001"
+      ],
+      "status": "analysed",
+      "topic": "vat_returns_xero_original_amended"
+    },
+    {
+      "issue_ids": [
+        "TAX-001"
+      ],
+      "status": "analysed",
+      "topic": "vat_charges_payments"
+    },
+    {
+      "issue_ids": [
+        "TAX-003"
+      ],
+      "status": "analysed",
+      "topic": "paye_returns_payments"
+    },
+    {
+      "issue_ids": [
+        "TAX-002"
+      ],
+      "status": "analysed",
+      "topic": "corporation_tax_returns_payments_charges_refunds"
+    },
+    {
+      "issue_ids": [
+        "TAX-002"
+      ],
+      "status": "analysed",
+      "topic": "annual_computations_trial_balances"
+    },
+    {
+      "issue_ids": [
+        "TAX-004"
+      ],
+      "status": "analysed",
+      "topic": "invoice_samples"
+    },
+    {
+      "issue_ids": [
+        "TAX-004"
+      ],
+      "status": "analysed",
+      "topic": "tax_clearance"
+    },
+    {
+      "issue_ids": [
+        "TAX-001"
+      ],
+      "status": "analysed",
+      "topic": "original_vs_rev2_responses"
+    }
+  ],
+  "effective_version_decisions": [
+    {
+      "decision": "base framework plus 2025 amendment; consent clause expressly continues",
+      "family": "Harbourlight customer contract",
+      "source_ids": [
+        "SRC-0034",
+        "SRC-0037"
+      ]
+    },
+    {
+      "decision": "2026 amendment replaces the original liability clause",
+      "family": "Mosaic North customer contract",
+      "source_ids": [
+        "SRC-0035",
+        "SRC-0038"
+      ]
+    },
+    {
+      "decision": "2025 amendment extends scope/term; other terms continue",
+      "family": "Mosaic South customer contract",
+      "source_ids": [
+        "SRC-0036",
+        "SRC-0039"
+      ]
+    },
+    {
+      "decision": "Rev2 is the current response, but its no-amendment VAT answer is contradicted",
+      "family": "Tax response summary",
+      "source_ids": [
+        "SRC-0078",
+        "SRC-0079"
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "action": "Tax advisers should obtain ROS filing receipts and account statements for every period, reconcile original/amended returns to the ledger and document amendment causes and settlement.",
+      "analysis_conclusion": "The Rev2 tax response is demonstrably wrong: a 2025-P2 VAT amendment increased payable VAT by EUR 8,000, although Rev2 states that no VAT returns were amended. The tax trial balance also carries a EUR 182,000 VAT-control balance that the payment-status evidence does not reconcile.",
+      "analytical_reasoning": "Payment evidence for listed charges reduces one cash-exposure concern, but it does not clear or explain the ledger control balance. The current questionnaire answer is unreliable and requires a broader completeness check.",
+      "calculation_ids": [
+        "CALC-TAX-001"
+      ],
+      "claim_ids": [
+        "CLM-TAX-001"
+      ],
+      "confidence": 0.85,
+      "confidence_basis": [
+        "Capped at 0.85 because one or more intake answers remain open or narrowed."
+      ],
+      "counterevidence_ids": [],
+      "cross_workstream_links": [
+        "financial",
+        "legal_contractual",
+        "operational_management"
+      ],
+      "issue_id": "TAX-001",
+      "materiality": "critical",
+      "opinion_status": "commercial_tax_diligence_not_formal_tax_opinion",
+      "source_fact": "The original return reports EUR 174,000, the amended return reports EUR 182,000, and the ROS-style account says all listed charges were paid.",
+      "supporting_evidence_ids": [
+        "EVD-TAX-001-01",
+        "EVD-TAX-001-02",
+        "EVD-TAX-001-03",
+        "EVD-TAX-001-04",
+        "EVD-TAX-001-05"
+      ],
+      "transaction_implication": "Require corrected tax disclosures, a specific tax warranty covering amended filings and a tax covenant/indemnity for pre-close liabilities, interest and penalties.",
+      "transaction_levers": [
+        "tax_indemnity",
+        "warranty",
+        "escrow",
+        "further_diligence"
+      ],
+      "uncertainty": null,
+      "why_it_matters": "Incorrect tax responses undermine warranty disclosure and may conceal other amendments or process failures."
+    },
+    {
+      "action": "Obtain the filed Form CT1/supporting computation, assessment, general-ledger tax accounts and adviser bridge explaining every difference between computation, TB, return, charge, payment and refund.",
+      "analysis_conclusion": "Net ROS cash of EUR 401,700 arithmetically equals the EUR 389,200 return plus EUR 12,500 late-amendment charge, but the return does not reconcile to the EUR 178,625 annual computation or EUR 348,200 trial-balance tax figure. This equality does not prove that the cited cash entries settled the cited assessment.",
+      "analytical_reasoning": "The equality is an arithmetic hypothesis only: the source set lacks assessment references, filing receipts and transaction-level linkage. A separate tax-payment confirmation elsewhere in the room also requires classification rather than being silently ignored.",
+      "calculation_ids": [
+        "CALC-TAX-002"
+      ],
+      "claim_ids": [
+        "CLM-TAX-002"
+      ],
+      "confidence": 0.85,
+      "confidence_basis": [
+        "Capped at 0.85 because one or more intake answers remain open or narrowed."
+      ],
+      "counterevidence_ids": [],
+      "cross_workstream_links": [
+        "financial",
+        "legal_contractual"
+      ],
+      "issue_id": "TAX-002",
+      "materiality": "critical",
+      "opinion_status": "commercial_tax_diligence_not_formal_tax_opinion",
+      "source_fact": "Payments of EUR 420,000 less a EUR 18,300 refund equal the return plus charge; the computation and trial balance show different amounts.",
+      "supporting_evidence_ids": [
+        "EVD-TAX-002-01",
+        "EVD-TAX-002-02",
+        "EVD-TAX-002-03",
+        "EVD-TAX-002-04",
+        "EVD-TAX-002-05",
+        "EVD-TAX-002-06",
+        "EVD-TAX-002-07"
+      ],
+      "transaction_implication": "Do not adjust price for a presumed refund or liability without the bridge; require a tax covenant and retain escrow for unresolved pre-close CT exposures.",
+      "transaction_levers": [
+        "tax_indemnity",
+        "escrow",
+        "warranty",
+        "price_assumptions"
+      ],
+      "uncertainty": "The source set does not establish why the computation, ledger and filed return differ or link the cash entries—including the separate payment confirmation—to a specific assessment. The additional unlinked payment is EUR 210,000.",
+      "why_it_matters": "An unexplained CT bridge affects tax warranties, normalized earnings and balance-sheet provisions."
+    },
+    {
+      "action": "Reconcile monthly payroll submissions, payslips, employee master, contractor payments and the PAYE control balance through the latest completion date.",
+      "analysis_conclusion": "PAYE returns and payments agree at EUR 1,584,000 and the 64-person count is corroborated by the updated reconciliation. The annual tie-out does not resolve the EUR 0 PAYE-control balance or contractor-status risk.",
+      "analytical_reasoning": "The annual PAYE cash tie-out is supported, but equality of annual totals is not a ledger reconciliation and does not explain the control balance.",
+      "calculation_ids": [
+        "CALC-TAX-003"
+      ],
+      "claim_ids": [
+        "CLM-TAX-003"
+      ],
+      "confidence": 0.85,
+      "confidence_basis": [
+        "Capped at 0.85 because one or more intake answers remain open or narrowed."
+      ],
+      "counterevidence_ids": [],
+      "cross_workstream_links": [
+        "financial",
+        "operational_management"
+      ],
+      "issue_id": "TAX-003",
+      "materiality": "high",
+      "opinion_status": "commercial_tax_diligence_not_formal_tax_opinion",
+      "source_fact": "The ROS-style return/payment pair and updated CSV carry matching liability/payment and headcount evidence.",
+      "supporting_evidence_ids": [
+        "EVD-TAX-003-01",
+        "EVD-TAX-003-02",
+        "EVD-TAX-003-03",
+        "EVD-TAX-003-04"
+      ],
+      "transaction_implication": "Use the tie-out as supporting disclosure; preserve tax indemnity for omitted workers, periods and classification matters.",
+      "transaction_levers": [
+        "tax_indemnity",
+        "warranty",
+        "further_diligence"
+      ],
+      "uncertainty": "The EUR 0 PAYE control balance and post-source periods require reconciliation.",
+      "why_it_matters": "A supported payroll tax tie-out narrows, but does not eliminate, workforce tax exposure."
+    },
+    {
+      "action": "Extend the invoice-to-ledger/return test across a representative period and obtain fresh tax-clearance confirmation immediately before completion.",
+      "analysis_conclusion": "The supplied invoice sample is internally arithmetical and its gross total reconciles to the register at EUR 541,200; tax clearance is shown as current through 2027-04-30. These are positive controls, not proof of full-period tax completeness.",
+      "analytical_reasoning": "The checks support the sampled documents and clearance status only; they do not override unresolved VAT, PAYE or corporation-tax control balances.",
+      "calculation_ids": [
+        "CALC-TAX-004"
+      ],
+      "claim_ids": [
+        "CLM-TAX-004"
+      ],
+      "confidence": 0.85,
+      "confidence_basis": [
+        "Capped at 0.85 because one or more intake answers remain open or narrowed."
+      ],
+      "counterevidence_ids": [],
+      "cross_workstream_links": [
+        "financial",
+        "legal_contractual"
+      ],
+      "issue_id": "TAX-004",
+      "materiality": "medium",
+      "opinion_status": "commercial_tax_diligence_not_formal_tax_opinion",
+      "source_fact": "Each sampled invoice's net plus VAT equals gross, the invoice gross values tie to the register, and a separate clearance certificate states its validity date.",
+      "supporting_evidence_ids": [
+        "EVD-TAX-004-01",
+        "EVD-TAX-004-02",
+        "EVD-TAX-004-03",
+        "EVD-TAX-004-04",
+        "EVD-TAX-004-05",
+        "EVD-TAX-004-06"
+      ],
+      "transaction_implication": "Retain these items as supporting disclosure while preserving the tax covenant, warranties and completion-date reconciliations for open balances.",
+      "transaction_levers": [
+        "warranty",
+        "tax_indemnity",
+        "further_diligence"
+      ],
+      "uncertainty": "Sample coverage and completion-date clearance remain limited.",
+      "why_it_matters": "Balanced reporting distinguishes verified positive controls from broader adverse reconciliation findings."
+    }
+  ],
+  "generated_by": "deterministic local analytical rules; Python made no model call",
+  "irish_jurisdiction_scope": "Commercial due diligence in an Irish transaction context; this is not a formal Irish legal or tax opinion and specialist advisers must confirm conclusions used in transaction documents.",
+  "limitations": [
+    "No formal Irish legal or tax opinion is provided.",
+    "Visual property/CRO evidence and the unreadable legacy policy remain unresolved.",
+    "Topics marked limitation had insufficient source evidence for an adverse conclusion."
+  ],
+  "public_research_performed": false,
+  "run_id": "20260901T040928457675Z-dede88eb959c",
+  "schema_version": 1,
+  "unresolved_intake_question_ids": [
+    "INT-R1-001",
+    "INT-R1-002",
+    "INT-R1-004",
+    "INT-R1-005",
+    "INT-R1-006",
+    "INT-R1-007",
+    "INT-R1-008",
+    "INT-R1-009",
+    "INT-R1-011",
+    "INT-R2-001",
+    "INT-R2-002",
+    "INT-R2-003",
+    "INT-R2-004"
+  ],
+  "untrusted_source_data_was_executed": false,
+  "workstream": "tax"
+}

@@ -1,0 +1,297 @@
+{
+  "schema_version": 1,
+  "run_id": "20260901T040928457675Z-dede88eb959c",
+  "review_type": "independent_red_team",
+  "reviewed_at": "2026-09-01T09:57:26.1880352+05:30",
+  "data_room_path": "C:\\Users\\jites\\dd-engine\\synthetic\\data_room",
+  "summary": {
+    "headline_calculation_records_reviewed": 15,
+    "arithmetic_matches": 15,
+    "arithmetic_mismatches": 0,
+    "conclusion_scope_exceptions": 6,
+    "source_checksum_records_checked": 100,
+    "source_checksum_matches": 100,
+    "overall_conclusion": "All 15 recorded calculations reproduce arithmetically from native-source values. That does not validate six related analytical conclusions whose period, population, classification or evidential scope is incomplete."
+  },
+  "calculations": [
+    {
+      "calculation_id": "CALC-FIN-001",
+      "description": "Statutory revenue growth from 2020 to 2025",
+      "source_inputs": [
+        {"source_id": "SRC-0020", "locator": "page 1", "value": 6200000},
+        {"source_id": "SRC-0025", "locator": "page 1", "value": 13100000}
+      ],
+      "independent_formula": "(13100000 - 6200000) / 6200000 * 100",
+      "reported_value": null,
+      "report_recomputed_value": 111.29,
+      "independent_recomputed_value": 111.29032258064515,
+      "variance_to_report_recomputed": 0.00032258064515,
+      "status": "matched",
+      "limitation": "Annual statutory figures do not establish current run-rate quality."
+    },
+    {
+      "calculation_id": "CALC-FIN-002",
+      "description": "Statutory EBITDA margin for 2025",
+      "source_inputs": [
+        {"source_id": "SRC-0025", "locator": "page 1", "value": 2080000},
+        {"source_id": "SRC-0025", "locator": "page 1", "value": 13100000}
+      ],
+      "independent_formula": "2080000 / 13100000 * 100",
+      "reported_value": null,
+      "report_recomputed_value": 15.88,
+      "independent_recomputed_value": 15.877862595419847,
+      "variance_to_report_recomputed": -0.002137404580153,
+      "status": "matched",
+      "limitation": "The statutory PDF itself labels EBITDA as a management measure."
+    },
+    {
+      "calculation_id": "CALC-FIN-003",
+      "description": "Bridge management-reported baseline EBITDA to adjusted EBITDA",
+      "source_inputs": [
+        {"source_id": "SRC-0012", "locator": "page 1", "value": 1230000},
+        {"source_id": "SRC-0012", "locator": "page 1", "value": 180000}
+      ],
+      "independent_formula": "1230000 + 180000",
+      "reported_value": 1410000,
+      "report_recomputed_value": 1410000,
+      "independent_recomputed_value": 1410000,
+      "variance_to_report_recomputed": 0,
+      "status": "arithmetic_matched_conclusion_scope_failed",
+      "limitation": "EUR 1.23m is management-reported in the YTD PDF; no cited ledger, monthly pack or trial balance independently establishes it as the supportable EBITDA base. The add-back is 12.76596% of adjusted EBITDA and 14.63415% of the stated baseline."
+    },
+    {
+      "calculation_id": "CALC-FIN-004",
+      "description": "Single-date working-capital arithmetic",
+      "source_inputs": [
+        {"source_id": "SRC-0027", "locator": "Calculation!B4", "value": 1480000},
+        {"source_id": "SRC-0027", "locator": "Calculation!B5", "value": 95000},
+        {"source_id": "SRC-0027", "locator": "Calculation!B6", "value": -930000},
+        {"source_id": "SRC-0027", "locator": "Calculation!B8", "value": 185000}
+      ],
+      "independent_formula": "1480000 + 95000 - 930000 + 185000",
+      "reported_value": -835000,
+      "report_recomputed_value": 830000,
+      "independent_recomputed_value": 830000,
+      "variance_to_report_recomputed": 0,
+      "status": "arithmetic_matched_scope_unresolved",
+      "limitation": "EUR 830k is a 30 June 2026 arithmetic balance, not a normalized twelve-month peg. Eligibility and recoverability of deposits, staff advances, prepayments and the visually identified EUR 45k property-sale retention are unresolved."
+    },
+    {
+      "calculation_id": "CALC-FIN-005",
+      "description": "Recompute 90+ debtor bucket",
+      "source_inputs": [
+        {"source_id": "SRC-0002", "locator": "Aged Debtors!E4:E10", "values": [123000, 16000, 11500, 10500, 8000, 4500, 3000]},
+        {"source_id": "SRC-0002", "locator": "Aged Debtors!F11", "value": 1480000}
+      ],
+      "independent_formula": "SUM(E4:E10)",
+      "reported_value": 74000,
+      "report_recomputed_value": 176500,
+      "independent_recomputed_value": 176500,
+      "variance_to_report_recomputed": 0,
+      "supplementary_ratio_percent": 11.925675675675675,
+      "status": "matched",
+      "limitation": "The live formula is already SUM(E4:E10); EUR 74k is a stale stored formula result, not an incorrect visible formula range."
+    },
+    {
+      "calculation_id": "CALC-FIN-006",
+      "description": "Gross identified debt and indicative net debt",
+      "source_inputs": [
+        {"source_id": "SRC-0010", "locator": "Loans!C6", "value": 1810000, "as_of": "2026-06-30"},
+        {"source_id": "SRC-0006", "locator": "HP!C6", "value": 290000, "as_of": "2026-06-30"},
+        {"source_id": "SRC-0017", "locator": "paragraph 10", "value": 120000, "as_of": "2026-06-30"},
+        {"source_id": "SRC-0026", "locator": "Trial Balance!C4", "value": 960000, "as_of": "2025-12-31"}
+      ],
+      "independent_formula": "1810000 + 290000 + 120000 - 960000",
+      "reported_value": null,
+      "report_recomputed_value": 1260000,
+      "independent_recomputed_value": 1260000,
+      "gross_debt_and_debt_like": 2220000,
+      "variance_to_report_recomputed": 0,
+      "status": "arithmetic_matched_scope_unresolved",
+      "limitation": "Gross debt is corroborated by the 31 August loan photographs and scanned HP pack. Net debt is not contemporaneous because it deducts December 2025 cash from June/August 2026 debt and no unrestricted-cash evidence exists."
+    },
+    {
+      "calculation_id": "CALC-FIN-007",
+      "description": "Contractor allocation difference",
+      "source_inputs": [
+        {"source_id": "SRC-0003", "locator": "Contractors!B10", "value": 10, "as_of": "2026-06-30"},
+        {"source_id": "SRC-0043", "locator": "Contractors!B2", "value": 12, "as_of": "2026-06-30"}
+      ],
+      "independent_formula": "12 - 10",
+      "reported_value": null,
+      "report_recomputed_value": 2,
+      "independent_recomputed_value": 2,
+      "variance_to_report_recomputed": 0,
+      "status": "matched_as_of_cutoff_only",
+      "limitation": "Six listed contractor end dates had passed by the report's 1 September 2026 cut-off, so a current active population cannot be inferred."
+    },
+    {
+      "calculation_id": "CALC-FIN-008",
+      "description": "Probability-weighted pipeline total",
+      "source_inputs": [
+        {"source_id": "SRC-0019", "locator": "Pipeline!E4:E7", "values": [1062500, 506000, 770000, 204000]}
+      ],
+      "independent_formula": "SUM(E4:E7)",
+      "reported_value": 2580000,
+      "report_recomputed_value": 2542500,
+      "independent_recomputed_value": 2542500,
+      "variance_to_report_recomputed": 0,
+      "status": "matched",
+      "limitation": "The live formula is SUM(E4:E7); EUR 2.58m is a stale cached result. The EUR 37.5k variance is 1.4535% of the stored total and no materiality threshold was supplied."
+    },
+    {
+      "calculation_id": "CALC-COMM-001",
+      "description": "Mosaic group FY2025 concentration",
+      "source_inputs": [
+        {"source_id": "SRC-0018", "locator": "Revenue!B6", "value": 2000000},
+        {"source_id": "SRC-0018", "locator": "Revenue!B7", "value": 1700000},
+        {"source_id": "SRC-0018", "locator": "Revenue!B11", "value": 13100000}
+      ],
+      "independent_formula": "(2000000 + 1700000) / 13100000 * 100",
+      "reported_value": null,
+      "report_recomputed_value": 28.24,
+      "independent_recomputed_value": 28.244274809160306,
+      "variance_to_report_recomputed": 0.004274809160306,
+      "status": "matched",
+      "limitation": null
+    },
+    {
+      "calculation_id": "CALC-COMM-002",
+      "description": "Mosaic group 2026 YTD concentration",
+      "source_inputs": [
+        {"source_id": "SRC-0018", "locator": "Revenue!C6", "value": 1250000},
+        {"source_id": "SRC-0018", "locator": "Revenue!C7", "value": 1100000},
+        {"source_id": "SRC-0018", "locator": "Revenue!C11", "value": 7650000}
+      ],
+      "independent_formula": "(1250000 + 1100000) / 7650000 * 100",
+      "reported_value": null,
+      "report_recomputed_value": 30.72,
+      "independent_recomputed_value": 30.718954248366014,
+      "variance_to_report_recomputed": -0.001045751633986,
+      "status": "matched",
+      "limitation": null
+    },
+    {
+      "calculation_id": "CALC-COMM-003",
+      "description": "Largest submitted client-linked workforce share",
+      "source_inputs": [
+        {"source_id": "SRC-0015", "locator": "PAYE!B4", "value": 18},
+        {"source_id": "SRC-0003", "locator": "Contractors!B4", "value": 2},
+        {"source_id": "SRC-0015", "locator": "PAYE!B11", "value": 64},
+        {"source_id": "SRC-0003", "locator": "Contractors!B10", "value": 10}
+      ],
+      "independent_formula": "(18 + 2) / (64 + 10) * 100",
+      "reported_value": null,
+      "report_recomputed_value": 27.03,
+      "independent_recomputed_value": 27.027027027027028,
+      "variance_to_report_recomputed": -0.002972972972972,
+      "status": "matched_submitted_population_denominator_incomplete",
+      "limitation": "Using all 12 legal-list contractors produces a 26.3158%-28.9474% range depending on the two unallocated contractors' client assignment."
+    },
+    {
+      "calculation_id": "CALC-LEGAL-001",
+      "description": "Issued shares in Rev2 cap table",
+      "source_inputs": [
+        {"source_id": "SRC-0091", "locator": "Cap Table!B4:B6", "values": [520000, 280000, 200000]}
+      ],
+      "independent_formula": "520000 + 280000 + 200000",
+      "reported_value": 1000000,
+      "report_recomputed_value": 1000000,
+      "independent_recomputed_value": 1000000,
+      "variance_to_report_recomputed": 0,
+      "status": "matched",
+      "limitation": "The screenshot is not a certified current extract and is an exact duplicate across two source IDs."
+    },
+    {
+      "calculation_id": "CALC-TAX-001",
+      "description": "2025-P2 VAT amendment",
+      "source_inputs": [
+        {"source_id": "SRC-0083", "locator": "page 1", "value": 174000},
+        {"source_id": "SRC-0084", "locator": "page 1", "value": 182000}
+      ],
+      "independent_formula": "182000 - 174000",
+      "reported_value": 8000,
+      "report_recomputed_value": 8000,
+      "independent_recomputed_value": 8000,
+      "variance_to_report_recomputed": 0,
+      "status": "matched",
+      "limitation": "The Tax TB still carries a EUR 182k VAT-control balance while the ROS-style screen says all listed charges were paid."
+    },
+    {
+      "calculation_id": "CALC-TAX-002",
+      "description": "2025 CT screen arithmetic",
+      "source_inputs": [
+        {"source_id": "SRC-0072", "locator": "page 1", "value": 420000},
+        {"source_id": "SRC-0073", "locator": "page 1", "value": 18300},
+        {"source_id": "SRC-0074", "locator": "page 1", "value": 389200},
+        {"source_id": "SRC-0071", "locator": "page 1", "value": 12500}
+      ],
+      "independent_formula": "420000 - 18300 - 389200 - 12500",
+      "reported_value": 0,
+      "report_recomputed_value": 0,
+      "independent_recomputed_value": 0,
+      "variance_to_report_recomputed": 0,
+      "status": "arithmetic_matched_period_linkage_unresolved",
+      "limitation": "Isolated account-entry PDFs do not establish that all four amounts share the same assessment, cash date and settlement status. The return exceeds the computation by EUR 210,575 and the TB figure by EUR 41,000."
+    },
+    {
+      "calculation_id": "CALC-TAX-003",
+      "description": "Annual PAYE returns versus payments",
+      "source_inputs": [
+        {"source_id": "SRC-0076", "locator": "page 1", "value": 1584000},
+        {"source_id": "SRC-0075", "locator": "page 1", "value": 1584000}
+      ],
+      "independent_formula": "1584000 - 1584000",
+      "reported_value": 0,
+      "report_recomputed_value": 0,
+      "independent_recomputed_value": 0,
+      "variance_to_report_recomputed": 0,
+      "status": "arithmetic_matched_control_balance_unresolved",
+      "limitation": "The Tax TB carries a EUR 132k PAYE-control credit and the supplied screens cover only 2025; the annual zero difference is not a clean current PAYE conclusion."
+    }
+  ],
+  "supplementary_recomputations": [
+    {
+      "id": "RT-SUP-001",
+      "description": "2020 statutory EBITDA margin",
+      "formula": "720000 / 6200000 * 100",
+      "value": 11.612903225806452,
+      "citations": ["SRC-0020 page 1"]
+    },
+    {
+      "id": "RT-SUP-002",
+      "description": "Top two customer groups as a share of revenue",
+      "fy2025_percent": 51.908396946564885,
+      "ytd2026_percent": 55.55555555555556,
+      "citations": ["SRC-0018 Revenue!B4:B7", "SRC-0018 Revenue!C4:C7", "SRC-0018 Revenue!B11:C11", "SRC-0037 page 1", "SRC-0038 page 1", "SRC-0039 page 1"]
+    },
+    {
+      "id": "RT-SUP-003",
+      "description": "Top three customer groups as a share of revenue",
+      "fy2025_percent": 71.7557251908397,
+      "ytd2026_percent": 75.81699346405229,
+      "citations": ["SRC-0018 Revenue!B4:B7", "SRC-0018 Revenue!C4:C7", "SRC-0018 Revenue!B11:C11"]
+    },
+    {
+      "id": "RT-SUP-004",
+      "description": "Harbourlight and Mosaic opportunities as a share of corrected weighted pipeline",
+      "formula": "(1062500 + 770000) / 2542500 * 100",
+      "value": 72.07472959685349,
+      "citations": ["SRC-0019 Pipeline!E4:E8"]
+    },
+    {
+      "id": "RT-SUP-005",
+      "description": "Hosting creditor balance beyond current bucket",
+      "formula": "66250 + 26500",
+      "value": 92750,
+      "citations": ["SRC-0001 Aged Creditors!C4:D4"]
+    },
+    {
+      "id": "RT-SUP-006",
+      "description": "Visually identified property-sale retention",
+      "value": 45000,
+      "status": "current_collectability_unresolved",
+      "citations": ["SRC-0058 page 3 visual review"]
+    }
+  ]
+}

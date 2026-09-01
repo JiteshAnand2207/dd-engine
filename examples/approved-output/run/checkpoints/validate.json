@@ -1,0 +1,32 @@
+{
+  "run_id": "20260901T040928457675Z-dede88eb959c",
+  "schema_version": 1,
+  "stage": "validate",
+  "stage_record": {
+    "artifacts": [
+      {
+        "path": "outputs/report_validation.json",
+        "run_id": "20260901T040928457675Z-dede88eb959c",
+        "sha256": "c3f892567691388c1ca6d41d7e3c67aa4dde73f152e3e68de9b8f98bf174333d",
+        "size_bytes": 204084
+      }
+    ],
+    "attempts": 3,
+    "completed_at": "2026-09-01T06:01:02.122835Z",
+    "error": null,
+    "error_history": [],
+    "input_checksum": "2dae4fb1736f7938350969022c00bf9dba5d67cd3636c9989e3ca5ac8fd14c19",
+    "invalidated_at": null,
+    "invalidation_reason": null,
+    "output_checksum": "0d812b2afcb9a4f8ec9742f70621fd2c17fba019aee77c7caaecca8efd745a11",
+    "started_at": "2026-09-01T06:01:01.946467Z",
+    "state": "completed",
+    "updated_at": "2026-09-01T06:01:02.122835Z",
+    "validation": {
+      "checked_at": "2026-09-01T06:01:02.122835Z",
+      "errors": [],
+      "passed": true
+    }
+  },
+  "updated_at": "2026-09-01T06:01:02.122835Z"
+}

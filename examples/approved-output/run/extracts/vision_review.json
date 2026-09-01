@@ -1,0 +1,123 @@
+{
+  "harness_review_performed": true,
+  "python_model_execution_performed": false,
+  "reviews": [
+    {
+      "asset_sha256": "60afb26e79ce55f20fccabcf3e3480b54a238def150163ed83f627bfb939b5db",
+      "locator": {
+        "image_number": 1,
+        "region": {
+          "height": 1200,
+          "width": 1600,
+          "x": 0,
+          "y": 0
+        },
+        "type": "image"
+      },
+      "result": {
+        "confidence": 0.98,
+        "method": "harness_visual_review",
+        "model_id": null,
+        "model_id_reason": "the active harness did not expose a model identifier",
+        "reviewed_at": "2026-09-01T05:42:22.633232Z",
+        "reviewer": "Codex independent source review",
+        "token_counts": null,
+        "token_counts_reason": "the active harness did not expose per-review token usage",
+        "transcription": "Innovation Finance Ireland — Term Loan Confirmation. Principal balance EUR 1,450,000 at 31 August 2026. Change of control is a review event under the facility. This fictional letter is not a payoff statement."
+      },
+      "source_checksum": "3b63c976830b35efadc2a09f9ab03a03e6789470a0a9268a84c8d57d5567106e",
+      "source_id": "SRC-0008",
+      "task_id": "VISION-SRC-0008-IMAGE-0001"
+    },
+    {
+      "asset_sha256": "95d13e6e707209515b76fd04cad87db5356a18a195f26ce9a3b03a829f4f3d1f",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "result": {
+        "confidence": 0.97,
+        "method": "harness_visual_review",
+        "model_id": null,
+        "model_id_reason": "the active harness did not expose a model identifier",
+        "reviewed_at": "2026-09-01T05:42:22.633232Z",
+        "reviewer": "Codex independent source review",
+        "token_counts": null,
+        "token_counts_reason": "the active harness did not expose per-review token usage",
+        "transcription": "Term Loan Facility. Facility balance EUR 1,450,000. Security: fixed and floating charge over the company's assets."
+      },
+      "source_checksum": "ea38bd8e446ad3e19fa6067ad031f5dbf38317141ea9466521d7f6e2069cf5a5",
+      "source_id": "SRC-0009",
+      "task_id": "VISION-SRC-0009-PAGE-0001"
+    },
+    {
+      "asset_sha256": "e49ac770ae6706096a0d75e7c1933e3a37e3c042e3d314bcd53fd57ac498a95d",
+      "locator": {
+        "page_label": "2",
+        "page_number": 2,
+        "type": "pdf_page"
+      },
+      "result": {
+        "confidence": 0.97,
+        "method": "harness_visual_review",
+        "model_id": null,
+        "model_id_reason": "the active harness did not expose a model identifier",
+        "reviewed_at": "2026-09-01T05:42:22.633232Z",
+        "reviewer": "Codex independent source review",
+        "token_counts": null,
+        "token_counts_reason": "the active harness did not expose per-review token usage",
+        "transcription": "Hire Purchase Vehicle Schedule. 18 vehicles. Title retention applies. Balance EUR 215,000."
+      },
+      "source_checksum": "ea38bd8e446ad3e19fa6067ad031f5dbf38317141ea9466521d7f6e2069cf5a5",
+      "source_id": "SRC-0009",
+      "task_id": "VISION-SRC-0009-PAGE-0002"
+    },
+    {
+      "asset_sha256": "c8fa0e5c6e905b8e3f24a9efaea9b878a0662cbb2d98c98ef57e122f23dd3860",
+      "locator": {
+        "page_label": "3",
+        "page_number": 3,
+        "type": "pdf_page"
+      },
+      "result": {
+        "confidence": 0.97,
+        "method": "harness_visual_review",
+        "model_id": null,
+        "model_id_reason": "the active harness did not expose a model identifier",
+        "reviewed_at": "2026-09-01T05:42:22.633232Z",
+        "reviewer": "Codex independent source review",
+        "token_counts": null,
+        "token_counts_reason": "the active harness did not expose per-review token usage",
+        "transcription": "Equipment Finance. Balance EUR 75,000."
+      },
+      "source_checksum": "ea38bd8e446ad3e19fa6067ad031f5dbf38317141ea9466521d7f6e2069cf5a5",
+      "source_id": "SRC-0009",
+      "task_id": "VISION-SRC-0009-PAGE-0003"
+    },
+    {
+      "asset_sha256": "2daea14c4b0835de5d5c8c4fe0f11e5bb6ebc630d6467c59c4cb228c0289deb8",
+      "locator": {
+        "page_label": "3",
+        "page_number": 3,
+        "type": "pdf_page"
+      },
+      "result": {
+        "confidence": 0.98,
+        "method": "harness_visual_review",
+        "model_id": null,
+        "model_id_reason": "the active harness did not expose a model identifier",
+        "reviewed_at": "2026-09-01T05:42:22.633232Z",
+        "reviewer": "Codex independent source review",
+        "token_counts": null,
+        "token_counts_reason": "the active harness did not expose per-review token usage",
+        "transcription": "A retention of EUR 45,000 remains for fictional snagging items."
+      },
+      "source_checksum": "74834b456e2a253491c7633d8bfa1a571d4fae3b4c292d31275964f0d0ef14aa",
+      "source_id": "SRC-0058",
+      "task_id": "VISION-SRC-0058-PAGE-0003"
+    }
+  ],
+  "run_id": "20260901T040928457675Z-dede88eb959c",
+  "schema_version": 1
+}

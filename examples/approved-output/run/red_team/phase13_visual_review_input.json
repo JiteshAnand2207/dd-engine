@@ -1,0 +1,31 @@
+{
+  "run_id": "20260901T040928457675Z-dede88eb959c",
+  "reviewer": "Codex independent source review",
+  "results": [
+    {
+      "task_id": "VISION-SRC-0008-IMAGE-0001",
+      "confidence": 0.98,
+      "transcription": "Innovation Finance Ireland — Term Loan Confirmation. Principal balance EUR 1,450,000 at 31 August 2026. Change of control is a review event under the facility. This fictional letter is not a payoff statement."
+    },
+    {
+      "task_id": "VISION-SRC-0009-PAGE-0001",
+      "confidence": 0.97,
+      "transcription": "Term Loan Facility. Facility balance EUR 1,450,000. Security: fixed and floating charge over the company's assets."
+    },
+    {
+      "task_id": "VISION-SRC-0009-PAGE-0002",
+      "confidence": 0.97,
+      "transcription": "Hire Purchase Vehicle Schedule. 18 vehicles. Title retention applies. Balance EUR 215,000."
+    },
+    {
+      "task_id": "VISION-SRC-0009-PAGE-0003",
+      "confidence": 0.97,
+      "transcription": "Equipment Finance. Balance EUR 75,000."
+    },
+    {
+      "task_id": "VISION-SRC-0058-PAGE-0003",
+      "confidence": 0.98,
+      "transcription": "A retention of EUR 45,000 remains for fictional snagging items."
+    }
+  ]
+}

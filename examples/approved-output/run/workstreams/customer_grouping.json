@@ -1,0 +1,105 @@
+{
+  "analysis_version": "phase8-analysis-v4",
+  "decisions": [
+    {
+      "candidate_group_id": "GRP-CFL",
+      "decision": "no_grouping_required",
+      "evidence_basis": "This is a single named customer; no name-based merge was performed.",
+      "group_name": "Copper Finch Logistics",
+      "members": [
+        "Copper Finch Logistics Limited"
+      ]
+    },
+    {
+      "candidate_group_id": "GRP-GCH",
+      "decision": "no_grouping_required",
+      "evidence_basis": "This is a single named customer; no name-based merge was performed.",
+      "group_name": "Glencree Health Systems",
+      "members": [
+        "Glencree Health Systems Limited"
+      ]
+    },
+    {
+      "candidate_group_id": "GRP-HBL",
+      "decision": "no_grouping_required",
+      "evidence_basis": "This is a single named customer; no name-based merge was performed.",
+      "group_name": "Harbourlight Mutual Group",
+      "members": [
+        "Harbourlight Stores Limited"
+      ]
+    },
+    {
+      "candidate_group_id": "GRP-MOSAIC",
+      "decision": "confirmed",
+      "evidence_basis": "Each named customer is expressly linked to the same corporate group in a contract.",
+      "group_name": "Mosaic Arc Group",
+      "members": [
+        "Mosaic North Retail Limited",
+        "Mosaic South Trading Limited"
+      ]
+    },
+    {
+      "candidate_group_id": "GRP-OTHER",
+      "decision": "no_grouping_required",
+      "evidence_basis": "This is a single named customer; no name-based merge was performed.",
+      "group_name": "Other",
+      "members": [
+        "Other fictional customers"
+      ]
+    },
+    {
+      "candidate_group_id": "GRP-RMF",
+      "decision": "no_grouping_required",
+      "evidence_basis": "This is a single named customer; no name-based merge was performed.",
+      "group_name": "Rowanmere Foods",
+      "members": [
+        "Rowanmere Foods Limited"
+      ]
+    },
+    {
+      "candidate_group_id": "Group ID",
+      "decision": "no_grouping_required",
+      "evidence_basis": "This is a single named customer; no name-based merge was performed.",
+      "group_name": "Group name",
+      "members": [
+        "Customer"
+      ]
+    },
+    {
+      "candidate_group_id": "Group reference",
+      "decision": "no_grouping_required",
+      "evidence_basis": "This is a single named customer; no name-based merge was performed.",
+      "group_name": "",
+      "members": [
+        "Years"
+      ]
+    }
+  ],
+  "generated_by": "deterministic local analytical rules; Python made no model call",
+  "independent_valuation_provided": false,
+  "limitations": [
+    "Intake must be explicitly completed; unanswered or narrowed answers remain limitations.",
+    "No independent valuation is provided.",
+    "Cash restrictions, monthly performance and several visual debt sources require further evidence.",
+    "Topics marked limitation had no source-backed adverse conclusion; absence is not treated as a clean bill of health."
+  ],
+  "rule": "Names are never merged by similarity alone. Confirmed groups require contracts, addresses, VAT identifiers, explicit management answers or equivalent evidence.",
+  "run_id": "20260901T040928457675Z-dede88eb959c",
+  "schema_version": 1,
+  "unresolved_intake_question_ids": [
+    "INT-R1-001",
+    "INT-R1-002",
+    "INT-R1-004",
+    "INT-R1-005",
+    "INT-R1-006",
+    "INT-R1-007",
+    "INT-R1-008",
+    "INT-R1-009",
+    "INT-R1-011",
+    "INT-R2-001",
+    "INT-R2-002",
+    "INT-R2-003",
+    "INT-R2-004"
+  ],
+  "untrusted_source_data_was_executed": false
+}

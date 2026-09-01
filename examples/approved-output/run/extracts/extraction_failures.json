@@ -1,0 +1,44 @@
+{
+  "count": 2,
+  "failed_sources": [
+    {
+      "cache_status": "not_applicable",
+      "detected_type": "pdf",
+      "failure_reason": "invalid PDF: EOF marker not found",
+      "limitation": "source could not safely reach a document parser",
+      "metrics": {
+        "registered_failures": 1
+      },
+      "primary_extraction_method": "not_extracted_registered_failure",
+      "relative_path": "Legal/Legacy/Unreadable_Policy_Archive.pdf",
+      "source_checksum": "85a4088661a0b60c987f222df56f01eff17c84db9e34198329fd353840737910",
+      "source_id": "SRC-0051",
+      "status": "failed",
+      "unit_count": 0,
+      "vision_task_count": 0,
+      "warnings": []
+    }
+  ],
+  "partial_sources": [],
+  "run_id": "20260901T040928457675Z-dede88eb959c",
+  "schema_version": 1,
+  "unsupported_sources": [
+    {
+      "cache_status": "not_applicable",
+      "detected_type": "zip",
+      "failure_reason": "archive container is not itself an analytical document",
+      "limitation": "ZIP container is retained as a source; its direct members are extracted separately",
+      "metrics": {
+        "archive_containers": 1
+      },
+      "primary_extraction_method": "archive_container_inventory_only",
+      "relative_path": "Legal/Updated_Responses.zip",
+      "source_checksum": "772c58f075c8d5636fc12d319bfff6588a64b5fbe181db1de97666cfeb129f7a",
+      "source_id": "SRC-0059",
+      "status": "unsupported",
+      "unit_count": 0,
+      "vision_task_count": 0,
+      "warnings": []
+    }
+  ]
+}

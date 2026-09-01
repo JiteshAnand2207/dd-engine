@@ -1,0 +1,68 @@
+{
+  "run_id": "20260901T040928457675Z-dede88eb959c",
+  "schema_version": 1,
+  "stage": "intake",
+  "stage_record": {
+    "artifacts": [
+      {
+        "path": "intake/round_1_questions.md",
+        "run_id": "20260901T040928457675Z-dede88eb959c",
+        "sha256": "f5b304f21b3402cd486f4dce22e2cddf83179441930b2f73c9690d805f8b7cf0",
+        "size_bytes": 17675
+      },
+      {
+        "path": "intake/round_1_questions.json",
+        "run_id": "20260901T040928457675Z-dede88eb959c",
+        "sha256": "a44912927e1b4bcc83392c9064d6731f6e758ed1543d309d071986740f7f8047",
+        "size_bytes": 30973
+      },
+      {
+        "path": "intake/round_1_answers.json",
+        "run_id": "20260901T040928457675Z-dede88eb959c",
+        "sha256": "7aaed74ee800e51c68a20fba3d0c77de354076ab931f290504545d778f114934",
+        "size_bytes": 17630
+      },
+      {
+        "path": "intake/round_2_questions.md",
+        "run_id": "20260901T040928457675Z-dede88eb959c",
+        "sha256": "f7f264b704c261a5c1a8c8c3a2076f61ea7f126333a35e7bdbb5192af8c231f8",
+        "size_bytes": 13549
+      },
+      {
+        "path": "intake/round_2_questions.json",
+        "run_id": "20260901T040928457675Z-dede88eb959c",
+        "sha256": "496a95b9ba69f0b013887af2dbe3f1d4b9d135aa4b77f1fc6fe82cee3274ffc9",
+        "size_bytes": 23482
+      },
+      {
+        "path": "intake/round_2_answers.json",
+        "run_id": "20260901T040928457675Z-dede88eb959c",
+        "sha256": "613ace23b62d938ccde2c8e833526ccb7d16a46f0c3fb1e1f2f96f57da1443e3",
+        "size_bytes": 6861
+      },
+      {
+        "path": "intake/unresolved_questions.md",
+        "run_id": "20260901T040928457675Z-dede88eb959c",
+        "sha256": "30a3899f08db09ec3da1f4bebca3ef7db889d9906698b3039d3475bc9c7fc57d",
+        "size_bytes": 8567
+      }
+    ],
+    "attempts": 2,
+    "completed_at": "2026-09-01T05:42:24.949691Z",
+    "error": null,
+    "error_history": [],
+    "input_checksum": "bb4512d3fec27a3a5e97f2e20229068fceed9589ea069ae6e1e0d46e90f530e5",
+    "invalidated_at": null,
+    "invalidation_reason": null,
+    "output_checksum": "1e84801d0a38180b53b612178d38aa42f6344d7f812e46c928b38a06a83ab0d7",
+    "started_at": "2026-09-01T05:42:24.885315Z",
+    "state": "completed",
+    "updated_at": "2026-09-01T05:42:24.949691Z",
+    "validation": {
+      "checked_at": "2026-09-01T05:42:24.949691Z",
+      "errors": [],
+      "passed": true
+    }
+  },
+  "updated_at": "2026-09-01T05:42:24.949691Z"
+}

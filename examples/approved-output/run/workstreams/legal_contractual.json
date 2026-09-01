@@ -1,0 +1,433 @@
+{
+  "analysis_version": "phase9-analysis-v4",
+  "coverage": [
+    {
+      "issue_ids": [
+        "LEGAL-003"
+      ],
+      "status": "analysed",
+      "topic": "corporate_structure_ownership_cap_table"
+    },
+    {
+      "issue_ids": [
+        "LEGAL-003"
+      ],
+      "status": "analysed",
+      "topic": "constitution_shareholder_restrictions"
+    },
+    {
+      "issue_ids": [
+        "LEGAL-001",
+        "LEGAL-005"
+      ],
+      "status": "analysed",
+      "topic": "change_control_assignment_consent"
+    },
+    {
+      "issue_ids": [
+        "LEGAL-001",
+        "LEGAL-002"
+      ],
+      "status": "analysed",
+      "topic": "amendments_effective_terms"
+    },
+    {
+      "issue_ids": [
+        "LEGAL-008"
+      ],
+      "status": "analysed",
+      "topic": "termination_renewal_pricing_service"
+    },
+    {
+      "issue_ids": [
+        "LEGAL-002"
+      ],
+      "status": "analysed",
+      "topic": "liability_warranties_indemnities"
+    },
+    {
+      "issue_ids": [
+        "IT-002"
+      ],
+      "status": "analysed",
+      "topic": "complaints_correspondence"
+    },
+    {
+      "issue_ids": [
+        "LEGAL-004"
+      ],
+      "status": "analysed",
+      "topic": "employment_contractor_status"
+    },
+    {
+      "issue_ids": [
+        "LEGAL-005",
+        "LEGAL-006"
+      ],
+      "status": "analysed",
+      "topic": "property_restrictions"
+    },
+    {
+      "issue_ids": [],
+      "status": "limitation",
+      "topic": "insurance_licences_work_permits"
+    },
+    {
+      "issue_ids": [
+        "LEGAL-007",
+        "IT-003"
+      ],
+      "status": "analysed",
+      "topic": "ip_ownership_data_protection"
+    },
+    {
+      "issue_ids": [],
+      "status": "limitation",
+      "topic": "missing_documents_questionnaire_references"
+    }
+  ],
+  "effective_version_decisions": [
+    {
+      "decision": "base framework plus 2025 amendment; consent clause expressly continues",
+      "family": "Harbourlight customer contract",
+      "source_ids": [
+        "SRC-0034",
+        "SRC-0037"
+      ]
+    },
+    {
+      "decision": "2026 amendment replaces the original liability clause",
+      "family": "Mosaic North customer contract",
+      "source_ids": [
+        "SRC-0035",
+        "SRC-0038"
+      ]
+    },
+    {
+      "decision": "2025 amendment extends scope/term; other terms continue",
+      "family": "Mosaic South customer contract",
+      "source_ids": [
+        "SRC-0036",
+        "SRC-0039"
+      ]
+    },
+    {
+      "decision": "Rev2 is the current response, but its no-amendment VAT answer is contradicted",
+      "family": "Tax response summary",
+      "source_ids": [
+        "SRC-0078",
+        "SRC-0079"
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "action": "Counsel should confirm the contemplated transaction triggers the clause, prepare a contract-by-contract consent matrix and obtain unconditional written consent before completion.",
+      "analysis_conclusion": "The operative Harbourlight contract requires prior written customer consent following a supplier change of control, the amendment preserves that clause, and consent has not been requested.",
+      "analytical_reasoning": "On the contract text supplied, this is a transaction deliverability issue, not a generic legal caveat. Formal counsel must confirm application to the proposed structure.",
+      "calculation_ids": [],
+      "claim_ids": [
+        "CLM-LEGAL-001"
+      ],
+      "confidence": 0.85,
+      "confidence_basis": [
+        "Capped at 0.85 because one or more intake answers remain open or narrowed."
+      ],
+      "counterevidence_ids": [],
+      "issue_id": "LEGAL-001",
+      "materiality": "critical",
+      "opinion_status": "commercial_diligence_not_formal_legal_opinion",
+      "source_fact": "The base framework contains the consent clause; the 2025 amendment expressly keeps it in force; the updated vendor response confirms no request.",
+      "supporting_evidence_ids": [
+        "EVD-LEGAL-001-01",
+        "EVD-LEGAL-001-02",
+        "EVD-LEGAL-001-03"
+      ],
+      "transaction_implication": "Make written consent a closing condition, prohibit pre-consent commercial concessions without buyer approval, and use escrow/price protection if consent is deferred.",
+      "transaction_levers": [
+        "consent",
+        "closing_condition",
+        "escrow",
+        "price_assumptions"
+      ],
+      "uncertainty": null,
+      "why_it_matters": "The customer can use consent timing to seek concessions or delay completion."
+    },
+    {
+      "action": "Counsel should produce an executed-document chronology, confirm signatures/effective dates and map the amended exposure against insurance and open incidents.",
+      "analysis_conclusion": "The later Mosaic North amendment replaces the three-month liability cap with twelve months of fees and uncapped service credits; citing the base cap as current would materially understate exposure.",
+      "analytical_reasoning": "Version evidence resolves the inconsistency in favour of the later, less protective liability regime.",
+      "calculation_ids": [],
+      "claim_ids": [
+        "CLM-LEGAL-002"
+      ],
+      "confidence": 0.85,
+      "confidence_basis": [
+        "Capped at 0.85 because one or more intake answers remain open or narrowed."
+      ],
+      "counterevidence_ids": [],
+      "issue_id": "LEGAL-002",
+      "materiality": "high",
+      "opinion_status": "commercial_diligence_not_formal_legal_opinion",
+      "source_fact": "The amendment states that it prevails over inconsistent terms and supersedes Clause 11 entirely.",
+      "supporting_evidence_ids": [
+        "EVD-LEGAL-002-01",
+        "EVD-LEGAL-002-02"
+      ],
+      "transaction_implication": "Reflect the effective cap in risk allocation, obtain a warranty that all amendments are disclosed, and seek specific seller protection for pre-close service failures.",
+      "transaction_levers": [
+        "warranty",
+        "indemnity",
+        "escrow",
+        "price_assumptions"
+      ],
+      "uncertainty": "Execution copies and complete statement-of-work schedules were not independently verified.",
+      "why_it_matters": "Liability and service-credit exposure affect downside, insurance sufficiency and customer leverage."
+    },
+    {
+      "action": "Irish counsel should obtain current CRO records, inspect statutory registers and reconcile all allotments/transfers/options to the Rev2 cap table and shareholders' agreement.",
+      "analysis_conclusion": "The latest cap-table response recomputes to 1,000,000 shares and agrees to the constitution's issued-capital figure, but no current official CRO extract was supplied. The shareholders' agreement also contains a supermajority reserved-matter threshold and transfer pre-emption mechanics.",
+      "analytical_reasoning": "Internal consistency is established; statutory filing consistency remains unproven because the CRO evidence is image-only. Transaction approval and transfer steps must be mapped against the shareholders' agreement, not inferred from the cap table alone.",
+      "calculation_ids": [
+        "CALC-LEGAL-001"
+      ],
+      "claim_ids": [
+        "CLM-LEGAL-003"
+      ],
+      "confidence": 0.85,
+      "confidence_basis": [
+        "Capped at 0.85 because one or more intake answers remain open or narrowed."
+      ],
+      "counterevidence_ids": [],
+      "issue_id": "LEGAL-003",
+      "materiality": "high",
+      "opinion_status": "commercial_diligence_not_formal_legal_opinion",
+      "source_fact": "The constitution states issued capital and the Rev2 cap table lists three holdings that sum to it.",
+      "supporting_evidence_ids": [
+        "EVD-LEGAL-003-01",
+        "EVD-LEGAL-003-02",
+        "EVD-LEGAL-003-03",
+        "EVD-LEGAL-003-04",
+        "EVD-LEGAL-003-05"
+      ],
+      "transaction_implication": "Make delivery of current official searches, registers and board/shareholder approvals a closing condition; do not rely on the screenshot as conclusive title evidence.",
+      "transaction_levers": [
+        "closing_condition",
+        "warranty",
+        "further_diligence"
+      ],
+      "uncertainty": "The CRO screenshot/refresh remains pending visual review and is an exact duplicate, not independent corroboration.",
+      "why_it_matters": "Ownership and authority must be certain before signing and funds flow."
+    },
+    {
+      "action": "Irish employment and tax advisers should review each contractor's substitution, control, integration, equipment, exclusivity, duration and invoicing evidence.",
+      "analysis_conclusion": "The list states 12 active contractors at its own snapshot date, but 6 listed end dates precede the run date. The source therefore does not establish the current roster. The sample agreement also makes status dependent on actual working practices.",
+      "analytical_reasoning": "Contract labels alone do not resolve employment or tax status indicators.",
+      "calculation_ids": [],
+      "claim_ids": [
+        "CLM-LEGAL-004"
+      ],
+      "confidence": 0.85,
+      "confidence_basis": [
+        "Capped at 0.85 because one or more intake answers remain open or narrowed."
+      ],
+      "counterevidence_ids": [],
+      "issue_id": "LEGAL-004",
+      "materiality": "high",
+      "opinion_status": "commercial_diligence_not_formal_legal_opinion",
+      "source_fact": "The contractor list states the population and the sample form preserves working-practice uncertainty.",
+      "supporting_evidence_ids": [
+        "EVD-LEGAL-004-01",
+        "EVD-LEGAL-004-02",
+        "EVD-LEGAL-004-03",
+        "EVD-LEGAL-004-04",
+        "EVD-LEGAL-004-05",
+        "EVD-LEGAL-004-06",
+        "EVD-LEGAL-004-07",
+        "EVD-LEGAL-004-08"
+      ],
+      "transaction_implication": "Require a workforce warranty and tax/employment indemnity for pre-close classification exposure if individual assessments cannot be completed before signing.",
+      "transaction_levers": [
+        "warranty",
+        "indemnity",
+        "escrow",
+        "further_diligence"
+      ],
+      "uncertainty": "A run-date roster, renewal evidence, individual working-practice evidence and signed agreements were not supplied.",
+      "why_it_matters": "Reclassification can create payroll tax, employment-rights and cost exposure."
+    },
+    {
+      "action": "Counsel should review the complete executed lease and property scans, confirm no side letters or superior-landlord restrictions, and record the conclusion in the consent matrix.",
+      "analysis_conclusion": "The readable lease says a corporate change of control is not an assignment, consistent with the updated response; that conclusion is limited to a share sale and the supplied lease.",
+      "analytical_reasoning": "This resolves the identified lease point commercially, subject to counsel and transaction structure.",
+      "calculation_ids": [],
+      "claim_ids": [
+        "CLM-LEGAL-005"
+      ],
+      "confidence": 0.85,
+      "confidence_basis": [
+        "Capped at 0.85 because one or more intake answers remain open or narrowed."
+      ],
+      "counterevidence_ids": [],
+      "issue_id": "LEGAL-005",
+      "materiality": "medium",
+      "opinion_status": "commercial_diligence_not_formal_legal_opinion",
+      "source_fact": "The lease and updated response are aligned on a share-sale scenario.",
+      "supporting_evidence_ids": [
+        "EVD-LEGAL-005-01",
+        "EVD-LEGAL-005-02"
+      ],
+      "transaction_implication": "Document the share-sale assumption and obtain counsel confirmation; re-open consent analysis if structure changes.",
+      "transaction_levers": [
+        "consent",
+        "closing_condition",
+        "further_diligence"
+      ],
+      "uncertainty": "Property purchase/sale scans remain pending visual review.",
+      "why_it_matters": "Incorrect consent assumptions can delay completion or create landlord leverage."
+    },
+    {
+      "action": "Obtain the executed property contract, snag list, completion certificate, invoices, release correspondence and ledger treatment.",
+      "analysis_conclusion": "A property-source page records a EUR 45,000 retention for outstanding snagging; completion evidence and release conditions are not in the room.",
+      "analytical_reasoning": "The retention is a live property/completion item until the defects, contractual release mechanics and accounting treatment are evidenced.",
+      "calculation_ids": [],
+      "claim_ids": [
+        "CLM-LEGAL-006"
+      ],
+      "confidence": 0.8,
+      "confidence_basis": [
+        "No automatic confidence cap applied."
+      ],
+      "counterevidence_ids": [],
+      "issue_id": "LEGAL-006",
+      "materiality": "high",
+      "opinion_status": "commercial_diligence_not_formal_legal_opinion",
+      "source_fact": "The visually reviewed original page expressly states the retained amount and the snagging basis.",
+      "supporting_evidence_ids": [
+        "EVD-LEGAL-006-01"
+      ],
+      "transaction_implication": "Treat the retention and any remaining works explicitly in debt-like/working capital definitions and seller protections.",
+      "transaction_levers": [
+        "price_assumptions",
+        "escrow",
+        "indemnity",
+        "warranty"
+      ],
+      "uncertainty": "The source does not establish whether the retention has since been released.",
+      "why_it_matters": "Unresolved works and retained consideration can affect cash, title/completion mechanics and post-close liabilities."
+    },
+    {
+      "action": "Map every contractor to deliverables and signed terms, obtain confirmatory assignments and verify moral-rights, confidentiality and third-party-code terms.",
+      "analysis_conclusion": "The supplied contractor form contains no express IP assignment, while the room identifies an active contractor population; contractor-created IP chain of title is not established.",
+      "analytical_reasoning": "A sample form cannot prove the terms signed by each contractor, and its silence is an adverse chain-of-title limitation rather than proof of ownership.",
+      "calculation_ids": [],
+      "claim_ids": [
+        "CLM-LEGAL-007"
+      ],
+      "confidence": 0.82,
+      "confidence_basis": [
+        "No automatic confidence cap applied."
+      ],
+      "counterevidence_ids": [],
+      "issue_id": "LEGAL-007",
+      "materiality": "critical",
+      "opinion_status": "commercial_diligence_not_formal_legal_opinion",
+      "source_fact": "The complete one-page sample form addresses services, status and termination but contains no express IP ownership or assignment term.",
+      "supporting_evidence_ids": [
+        "EVD-LEGAL-007-01"
+      ],
+      "transaction_implication": "Require confirmatory assignments as a closing condition and targeted IP warranties/indemnity for pre-close contractor work.",
+      "transaction_levers": [
+        "closing_condition",
+        "warranty",
+        "indemnity",
+        "escrow"
+      ],
+      "uncertainty": "Signed individual agreements and a contractor-to-deliverable register are absent.",
+      "why_it_matters": "Missing assignments can impair ownership, licensing, enforcement and buyer freedom to use acquired deliverables."
+    },
+    {
+      "action": "Build a customer-by-customer schedule of executed base terms, amendments, SOWs, renewal, termination, pricing, SLAs, credits, consent and dispute status.",
+      "analysis_conclusion": "The supplied customer documents do not form a complete contract-term schedule: termination, renewal, pricing, service-level and statement-of-work coverage cannot be concluded across the portfolio.",
+      "analytical_reasoning": "Selected clauses cannot be extrapolated to every customer or treated as complete coverage of operative schedules and amendments.",
+      "calculation_ids": [],
+      "claim_ids": [
+        "CLM-LEGAL-008"
+      ],
+      "confidence": 0.8,
+      "confidence_basis": [
+        "No automatic confidence cap applied."
+      ],
+      "counterevidence_ids": [],
+      "issue_id": "LEGAL-008",
+      "materiality": "high",
+      "opinion_status": "commercial_diligence_not_formal_legal_opinion",
+      "source_fact": "Readable framework and amendment pages establish selected consent, service and liability terms, but no comprehensive executed-document matrix is supplied.",
+      "supporting_evidence_ids": [
+        "EVD-LEGAL-008-01",
+        "EVD-LEGAL-008-02",
+        "EVD-LEGAL-008-03"
+      ],
+      "transaction_implication": "Do not assume portfolio-wide renewal or pricing protection; condition valuation on a complete operative-contract matrix.",
+      "transaction_levers": [
+        "price_assumptions",
+        "consent",
+        "warranty",
+        "further_diligence"
+      ],
+      "uncertainty": "Completeness of executed customer contracts and schedules is unverified.",
+      "why_it_matters": "Omitted renewal, termination, pricing or SLA terms can change revenue durability and pre-close consent/protection requirements."
+    }
+  ],
+  "generated_by": "deterministic local analytical rules; Python made no model call",
+  "irish_jurisdiction_scope": "Commercial due diligence in an Irish transaction context; this is not a formal Irish legal or tax opinion and specialist advisers must confirm conclusions used in transaction documents.",
+  "limitations": [
+    "No formal Irish legal or tax opinion is provided.",
+    "Visual property/CRO evidence and the unreadable legacy policy remain unresolved.",
+    "Topics marked limitation had insufficient source evidence for an adverse conclusion."
+  ],
+  "public_research_performed": false,
+  "run_id": "20260901T040928457675Z-dede88eb959c",
+  "schema_version": 1,
+  "tax_cross_workstream_links": [
+    {
+      "affected_workstreams": [
+        "financial",
+        "legal_contractual",
+        "operational_management"
+      ],
+      "tax_issue_id": "TAX-001"
+    },
+    {
+      "affected_workstreams": [
+        "financial",
+        "legal_contractual"
+      ],
+      "tax_issue_id": "TAX-002"
+    },
+    {
+      "affected_workstreams": [
+        "financial",
+        "legal_contractual"
+      ],
+      "tax_issue_id": "TAX-004"
+    }
+  ],
+  "unresolved_intake_question_ids": [
+    "INT-R1-001",
+    "INT-R1-002",
+    "INT-R1-004",
+    "INT-R1-005",
+    "INT-R1-006",
+    "INT-R1-007",
+    "INT-R1-008",
+    "INT-R1-009",
+    "INT-R1-011",
+    "INT-R2-001",
+    "INT-R2-002",
+    "INT-R2-003",
+    "INT-R2-004"
+  ],
+  "untrusted_source_data_was_executed": false,
+  "workstream": "legal_contractual"
+}

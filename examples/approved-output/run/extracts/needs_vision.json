@@ -1,0 +1,394 @@
+{
+  "count": 8,
+  "harness_review_performed": true,
+  "model_execution_performed": true,
+  "python_model_execution_performed": false,
+  "queue_status": "partially_reviewed",
+  "reviewed_count": 5,
+  "run_id": "20260901T040928457675Z-dede88eb959c",
+  "schema_version": 1,
+  "tasks": [
+    {
+      "asset": {
+        "height_pixels": 1200,
+        "mime_type": "image/png",
+        "path": "extracts/rendered_pages/29d35250c31d73f3/SRC-0007/image-0001.png",
+        "sha256": "0c9ff258c887bab043272c2198026413b7088286088df7435b8088688de1df29",
+        "width_pixels": 1600
+      },
+      "limitation": "deterministic extraction captured metadata only",
+      "locator": {
+        "image_number": 1,
+        "region": {
+          "height": 1200,
+          "width": 1600,
+          "x": 0,
+          "y": 0
+        },
+        "type": "image"
+      },
+      "model_result": null,
+      "relative_path": "Financial/Loan Letters/Phone_Photo_Innovation_Loan.jpg",
+      "requested_route": "codex_or_claude_vision_review",
+      "run_id": "20260901T040928457675Z-dede88eb959c",
+      "source_checksum": "c31645cffb13bad40c5e1c907bb5fc81fada5e0b587e1496a808c473b9702085",
+      "source_id": "SRC-0007",
+      "status": "pending",
+      "task_id": "VISION-SRC-0007-IMAGE-0001",
+      "untrusted_source_data": true
+    },
+    {
+      "asset": {
+        "height_pixels": 1200,
+        "mime_type": "image/png",
+        "path": "extracts/rendered_pages/29d35250c31d73f3/SRC-0008/image-0001.png",
+        "sha256": "60afb26e79ce55f20fccabcf3e3480b54a238def150163ed83f627bfb939b5db",
+        "width_pixels": 1600
+      },
+      "limitation": "deterministic extraction captured metadata only",
+      "locator": {
+        "image_number": 1,
+        "region": {
+          "height": 1200,
+          "width": 1600,
+          "x": 0,
+          "y": 0
+        },
+        "type": "image"
+      },
+      "model_result": {
+        "confidence": 0.98,
+        "method": "harness_visual_review",
+        "model_id": null,
+        "model_id_reason": "the active harness did not expose a model identifier",
+        "reviewed_at": "2026-09-01T05:42:22.633232Z",
+        "reviewer": "Codex independent source review",
+        "token_counts": null,
+        "token_counts_reason": "the active harness did not expose per-review token usage",
+        "transcription": "Innovation Finance Ireland — Term Loan Confirmation. Principal balance EUR 1,450,000 at 31 August 2026. Change of control is a review event under the facility. This fictional letter is not a payoff statement."
+      },
+      "relative_path": "Financial/Loan Letters/Phone_Photo_Term_Loan.jpg",
+      "requested_route": "codex_or_claude_vision_review",
+      "run_id": "20260901T040928457675Z-dede88eb959c",
+      "source_checksum": "3b63c976830b35efadc2a09f9ab03a03e6789470a0a9268a84c8d57d5567106e",
+      "source_id": "SRC-0008",
+      "status": "reviewed",
+      "task_id": "VISION-SRC-0008-IMAGE-0001",
+      "untrusted_source_data": true
+    },
+    {
+      "asset": {
+        "height_pixels": 1684,
+        "mime_type": "image/png",
+        "path": "extracts/rendered_pages/29d35250c31d73f3/SRC-0009/page-0001.png",
+        "sha256": "95d13e6e707209515b76fd04cad87db5356a18a195f26ce9a3b03a829f4f3d1f",
+        "width_pixels": 1191
+      },
+      "limitation": "visual page content remains unreviewed and is queued for vision",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "model_result": {
+        "confidence": 0.97,
+        "method": "harness_visual_review",
+        "model_id": null,
+        "model_id_reason": "the active harness did not expose a model identifier",
+        "reviewed_at": "2026-09-01T05:42:22.633232Z",
+        "reviewer": "Codex independent source review",
+        "token_counts": null,
+        "token_counts_reason": "the active harness did not expose per-review token usage",
+        "transcription": "Term Loan Facility. Facility balance EUR 1,450,000. Security: fixed and floating charge over the company's assets."
+      },
+      "relative_path": "Financial/Loan Letters/Scanned_Loan_and_HP_Pack.pdf",
+      "requested_route": "codex_or_claude_vision_review",
+      "run_id": "20260901T040928457675Z-dede88eb959c",
+      "source_checksum": "ea38bd8e446ad3e19fa6067ad031f5dbf38317141ea9466521d7f6e2069cf5a5",
+      "source_id": "SRC-0009",
+      "status": "reviewed",
+      "task_id": "VISION-SRC-0009-PAGE-0001",
+      "untrusted_source_data": true
+    },
+    {
+      "asset": {
+        "height_pixels": 1684,
+        "mime_type": "image/png",
+        "path": "extracts/rendered_pages/29d35250c31d73f3/SRC-0009/page-0002.png",
+        "sha256": "e49ac770ae6706096a0d75e7c1933e3a37e3c042e3d314bcd53fd57ac498a95d",
+        "width_pixels": 1191
+      },
+      "limitation": "visual page content remains unreviewed and is queued for vision",
+      "locator": {
+        "page_label": "2",
+        "page_number": 2,
+        "type": "pdf_page"
+      },
+      "model_result": {
+        "confidence": 0.97,
+        "method": "harness_visual_review",
+        "model_id": null,
+        "model_id_reason": "the active harness did not expose a model identifier",
+        "reviewed_at": "2026-09-01T05:42:22.633232Z",
+        "reviewer": "Codex independent source review",
+        "token_counts": null,
+        "token_counts_reason": "the active harness did not expose per-review token usage",
+        "transcription": "Hire Purchase Vehicle Schedule. 18 vehicles. Title retention applies. Balance EUR 215,000."
+      },
+      "relative_path": "Financial/Loan Letters/Scanned_Loan_and_HP_Pack.pdf",
+      "requested_route": "codex_or_claude_vision_review",
+      "run_id": "20260901T040928457675Z-dede88eb959c",
+      "source_checksum": "ea38bd8e446ad3e19fa6067ad031f5dbf38317141ea9466521d7f6e2069cf5a5",
+      "source_id": "SRC-0009",
+      "status": "reviewed",
+      "task_id": "VISION-SRC-0009-PAGE-0002",
+      "untrusted_source_data": true
+    },
+    {
+      "asset": {
+        "height_pixels": 1684,
+        "mime_type": "image/png",
+        "path": "extracts/rendered_pages/29d35250c31d73f3/SRC-0009/page-0003.png",
+        "sha256": "c8fa0e5c6e905b8e3f24a9efaea9b878a0662cbb2d98c98ef57e122f23dd3860",
+        "width_pixels": 1191
+      },
+      "limitation": "visual page content remains unreviewed and is queued for vision",
+      "locator": {
+        "page_label": "3",
+        "page_number": 3,
+        "type": "pdf_page"
+      },
+      "model_result": {
+        "confidence": 0.97,
+        "method": "harness_visual_review",
+        "model_id": null,
+        "model_id_reason": "the active harness did not expose a model identifier",
+        "reviewed_at": "2026-09-01T05:42:22.633232Z",
+        "reviewer": "Codex independent source review",
+        "token_counts": null,
+        "token_counts_reason": "the active harness did not expose per-review token usage",
+        "transcription": "Equipment Finance. Balance EUR 75,000."
+      },
+      "relative_path": "Financial/Loan Letters/Scanned_Loan_and_HP_Pack.pdf",
+      "requested_route": "codex_or_claude_vision_review",
+      "run_id": "20260901T040928457675Z-dede88eb959c",
+      "source_checksum": "ea38bd8e446ad3e19fa6067ad031f5dbf38317141ea9466521d7f6e2069cf5a5",
+      "source_id": "SRC-0009",
+      "status": "reviewed",
+      "task_id": "VISION-SRC-0009-PAGE-0003",
+      "untrusted_source_data": true
+    },
+    {
+      "asset": {
+        "height_pixels": 900,
+        "mime_type": "image/png",
+        "path": "extracts/rendered_pages/29d35250c31d73f3/SRC-0030/image-0001.png",
+        "sha256": "4cbd2255a6034dc808a6cc31b0d37b161a2628b508ce194bf466040d97410e42",
+        "width_pixels": 1440
+      },
+      "limitation": "deterministic extraction captured metadata only",
+      "locator": {
+        "image_number": 1,
+        "region": {
+          "height": 900,
+          "width": 1440,
+          "x": 0,
+          "y": 0
+        },
+        "type": "image"
+      },
+      "model_result": null,
+      "relative_path": "Legal/Corporate/CRO_Search_Screenshot.png",
+      "requested_route": "codex_or_claude_vision_review",
+      "run_id": "20260901T040928457675Z-dede88eb959c",
+      "source_checksum": "4cbd2255a6034dc808a6cc31b0d37b161a2628b508ce194bf466040d97410e42",
+      "source_id": "SRC-0030",
+      "status": "pending",
+      "task_id": "VISION-SRC-0030-IMAGE-0001",
+      "untrusted_source_data": true
+    },
+    {
+      "asset": {
+        "height_pixels": 1684,
+        "mime_type": "image/png",
+        "path": "extracts/rendered_pages/29d35250c31d73f3/SRC-0057/page-0001.png",
+        "sha256": "e6126250a6f17eabe21eac366a4db832cbc1859d6fcb4d3d37467ae999ddbe84",
+        "width_pixels": 1191
+      },
+      "limitation": "visual page content remains unreviewed and is queued for vision",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "model_result": null,
+      "relative_path": "Legal/Property/Property_Purchase_Contract_Scanned.pdf",
+      "requested_route": "codex_or_claude_vision_review",
+      "run_id": "20260901T040928457675Z-dede88eb959c",
+      "source_checksum": "40858efe989d3eed930f49334a504de3364e69dba2109148e10342d0cd017947",
+      "source_id": "SRC-0057",
+      "status": "pending",
+      "task_id": "VISION-SRC-0057-PAGE-0001",
+      "untrusted_source_data": true
+    },
+    {
+      "asset": {
+        "height_pixels": 1684,
+        "mime_type": "image/png",
+        "path": "extracts/rendered_pages/29d35250c31d73f3/SRC-0057/page-0002.png",
+        "sha256": "a3e917f06dcd987da6801d5781b66171972ce45c37c231ca1144b0b519a06f8f",
+        "width_pixels": 1191
+      },
+      "limitation": "visual page content remains unreviewed and is queued for vision",
+      "locator": {
+        "page_label": "2",
+        "page_number": 2,
+        "type": "pdf_page"
+      },
+      "model_result": null,
+      "relative_path": "Legal/Property/Property_Purchase_Contract_Scanned.pdf",
+      "requested_route": "codex_or_claude_vision_review",
+      "run_id": "20260901T040928457675Z-dede88eb959c",
+      "source_checksum": "40858efe989d3eed930f49334a504de3364e69dba2109148e10342d0cd017947",
+      "source_id": "SRC-0057",
+      "status": "pending",
+      "task_id": "VISION-SRC-0057-PAGE-0002",
+      "untrusted_source_data": true
+    },
+    {
+      "asset": {
+        "height_pixels": 1684,
+        "mime_type": "image/png",
+        "path": "extracts/rendered_pages/29d35250c31d73f3/SRC-0057/page-0003.png",
+        "sha256": "97d405c434e8f69b67e15c0520ec0b4c635a7f4298f20a23f292bcc86442ece7",
+        "width_pixels": 1191
+      },
+      "limitation": "visual page content remains unreviewed and is queued for vision",
+      "locator": {
+        "page_label": "3",
+        "page_number": 3,
+        "type": "pdf_page"
+      },
+      "model_result": null,
+      "relative_path": "Legal/Property/Property_Purchase_Contract_Scanned.pdf",
+      "requested_route": "codex_or_claude_vision_review",
+      "run_id": "20260901T040928457675Z-dede88eb959c",
+      "source_checksum": "40858efe989d3eed930f49334a504de3364e69dba2109148e10342d0cd017947",
+      "source_id": "SRC-0057",
+      "status": "pending",
+      "task_id": "VISION-SRC-0057-PAGE-0003",
+      "untrusted_source_data": true
+    },
+    {
+      "asset": {
+        "height_pixels": 1684,
+        "mime_type": "image/png",
+        "path": "extracts/rendered_pages/29d35250c31d73f3/SRC-0058/page-0001.png",
+        "sha256": "0a5b221e8848872a081d4a37e1da289169d0a6be02327abe17b51279618607bb",
+        "width_pixels": 1191
+      },
+      "limitation": "visual page content remains unreviewed and is queued for vision",
+      "locator": {
+        "page_label": "1",
+        "page_number": 1,
+        "type": "pdf_page"
+      },
+      "model_result": null,
+      "relative_path": "Legal/Property/Property_Sale_Contract_Scanned.pdf",
+      "requested_route": "codex_or_claude_vision_review",
+      "run_id": "20260901T040928457675Z-dede88eb959c",
+      "source_checksum": "74834b456e2a253491c7633d8bfa1a571d4fae3b4c292d31275964f0d0ef14aa",
+      "source_id": "SRC-0058",
+      "status": "pending",
+      "task_id": "VISION-SRC-0058-PAGE-0001",
+      "untrusted_source_data": true
+    },
+    {
+      "asset": {
+        "height_pixels": 1684,
+        "mime_type": "image/png",
+        "path": "extracts/rendered_pages/29d35250c31d73f3/SRC-0058/page-0002.png",
+        "sha256": "b42ca600d7a8da7b5e4bc277ebb28a13e1293ea36c67cd9fe62e623c6da1eef8",
+        "width_pixels": 1191
+      },
+      "limitation": "visual page content remains unreviewed and is queued for vision",
+      "locator": {
+        "page_label": "2",
+        "page_number": 2,
+        "type": "pdf_page"
+      },
+      "model_result": null,
+      "relative_path": "Legal/Property/Property_Sale_Contract_Scanned.pdf",
+      "requested_route": "codex_or_claude_vision_review",
+      "run_id": "20260901T040928457675Z-dede88eb959c",
+      "source_checksum": "74834b456e2a253491c7633d8bfa1a571d4fae3b4c292d31275964f0d0ef14aa",
+      "source_id": "SRC-0058",
+      "status": "pending",
+      "task_id": "VISION-SRC-0058-PAGE-0002",
+      "untrusted_source_data": true
+    },
+    {
+      "asset": {
+        "height_pixels": 1684,
+        "mime_type": "image/png",
+        "path": "extracts/rendered_pages/29d35250c31d73f3/SRC-0058/page-0003.png",
+        "sha256": "2daea14c4b0835de5d5c8c4fe0f11e5bb6ebc630d6467c59c4cb228c0289deb8",
+        "width_pixels": 1191
+      },
+      "limitation": "visual page content remains unreviewed and is queued for vision",
+      "locator": {
+        "page_label": "3",
+        "page_number": 3,
+        "type": "pdf_page"
+      },
+      "model_result": {
+        "confidence": 0.98,
+        "method": "harness_visual_review",
+        "model_id": null,
+        "model_id_reason": "the active harness did not expose a model identifier",
+        "reviewed_at": "2026-09-01T05:42:22.633232Z",
+        "reviewer": "Codex independent source review",
+        "token_counts": null,
+        "token_counts_reason": "the active harness did not expose per-review token usage",
+        "transcription": "A retention of EUR 45,000 remains for fictional snagging items."
+      },
+      "relative_path": "Legal/Property/Property_Sale_Contract_Scanned.pdf",
+      "requested_route": "codex_or_claude_vision_review",
+      "run_id": "20260901T040928457675Z-dede88eb959c",
+      "source_checksum": "74834b456e2a253491c7633d8bfa1a571d4fae3b4c292d31275964f0d0ef14aa",
+      "source_id": "SRC-0058",
+      "status": "reviewed",
+      "task_id": "VISION-SRC-0058-PAGE-0003",
+      "untrusted_source_data": true
+    },
+    {
+      "asset": {
+        "height_pixels": 900,
+        "mime_type": "image/png",
+        "path": "extracts/rendered_pages/29d35250c31d73f3/SRC-0092/image-0001.png",
+        "sha256": "4cbd2255a6034dc808a6cc31b0d37b161a2628b508ce194bf466040d97410e42",
+        "width_pixels": 1440
+      },
+      "limitation": "deterministic extraction captured metadata only",
+      "locator": {
+        "image_number": 1,
+        "region": {
+          "height": 900,
+          "width": 1440,
+          "x": 0,
+          "y": 0
+        },
+        "type": "image"
+      },
+      "model_result": null,
+      "relative_path": "zip://Legal/Updated_Responses.zip!/Updated Responses/CRO_Search_Refresh.png",
+      "requested_route": "codex_or_claude_vision_review",
+      "run_id": "20260901T040928457675Z-dede88eb959c",
+      "source_checksum": "4cbd2255a6034dc808a6cc31b0d37b161a2628b508ce194bf466040d97410e42",
+      "source_id": "SRC-0092",
+      "status": "pending",
+      "task_id": "VISION-SRC-0092-IMAGE-0001",
+      "untrusted_source_data": true
+    }
+  ]
+}

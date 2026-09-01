@@ -1,0 +1,626 @@
+{
+  "evidence_scope": "complete register, full extraction and verbatim round-one answers",
+  "excluded_candidates": [
+    {
+      "candidate_topic": "followup-INT-R1-001",
+      "reason": "Round-one answer is closed; asking again would duplicate known information.",
+      "supporting_source_ids": [
+        "SRC-0051"
+      ]
+    },
+    {
+      "candidate_topic": "followup-INT-R1-002",
+      "reason": "Round-one answer is closed; asking again would duplicate known information.",
+      "supporting_source_ids": [
+        "SRC-0010",
+        "SRC-0011",
+        "SRC-0017",
+        "SRC-0007",
+        "SRC-0008",
+        "SRC-0009"
+      ]
+    },
+    {
+      "candidate_topic": "followup-INT-R1-003",
+      "reason": "Round-one answer is closed; asking again would duplicate known information.",
+      "supporting_source_ids": []
+    },
+    {
+      "candidate_topic": "followup-INT-R1-004",
+      "reason": "Round-one answer is closed; asking again would duplicate known information.",
+      "supporting_source_ids": []
+    },
+    {
+      "candidate_topic": "followup-INT-R1-005",
+      "reason": "Round-one answer is closed; asking again would duplicate known information.",
+      "supporting_source_ids": [
+        "SRC-0004",
+        "SRC-0052"
+      ]
+    },
+    {
+      "candidate_topic": "followup-INT-R1-006",
+      "reason": "Round-one answer is closed; asking again would duplicate known information.",
+      "supporting_source_ids": [
+        "SRC-0004",
+        "SRC-0012"
+      ]
+    },
+    {
+      "candidate_topic": "followup-INT-R1-007",
+      "reason": "Round-one answer is closed; asking again would duplicate known information.",
+      "supporting_source_ids": [
+        "SRC-0027"
+      ]
+    },
+    {
+      "candidate_topic": "followup-INT-R1-008",
+      "reason": "Round-one answer is closed; asking again would duplicate known information.",
+      "supporting_source_ids": [
+        "SRC-0052",
+        "SRC-0093",
+        "SRC-0099"
+      ]
+    },
+    {
+      "candidate_topic": "followup-INT-R1-009",
+      "reason": "Round-one answer is closed; asking again would duplicate known information.",
+      "supporting_source_ids": [
+        "SRC-0071",
+        "SRC-0078",
+        "SRC-0079",
+        "SRC-0084",
+        "SRC-0083"
+      ]
+    },
+    {
+      "candidate_topic": "followup-INT-R1-010",
+      "reason": "Round-one answer is closed; asking again would duplicate known information.",
+      "supporting_source_ids": []
+    },
+    {
+      "candidate_topic": "followup-INT-R1-011",
+      "reason": "Round-one answer is closed; asking again would duplicate known information.",
+      "supporting_source_ids": []
+    },
+    {
+      "candidate_topic": "debt-hp-completeness",
+      "reason": "Already asked in round one; it remains in unresolved_questions.md and is not duplicated without a narrowing answer.",
+      "supporting_source_ids": [
+        "SRC-0010",
+        "SRC-0011",
+        "SRC-0017",
+        "SRC-0007",
+        "SRC-0008",
+        "SRC-0009"
+      ]
+    },
+    {
+      "candidate_topic": "missing-cross-referenced-documents",
+      "reason": "Already asked in round one; it remains in unresolved_questions.md and is not duplicated without a narrowing answer.",
+      "supporting_source_ids": [
+        "SRC-0004",
+        "SRC-0052"
+      ]
+    },
+    {
+      "candidate_topic": "tax-amendment-status",
+      "reason": "Already asked in round one; it remains in unresolved_questions.md and is not duplicated without a narrowing answer.",
+      "supporting_source_ids": [
+        "SRC-0071",
+        "SRC-0078",
+        "SRC-0079",
+        "SRC-0084",
+        "SRC-0083"
+      ]
+    },
+    {
+      "candidate_topic": "contract-consents",
+      "reason": "Already asked in round one; it remains in unresolved_questions.md and is not duplicated without a narrowing answer.",
+      "supporting_source_ids": [
+        "SRC-0052",
+        "SRC-0093",
+        "SRC-0099"
+      ]
+    },
+    {
+      "candidate_topic": "unsupported-financial-adjustments",
+      "reason": "Already asked in round one; it remains in unresolved_questions.md and is not duplicated without a narrowing answer.",
+      "supporting_source_ids": [
+        "SRC-0004",
+        "SRC-0012"
+      ]
+    },
+    {
+      "candidate_topic": "explicit-calculation-contradiction",
+      "reason": "Already asked in round one; it remains in unresolved_questions.md and is not duplicated without a narrowing answer.",
+      "supporting_source_ids": [
+        "SRC-0027"
+      ]
+    },
+    {
+      "candidate_topic": "critical-unreadable-sources",
+      "reason": "Already asked in round one; it remains in unresolved_questions.md and is not duplicated without a narrowing answer.",
+      "supporting_source_ids": [
+        "SRC-0051"
+      ]
+    }
+  ],
+  "generated_at": "2026-09-01T04:10:35.711865Z",
+  "generator_version": "6.0.0",
+  "input_artifacts": [
+    {
+      "path": "source_register/source_register.json",
+      "sha256": "1281fbdc39b456039f2e068e8cb91454ba39999b7612d3768aceb57a57e3940e"
+    },
+    {
+      "path": "source_register/room_structure.json",
+      "sha256": "8e5e87d13d56433ae228314e2b99bcdd9439acac3c3e657b5380a1213bd40e36"
+    },
+    {
+      "path": "source_register/version_families.json",
+      "sha256": "9300035a1c24e20eea940841fb5def43215393d11f8ca3299ca34b5e9358a35c"
+    },
+    {
+      "path": "extracts/extraction_manifest.json",
+      "sha256": "4c14f3fc9511cb65deb7a41e72887a533f6d59e6988fe22094dd478beea8a839"
+    },
+    {
+      "path": "extracts/extracted_units.jsonl",
+      "sha256": "efd8e6e67dfe9ef8ba2e56d4b1cfb6a16d142b7d7454cc40f1d223e1b98b1b13"
+    },
+    {
+      "path": "extracts/needs_vision.json",
+      "sha256": "000085b5b393e914b9f9d151993ac3fa6cb0f15b4329514718b5eec1749c84f4"
+    },
+    {
+      "path": "intake/round_1_answers.json",
+      "sha256": "5f60a81ae4495cde0e728cba60ea7ec5a79d511cd519cbdb2cc913762bf51c37"
+    }
+  ],
+  "input_fingerprint": "e6571c5192bd5c00ccae393b995fa9eb943092d32862cab47f9c62c66b63ad07",
+  "question_count": 4,
+  "question_limit": 15,
+  "questions": [
+    {
+      "blocks_analysis": true,
+      "decision_potentially_affected": [
+        "go_no_go",
+        "price",
+        "customer_concentration"
+      ],
+      "exact_question": "Observed customer names may represent related entities: Client Complaint Glencree Health Systems Limited, Client Complaint Larkspur Transit Analytics Limited, Harbourlight Between Larkspur Transit Analytics Limited, Harbourlight Stores Limited, Mosaic North Retail Limited, Mosaic South Trading Limited, Synthetic Holder Larkspur Transit Analytics Limited, Synthetic Insured Larkspur Transit Analytics Limited. Which names share a parent or common control, what is the ultimate group, and should exposure and revenue concentration be aggregated?",
+      "expected_answer_type": "alias-to-ultimate-parent mapping with ownership/supporting sources",
+      "invalidate_if_answer_changes_evidence": [
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "priority": "critical",
+      "question_id": "INT-R2-001",
+      "round_number": 2,
+      "structured_gap": {
+        "description": "Multiple observed customer names share a distinctive root but ownership is not evidenced.",
+        "gap_id": "GAP-CUSTOMER-GROUP-IDENTITIES",
+        "gap_type": "customer_identity_gap"
+      },
+      "supporting_evidence": [
+        {
+          "evidence_kind": "extracted_unit",
+          "locator": {
+            "cell": "A4",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "A4",
+            "row_hidden": false,
+            "sheet": "Aged Debtors",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Aged_Debtors.xlsx"
+          },
+          "relative_path": "Financial/Aged_Debtors.xlsx",
+          "source_ids": [
+            "SRC-0002"
+          ],
+          "summary": "Harbourlight Stores Limited",
+          "unit_ids": [
+            "SRC-0002-UNIT-000010"
+          ]
+        },
+        {
+          "evidence_kind": "extracted_unit",
+          "locator": {
+            "page_label": "1",
+            "page_number": 1,
+            "type": "pdf_page"
+          },
+          "relative_path": "Legal/Customer Contracts/Customer_Framework_Harbourlight.pdf",
+          "source_ids": [
+            "SRC-0037"
+          ],
+          "summary": "Customer Framework Agreement - Harbourlight Between Larkspur Transit Analytics Limited and Harbourlight Stores Limited FICTIONAL SYNTHETIC DATA - NOT A REAL COMPANY Page 1 COMPANY Larkspur Transit Analytics Lim DATASET SYN-LARKSPUR-2026-314159 STATUS Synthetic Parties and group…",
+          "unit_ids": [
+            "SRC-0037-UNIT-000001"
+          ]
+        },
+        {
+          "evidence_kind": "extracted_unit",
+          "locator": {
+            "cell": "A6",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "A6",
+            "row_hidden": false,
+            "sheet": "Aged Debtors",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Aged_Debtors.xlsx"
+          },
+          "relative_path": "Financial/Aged_Debtors.xlsx",
+          "source_ids": [
+            "SRC-0002"
+          ],
+          "summary": "Mosaic North Retail Limited",
+          "unit_ids": [
+            "SRC-0002-UNIT-000022"
+          ]
+        },
+        {
+          "evidence_kind": "extracted_unit",
+          "locator": {
+            "cell": "A7",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "A7",
+            "row_hidden": false,
+            "sheet": "Aged Debtors",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Aged_Debtors.xlsx"
+          },
+          "relative_path": "Financial/Aged_Debtors.xlsx",
+          "source_ids": [
+            "SRC-0002"
+          ],
+          "summary": "Mosaic South Trading Limited",
+          "unit_ids": [
+            "SRC-0002-UNIT-000028"
+          ]
+        },
+        {
+          "evidence_kind": "extracted_unit",
+          "locator": {
+            "page_label": "1",
+            "page_number": 1,
+            "type": "pdf_page"
+          },
+          "relative_path": "Legal/Dispute/Client_Complaint_Letter.pdf",
+          "source_ids": [
+            "SRC-0040"
+          ],
+          "summary": "Client Complaint Glencree Health Systems Limited | 4 May 2026 FICTIONAL SYNTHETIC DATA - NOT A REAL COMPANY Page 1 COMPANY Larkspur Transit Analytics Lim DATASET SYN-LARKSPUR-2026-314159 STATUS Synthetic Complaint Glencree alleges three priority-one incidents exceeded the four-h…",
+          "unit_ids": [
+            "SRC-0040-UNIT-000001"
+          ]
+        },
+        {
+          "evidence_kind": "extracted_unit",
+          "locator": {
+            "page_label": "1",
+            "page_number": 1,
+            "type": "pdf_page"
+          },
+          "relative_path": "Legal/Dispute/Company_Response.pdf",
+          "source_ids": [
+            "SRC-0041"
+          ],
+          "summary": "Response to Client Complaint Larkspur Transit Analytics Limited | 12 May 2026 FICTIONAL SYNTHETIC DATA - NOT A REAL COMPANY Page 1 COMPANY Larkspur Transit Analytics Lim DATASET SYN-LARKSPUR-2026-314159 STATUS Synthetic Position The company accepts two response-time misses but d…",
+          "unit_ids": [
+            "SRC-0041-UNIT-000001"
+          ]
+        },
+        {
+          "evidence_kind": "extracted_unit",
+          "locator": {
+            "page_label": "1",
+            "page_number": 1,
+            "type": "pdf_page"
+          },
+          "relative_path": "Legal/Insurance/Cyber_Insurance_Certificate.pdf",
+          "source_ids": [
+            "SRC-0048"
+          ],
+          "summary": "Cyber Insurance Certificate Policy SYN-CYB-44018 | expires 28 February 2027 FICTIONAL SYNTHETIC DATA - NOT A REAL COMPANY Page 1 COMPANY Larkspur Transit Analytics Lim DATASET SYN-LARKSPUR-2026-314159 STATUS Synthetic Insured Larkspur Transit Analytics Limited Limit Aggregate li…",
+          "unit_ids": [
+            "SRC-0048-UNIT-000001"
+          ]
+        },
+        {
+          "evidence_kind": "extracted_unit",
+          "locator": {
+            "page_label": "1",
+            "page_number": 1,
+            "type": "pdf_page"
+          },
+          "relative_path": "Legal/Licences/Trade_Licence_and_Registration.pdf",
+          "source_ids": [
+            "SRC-0053"
+          ],
+          "summary": "Road-Data Processing Registration Synthetic registration SYN-LIC-44218 FICTIONAL SYNTHETIC DATA - NOT A REAL COMPANY Page 1 COMPANY Larkspur Transit Analytics Lim DATASET SYN-LARKSPUR-2026-314159 STATUS Synthetic Holder Larkspur Transit Analytics Limited Scope Registration cover…",
+          "unit_ids": [
+            "SRC-0053-UNIT-000001"
+          ]
+        }
+      ],
+      "supporting_source_ids": [
+        "SRC-0002",
+        "SRC-0037",
+        "SRC-0040",
+        "SRC-0041",
+        "SRC-0048",
+        "SRC-0053"
+      ],
+      "topic_key": "customer-group-identities",
+      "why_it_matters": "Separate trading names can understate true customer-group concentration and change retention, pricing and go/no-go conclusions."
+    },
+    {
+      "blocks_analysis": true,
+      "decision_potentially_affected": [
+        "go_no_go",
+        "transaction_structure",
+        "price"
+      ],
+      "exact_question": "The register links original agreements and amendments in candidate version families VER-0001, VER-0002. For each family, which documents are executed and operative, are any side letters or later amendments missing, and which provisions control consent, liability, termination and pricing?",
+      "expected_answer_type": "executed-document/version matrix with missing amendments identified",
+      "invalidate_if_answer_changes_evidence": [
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "priority": "critical",
+      "question_id": "INT-R2-002",
+      "round_number": 2,
+      "structured_gap": {
+        "description": "Agreement supersession is candidate-only and not established as source truth.",
+        "gap_id": "GAP-CONTRACT-AMENDMENT-CONTROL",
+        "gap_type": "contract_version_gap"
+      },
+      "supporting_evidence": [
+        {
+          "evidence_kind": "registered_source",
+          "relative_path": "Legal/Customer Contracts/Customer_Framework_Harbourlight.pdf",
+          "source_ids": [
+            "SRC-0037"
+          ],
+          "summary": "Candidate agreement/amendment family; registrar status is not authoritative.",
+          "unit_ids": []
+        },
+        {
+          "evidence_kind": "registered_source",
+          "relative_path": "Legal/Customer Contracts/Amendment_Harbourlight_2025.pdf",
+          "source_ids": [
+            "SRC-0034"
+          ],
+          "summary": "Candidate agreement/amendment family; registrar status is not authoritative.",
+          "unit_ids": []
+        },
+        {
+          "evidence_kind": "registered_source",
+          "relative_path": "Legal/Customer Contracts/Customer_Framework_Mosaic_South.pdf",
+          "source_ids": [
+            "SRC-0039"
+          ],
+          "summary": "Candidate agreement/amendment family; registrar status is not authoritative.",
+          "unit_ids": []
+        },
+        {
+          "evidence_kind": "registered_source",
+          "relative_path": "Legal/Customer Contracts/Amendment_Mosaic_South_2025.pdf",
+          "source_ids": [
+            "SRC-0036"
+          ],
+          "summary": "Candidate agreement/amendment family; registrar status is not authoritative.",
+          "unit_ids": []
+        }
+      ],
+      "supporting_source_ids": [
+        "SRC-0037",
+        "SRC-0034",
+        "SRC-0039",
+        "SRC-0036"
+      ],
+      "topic_key": "contract-amendment-control",
+      "why_it_matters": "The register deliberately does not choose an authoritative version; applying a stale contract can reverse consent, liability and commercial conclusions."
+    },
+    {
+      "blocks_analysis": false,
+      "decision_potentially_affected": [
+        "price",
+        "go_no_go",
+        "workforce_liabilities"
+      ],
+      "exact_question": "The extracted workforce/PAYE evidence contains different stated employee or contractor counts. Please reconcile the population by cut-off date, employment status, legal entity and client allocation, and identify the authoritative roster.",
+      "expected_answer_type": "reconciliation table by population/date/entity with source references",
+      "invalidate_if_answer_changes_evidence": [
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "priority": "high",
+      "question_id": "INT-R2-003",
+      "round_number": 2,
+      "structured_gap": {
+        "description": "Distinct numeric workforce counts appear in observed records.",
+        "gap_id": "GAP-WORKFORCE-COUNT-RECONCILIATION",
+        "gap_type": "workforce_discrepancy"
+      },
+      "supporting_evidence": [
+        {
+          "evidence_kind": "extracted_unit",
+          "locator": {
+            "cell": "C10",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "C10",
+            "row_hidden": false,
+            "sheet": "Contractors",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Financial/Contractor_Headcount_by_Client.xlsx"
+          },
+          "relative_path": "Financial/Contractor_Headcount_by_Client.xlsx",
+          "source_ids": [
+            "SRC-0003"
+          ],
+          "summary": "10 contractors allocated; legal list contains 12 active contractors",
+          "unit_ids": [
+            "SRC-0003-UNIT-000027"
+          ]
+        },
+        {
+          "evidence_kind": "extracted_unit",
+          "locator": {
+            "cell": "B2",
+            "column_hidden": false,
+            "merged_ranges": [],
+            "named_ranges": [],
+            "range": "B2",
+            "row_hidden": false,
+            "sheet": "Contractors",
+            "sheet_index": 1,
+            "sheet_state": "visible",
+            "type": "spreadsheet_cell",
+            "workbook": "Legal/Employment/Contractor_List.xlsx"
+          },
+          "relative_path": "Legal/Employment/Contractor_List.xlsx",
+          "source_ids": [
+            "SRC-0043"
+          ],
+          "summary": "12 active contractors at 30 June 2026",
+          "unit_ids": [
+            "SRC-0043-UNIT-000003"
+          ]
+        },
+        {
+          "evidence_kind": "extracted_unit",
+          "locator": {
+            "page_label": "1",
+            "page_number": 1,
+            "type": "pdf_page"
+          },
+          "relative_path": "Legal/Employment/Payslip_Sample.pdf",
+          "source_ids": [
+            "SRC-0046"
+          ],
+          "summary": "Sample Payslip Larkspur Transit Analytics Limited | June 2026 | employee data redacted FICTIONAL SYNTHETIC DATA - NOT A REAL COMPANY Page 1 COMPANY Larkspur Transit Analytics Lim DATASET SYN-LARKSPUR-2026-314159 STATUS Synthetic Pay details Employee: REDACTED. Gross pay EUR 5,25…",
+          "unit_ids": [
+            "SRC-0046-UNIT-000001"
+          ]
+        },
+        {
+          "evidence_kind": "extracted_unit",
+          "locator": {
+            "page_label": "1",
+            "page_number": 1,
+            "type": "pdf_page"
+          },
+          "relative_path": "Legal/Work Permits/Registration.pdf",
+          "source_ids": [
+            "SRC-0060"
+          ],
+          "summary": "Synthetic Work Permit Acknowledgement Employee reference EMP-044 | fictional FICTIONAL SYNTHETIC DATA - NOT A REAL COMPANY Page 1 COMPANY Larkspur Transit Analytics Lim DATASET SYN-LARKSPUR-2026-314159 STATUS Synthetic Acknowledgement A fictional employment-permit renewal was re…",
+          "unit_ids": [
+            "SRC-0060-UNIT-000001"
+          ]
+        },
+        {
+          "evidence_kind": "extracted_unit",
+          "locator": {
+            "page_label": "1",
+            "page_number": 1,
+            "type": "pdf_page"
+          },
+          "relative_path": "Tax/ROS Screens/PAYE_Returns.pdf",
+          "source_ids": [
+            "SRC-0076"
+          ],
+          "summary": "ROS-Style PAYE Returns Employer account 2025 FICTIONAL SYNTHETIC DATA - NOT A REAL COMPANY Page 1 COMPANY Larkspur Transit Analytics Lim DATASET SYN-LARKSPUR-2026-314159 STATUS Synthetic Returns Registered PAYE headcount: 64. Annual liability: EUR 1,584,000. Status Twelve monthl…",
+          "unit_ids": [
+            "SRC-0076-UNIT-000001"
+          ]
+        }
+      ],
+      "supporting_source_ids": [
+        "SRC-0003",
+        "SRC-0043",
+        "SRC-0046",
+        "SRC-0060",
+        "SRC-0076"
+      ],
+      "topic_key": "workforce-count-reconciliation",
+      "why_it_matters": "Workforce discrepancies affect payroll, tax, contractor classification, customer delivery dependence and normalized cost conclusions."
+    },
+    {
+      "blocks_analysis": false,
+      "decision_potentially_affected": [
+        "scope",
+        "transaction_structure",
+        "closing_conditions"
+      ],
+      "exact_question": "Material property documents remain image-only pending vision review: SRC-0057 (Legal/Property/Property_Purchase_Contract_Scanned.pdf); SRC-0058 (Legal/Property/Property_Sale_Contract_Scanned.pdf). Which properties are owned, sold or leased, which are in the transaction perimeter, and can you provide searchable executed copies plus any lender/landlord consents?",
+      "expected_answer_type": "property schedule plus executed/searchable documents and consent status",
+      "invalidate_if_answer_changes_evidence": [
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "priority": "high",
+      "question_id": "INT-R2-004",
+      "round_number": 2,
+      "structured_gap": {
+        "description": "Property source content is not yet deterministically readable.",
+        "gap_id": "GAP-PROPERTY-DOCUMENT-COVERAGE",
+        "gap_type": "critical_unreadable_area"
+      },
+      "supporting_evidence": [
+        {
+          "evidence_kind": "registered_source",
+          "relative_path": "Legal/Property/Property_Purchase_Contract_Scanned.pdf",
+          "source_ids": [
+            "SRC-0057"
+          ],
+          "summary": "Image-only source pending vision review.",
+          "unit_ids": []
+        },
+        {
+          "evidence_kind": "registered_source",
+          "relative_path": "Legal/Property/Property_Sale_Contract_Scanned.pdf",
+          "source_ids": [
+            "SRC-0058"
+          ],
+          "summary": "Image-only source pending vision review.",
+          "unit_ids": []
+        }
+      ],
+      "supporting_source_ids": [
+        "SRC-0057",
+        "SRC-0058"
+      ],
+      "topic_key": "property-document-coverage",
+      "why_it_matters": "Property title, disposal history, lease obligations and consents may affect deal perimeter, closing conditions and liabilities."
+    }
+  ],
+  "round_number": 2,
+  "run_id": "20260901T040928457675Z-dede88eb959c",
+  "schema_version": 1,
+  "status": "awaiting_input",
+  "untrusted_source_data_was_executed": false
+}

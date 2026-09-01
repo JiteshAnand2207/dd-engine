@@ -4,7 +4,7 @@
 
 At the start of planning on 31 August 2026:
 
-- Working directory: `C:\Users\jites\dd-engine`
+- Working directory: `<local-workspace>\dd-engine` (operator-specific prefix redacted for handover)
 - Git branch: `master`
 - Repository history: no commits; `HEAD` is unborn
 - Git status: `.gitignore` was the only untracked item reported by normal Git status

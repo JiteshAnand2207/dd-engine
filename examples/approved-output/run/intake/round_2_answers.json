@@ -1,0 +1,144 @@
+{
+  "answer_input_sha256": "a79d5724b833090e8b0579ff37f1606f2a5ff0168fd86c06679e68124f40ef78",
+  "answer_normalization_version": "answer-normalization-v2",
+  "answered_at": "2026-09-01T04:11:00Z",
+  "answered_by": "Phase 11 synthetic test operator (not management)",
+  "answers": [
+    {
+      "affected_claims": [],
+      "affected_gaps": [
+        "GAP-CUSTOMER-GROUP-IDENTITIES"
+      ],
+      "affected_stages": [
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "ambiguity": [
+        "The reply explicitly says that requested evidence or confirmation is absent or that the matter remains open."
+      ],
+      "normalised_interpretation": {
+        "kind": "explicitly_unresolved",
+        "value": "No management alias map was supplied. Confirm customer grouping only where the validated contract, address, VAT or equivalent source evidence establishes common control; do not group names merely because they share words."
+      },
+      "provenance": {
+        "answer_input_filename": "phase11_test_round_2_input.json",
+        "answer_input_sha256": "a79d5724b833090e8b0579ff37f1606f2a5ff0168fd86c06679e68124f40ef78",
+        "answered_at": "2026-09-01T04:11:00Z",
+        "answered_by": "Phase 11 synthetic test operator (not management)",
+        "ingested_at": "2026-09-01T04:10:38.394808Z",
+        "source_kind": "deal_lead_answer_file"
+      },
+      "question_id": "INT-R2-001",
+      "resolution_status": "open",
+      "round_number": 2,
+      "verbatim_answer": "No management alias map was supplied. Confirm customer grouping only where the validated contract, address, VAT or equivalent source evidence establishes common control; do not group names merely because they share words.",
+      "verbatim_answer_sha256": "96d5968f62f76915447eb6cc98be722ebab5eb03840e1ee06eaf251fd52faa08"
+    },
+    {
+      "affected_claims": [],
+      "affected_gaps": [
+        "GAP-CONTRACT-AMENDMENT-CONTROL"
+      ],
+      "affected_stages": [
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "ambiguity": [
+        "The reply explicitly says that requested evidence or confirmation is absent or that the matter remains open."
+      ],
+      "normalised_interpretation": {
+        "kind": "explicitly_unresolved",
+        "value": "No additional executed-version matrix, side letter or amendment was supplied. Apply only version conclusions supported by the registered documents and citations, and retain execution/completeness uncertainty as an open condition."
+      },
+      "provenance": {
+        "answer_input_filename": "phase11_test_round_2_input.json",
+        "answer_input_sha256": "a79d5724b833090e8b0579ff37f1606f2a5ff0168fd86c06679e68124f40ef78",
+        "answered_at": "2026-09-01T04:11:00Z",
+        "answered_by": "Phase 11 synthetic test operator (not management)",
+        "ingested_at": "2026-09-01T04:10:38.394808Z",
+        "source_kind": "deal_lead_answer_file"
+      },
+      "question_id": "INT-R2-002",
+      "resolution_status": "open",
+      "round_number": 2,
+      "verbatim_answer": "No additional executed-version matrix, side letter or amendment was supplied. Apply only version conclusions supported by the registered documents and citations, and retain execution/completeness uncertainty as an open condition.",
+      "verbatim_answer_sha256": "c062c35909090c71d446e34a91b6f50f64cf0a1e39931711fe9c6b6cbfae4beb"
+    },
+    {
+      "affected_claims": [],
+      "affected_gaps": [
+        "GAP-WORKFORCE-COUNT-RECONCILIATION"
+      ],
+      "affected_stages": [
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "ambiguity": [
+        "The reply explicitly says that requested evidence or confirmation is absent or that the matter remains open."
+      ],
+      "normalised_interpretation": {
+        "kind": "explicitly_unresolved",
+        "value": "No authoritative roster or management reconciliation was supplied. Preserve the 10 allocated versus 12 active contractor discrepancy, the 64 PAYE headcount source figure and any client-level population differences as unresolved."
+      },
+      "provenance": {
+        "answer_input_filename": "phase11_test_round_2_input.json",
+        "answer_input_sha256": "a79d5724b833090e8b0579ff37f1606f2a5ff0168fd86c06679e68124f40ef78",
+        "answered_at": "2026-09-01T04:11:00Z",
+        "answered_by": "Phase 11 synthetic test operator (not management)",
+        "ingested_at": "2026-09-01T04:10:38.394808Z",
+        "source_kind": "deal_lead_answer_file"
+      },
+      "question_id": "INT-R2-003",
+      "resolution_status": "open",
+      "round_number": 2,
+      "verbatim_answer": "No authoritative roster or management reconciliation was supplied. Preserve the 10 allocated versus 12 active contractor discrepancy, the 64 PAYE headcount source figure and any client-level population differences as unresolved.",
+      "verbatim_answer_sha256": "2152ae1218fe74944bed47c2c486df1a2bea3c7a224aeef722551f8ab8f2cfd0"
+    },
+    {
+      "affected_claims": [],
+      "affected_gaps": [
+        "GAP-PROPERTY-DOCUMENT-COVERAGE"
+      ],
+      "affected_stages": [
+        "analyse",
+        "report",
+        "validate"
+      ],
+      "ambiguity": [
+        "The reply explicitly says that requested evidence or confirmation is absent or that the matter remains open."
+      ],
+      "normalised_interpretation": {
+        "kind": "explicitly_unresolved",
+        "value": "No property schedule, searchable executed copies or consent evidence was supplied. Property ownership, disposals, perimeter and lender or landlord consents remain unestablished and must be a pre-closing information condition."
+      },
+      "provenance": {
+        "answer_input_filename": "phase11_test_round_2_input.json",
+        "answer_input_sha256": "a79d5724b833090e8b0579ff37f1606f2a5ff0168fd86c06679e68124f40ef78",
+        "answered_at": "2026-09-01T04:11:00Z",
+        "answered_by": "Phase 11 synthetic test operator (not management)",
+        "ingested_at": "2026-09-01T04:10:38.394808Z",
+        "source_kind": "deal_lead_answer_file"
+      },
+      "question_id": "INT-R2-004",
+      "resolution_status": "open",
+      "round_number": 2,
+      "verbatim_answer": "No property schedule, searchable executed copies or consent evidence was supplied. Property ownership, disposals, perimeter and lender or landlord consents remain unestablished and must be a pre-closing information condition.",
+      "verbatim_answer_sha256": "d9e083e20cd0b8ee9922fc4a5a939665a74d93b886e1d1a89ed25d106261d6d5"
+    }
+  ],
+  "explicit_ingestion": true,
+  "ingested_at": "2026-09-01T04:10:38.394808Z",
+  "renormalized_at": "2026-09-01T05:42:24.903191Z",
+  "round_number": 2,
+  "run_id": "20260901T040928457675Z-dede88eb959c",
+  "schema_version": 1,
+  "status": "ingested",
+  "status_counts": {
+    "closed": 0,
+    "narrowed": 0,
+    "open": 4
+  }
+}

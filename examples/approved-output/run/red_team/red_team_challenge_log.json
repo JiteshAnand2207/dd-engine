@@ -1,0 +1,297 @@
+{
+  "schema_version": 1,
+  "run_id": "20260901T040928457675Z-dede88eb959c",
+  "review_type": "independent_red_team",
+  "reviewed_at": "2026-09-01T09:57:26.1880352+05:30",
+  "independence_statement": "This review used only the operator-permitted synthetic data room and completed-run artifacts. No planted-answer or generator material was opened or searched.",
+  "summary": {
+    "total_challenges": 28,
+    "by_severity": {"critical": 10, "high": 15, "medium": 3, "low": 0},
+    "by_status": {"upheld": 20, "rejected": 5, "unresolved": 3},
+    "likely_false_positive_or_overstated_challenge_ids": ["RT-020", "RT-025", "RT-026"],
+    "likely_missed_issue_ids": ["RT-003", "RT-005", "RT-006", "RT-010", "RT-011", "RT-012", "RT-017", "RT-018", "RT-022"],
+    "ic_brief_inconsistency_ids": ["RT-024"]
+  },
+  "challenges": [
+    {
+      "challenge_id": "RT-001",
+      "target_claim_or_omission": "FIN-002 describes EUR 1.23m YTD EBITDA as an evidence-backed or supportable baseline.",
+      "challenge_hypothesis": "The baseline is a management assertion in the same unsupported schedule as the challenged EUR 0.18m add-back, not an independently evidenced ledger result.",
+      "independent_evidence_or_calculation": "SRC-0012 page 1 reports EUR 1.23m baseline EBITDA plus EUR 0.18m add-back equals EUR 1.41m adjusted EBITDA, but also states that invoices, ledger detail and the restructuring plan were not supplied. The arithmetic reproduces; the evidential label does not.",
+      "severity": "critical",
+      "citation": ["SRC-0012 page 1", "SRC-0004 Request C5", "outputs/due_diligence_report.md FIN-002"],
+      "required_correction": "Recast EUR 1.23m as management-reported unadjusted EBITDA pending ledger-to-management-accounts reconciliation; do not call it evidence-backed or supportable until source-level support is obtained.",
+      "status": "upheld"
+    },
+    {
+      "challenge_id": "RT-002",
+      "target_claim_or_omission": "FIN-003 treats EUR 0.83m as the correct normalized net-working-capital basis.",
+      "challenge_hypothesis": "The workbook arithmetic is correct, but a single balance-sheet snapshot is not a normalized peg and includes categories whose eligibility and recoverability are untested.",
+      "independent_evidence_or_calculation": "SRC-0027 Working_Capital gives EUR 1.48m debtors + EUR 0.095m other debtors - EUR 0.93m creditors + EUR 0.185m prepayments = EUR 0.83m. No twelve-month monthly series, seasonality analysis, deposit/staff-advance recoverability test, agreed working-capital definition or debt-like classification is provided.",
+      "severity": "critical",
+      "citation": ["SRC-0027 Working_Capital!B4:B10", "outputs/due_diligence_report.md FIN-003"],
+      "required_correction": "Separate the EUR 0.83m point-in-time arithmetic from a normalized SPA peg and require a monthly, category-level bridge with agreed inclusions and exclusions.",
+      "status": "upheld"
+    },
+    {
+      "challenge_id": "RT-003",
+      "target_claim_or_omission": "The report omits a EUR 45,000 snagging retention identified in the property-sale document.",
+      "challenge_hypothesis": "An outstanding retention may be an omitted receivable, working-capital item or collectability exposure.",
+      "independent_evidence_or_calculation": "Visual review of SRC-0058 page 3 states that a EUR 45,000 snagging retention remains after the 15 October 2024 sale. The completed report leaves the property visual unresolved and does not address the amount.",
+      "severity": "medium",
+      "citation": ["SRC-0058 native PDF page 3", "extracts/needs_vision.json", "outputs/due_diligence_report.md"],
+      "required_correction": "Establish whether the retention remained receivable at the review date, its ageing and recoverability, and its working-capital or debt-like treatment.",
+      "status": "unresolved"
+    },
+    {
+      "challenge_id": "RT-004",
+      "target_claim_or_omission": "FIN-005 presents EUR 1.26m arithmetic net debt without a sufficiently prominent period-mismatch qualification.",
+      "challenge_hypothesis": "Netting December 2025 cash against June/August 2026 debt can materially misstate completion-date net debt.",
+      "independent_evidence_or_calculation": "Gross debt/debt-like items recompute to EUR 2.22m. The EUR 0.96m cash citation is dated 31 December 2025, while debt sources are dated 30 June or 31 August 2026; unrestricted status is also unproven. EUR 2.22m - EUR 0.96m = EUR 1.26m is arithmetic only, not contemporaneous net debt.",
+      "severity": "critical",
+      "citation": ["SRC-0010 Debt_Summary!C4:C6", "SRC-0006 HP_Summary!C4:C6", "SRC-0017 paragraph 10", "SRC-0026 Cash!C4"],
+      "required_correction": "Label EUR 1.26m as a non-contemporaneous illustration and require a same-date, unrestricted-cash, lender-confirmed completion statement.",
+      "status": "upheld"
+    },
+    {
+      "challenge_id": "RT-005",
+      "target_claim_or_omission": "The report does not identify the term-loan change-of-control review event or the fixed and floating charge over company assets.",
+      "challenge_hypothesis": "Lender review/consent and security-release mechanics are central transaction conditions, not merely generic debt-verification steps.",
+      "independent_evidence_or_calculation": "Visual review of SRC-0008 states that change of control is a review event under the EUR 1.45m facility. SRC-0009 page 1 states the facility benefits from a fixed and floating charge; pages 2-3 confirm HP title retention over vehicles and equipment.",
+      "severity": "critical",
+      "citation": ["SRC-0008 native image", "SRC-0009 native PDF pages 1-3", "outputs/due_diligence_report.md FIN-005", "outputs/ic_brief.md"],
+      "required_correction": "Add lender review/consent, payoff, security release and HP-title release as explicit pre-completion conditions and IC actions.",
+      "status": "upheld"
+    },
+    {
+      "challenge_id": "RT-006",
+      "target_claim_or_omission": "COMM-001 reports the largest customer group but omits aggregate top-two and top-three concentration.",
+      "challenge_hypothesis": "The portfolio is substantially more concentrated than the single 28.2%/30.7% headline conveys.",
+      "independent_evidence_or_calculation": "From SRC-0018, Mosaic plus Harbourlight equals 51.91% of FY2025 revenue and 55.56% YTD; adding Glencree yields 71.76% and 75.82%. Harbourlight plus Mosaic also represents 72.07% of weighted pipeline.",
+      "severity": "high",
+      "citation": ["SRC-0018 Customer_Revenue rows 4-9", "SRC-0019 Pipeline rows 4-7", "outputs/due_diligence_report.md COMM-001"],
+      "required_correction": "Add top-two/top-three group concentration and pipeline dependence, with retention and downside implications.",
+      "status": "upheld"
+    },
+    {
+      "challenge_id": "RT-007",
+      "target_claim_or_omission": "Challenge to the report's consolidation of Mosaic North and Mosaic South into one customer group.",
+      "challenge_hypothesis": "The grouping could be an unsupported name-based merge.",
+      "independent_evidence_or_calculation": "SRC-0018 assigns both entities the same Mosaic group reference. SRC-0038 and SRC-0039 independently identify their common group relationship.",
+      "severity": "high",
+      "citation": ["SRC-0018 Customer_Revenue!D6:D7", "SRC-0038 page 1", "SRC-0039 page 1"],
+      "required_correction": "No correction to the Mosaic grouping; retain the underlying group-identity citations.",
+      "status": "rejected"
+    },
+    {
+      "challenge_id": "RT-008",
+      "target_claim_or_omission": "Challenge that the report may have applied the superseded three-month Mosaic North liability cap.",
+      "challenge_hypothesis": "The cited base contract may have been superseded by a later amendment.",
+      "independent_evidence_or_calculation": "SRC-0036 dated 18 February 2026 expressly replaces clause 11 with a twelve-month fee cap and uncapped service credits; the report applies the amended term rather than the earlier SRC-0035 cap.",
+      "severity": "high",
+      "citation": ["SRC-0035 page 1 clause 11", "SRC-0036 page 1", "outputs/due_diligence_report.md LEGAL-002"],
+      "required_correction": "No correction; preserve explicit supersession analysis and the amendment citation.",
+      "status": "rejected"
+    },
+    {
+      "challenge_id": "RT-009",
+      "target_claim_or_omission": "Challenge to LEGAL-001's Harbourlight change-of-control consent conclusion.",
+      "challenge_hypothesis": "A later amendment or intake response might remove or satisfy the consent requirement.",
+      "independent_evidence_or_calculation": "SRC-0037 requires prior written consent after supplier change of control. SRC-0034 preserves clause 14.2. SRC-0093 says consent was not requested because management considered it unnecessary.",
+      "severity": "critical",
+      "citation": ["SRC-0037 page 1 clause 14.2", "SRC-0034 page 1", "SRC-0093 page 1"],
+      "required_correction": "No correction; keep consent as an explicit closing dependency.",
+      "status": "rejected"
+    },
+    {
+      "challenge_id": "RT-010",
+      "target_claim_or_omission": "The report coverage table says termination/renewal/pricing/service was analysed, but no customer termination schedule or related gap is presented.",
+      "challenge_hypothesis": "Material termination-at-will, convenience, breach or renewal rights may remain unreviewed despite a completed coverage label.",
+      "independent_evidence_or_calculation": "The reviewed customer framework extracts support group, liability and change-of-control points but do not provide a complete customer-by-customer termination/renewal schedule. No dedicated legal gap preserves that limitation.",
+      "severity": "high",
+      "citation": ["outputs/due_diligence_report.md coverage table", "workstreams/legal_contractual.md", "SRC-0035 to SRC-0039"],
+      "required_correction": "Change coverage to limited and add a contract schedule/gap for termination, renewal, convenience, cure, pricing and service-credit terms for all material customers.",
+      "status": "upheld"
+    },
+    {
+      "challenge_id": "RT-011",
+      "target_claim_or_omission": "The report omits shareholders-agreement pre-emption and approval mechanics that may affect the transaction.",
+      "challenge_hypothesis": "Share-transfer pre-emption or 75% approval requirements could require waivers or transaction sequencing beyond generic corporate approvals.",
+      "independent_evidence_or_calculation": "SRC-0054 records customary share-transfer pre-emption and 75% approval for acquisitions, material borrowing and the business plan. The report does not map those provisions to the proposed transaction or identify required waivers.",
+      "severity": "high",
+      "citation": ["SRC-0054 page 1", "workstreams/legal_contractual.md", "outputs/due_diligence_report.md"],
+      "required_correction": "Obtain the executed constitutional/shareholder documents and a transaction-specific waiver/approval analysis.",
+      "status": "unresolved"
+    },
+    {
+      "challenge_id": "RT-012",
+      "target_claim_or_omission": "The report does not reconcile the EUR 182,000 VAT-control debit to the ROS screen showing the listed VAT charges paid.",
+      "challenge_hypothesis": "The debit may reflect an unreconciled posting, different period, receivable, misclassification or incomplete tax evidence.",
+      "independent_evidence_or_calculation": "SRC-0079 Tax_TB!B5 contains a EUR 182,000 VAT-control debit. The VAT screen indicates listed charges are paid. The amended P2 return is also EUR 182,000, but no ledger/period reconciliation explains the debit.",
+      "severity": "high",
+      "citation": ["SRC-0079 Tax_TB!B5", "SRC-0083 page 1", "SRC-0084 page 1", "tax/tax-analysis.md"],
+      "required_correction": "Add a VAT-control contradiction and require a period-by-period return-to-ROS-to-ledger reconciliation and proof of payment/refund classification.",
+      "status": "upheld"
+    },
+    {
+      "challenge_id": "RT-013",
+      "target_claim_or_omission": "Challenge that TAX-001 may falsely infer an amended VAT filing from inconsistent intake answers.",
+      "challenge_hypothesis": "The revision could exist only in an answer rather than source evidence.",
+      "independent_evidence_or_calculation": "SRC-0083 shows EUR 174,000 and SRC-0084 shows an amended EUR 182,000 P2 return. The EUR 8,000 change is source-supported even though the revised intake answer incorrectly says no amended return was filed.",
+      "severity": "critical",
+      "citation": ["SRC-0083 page 1", "SRC-0084 page 1", "intake/round_1_answers.json"],
+      "required_correction": "No correction to the existence of the amendment; preserve the intake contradiction and require management confirmation.",
+      "status": "rejected"
+    },
+    {
+      "challenge_id": "RT-014",
+      "target_claim_or_omission": "TAX-002 treats EUR 401,700 of net corporation-tax cash as reconciling the EUR 401,700 return plus charge.",
+      "challenge_hypothesis": "Equal totals across isolated screens do not prove the same assessment period, payment allocation, refund treatment or final settlement.",
+      "independent_evidence_or_calculation": "EUR 420,000 payment less EUR 18,300 refund equals EUR 401,700; EUR 389,200 return plus EUR 12,500 charge also equals EUR 401,700. However, dates and assessment references are absent, and SRC-0070 separately evidences a EUR 210,000 tax payment that could be a component rather than an additional amount.",
+      "severity": "high",
+      "citation": ["SRC-0074 page 1", "SRC-0063 page 1", "SRC-0070 page 1", "outputs/due_diligence_report.md TAX-002"],
+      "required_correction": "Describe this as an arithmetic hypothesis pending assessment-level ROS and bank allocation evidence, not a settled reconciliation.",
+      "status": "unresolved"
+    },
+    {
+      "challenge_id": "RT-015",
+      "target_claim_or_omission": "TAX-003 carries high confidence in the PAYE conclusion despite an unexplained EUR 132,000 PAYE-control credit.",
+      "challenge_hypothesis": "Annual return/payment agreement can coexist with a current liability, timing item or posting error.",
+      "independent_evidence_or_calculation": "SRC-0075 and SRC-0076 both total EUR 1.584m, but SRC-0079 records a EUR 132,000 PAYE-control credit. No month-by-month or post-year-end reconciliation resolves it.",
+      "severity": "high",
+      "citation": ["SRC-0075 page 1", "SRC-0076 page 1", "SRC-0079 Tax_TB!B6", "outputs/due_diligence_report.md TAX-003"],
+      "required_correction": "Reduce confidence and require monthly PAYE returns, payments and control-account reconciliation through the latest available period.",
+      "status": "upheld"
+    },
+    {
+      "challenge_id": "RT-016",
+      "target_claim_or_omission": "The workforce analysis treats the legal contractor list as a current population at the report date.",
+      "challenge_hypothesis": "The listed population is only a 30 June snapshot and contains contracts whose end dates precede the 1 September review date.",
+      "independent_evidence_or_calculation": "SRC-0044 labels 12 contractors active at 30 June 2026, but six recorded end dates fall between 15 July and 21 August 2026. No renewal or current roster confirms their September status.",
+      "severity": "high",
+      "citation": ["SRC-0044 contractor-list rows", "workstreams/legal_contractual.md", "outputs/due_diligence_report.md LEGAL-003"],
+      "required_correction": "Use an explicit 30 June snapshot or obtain a current contractor roster, renewals and cessation records before drawing current-state conclusions.",
+      "status": "upheld"
+    },
+    {
+      "challenge_id": "RT-017",
+      "target_claim_or_omission": "The report omits a 61-versus-64 employee population/version inconsistency.",
+      "challenge_hypothesis": "Headcount, remuneration, allocation and PII conclusions may use different employee universes.",
+      "independent_evidence_or_calculation": "The redacted employee master contains 61 employee rows with client, salary and start fields. The updated unredacted master within the archive contains 64 employee rows but different fields. The allocation and PAYE sources use 64 employees. No bridge explains EMP062-EMP064 or version timing.",
+      "severity": "high",
+      "citation": ["SRC-0045 employee-master extract", "SRC-0090 archive/member extract", "SRC-0091 Resource_Allocation", "workstreams/legal_contractual.md"],
+      "required_correction": "Add a workforce-population contradiction and require a dated 61-to-64 reconciliation across HR, payroll and client allocation.",
+      "status": "upheld"
+    },
+    {
+      "challenge_id": "RT-018",
+      "target_claim_or_omission": "The report does not flag the actual unredacted employee PII-like dataset present in the room.",
+      "challenge_hypothesis": "The room contains a concrete privacy/security exposure beyond the report's generic IP/privacy gap.",
+      "independent_evidence_or_calculation": "The updated archive member contains 64 work emails, 64 personal emails and 64 PPS-like identifiers. This is an identifiable, unredacted population requiring access, retention and secure-disposal controls.",
+      "severity": "critical",
+      "citation": ["SRC-0090 archive/member structured extract", "source_register/source_register.json", "outputs/due_diligence_report.md"],
+      "required_correction": "Add a specific PII exposure, restrict and audit access, establish lawful purpose/retention, and require controlled removal or secure transfer of the unredacted file.",
+      "status": "upheld"
+    },
+    {
+      "challenge_id": "RT-019",
+      "target_claim_or_omission": "Challenge to the report's conclusion that IT recovery assurance is inadequate.",
+      "challenge_hypothesis": "Admin MFA and backup statements might sufficiently mitigate recovery risk.",
+      "independent_evidence_or_calculation": "SRC-0055 and SRC-0097 confirm admin MFA but no formal RTO, witnessed end-to-end restore, recent penetration test or independent assurance. MFA does not evidence recoverability.",
+      "severity": "critical",
+      "citation": ["SRC-0055 page 1", "SRC-0097 paragraph 7", "outputs/due_diligence_report.md IT-001"],
+      "required_correction": "No correction to the core recovery-gap conclusion; maintain the evidence request and remediation condition.",
+      "status": "rejected"
+    },
+    {
+      "challenge_id": "RT-020",
+      "target_claim_or_omission": "OPS-001 and IT-001 count the same absent RTO/witnessed-restore weakness as two critical issues.",
+      "challenge_hypothesis": "The report double-counts one control failure and inflates the critical-issue count.",
+      "independent_evidence_or_calculation": "Both findings rely on substantially the same restore/RTO evidence and prescribe overlapping witnessed recovery testing and governance actions. Their transaction implications are not independently separated.",
+      "severity": "high",
+      "citation": ["workstreams/operational_management.md OPS-001", "workstreams/it.md IT-001", "outputs/due_diligence_report.md"],
+      "required_correction": "Consolidate them into one critical resilience finding or explicitly distinguish operational dependency from technical-control failure without double-counting severity.",
+      "status": "upheld"
+    },
+    {
+      "challenge_id": "RT-021",
+      "target_claim_or_omission": "OPS-002 treats the full EUR 265,000 hosting creditor balance as evidence of acute continuity risk with 95% confidence.",
+      "challenge_hypothesis": "Only EUR 92,750 is beyond current, and no default notice, payment plan, termination right or service threat is cited.",
+      "independent_evidence_or_calculation": "SRC-0001 shows EUR 172,250 current, EUR 66,250 aged 31-60 and EUR 26,500 aged 61+, totaling EUR 265,000. The source proves exposure but not threatened suspension or default.",
+      "severity": "high",
+      "citation": ["SRC-0001 Hosting_Creditor!B4:E4", "outputs/due_diligence_report.md OPS-002"],
+      "required_correction": "Base arrears language on EUR 92,750 beyond current, lower confidence, and obtain statements, payment status, default notices and hosting termination/suspension rights.",
+      "status": "upheld"
+    },
+    {
+      "challenge_id": "RT-022",
+      "target_claim_or_omission": "The report does not elevate the absence of contractor IP-assignment wording in the reviewed sample.",
+      "challenge_hypothesis": "Deliverables created by a 12-contractor population may not be cleanly owned by the target.",
+      "independent_evidence_or_calculation": "The contractor agreement sample contains confidentiality/service terms but no express IP assignment, while the contractor list contains 12 people. The report keeps only a generic privacy/IP gap rather than a transaction finding.",
+      "severity": "high",
+      "citation": ["SRC-0042 contractor-agreement extract", "SRC-0044 contractor-list extract", "workstreams/legal_contractual.md"],
+      "required_correction": "Add a contractor-IP chain-of-title issue and require executed assignments or confirmatory deeds for all material contractor-created IP.",
+      "status": "upheld"
+    },
+    {
+      "challenge_id": "RT-023",
+      "target_claim_or_omission": "All 15 intake answers are recorded closed and the related gaps resolved despite explicit unresolved language and non-management provenance.",
+      "challenge_hypothesis": "The engine overinterpreted test-operator responses and prematurely closed evidential questions.",
+      "independent_evidence_or_calculation": "Both answer artifacts identify the respondent as 'Phase 11 synthetic test operator (not management)'. Multiple verbatim answers say to keep matters open, that evidence was not supplied, or that issues remain unresolved, yet resolution_status is closed and unresolved count is zero.",
+      "severity": "critical",
+      "citation": ["intake/round_1_answers.json", "intake/round_2_answers.json", "intake/unresolved_questions.md", "evidence/gaps.jsonl"],
+      "required_correction": "Reopen every question not substantively resolved, preserve test-operator provenance, and invalidate downstream completion/confidence that depended on false closure.",
+      "status": "upheld"
+    },
+    {
+      "challenge_id": "RT-024",
+      "target_claim_or_omission": "The IC brief carries critical FIN-005, FIN-003 and TAX-002 issues but omits corresponding decision conditions, questions or protections.",
+      "challenge_hypothesis": "The short-form decision document understates debt/security, working-capital and corporation-tax execution risk relative to the full report.",
+      "independent_evidence_or_calculation": "The IC brief lists the critical findings but its go/no-go conditions, critical unanswered questions, protections and immediate actions do not expressly require lender review/payoff/security release, a same-date debt statement, the full NWC definition/peg mechanics, or an assessment-level corporation-tax bridge and protection.",
+      "severity": "critical",
+      "citation": ["outputs/ic_brief.md", "outputs/due_diligence_report.md FIN-003, FIN-005 and TAX-002"],
+      "required_correction": "Add explicit IC conditions and protections for lender consent/payoff/releases, same-date net debt, NWC peg/true-up mechanics and corporation-tax reconciliation/escrow or indemnity.",
+      "status": "upheld"
+    },
+    {
+      "challenge_id": "RT-025",
+      "target_claim_or_omission": "Tax clearance and invoice samples are presented as limitations without recording the positive evidence they do provide.",
+      "challenge_hypothesis": "These gap labels are likely false positives or materially overstated.",
+      "independent_evidence_or_calculation": "The tax-clearance certificate states current status through 30 April 2027. Four invoice samples tie exactly to the invoice register at 23% VAT: EUR 440,000 net, EUR 101,200 VAT and EUR 541,200 gross. Authenticity and completeness still need caveats, but the artifacts are not absent.",
+      "severity": "medium",
+      "citation": ["SRC-0068 tax-clearance extract", "SRC-0066 invoice register", "SRC-0061, SRC-0062, SRC-0064 and SRC-0065 invoice extracts", "tax/tax-analysis.md"],
+      "required_correction": "Record the positive tax-clearance and invoice tie-out tests, while retaining appropriately scoped authenticity and population-completeness limitations.",
+      "status": "upheld"
+    },
+    {
+      "challenge_id": "RT-026",
+      "target_claim_or_omission": "FIN-007 assigns high severity to a EUR 37,500 weighted-pipeline cached-value discrepancy without a materiality basis.",
+      "challenge_hypothesis": "The issue is a stale cache representing only 1.45% of the displayed total, not necessarily a high-severity pipeline weakness.",
+      "independent_evidence_or_calculation": "SRC-0019 live formula sums to EUR 2,542,500 against cached EUR 2,580,000, a EUR 37,500 or 1.4535% difference. The report does not state a materiality threshold or show that the live inputs are wrong.",
+      "severity": "medium",
+      "citation": ["SRC-0019 Pipeline!E4:E8", "outputs/due_diligence_report.md FIN-007"],
+      "required_correction": "Characterize this as a stale-cache/control issue and justify severity against deal materiality and pipeline conversion sensitivity.",
+      "status": "upheld"
+    },
+    {
+      "challenge_id": "RT-027",
+      "target_claim_or_omission": "LEGAL-003 reports Harbourlight workforce concentration using 64 employees plus only 10 allocated contractors despite a 12-contractor legal population.",
+      "challenge_hypothesis": "The 27.03% point estimate uses an incomplete denominator and unknown assignment for two contractors.",
+      "independent_evidence_or_calculation": "The allocation source gives 18 employees plus 2 contractors on Harbourlight out of 64 plus 10, or 27.027%. With all 12 legal contractors, the share ranges from 20/76 = 26.316% to 22/76 = 28.947% depending on the two unallocated contractors.",
+      "severity": "high",
+      "citation": ["SRC-0091 Resource_Allocation!B4:B6", "SRC-0044 contractor-list rows", "outputs/due_diligence_report.md LEGAL-003"],
+      "required_correction": "Present a range or reconcile all contractors to client allocation before reporting a precise concentration percentage.",
+      "status": "upheld"
+    },
+    {
+      "challenge_id": "RT-028",
+      "target_claim_or_omission": "The report assigns 90-99% confidence to many unresolved findings although most analytical and drafting stages were recorded as local deterministic work.",
+      "challenge_hypothesis": "Confidence is unsupported where underlying answers remain open and required frontier judgment was not independently logged for financial, contractual and report conclusions.",
+      "independent_evidence_or_calculation": "The run log contains 14 local_deterministic records and one frontier_judgment candidate review after report creation. Phase 8, Phase 9 and report tasks are logged local_deterministic; candidate-review.md states deterministic Python created analyses and the candidate review is the sole reasoning task. This does not substantiate granular 90-99% judgment confidence, especially after RT-023.",
+      "severity": "high",
+      "citation": ["logs/run-log.jsonl", "logs/candidate-review.md", "workstreams/*.json", "outputs/due_diligence_report.md"],
+      "required_correction": "Recalibrate confidence to source sufficiency and unresolved status, and ensure judgment-heavy analysis/drafting tasks have accurate routing and model-task provenance.",
+      "status": "upheld"
+    }
+  ]
+}

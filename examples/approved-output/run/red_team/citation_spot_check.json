@@ -1,0 +1,357 @@
+{
+  "schema_version": 1,
+  "run_id": "20260901T040928457675Z-dede88eb959c",
+  "review_type": "independent_red_team",
+  "reviewed_at": "2026-09-01T09:57:26.1880352+05:30",
+  "summary": {
+    "material_citations_checked": 34,
+    "supported": 27,
+    "partial": 7,
+    "unsupported": 0,
+    "source_checksums_recomputed": 100,
+    "source_checksums_matched": 100,
+    "method": "Resolved each cited source ID to the completed run register, independently matched all registered SHA-256 hashes to the read-only data room, and checked the native or structured-extract locator against the report claim. Partial means that the cited fact exists but does not support the full analytical conclusion."
+  },
+  "checks": [
+    {
+      "spot_check_id": "CIT-001",
+      "target_claim_id": "FIN-001",
+      "materiality": "high",
+      "cited_source_ids": ["SRC-0020", "SRC-0025"],
+      "locator": "page 1 in each statutory-account extract",
+      "independent_check": "Confirmed 2020 revenue of EUR 6.2m and EBITDA of EUR 0.72m, and 2025 revenue of EUR 13.1m and EBITDA of EUR 2.08m.",
+      "outcome": "supported",
+      "finding": "The source values and the report's growth and margin recomputations are supported."
+    },
+    {
+      "spot_check_id": "CIT-002",
+      "target_claim_id": "FIN-002",
+      "materiality": "critical",
+      "cited_source_ids": ["SRC-0012"],
+      "locator": "page 1",
+      "independent_check": "Confirmed management-reported YTD revenue EUR 7.65m, gross profit EUR 5.049m, adjusted EBITDA EUR 1.41m, baseline EBITDA EUR 1.23m and EUR 0.18m add-back; the same page says invoices, ledger detail and restructuring plan were not supplied.",
+      "outcome": "partial",
+      "finding": "The arithmetic is cited, but the citation does not support describing EUR 1.23m as an evidence-backed or supportable ledger baseline."
+    },
+    {
+      "spot_check_id": "CIT-003",
+      "target_claim_id": "FIN-003",
+      "materiality": "critical",
+      "cited_source_ids": ["SRC-0027"],
+      "locator": "Working_Capital!B9 and D9",
+      "independent_check": "Confirmed cached/formula total of negative EUR 0.835m and an adjacent note that the total omits rows.",
+      "outcome": "supported",
+      "finding": "The cited omission control is present."
+    },
+    {
+      "spot_check_id": "CIT-004",
+      "target_claim_id": "FIN-003",
+      "materiality": "critical",
+      "cited_source_ids": ["SRC-0027"],
+      "locator": "Working_Capital!B4:B8 and B10",
+      "independent_check": "Recomputed EUR 1.48m + EUR 0.095m - EUR 0.93m + EUR 0.185m = EUR 0.83m and confirmed the control value in B10.",
+      "outcome": "supported",
+      "finding": "EUR 0.83m is the workbook's full-row arithmetic at one date; the citation does not by itself establish an SPA-normalized peg."
+    },
+    {
+      "spot_check_id": "CIT-005",
+      "target_claim_id": "FIN-004",
+      "materiality": "high",
+      "cited_source_ids": ["SRC-0002"],
+      "locator": "Aged_Debtors!E4:E11",
+      "independent_check": "Recomputed EUR 176,500 for balances aged over 90 days; E11 contains a correct SUM formula but a stale cached value of EUR 74,000.",
+      "outcome": "supported",
+      "finding": "The numeric challenge is supported, with the more precise characterization being a stale cached value rather than a bad live formula."
+    },
+    {
+      "spot_check_id": "CIT-006",
+      "target_claim_id": "FIN-004",
+      "materiality": "high",
+      "cited_source_ids": ["SRC-0002"],
+      "locator": "Aged_Debtors!F11",
+      "independent_check": "Confirmed total debtors of EUR 1.48m and recomputed over-90 share as 11.9257%.",
+      "outcome": "supported",
+      "finding": "The denominator and percentage are supported."
+    },
+    {
+      "spot_check_id": "CIT-007",
+      "target_claim_id": "FIN-005",
+      "materiality": "critical",
+      "cited_source_ids": ["SRC-0010", "SRC-0006", "SRC-0017"],
+      "locator": "Debt_Summary!C4:C6; HP_Summary!C4:C6; paragraph 10",
+      "independent_check": "Recomputed loans of EUR 1.81m, HP of EUR 0.29m and on-demand director balance of EUR 0.12m, for gross debt/debt-like items of EUR 2.22m.",
+      "outcome": "supported",
+      "finding": "The gross debt arithmetic is supported."
+    },
+    {
+      "spot_check_id": "CIT-008",
+      "target_claim_id": "FIN-005",
+      "materiality": "critical",
+      "cited_source_ids": ["SRC-0017"],
+      "locator": "paragraph 10",
+      "independent_check": "Confirmed a EUR 120,000 director balance stated to be repayable on demand.",
+      "outcome": "supported",
+      "finding": "Debt-like classification is supported."
+    },
+    {
+      "spot_check_id": "CIT-009",
+      "target_claim_id": "FIN-005",
+      "materiality": "critical",
+      "cited_source_ids": ["SRC-0026"],
+      "locator": "Cash!C4",
+      "independent_check": "Confirmed cash of EUR 0.96m at 31 December 2025.",
+      "outcome": "partial",
+      "finding": "The amount is supported, but it is not contemporaneous with debt balances dated 30 June or 31 August 2026 and does not establish unrestricted cash."
+    },
+    {
+      "spot_check_id": "CIT-010",
+      "target_claim_id": "FIN-007",
+      "materiality": "high",
+      "cited_source_ids": ["SRC-0019"],
+      "locator": "Pipeline!E4:E8",
+      "independent_check": "Recomputed weighted pipeline of EUR 2,542,500; E8 contains a correct SUM formula and stale cached EUR 2.58m total.",
+      "outcome": "supported",
+      "finding": "The EUR 37,500 discrepancy is supported, although materiality is not established by the citation."
+    },
+    {
+      "spot_check_id": "CIT-011",
+      "target_claim_id": "COMM-001",
+      "materiality": "critical",
+      "cited_source_ids": ["SRC-0018"],
+      "locator": "Customer_Revenue!D6:D7 and E6:F7",
+      "independent_check": "Confirmed Mosaic North and Mosaic South share the Mosaic group reference and sum to EUR 3.7m FY2025 and EUR 2.35m YTD.",
+      "outcome": "supported",
+      "finding": "The grouping and revenue inputs are supported."
+    },
+    {
+      "spot_check_id": "CIT-012",
+      "target_claim_id": "COMM-001",
+      "materiality": "critical",
+      "cited_source_ids": ["SRC-0038"],
+      "locator": "page 1",
+      "independent_check": "Confirmed the Mosaic North contract identifies Mosaic Logistics plc as the group parent/reference.",
+      "outcome": "supported",
+      "finding": "Independent contract evidence corroborates grouping."
+    },
+    {
+      "spot_check_id": "CIT-013",
+      "target_claim_id": "COMM-001",
+      "materiality": "critical",
+      "cited_source_ids": ["SRC-0039"],
+      "locator": "page 1",
+      "independent_check": "Confirmed the Mosaic South contract identifies the same Mosaic group.",
+      "outcome": "supported",
+      "finding": "Independent contract evidence corroborates grouping."
+    },
+    {
+      "spot_check_id": "CIT-014",
+      "target_claim_id": "LEGAL-001",
+      "materiality": "critical",
+      "cited_source_ids": ["SRC-0037"],
+      "locator": "page 1, clause 14.2",
+      "independent_check": "Confirmed prior written consent is required following a change of control of the supplier.",
+      "outcome": "supported",
+      "finding": "The base contract supports the consent conclusion."
+    },
+    {
+      "spot_check_id": "CIT-015",
+      "target_claim_id": "LEGAL-001",
+      "materiality": "critical",
+      "cited_source_ids": ["SRC-0034"],
+      "locator": "page 1",
+      "independent_check": "Confirmed the January 2025 amendment preserves clause 14.2 rather than superseding it.",
+      "outcome": "supported",
+      "finding": "The later amendment does not displace the consent term."
+    },
+    {
+      "spot_check_id": "CIT-016",
+      "target_claim_id": "LEGAL-001",
+      "materiality": "critical",
+      "cited_source_ids": ["SRC-0093"],
+      "locator": "page 1",
+      "independent_check": "Confirmed the response says consent was not requested because management believed it unnecessary.",
+      "outcome": "supported",
+      "finding": "The report accurately identifies an unrequested consent."
+    },
+    {
+      "spot_check_id": "CIT-017",
+      "target_claim_id": "LEGAL-002",
+      "materiality": "high",
+      "cited_source_ids": ["SRC-0035"],
+      "locator": "page 1, clause 11",
+      "independent_check": "Confirmed the base Mosaic North liability cap is three months' fees.",
+      "outcome": "supported",
+      "finding": "The historical term is supported."
+    },
+    {
+      "spot_check_id": "CIT-018",
+      "target_claim_id": "LEGAL-002",
+      "materiality": "high",
+      "cited_source_ids": ["SRC-0036"],
+      "locator": "page 1",
+      "independent_check": "Confirmed the 18 February 2026 amendment expressly replaces clause 11 with a twelve-month fee cap and uncapped service credits.",
+      "outcome": "supported",
+      "finding": "The report correctly applies the later amendment."
+    },
+    {
+      "spot_check_id": "CIT-019",
+      "target_claim_id": "OPS-001",
+      "materiality": "critical",
+      "cited_source_ids": ["SRC-0047"],
+      "locator": "paragraph 14",
+      "independent_check": "Confirmed no witnessed end-to-end recovery test and no documented recovery-time objective.",
+      "outcome": "supported",
+      "finding": "The recovery weakness is supported."
+    },
+    {
+      "spot_check_id": "CIT-020",
+      "target_claim_id": "OPS-002",
+      "materiality": "high",
+      "cited_source_ids": ["SRC-0001"],
+      "locator": "Hosting_Creditor!B4:E4",
+      "independent_check": "Confirmed a EUR 265,000 total balance, of which EUR 172,250 is current and EUR 92,750 is beyond current.",
+      "outcome": "partial",
+      "finding": "The balance is supported, but payment default, termination rights and service-continuity risk are not demonstrated by this citation."
+    },
+    {
+      "spot_check_id": "CIT-021",
+      "target_claim_id": "IT-001",
+      "materiality": "critical",
+      "cited_source_ids": ["SRC-0055"],
+      "locator": "page 1",
+      "independent_check": "Confirmed the IT diligence response lacks a formal RTO, recent penetration test and independent assurance report.",
+      "outcome": "supported",
+      "finding": "The central IT control gaps are supported."
+    },
+    {
+      "spot_check_id": "CIT-022",
+      "target_claim_id": "IT-001",
+      "materiality": "critical",
+      "cited_source_ids": ["SRC-0097"],
+      "locator": "paragraph 7",
+      "independent_check": "Confirmed no additional witnessed recovery evidence was supplied in the updated response.",
+      "outcome": "supported",
+      "finding": "The updated intake response does not cure the gap."
+    },
+    {
+      "spot_check_id": "CIT-023",
+      "target_claim_id": "IT-002",
+      "materiality": "high",
+      "cited_source_ids": ["SRC-0040"],
+      "locator": "page 1",
+      "independent_check": "Confirmed a EUR 2m cyber limit, EUR 75,000 retention and 72-hour incident-notification condition.",
+      "outcome": "supported",
+      "finding": "The policy parameters are supported."
+    },
+    {
+      "spot_check_id": "CIT-024",
+      "target_claim_id": "IT-002",
+      "materiality": "high",
+      "cited_source_ids": ["SRC-0041"],
+      "locator": "page 1",
+      "independent_check": "Confirmed the renewal record does not evidence buyer-tail or post-completion coverage.",
+      "outcome": "supported",
+      "finding": "The coverage-continuity gap is supported."
+    },
+    {
+      "spot_check_id": "CIT-025",
+      "target_claim_id": "TAX-001",
+      "materiality": "critical",
+      "cited_source_ids": ["SRC-0083"],
+      "locator": "page 1",
+      "independent_check": "Confirmed the original P2 VAT return states EUR 174,000 due.",
+      "outcome": "supported",
+      "finding": "The original-return amount is supported."
+    },
+    {
+      "spot_check_id": "CIT-026",
+      "target_claim_id": "TAX-001",
+      "materiality": "critical",
+      "cited_source_ids": ["SRC-0084"],
+      "locator": "page 1",
+      "independent_check": "Confirmed the amended P2 VAT return states EUR 182,000 due.",
+      "outcome": "supported",
+      "finding": "The amended-return amount and EUR 8,000 delta are supported."
+    },
+    {
+      "spot_check_id": "CIT-027",
+      "target_claim_id": "TAX-001",
+      "materiality": "critical",
+      "cited_source_ids": ["SRC-0079"],
+      "locator": "Tax_TB!B5",
+      "independent_check": "Confirmed a EUR 182,000 VAT-control debit in the tax trial balance.",
+      "outcome": "supported",
+      "finding": "The trial-balance amount is supported but remains unreconciled to the screen showing VAT charges paid."
+    },
+    {
+      "spot_check_id": "CIT-028",
+      "target_claim_id": "TAX-002",
+      "materiality": "critical",
+      "cited_source_ids": ["SRC-0074"],
+      "locator": "page 1",
+      "independent_check": "Confirmed displayed corporation-tax payments of EUR 420,000 and a refund of EUR 18,300.",
+      "outcome": "partial",
+      "finding": "The displayed amounts are supported, but the isolated screen does not establish assessment linkage, timing or final settlement."
+    },
+    {
+      "spot_check_id": "CIT-029",
+      "target_claim_id": "TAX-002",
+      "materiality": "critical",
+      "cited_source_ids": ["SRC-0063"],
+      "locator": "page 1",
+      "independent_check": "Confirmed a corporation-tax return amount of EUR 389,200 and an additional charge of EUR 12,500.",
+      "outcome": "partial",
+      "finding": "The arithmetic to EUR 401,700 is supported, but a settlement conclusion needs period- and assessment-level reconciliation."
+    },
+    {
+      "spot_check_id": "CIT-030",
+      "target_claim_id": "TAX-003",
+      "materiality": "high",
+      "cited_source_ids": ["SRC-0075", "SRC-0076"],
+      "locator": "page 1 in each PAYE extract",
+      "independent_check": "Confirmed annual PAYE returns and payments both total EUR 1.584m.",
+      "outcome": "supported",
+      "finding": "The annual cash/return tie is supported, subject to the separate EUR 132,000 PAYE-control credit."
+    },
+    {
+      "spot_check_id": "CIT-031",
+      "target_claim_id": "LEGAL-003",
+      "materiality": "high",
+      "cited_source_ids": ["SRC-0091"],
+      "locator": "Resource_Allocation!B4:B6",
+      "independent_check": "Confirmed the allocation workbook includes 64 employees and 10 contractors.",
+      "outcome": "partial",
+      "finding": "The cited allocation supports 74 people, but the legal contractor list contains 12 contractors, leaving the concentration denominator incomplete."
+    },
+    {
+      "spot_check_id": "CIT-032",
+      "target_claim_id": "LEGAL-005",
+      "materiality": "high",
+      "cited_source_ids": ["SRC-0056"],
+      "locator": "page 1",
+      "independent_check": "Confirmed the lease states that a share change of control is not an assignment.",
+      "outcome": "supported",
+      "finding": "The lease change-of-control conclusion is supported."
+    },
+    {
+      "spot_check_id": "CIT-033",
+      "target_claim_id": "FIN-006",
+      "materiality": "high",
+      "cited_source_ids": ["SRC-0043"],
+      "locator": "Backlog!B2 and detail rows",
+      "independent_check": "Confirmed reported backlog of EUR 2.4m at the stated snapshot date and absence of a complete delivery-to-cash schedule.",
+      "outcome": "supported",
+      "finding": "The amount and timing limitation are supported."
+    },
+    {
+      "spot_check_id": "CIT-034",
+      "target_claim_id": "COMM-004",
+      "materiality": "high",
+      "cited_source_ids": ["SRC-0015", "SRC-0003"],
+      "locator": "Supplier_Spend!B4 and Revenue!B4",
+      "independent_check": "Confirmed EUR 0.92m supplier spend and EUR 8.0m management revenue, giving 11.5%.",
+      "outcome": "partial",
+      "finding": "The arithmetic is supported, but source periods and the economic relevance of a revenue denominator for supplier dependency require explicit alignment."
+    }
+  ]
+}

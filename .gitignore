@@ -52,3 +52,5 @@ env/
 # Generated local logs.
 *.log
 logs/
+!examples/approved-output/run/logs/
+!examples/approved-output/run/logs/**

@@ -15,25 +15,46 @@ bundle fail closed. Phase 11 adds the three-class model-routing contract,
 complete local task/research ledgers and one Codex-first, Claude-compatible
 runtime flow. Phase 14 adds a filename-independent shadow-room rehearsal, a
 150-logical-source stress corpus, hostile-input regressions and documented
-clean-clone/manual-audit evidence. Independent red-team execution remains a
-separate release gate.
+clean-clone/manual-audit evidence. Phase 15 adds the evaluator handover package
+and release audit. The included synthetic candidate is deliberately not labelled
+release-ready because the historical red-team artifacts do not prove a brand-new
+non-inheriting context.
 
-## Requirements and installation
+## Clone, requirements and installation
 
-Use Python 3.11 or later in an isolated environment:
+Install Git and Python 3.11 or later. Clone and enter the repository:
 
 ```text
-python -m venv .venv
-python -m pip install --upgrade pip
-python -m pip install -e ".[dev]"
+git clone https://github.com/JiteshAnand2207/dd-engine.git
+cd dd-engine
 ```
 
-Activate `.venv` using the command appropriate to the local shell before the two
-`pip` commands, or call its Python executable directly. Document generation,
-extraction, spreadsheet parsing and PDF rendering use pinned local Python
-packages; no Office application or mandatory system utility is required.
-Tesseract is optional. The exact versions and build backend are pinned in
-`pyproject.toml`.
+Create an isolated environment. On Windows PowerShell:
+
+```powershell
+py -3 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -e ".[dev]"
+python -m dd_engine doctor --json
+```
+
+On macOS or Linux:
+
+```sh
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -e ".[dev]"
+python -m dd_engine doctor --json
+```
+
+If `py -3.11` is unavailable on Windows, use the installed Python 3.11+ launcher
+or call `.venv`'s Python executable directly. Document generation, extraction,
+spreadsheet parsing and PDF rendering use pinned local Python packages; no Office
+application or mandatory system utility is required. Tesseract OCR is optional;
+missing OCR leaves explicit vision tasks. The exact versions and build backend
+are pinned in `pyproject.toml`.
 
 ## Synthetic room validation
 
@@ -90,13 +111,22 @@ capability and extractor/dependency versions form the cache fingerprint.
 
 ## Primary runtime flow
 
-For a complete clean-clone run, open this repository in Codex, provide an
-explicit data-room path and follow [the runtime prompt](prompts/runtime/run_engine.md).
-The operator sequence, answer-file format, routing and logging contracts are in
-[the runtime guide](docs/runtime-flow.md). Claude Code may use the same prompt and
-CLI. Codex remains primary; neither harness is assumed to expose an exact model
-ID, selectable cheaper tier, token counts, billing or automatic isolated-task
-creation.
+For a complete clean-clone run, open this repository in Codex and send this
+instruction, replacing the room path with the real absolute path:
+
+```text
+Follow prompts/runtime/run_engine.md exactly. ROOM_PATH is
+<ABSOLUTE_PATH_TO_DATA_ROOM>. Use runs as RUNS_ROOT. Stop at both intake gates.
+```
+
+The master prompt is [prompts/runtime/run_engine.md](prompts/runtime/run_engine.md).
+It requires the room path, rejects unsafe room/run overlap and owns the full
+doctor-through-delivery sequence. The room is read-only; use a separate run
+directory for every deal. The operator sequence, answer-file format, routing and
+logging contracts are in [the runtime guide](docs/runtime-flow.md). Claude Code
+may use the same prompt and CLI. Codex remains primary; neither harness is assumed
+to expose an exact model ID, selectable cheaper tier, token counts, billing or
+automatic isolated-task creation.
 
 The checked-in [routing policy](config/model-routing.yaml) has exactly three
 classes: `local_deterministic`, `economical_reasoning` and
@@ -295,6 +325,46 @@ real rooms, secrets, caches, renders, OCR caches and local logs are ignored by
 Git. Only the specifically allowlisted approved synthetic/example locations may
 be committed later.
 
+## Finding the outputs
+
+Use `python -m dd_engine status --run runs/<run_id> --json` to inspect stage
+state. The final report bundle is under `runs/<run_id>/outputs/`; the source
+register is under `source_register/`; both intake rounds are under `intake/`;
+task and public-research ledgers are under `logs/`; and independent red-team
+artifacts belong under `red_team/`.
+
+The checked-in evaluator example is
+[`examples/approved-output/`](examples/approved-output/README.md). It uses run ID
+`20260901T040928457675Z-dede88eb959c` and includes the report, exactly two-page
+IC brief, source register, both intake rounds, red-team challenge/resolution
+records, honest run/research logs and validation evidence. Read its limitation:
+it is a reconciled candidate, not proof of independent red-team isolation.
+
+## Troubleshooting
+
+- `No module named dd_engine` or a missing package usually means the virtual
+  environment is inactive or the editable install was run with a different
+  Python. Activate `.venv`, then rerun `python -m pip install -e ".[dev]"` and
+  `python -m dd_engine doctor --json`.
+- `Python 3.11+ required` means the launcher selected an older interpreter.
+  Recreate `.venv` with a Python 3.11 or newer executable.
+- A bare run ID is rejected. Pass the absolute path printed by `init-run`, or
+  `runs/<run_id>` from the repository root.
+- A room path is rejected when it is missing, is the repository/run root, is a
+  symlink or reparse point, overlaps the output path, or points at sealed planted
+  truth. Choose the actual data-room directory and a separate output root.
+- `awaiting_input` is expected. Open the generated Markdown packet, collect the
+  deal lead's answers in JSON, ingest it with `--answers`, and only then continue.
+- Corrupt, encrypted, unsupported or image-only sources remain explicit. Review
+  `source_register/unreadable_sources.json`,
+  `extracts/extraction_failures.json` and `extracts/needs_vision.json`; do not
+  delete or invent around those limitations.
+- Tesseract/document-conversion warnings are optional-capability warnings. Native
+  PDF rendering is required; rerun the editable install if doctor marks it failed.
+- `validate` can pass while `release_ready` remains false. Complete and prove the
+  brand-new-context red-team flow from `prompts/runtime/red_team.md`; do not
+  reinterpret candidate validation as final release approval.
+
 ## Development verification
 
 ```text
@@ -302,6 +372,7 @@ python -m pytest
 python -m pytest tests/test_phase14.py
 python -m ruff check .
 python -m mypy
+python scripts/validate_delivery_manifest.py --manifest DELIVERY_MANIFEST.md
 ```
 
 Missing optional OCR or document conversion tools are doctor warnings with

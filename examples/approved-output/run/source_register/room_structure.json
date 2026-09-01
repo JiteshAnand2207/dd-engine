@@ -1,0 +1,106 @@
+{
+  "archive_directories": [],
+  "empty_directories": [
+    "Legal/Legal 2.1"
+  ],
+  "physical_directories": [
+    {
+      "empty": false,
+      "path": "Financial"
+    },
+    {
+      "empty": false,
+      "path": "Financial/Loan Letters"
+    },
+    {
+      "empty": false,
+      "path": "Financial/Statutory Accounts"
+    },
+    {
+      "empty": false,
+      "path": "Legal"
+    },
+    {
+      "empty": false,
+      "path": "Legal/Business Registration"
+    },
+    {
+      "empty": false,
+      "path": "Legal/Corporate"
+    },
+    {
+      "empty": false,
+      "path": "Legal/Customer Contracts"
+    },
+    {
+      "empty": false,
+      "path": "Legal/Dispute"
+    },
+    {
+      "empty": false,
+      "path": "Legal/Employment"
+    },
+    {
+      "empty": false,
+      "path": "Legal/Governance"
+    },
+    {
+      "empty": false,
+      "path": "Legal/Insurance"
+    },
+    {
+      "empty": false,
+      "path": "Legal/Legacy"
+    },
+    {
+      "empty": true,
+      "path": "Legal/Legal 2.1"
+    },
+    {
+      "empty": false,
+      "path": "Legal/Licences"
+    },
+    {
+      "empty": false,
+      "path": "Legal/Operational Providers"
+    },
+    {
+      "empty": false,
+      "path": "Legal/Property"
+    },
+    {
+      "empty": false,
+      "path": "Legal/Work Permits"
+    },
+    {
+      "empty": false,
+      "path": "Tax"
+    },
+    {
+      "empty": false,
+      "path": "Tax/Computations"
+    },
+    {
+      "empty": false,
+      "path": "Tax/Invoice Samples"
+    },
+    {
+      "empty": false,
+      "path": "Tax/Registration"
+    },
+    {
+      "empty": false,
+      "path": "Tax/ROS Screens"
+    },
+    {
+      "empty": false,
+      "path": "Tax/Trial Balance"
+    },
+    {
+      "empty": false,
+      "path": "Tax/VAT"
+    }
+  ],
+  "run_id": "20260901T040928457675Z-dede88eb959c",
+  "schema_version": 1
+}

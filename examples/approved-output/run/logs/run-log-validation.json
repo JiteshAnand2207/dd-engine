@@ -1,0 +1,27 @@
+{
+  "checked_at": "2026-09-01T06:02:45.251538Z",
+  "completed_stages": [
+    "analyse",
+    "extract",
+    "intake",
+    "register",
+    "report",
+    "validate"
+  ],
+  "errors": [],
+  "missing_completed_stage_logs": [],
+  "privacy_checks_passed": true,
+  "public_research_record_count": 1,
+  "route_counts": {
+    "frontier_judgment": 2,
+    "local_deterministic": 31
+  },
+  "run_id": "20260901T040928457675Z-dede88eb959c",
+  "schema_version": 1,
+  "status": "passed",
+  "status_counts": {
+    "failed": 1,
+    "succeeded": 32
+  },
+  "task_record_count": 33
+}

@@ -10,8 +10,8 @@ The matrix contains **271 requirements**: 103 from the trial brief, 21 from the 
 
 | Code | Source | Integrity reference |
 |---|---|---|
-| TB | [Founding Engineer Trial Project](../dd-engine-trial-brief.md.pdf), pages 1-4 | SHA-256 `ABF999C273012166AA9FD99CDA2AB9AB01EE968DC68D06FF78511F06C0358A0A` |
-| RS | [Real-room document specification](../specs_req_room.pdf), pages 1-2 | SHA-256 `F99A520DE1505412926341A4A51F2992A9BC96A0D98E1218526445BEDFC510B8` |
+| TB | Founding Engineer Trial Project (`dd-engine-trial-brief.md.pdf`, locally retained and Git-ignored), pages 1-4 | SHA-256 `ABF999C273012166AA9FD99CDA2AB9AB01EE968DC68D06FF78511F06C0358A0A` |
+| RS | Real-room document specification (`specs_req_room.pdf`, locally retained and Git-ignored), pages 1-2 | SHA-256 `F99A520DE1505412926341A4A51F2992A9BC96A0D98E1218526445BEDFC510B8` |
 | USR | Current task directive, 31 August 2026 | Conversation record |
 | P7 | Phase 7 evidence/calculation directive, 1 September 2026 | Conversation record |
 | P8 | Phase 8 financial/commercial analysis directive, 1 September 2026 | Conversation record |

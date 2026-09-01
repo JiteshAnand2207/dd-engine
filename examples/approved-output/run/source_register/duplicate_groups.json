@@ -1,0 +1,144 @@
+{
+  "exact_duplicate_groups": [
+    {
+      "duplicate_group": "DUP-0001",
+      "kind": "exact_checksum",
+      "paths": [
+        "Financial/Loan_Summary.xlsx",
+        "Financial/Loan_Summary_for_Bank.xlsx"
+      ],
+      "representative_source_id": "SRC-0010",
+      "sha256": "7c9fbdaa21a7bfec7e7c154dc55d6b9d677220c0c655542e7dd3a63899f453bd",
+      "source_ids": [
+        "SRC-0010",
+        "SRC-0011"
+      ]
+    },
+    {
+      "duplicate_group": "DUP-0002",
+      "kind": "exact_checksum",
+      "paths": [
+        "Legal/Corporate/CRO_Search_Screenshot.png",
+        "zip://Legal/Updated_Responses.zip!/Updated Responses/CRO_Search_Refresh.png"
+      ],
+      "representative_source_id": "SRC-0030",
+      "sha256": "4cbd2255a6034dc808a6cc31b0d37b161a2628b508ce194bf466040d97410e42",
+      "source_ids": [
+        "SRC-0030",
+        "SRC-0092"
+      ]
+    }
+  ],
+  "near_duplicate_candidates": [
+    {
+      "basis": "shared normalized version family with different hashes",
+      "near_duplicate_group": "NEAR-0001",
+      "size_ratio": 0.882661,
+      "source_ids": [
+        "SRC-0034",
+        "SRC-0037"
+      ],
+      "version_family": "VER-0001"
+    },
+    {
+      "basis": "shared normalized version family with different hashes",
+      "near_duplicate_group": "NEAR-0002",
+      "size_ratio": 0.86249,
+      "source_ids": [
+        "SRC-0036",
+        "SRC-0039"
+      ],
+      "version_family": "VER-0002"
+    },
+    {
+      "basis": "shared normalized version family with different hashes",
+      "near_duplicate_group": "NEAR-0003",
+      "size_ratio": 0.888658,
+      "source_ids": [
+        "SRC-0012",
+        "SRC-0013"
+      ],
+      "version_family": "VER-0003"
+    },
+    {
+      "basis": "shared normalized version family with different hashes",
+      "near_duplicate_group": "NEAR-0004",
+      "size_ratio": 0.991161,
+      "source_ids": [
+        "SRC-0052",
+        "SRC-0099"
+      ],
+      "version_family": "VER-0004"
+    },
+    {
+      "basis": "shared normalized version family with different hashes",
+      "near_duplicate_group": "NEAR-0005",
+      "size_ratio": 0.966575,
+      "source_ids": [
+        "SRC-0032",
+        "SRC-0091"
+      ],
+      "version_family": "VER-0005"
+    },
+    {
+      "basis": "shared normalized version family with different hashes",
+      "near_duplicate_group": "NEAR-0006",
+      "size_ratio": 0.946304,
+      "source_ids": [
+        "SRC-0044",
+        "SRC-0095"
+      ],
+      "version_family": "VER-0006"
+    },
+    {
+      "basis": "shared normalized version family with different hashes",
+      "near_duplicate_group": "NEAR-0007",
+      "size_ratio": 0.874334,
+      "source_ids": [
+        "SRC-0083",
+        "SRC-0084"
+      ],
+      "version_family": "VER-0007"
+    },
+    {
+      "basis": "shared normalized version family with different hashes",
+      "near_duplicate_group": "NEAR-0008",
+      "size_ratio": 0.998733,
+      "source_ids": [
+        "SRC-0078",
+        "SRC-0079"
+      ],
+      "version_family": "VER-0008"
+    }
+  ],
+  "run_id": "20260901T040928457675Z-dede88eb959c",
+  "same_basename_conflicts": [
+    {
+      "filename": "Registration.pdf",
+      "group_id": "NAME-0001",
+      "hashes_differ": true,
+      "paths": [
+        "Legal/Business Registration/Registration.pdf",
+        "Legal/Work Permits/Registration.pdf"
+      ],
+      "source_ids": [
+        "SRC-0028",
+        "SRC-0060"
+      ]
+    },
+    {
+      "filename": "Trial_Balance_2025.xlsx",
+      "group_id": "NAME-0002",
+      "hashes_differ": true,
+      "paths": [
+        "Financial/Trial_Balance_2025.xlsx",
+        "Tax/Trial Balance/Trial_Balance_2025.xlsx"
+      ],
+      "source_ids": [
+        "SRC-0026",
+        "SRC-0081"
+      ]
+    }
+  ],
+  "schema_version": 1
+}

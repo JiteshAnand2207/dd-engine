@@ -1,0 +1,269 @@
+{
+  "analysis_version": "phase8-analysis-v4",
+  "coverage": [
+    {
+      "issue_ids": [
+        "COMM-001"
+      ],
+      "status": "analysed",
+      "topic": "customer_and_group_concentration"
+    },
+    {
+      "issue_ids": [
+        "COMM-003"
+      ],
+      "status": "analysed",
+      "topic": "contracted_vs_reported_revenue"
+    },
+    {
+      "issue_ids": [],
+      "status": "limitation",
+      "topic": "customer_longevity_and_churn"
+    },
+    {
+      "issue_ids": [
+        "COMM-002"
+      ],
+      "status": "analysed",
+      "topic": "complaints_disputes_and_service"
+    },
+    {
+      "issue_ids": [
+        "COMM-003"
+      ],
+      "status": "analysed",
+      "topic": "renewal_and_termination_exposure"
+    },
+    {
+      "issue_ids": [
+        "COMM-001",
+        "COMM-004"
+      ],
+      "status": "analysed",
+      "topic": "pricing_and_margin_dependence"
+    },
+    {
+      "issue_ids": [
+        "COMM-003",
+        "FIN-007"
+      ],
+      "status": "analysed",
+      "topic": "pipeline_quality_and_probability"
+    },
+    {
+      "issue_ids": [
+        "COMM-004"
+      ],
+      "status": "analysed",
+      "topic": "key_client_headcount_dependency"
+    },
+    {
+      "issue_ids": [],
+      "status": "limitation",
+      "topic": "supplier_or_channel_dependence"
+    },
+    {
+      "issue_ids": [],
+      "status": "limitation",
+      "topic": "unsupported_market_or_growth_claims"
+    }
+  ],
+  "findings": [
+    {
+      "action": "Confirm ultimate parent, billing entities, VAT numbers, cross-defaults and renewal dates for every group member, then rerun concentration on collected revenue and gross profit.",
+      "analysis_conclusion": "Evidence-backed group normalization raises Mosaic Arc Group to 28.2% of FY2025 revenue and 30.7% of 2026 YTD revenue; the separately named customers should be treated as one concentration exposure.",
+      "analytical_reasoning": "This grouping is supported by contract evidence; no other similar names were merged without proof.",
+      "calculation_ids": [
+        "CALC-COMM-001",
+        "CALC-COMM-002"
+      ],
+      "claim_ids": [
+        "CLM-COMM-001"
+      ],
+      "confidence": 0.85,
+      "confidence_basis": [
+        "Capped at 0.85 because one or more intake answers remain open or narrowed."
+      ],
+      "counterevidence_ids": [],
+      "issue_id": "COMM-001",
+      "materiality": "critical",
+      "opinion_status": null,
+      "source_fact": "The revenue schedule assigns both customers the same group ID and separate framework agreements expressly identify the same corporate group.",
+      "supporting_evidence_ids": [
+        "EVD-COMM-001-01",
+        "EVD-COMM-001-02",
+        "EVD-COMM-001-03",
+        "EVD-COMM-001-04"
+      ],
+      "transaction_implication": "Model the group as one customer in price assumptions and downside cases; obtain group-level renewal/consent confirmation and consider an earn-out or retention escrow tied to retained gross profit.",
+      "transaction_levers": [
+        "price_assumptions",
+        "earn_out",
+        "escrow",
+        "consent"
+      ],
+      "uncertainty": null,
+      "why_it_matters": "A single corporate group can exercise renewal, pricing and termination leverage across multiple contracts."
+    },
+    {
+      "action": "Confirm renewal, termination, pricing, consent and service status for each top exposure and refresh concentration on collected revenue and gross profit.",
+      "analysis_conclusion": "After evidence-backed group normalization, the top two exposures represent 51.9% of full-year and 55.6% of current-period revenue; the top three represent 71.8% and 75.8%, respectively.",
+      "analytical_reasoning": "Top-two and top-three views show the combined portfolio dependency that a single-largest-customer metric omits.",
+      "calculation_ids": [
+        "CALC-COMM-004",
+        "CALC-COMM-005"
+      ],
+      "claim_ids": [
+        "CLM-COMM-005"
+      ],
+      "confidence": 0.85,
+      "confidence_basis": [
+        "Capped at 0.85 because one or more intake answers remain open or narrowed."
+      ],
+      "counterevidence_ids": [],
+      "issue_id": "COMM-005",
+      "materiality": "critical",
+      "opinion_status": null,
+      "source_fact": "Customer-level revenue was aggregated only where contracts independently confirmed common group identity; all other customers remained separate.",
+      "supporting_evidence_ids": [
+        "EVD-COMM-005-01",
+        "EVD-COMM-005-02",
+        "EVD-COMM-005-03",
+        "EVD-COMM-005-04",
+        "EVD-COMM-005-05",
+        "EVD-COMM-005-06",
+        "EVD-COMM-005-07",
+        "EVD-COMM-005-08"
+      ],
+      "transaction_implication": "Use normalized top-two/top-three downside cases in valuation and tie deferred consideration to retained collected gross profit.",
+      "transaction_levers": [
+        "price_assumptions",
+        "earn_out",
+        "escrow",
+        "consent"
+      ],
+      "uncertainty": null,
+      "why_it_matters": "Loss or repricing across a small number of exposures can affect a majority of revenue and delivery demand."
+    },
+    {
+      "action": "Obtain the governing SLA, incident timestamps, credit calculation, settlement correspondence, subsequent service performance and written renewal status.",
+      "analysis_conclusion": "A key customer dispute remains unresolved between an EUR 85,000 service-credit claim and the company's EUR 24,000 offer; the room supports an exposure range, not a nil conclusion.",
+      "analytical_reasoning": "The correspondence demonstrates both service-performance and renewal-risk evidence.",
+      "calculation_ids": [],
+      "claim_ids": [
+        "CLM-COMM-002"
+      ],
+      "confidence": 0.85,
+      "confidence_basis": [
+        "Capped at 0.85 because one or more intake answers remain open or narrowed."
+      ],
+      "counterevidence_ids": [],
+      "issue_id": "COMM-002",
+      "materiality": "high",
+      "opinion_status": null,
+      "source_fact": "The customer alleges three priority-one response failures; the company accepts two misses but disputes quantum.",
+      "supporting_evidence_ids": [
+        "EVD-COMM-002-01",
+        "EVD-COMM-002-02"
+      ],
+      "transaction_implication": "Reserve the disputed amount in price/working capital, seek a specific indemnity or escrow for pre-close service credits, and make renewal evidence a commercial diligence condition.",
+      "transaction_levers": [
+        "escrow",
+        "indemnity",
+        "warranty",
+        "further_diligence"
+      ],
+      "uncertainty": "The governing credit formula and settlement status were not supplied.",
+      "why_it_matters": "An unresolved service issue can affect cash, renewal probability and reputation with a concentrated customer."
+    },
+    {
+      "action": "Produce opportunity-by-opportunity signed evidence, historical stage conversion, gross margin, expected start date and overlap with renewal/base revenue.",
+      "analysis_conclusion": "Pipeline values are management-weighted rather than contracted revenue; the largest opportunities depend on an existing concentrated customer and renewals, so they cannot support fixed consideration.",
+      "analytical_reasoning": "No signed order, conversion history or probability governance is cited in the room.",
+      "calculation_ids": [],
+      "claim_ids": [
+        "CLM-COMM-003"
+      ],
+      "confidence": 0.85,
+      "confidence_basis": [
+        "Capped at 0.85 because one or more intake answers remain open or narrowed."
+      ],
+      "counterevidence_ids": [],
+      "issue_id": "COMM-003",
+      "materiality": "high",
+      "opinion_status": null,
+      "source_fact": "The pipeline contains management stages and probabilities, including an 85% contracting-stage opportunity.",
+      "supporting_evidence_ids": [
+        "EVD-COMM-003-01",
+        "EVD-COMM-003-02"
+      ],
+      "transaction_implication": "Attribute no fixed price to uncontracted pipeline; if negotiated, use a customer-level earn-out based on collected gross profit with clawback for credits or churn.",
+      "transaction_levers": [
+        "price_assumptions",
+        "earn_out"
+      ],
+      "uncertainty": "Probability calibration and signed customer evidence are absent.",
+      "why_it_matters": "Pipeline concentration can magnify downside if a key customer delays, reprices or does not renew."
+    },
+    {
+      "action": "Reconcile client allocations to named roles, utilization, notice periods, transferability, contractual staffing obligations and contribution margin.",
+      "analysis_conclusion": "The largest client allocation uses 20 PAYE/contractor roles, or at least 26.3% of the full stated workforce population. Because 2 contractors are absent from the client allocation, the defensible range is 26.3% to 28.9%.",
+      "analytical_reasoning": "The result measures submitted allocation, not necessarily dedicated FTE or contractual minimum staffing.",
+      "calculation_ids": [
+        "CALC-COMM-003",
+        "CALC-COMM-006"
+      ],
+      "claim_ids": [
+        "CLM-COMM-004"
+      ],
+      "confidence": 0.85,
+      "confidence_basis": [
+        "Capped at 0.85 because one or more intake answers remain open or narrowed."
+      ],
+      "counterevidence_ids": [],
+      "issue_id": "COMM-004",
+      "materiality": "high",
+      "opinion_status": null,
+      "source_fact": "PAYE and contractor allocation schedules identify headcount by the same client codes.",
+      "supporting_evidence_ids": [
+        "EVD-COMM-004-01",
+        "EVD-COMM-004-02"
+      ],
+      "transaction_implication": "Reflect redeployment/severance downside in price assumptions and link any earn-out to gross profit after directly attributable delivery costs.",
+      "transaction_levers": [
+        "price_assumptions",
+        "earn_out",
+        "further_diligence"
+      ],
+      "uncertainty": "The legal contractor population exceeds the allocation schedule, and the schedules do not distinguish dedicated FTE from shared or partial allocation.",
+      "why_it_matters": "A key-client loss can create both revenue churn and stranded workforce cost."
+    }
+  ],
+  "generated_by": "deterministic local analytical rules; Python made no model call",
+  "independent_valuation_provided": false,
+  "limitations": [
+    "Intake must be explicitly completed; unanswered or narrowed answers remain limitations.",
+    "No independent valuation is provided.",
+    "Cash restrictions, monthly performance and several visual debt sources require further evidence.",
+    "Topics marked limitation had no source-backed adverse conclusion; absence is not treated as a clean bill of health."
+  ],
+  "run_id": "20260901T040928457675Z-dede88eb959c",
+  "schema_version": 1,
+  "unresolved_intake_question_ids": [
+    "INT-R1-001",
+    "INT-R1-002",
+    "INT-R1-004",
+    "INT-R1-005",
+    "INT-R1-006",
+    "INT-R1-007",
+    "INT-R1-008",
+    "INT-R1-009",
+    "INT-R1-011",
+    "INT-R2-001",
+    "INT-R2-002",
+    "INT-R2-003",
+    "INT-R2-004"
+  ],
+  "untrusted_source_data_was_executed": false,
+  "workstream": "commercial"
+}

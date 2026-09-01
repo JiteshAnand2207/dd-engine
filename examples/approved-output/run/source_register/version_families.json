@@ -1,0 +1,270 @@
+{
+  "run_id": "20260901T040928457675Z-dede88eb959c",
+  "schema_version": 1,
+  "version_families": [
+    {
+      "confidence": 0.85,
+      "evidence": [
+        {
+          "date_tokens": [],
+          "markers": [],
+          "modified_time": "2026-08-31T17:13:42.741190+00:00",
+          "sha256": "6026df9b7b6489bdfab82b0f9f8ba2c2e29003176a6f8d3257d6cdbb5ef5dc73",
+          "size_bytes": 2676,
+          "source_id": "SRC-0037"
+        },
+        {
+          "date_tokens": [
+            "2025"
+          ],
+          "markers": [
+            "amendment"
+          ],
+          "modified_time": "2026-08-31T17:13:42.752443+00:00",
+          "sha256": "8a6ca9bf4e34833f494ce3329202ccc4ae6c6f775c2ccd4401be0a3900138d22",
+          "size_bytes": 2362,
+          "source_id": "SRC-0034"
+        }
+      ],
+      "family_key": "harbourlight",
+      "probable_current_source_id": "SRC-0034",
+      "source_ids": [
+        "SRC-0037",
+        "SRC-0034"
+      ],
+      "status": "candidate_only_not_authoritative",
+      "version_family": "VER-0001"
+    },
+    {
+      "confidence": 0.85,
+      "evidence": [
+        {
+          "date_tokens": [],
+          "markers": [],
+          "modified_time": "2026-08-31T17:13:42.749444+00:00",
+          "sha256": "a360541c18ac082596b3f850b3cbc123153f6c907778f9307257722d70ac308e",
+          "size_bytes": 2618,
+          "source_id": "SRC-0039"
+        },
+        {
+          "date_tokens": [
+            "2025"
+          ],
+          "markers": [
+            "amendment"
+          ],
+          "modified_time": "2026-08-31T17:13:42.762452+00:00",
+          "sha256": "8f8e9085612e021443f588f450a49797edd2272d84953f4e65e54f6539e520c9",
+          "size_bytes": 2258,
+          "source_id": "SRC-0036"
+        }
+      ],
+      "family_key": "mosaic south",
+      "probable_current_source_id": "SRC-0036",
+      "source_ids": [
+        "SRC-0039",
+        "SRC-0036"
+      ],
+      "status": "candidate_only_not_authoritative",
+      "version_family": "VER-0002"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "date_tokens": [
+            "2026"
+          ],
+          "markers": [
+            "draft"
+          ],
+          "modified_time": "2026-08-31T17:13:40.757769+00:00",
+          "sha256": "c338193c12632f5e536ca18723ea8dc2c5604d008cd3915ab29059a1cc6d793c",
+          "size_bytes": 2562,
+          "source_id": "SRC-0013"
+        },
+        {
+          "date_tokens": [
+            "2026"
+          ],
+          "markers": [],
+          "modified_time": "2026-08-31T17:13:40.752059+00:00",
+          "sha256": "97cff696c06a9aee3aa83e3e446b1eaa08a53ec6d93734ba08ff9a3661b4d0e8",
+          "size_bytes": 2883,
+          "source_id": "SRC-0012"
+        }
+      ],
+      "family_key": "management accounts ytd",
+      "probable_current_source_id": "SRC-0012",
+      "source_ids": [
+        "SRC-0013",
+        "SRC-0012"
+      ],
+      "status": "candidate_only_not_authoritative",
+      "version_family": "VER-0003"
+    },
+    {
+      "confidence": 0.85,
+      "evidence": [
+        {
+          "date_tokens": [],
+          "markers": [],
+          "modified_time": "2026-08-31T17:13:42.694550+00:00",
+          "sha256": "f18873f60044274323615a71b4414bdfd2e3d10a14b078a8caabf16a07b97f95",
+          "size_bytes": 38918,
+          "source_id": "SRC-0052"
+        },
+        {
+          "date_tokens": [],
+          "markers": [
+            "rev2"
+          ],
+          "modified_time": "2026-08-31T09:00:00",
+          "sha256": "a3b086b570999b055b6124d144c0fe11b9cc1fcfb5b7bb1c3b9b214cbc51ec33",
+          "size_bytes": 38574,
+          "source_id": "SRC-0099"
+        }
+      ],
+      "family_key": "questionnaire",
+      "probable_current_source_id": "SRC-0099",
+      "source_ids": [
+        "SRC-0052",
+        "SRC-0099"
+      ],
+      "status": "candidate_only_not_authoritative",
+      "version_family": "VER-0004"
+    },
+    {
+      "confidence": 0.85,
+      "evidence": [
+        {
+          "date_tokens": [],
+          "markers": [],
+          "modified_time": "2026-08-31T17:13:42.703002+00:00",
+          "sha256": "50efb90fe48b9e0b9c58d584faee198eb506779f5fcb1045847d1a1607124f1f",
+          "size_bytes": 3979,
+          "source_id": "SRC-0032"
+        },
+        {
+          "date_tokens": [],
+          "markers": [
+            "rev2"
+          ],
+          "modified_time": "2026-08-31T09:00:00",
+          "sha256": "16eaeb6bc133f1cffd5ec0872a31ad57f4fb9d8d8fcd6030d0900b656f2c29c7",
+          "size_bytes": 3846,
+          "source_id": "SRC-0091"
+        }
+      ],
+      "family_key": "cap table",
+      "probable_current_source_id": "SRC-0091",
+      "source_ids": [
+        "SRC-0032",
+        "SRC-0091"
+      ],
+      "status": "candidate_only_not_authoritative",
+      "version_family": "VER-0005"
+    },
+    {
+      "confidence": 0.85,
+      "evidence": [
+        {
+          "date_tokens": [],
+          "markers": [
+            "redacted"
+          ],
+          "modified_time": "2026-08-31T17:13:42.719702+00:00",
+          "sha256": "b611a12356ef3829f6a52421e908552a39b1addb459edd943daa9b111cec10c4",
+          "size_bytes": 5992,
+          "source_id": "SRC-0044"
+        },
+        {
+          "date_tokens": [],
+          "markers": [
+            "unredacted"
+          ],
+          "modified_time": "2026-08-31T09:00:00",
+          "sha256": "c70893e361bd9e60c9c36fab2db5e2f552968488401b1ab0e5e2880ffe2166ea",
+          "size_bytes": 6332,
+          "source_id": "SRC-0095"
+        }
+      ],
+      "family_key": "employee master",
+      "probable_current_source_id": "SRC-0095",
+      "source_ids": [
+        "SRC-0044",
+        "SRC-0095"
+      ],
+      "status": "candidate_only_not_authoritative",
+      "version_family": "VER-0006"
+    },
+    {
+      "confidence": 0.85,
+      "evidence": [
+        {
+          "date_tokens": [
+            "2025"
+          ],
+          "markers": [],
+          "modified_time": "2026-08-31T17:13:44.405896+00:00",
+          "sha256": "1d4dd237ab06a214e89f8f6e54fa2d4f1f7e09d3abdca66708c8a79986327b41",
+          "size_bytes": 2626,
+          "source_id": "SRC-0083"
+        },
+        {
+          "date_tokens": [
+            "2025"
+          ],
+          "markers": [
+            "amended"
+          ],
+          "modified_time": "2026-08-31T17:13:44.434070+00:00",
+          "sha256": "11e276d603c4bf426a8eb6ca6c05dcc11121d5c9559c48540a4b1b4f8b8b5e5c",
+          "size_bytes": 2296,
+          "source_id": "SRC-0084"
+        }
+      ],
+      "family_key": "vat3 p2",
+      "probable_current_source_id": "SRC-0084",
+      "source_ids": [
+        "SRC-0083",
+        "SRC-0084"
+      ],
+      "status": "candidate_only_not_authoritative",
+      "version_family": "VER-0007"
+    },
+    {
+      "confidence": 0.85,
+      "evidence": [
+        {
+          "date_tokens": [],
+          "markers": [
+            "original"
+          ],
+          "modified_time": "2026-08-31T17:13:44.525223+00:00",
+          "sha256": "09cabf0835573b6c077f81cd8c839627235af2878637bf3165e976ad82e38208",
+          "size_bytes": 3941,
+          "source_id": "SRC-0078"
+        },
+        {
+          "date_tokens": [],
+          "markers": [
+            "rev2"
+          ],
+          "modified_time": "2026-08-31T17:13:44.527564+00:00",
+          "sha256": "10def81d50beee4e0e9dd3c5e0d9e6ec4116f7dbd3e72bf7050523176941a517",
+          "size_bytes": 3946,
+          "source_id": "SRC-0079"
+        }
+      ],
+      "family_key": "tax summary",
+      "probable_current_source_id": "SRC-0079",
+      "source_ids": [
+        "SRC-0078",
+        "SRC-0079"
+      ],
+      "status": "candidate_only_not_authoritative",
+      "version_family": "VER-0008"
+    }
+  ]
+}

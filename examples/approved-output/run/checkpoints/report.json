@@ -1,0 +1,56 @@
+{
+  "run_id": "20260901T040928457675Z-dede88eb959c",
+  "schema_version": 1,
+  "stage": "report",
+  "stage_record": {
+    "artifacts": [
+      {
+        "path": "outputs/due_diligence_report.md",
+        "run_id": "20260901T040928457675Z-dede88eb959c",
+        "sha256": "32aadc537e239db4f14a9050372dd232e767b3f384e7574cd384fcabf1c332af",
+        "size_bytes": 97056
+      },
+      {
+        "path": "outputs/ic_brief.md",
+        "run_id": "20260901T040928457675Z-dede88eb959c",
+        "sha256": "c50855439b288e5ebf706d99ffde47257e920b6eaf185bba5beb9226db638a4a",
+        "size_bytes": 13094
+      },
+      {
+        "path": "outputs/ic_brief.pdf",
+        "run_id": "20260901T040928457675Z-dede88eb959c",
+        "sha256": "0bfa9824092c588ed2a293f68d01520ae6e6c2433fe3de46ca9b9bf41d79a787",
+        "size_bytes": 9267
+      },
+      {
+        "path": "outputs/outstanding_information.md",
+        "run_id": "20260901T040928457675Z-dede88eb959c",
+        "sha256": "701b69987f56a9f79ffd8e5e128788337b7fdef18a231b150ed1cc7dd52e187e",
+        "size_bytes": 27137
+      },
+      {
+        "path": "outputs/report_validation.json",
+        "run_id": "20260901T040928457675Z-dede88eb959c",
+        "sha256": "c3f892567691388c1ca6d41d7e3c67aa4dde73f152e3e68de9b8f98bf174333d",
+        "size_bytes": 204084
+      }
+    ],
+    "attempts": 3,
+    "completed_at": "2026-09-01T06:00:59.798519Z",
+    "error": null,
+    "error_history": [],
+    "input_checksum": "19967a5d6ee5f9e0839d794b326ac7418968b040e22f840d2692c95c519c833d",
+    "invalidated_at": null,
+    "invalidation_reason": null,
+    "output_checksum": "dea4b265a3abf7615bba0f10563f03632f7830c3bdb3858ddb6b1c20476d0ffa",
+    "started_at": "2026-09-01T06:00:59.523698Z",
+    "state": "completed",
+    "updated_at": "2026-09-01T06:00:59.798519Z",
+    "validation": {
+      "checked_at": "2026-09-01T06:00:59.798519Z",
+      "errors": [],
+      "passed": true
+    }
+  },
+  "updated_at": "2026-09-01T06:00:59.798519Z"
+}

@@ -1,0 +1,192 @@
+{
+  "analysis_version": "phase9-analysis-v4",
+  "coverage": [
+    {
+      "issue_ids": [
+        "IT-001"
+      ],
+      "status": "analysed",
+      "topic": "hosting_provider_agreements"
+    },
+    {
+      "issue_ids": [],
+      "status": "limitation",
+      "topic": "access_management"
+    },
+    {
+      "issue_ids": [
+        "IT-001"
+      ],
+      "status": "analysed",
+      "topic": "cybersecurity_controls"
+    },
+    {
+      "issue_ids": [
+        "IT-001",
+        "IT-002"
+      ],
+      "status": "analysed",
+      "topic": "backup_restore_disaster_recovery"
+    },
+    {
+      "issue_ids": [
+        "OPS-002"
+      ],
+      "status": "analysed",
+      "topic": "vendor_dependence"
+    },
+    {
+      "issue_ids": [
+        "LEGAL-007"
+      ],
+      "status": "analysed",
+      "topic": "software_ip_licensing"
+    },
+    {
+      "issue_ids": [
+        "IT-003"
+      ],
+      "status": "analysed",
+      "topic": "data_processing_gdpr"
+    },
+    {
+      "issue_ids": [
+        "IT-002"
+      ],
+      "status": "analysed",
+      "topic": "incident_history"
+    },
+    {
+      "issue_ids": [],
+      "status": "limitation",
+      "topic": "missing_technical_evidence"
+    }
+  ],
+  "effective_version_decisions": [],
+  "findings": [
+    {
+      "action": "Commission an independent penetration test and witnessed restore/DR test; agree contractual RTO/RPO, remediate critical findings and deliver the final reports before completion.",
+      "analysis_conclusion": "IT resilience is not evidenced to an acquisition standard: there is no contractual RTO, witnessed disaster-recovery test, penetration-test report or independent assurance report.",
+      "analytical_reasoning": "Administrator MFA is a positive control but does not compensate for untested recovery and absent assurance.",
+      "calculation_ids": [],
+      "claim_ids": [
+        "CLM-IT-001"
+      ],
+      "confidence": 0.85,
+      "confidence_basis": [
+        "Capped at 0.85 because one or more intake answers remain open or narrowed."
+      ],
+      "counterevidence_ids": [],
+      "issue_id": "IT-001",
+      "materiality": "critical",
+      "opinion_status": null,
+      "source_fact": "The hosting agreement and current vendor responses consistently identify the missing controls.",
+      "supporting_evidence_ids": [
+        "EVD-IT-001-01",
+        "EVD-IT-001-02",
+        "EVD-IT-001-03"
+      ],
+      "transaction_implication": "Make remediation and evidence a closing condition, retain escrow for unresolved critical defects, and require cybersecurity/incident warranties.",
+      "transaction_levers": [
+        "closing_condition",
+        "escrow",
+        "warranty",
+        "indemnity"
+      ],
+      "uncertainty": null,
+      "why_it_matters": "Control failure can interrupt service, trigger customer credits and exceed cyber-insurance assumptions."
+    },
+    {
+      "action": "Obtain the complete incident register, root-cause analyses, SLA calculations, insurer notifications, remediation evidence and post-incident trend metrics.",
+      "analysis_conclusion": "Incident history is not clean: a customer alleges three priority-one SLA failures, management accepts two misses, and a full recovery exercise remains unscheduled.",
+      "analytical_reasoning": "The evidence links technical-control gaps to a real customer service dispute.",
+      "calculation_ids": [],
+      "claim_ids": [
+        "CLM-IT-002"
+      ],
+      "confidence": 0.85,
+      "confidence_basis": [
+        "Capped at 0.85 because one or more intake answers remain open or narrowed."
+      ],
+      "counterevidence_ids": [],
+      "issue_id": "IT-002",
+      "materiality": "high",
+      "opinion_status": null,
+      "source_fact": "The complaint and company response document incident frequency, accepted misses and incomplete recovery testing.",
+      "supporting_evidence_ids": [
+        "EVD-IT-002-01",
+        "EVD-IT-002-02"
+      ],
+      "transaction_implication": "Seek a specific pre-close incident indemnity/escrow, validate insurance notice compliance and condition closing on remediation of repeat root causes.",
+      "transaction_levers": [
+        "indemnity",
+        "escrow",
+        "warranty",
+        "closing_condition"
+      ],
+      "uncertainty": "The room does not contain a complete incident history or insurer correspondence.",
+      "why_it_matters": "Repeat incidents can drive credits, churn, liability and insurance notification obligations."
+    },
+    {
+      "action": "Move the workbook to least-privilege access, identify recipients, assess lawful purpose and necessity, replace it with a minimized/redacted version, document retention/deletion, and notify privacy counsel if required.",
+      "analysis_conclusion": "An unredacted employee workbook in the room contains work-email, personal-email and government-identifier-like fields; access, purpose, retention and secure-transfer controls are not evidenced.",
+      "analytical_reasoning": "The presence of employee PII in an unrestricted diligence artifact creates a concrete data-handling issue independent of the broader policy-document gap.",
+      "calculation_ids": [],
+      "claim_ids": [
+        "CLM-IT-003"
+      ],
+      "confidence": 0.85,
+      "confidence_basis": [
+        "Capped at 0.85 because one or more intake answers remain open or narrowed."
+      ],
+      "counterevidence_ids": [],
+      "issue_id": "IT-003",
+      "materiality": "critical",
+      "opinion_status": null,
+      "source_fact": "The workbook itself labels the personal-data content and exposes the three sensitive field categories. No personal values are reproduced in this finding.",
+      "supporting_evidence_ids": [
+        "EVD-IT-003-01",
+        "EVD-IT-003-02",
+        "EVD-IT-003-03",
+        "EVD-IT-003-04"
+      ],
+      "transaction_implication": "Restrict the artifact immediately, preserve an access audit and make data-room remediation plus privacy warranties a transaction requirement.",
+      "transaction_levers": [
+        "closing_condition",
+        "warranty",
+        "indemnity",
+        "escrow"
+      ],
+      "uncertainty": "The room does not provide an access log, lawful-basis assessment, retention record or confirmation of deletion from prior recipients.",
+      "why_it_matters": "Unnecessary or uncontrolled disclosure can create privacy, security and employee-trust exposure."
+    }
+  ],
+  "generated_by": "deterministic local analytical rules; Python made no model call",
+  "irish_jurisdiction_scope": "Commercial due diligence in an Irish transaction context; this is not a formal Irish legal or tax opinion and specialist advisers must confirm conclusions used in transaction documents.",
+  "limitations": [
+    "No formal Irish legal or tax opinion is provided.",
+    "Visual property/CRO evidence and the unreadable legacy policy remain unresolved.",
+    "Topics marked limitation had insufficient source evidence for an adverse conclusion."
+  ],
+  "public_research_performed": false,
+  "run_id": "20260901T040928457675Z-dede88eb959c",
+  "schema_version": 1,
+  "tax_cross_workstream_links": [],
+  "unresolved_intake_question_ids": [
+    "INT-R1-001",
+    "INT-R1-002",
+    "INT-R1-004",
+    "INT-R1-005",
+    "INT-R1-006",
+    "INT-R1-007",
+    "INT-R1-008",
+    "INT-R1-009",
+    "INT-R1-011",
+    "INT-R2-001",
+    "INT-R2-002",
+    "INT-R2-003",
+    "INT-R2-004"
+  ],
+  "untrusted_source_data_was_executed": false,
+  "workstream": "it"
+}
