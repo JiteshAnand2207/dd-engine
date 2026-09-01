@@ -7,7 +7,7 @@ from pathlib import Path
 
 import pytest
 
-from dd_engine.cli import NOT_IMPLEMENTED_EXIT, main
+from dd_engine.cli import main
 from dd_engine.config import load_config
 from dd_engine.runs import create_run
 
@@ -45,7 +45,7 @@ def test_init_run_and_status_cli(tmp_path: Path, capsys: pytest.CaptureFixture[s
 
 
 @pytest.mark.parametrize("stage_name", ("report", "validate"))
-def test_later_stage_commands_report_not_implemented(
+def test_phase10_commands_require_completed_analysis(
     stage_name: str, tmp_path: Path, capsys: pytest.CaptureFixture[str]
 ) -> None:
     run_path = create_run(load_config(cwd=tmp_path))
@@ -53,6 +53,6 @@ def test_later_stage_commands_report_not_implemented(
     exit_code = main(arguments)
 
     captured = capsys.readouterr()
-    assert exit_code == NOT_IMPLEMENTED_EXIT
-    assert f"{stage_name}: stage not implemented" in captured.err
+    assert exit_code == 2
+    assert "Phase 10 requires current completed Phase 8 and Phase 9 analysis" in captured.err
     assert "success" not in captured.err.lower()

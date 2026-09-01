@@ -380,8 +380,9 @@ P9-012-P9-013)
 ### AC-074 - No report or valuation
 
 Phases 8 and 9 create no `report.md`, IC brief, independent valuation or
-placeholder report success artifact. `report` and final `validate` continue to
-report `stage not implemented`. (P8-012-P8-013, P9-015)
+placeholder report success artifact. Only the subsequent Phase 10 `report`
+command may create the report bundle, and it must not provide an independent
+valuation opinion. (P8-012-P8-013, P9-015, P10-006)
 
 ### AC-075 - Public synthetic analytical integration
 
@@ -390,6 +391,76 @@ A disposable public synthetic run with explicit test-only answers executes Phase
 and never opens `synthetic/planted_issues/`. The canonical operator run remains
 paused without fabricated answers. (P8-015, P9-016)
 
+## K. Phase 10 report and investment-committee brief
+
+### AC-076 - Phase 10 prerequisite and output contract
+
+`report` refuses to run without completed, passing Phase 8/9 inputs. A successful
+run creates exactly the required full report, Markdown brief, PDF brief,
+outstanding-information schedule and validation ledger under `outputs/`, all
+tied to the same run ID. (P10-001-P10-003)
+
+### AC-077 - Adviser report structure and scope
+
+The report uses the prescribed eleven sections in order, leads with conclusions,
+addresses acquisition go/no-go and price/structure implications, and does not
+provide its own valuation opinion. Missing or reordered sections fail validation.
+(P10-004, P10-006-P10-007)
+
+### AC-078 - Complete material finding presentation
+
+Every critical/high finding presents conclusion, evidence, counterevidence or
+limitation, recomputed value where relevant, why it matters, transaction
+implication, action/protection, confidence and human-readable validated citation.
+Contradictions and unanswered management requests remain visible. (P10-005,
+P10-008-P10-009)
+
+### AC-079 - Material citation and source gate
+
+Every material finding has valid structured supporting evidence and all displayed
+native citations belong to the citation engine's validated allowlist. A missing
+source, invalid locator/checksum or removed material support fails the report
+stage and retains a failure record. (P10-006, P10-009, P10-014, P10-016)
+
+### AC-080 - Calculation trace gate
+
+Every headline calculation remains separately identifiable in the report and
+passes source-input, normalization, formula and recomputation validation. Removing
+or invalidating one calculation fails final validation. (P10-015)
+
+### AC-081 - Exactly two-page deterministic IC brief
+
+The brief contains all seven required decision sections and the in-process
+renderer produces exactly two ISO A4 pages with fixed margins, explicit page
+break, stable built-in fonts and no text smaller than the stated readable floor.
+A three-page or overflowing render fails. (P10-010-P10-013, P10-017)
+
+### AC-082 - Text completeness gate
+
+Required report and IC-brief headings occur in order and no TODO, TBD, placeholder
+or equivalent marker remains in the report, brief or outstanding-information
+schedule. Tampering either condition fails final validation. (P10-018)
+
+### AC-083 - Synthetic report integration and visual inspection
+
+A disposable public synthetic run with explicit test-only answers completes
+Phase 10, validates all five outputs, renders both PDF pages to images and records
+that neither page has clipping, overlap, broken layout, unreadable text, missing
+citations or decorative filler. It does not open planted truth or run red team.
+(P10-002, P10-012-P10-013, P10-019-P10-020)
+
+### AC-084 - Phase 10 handover and Git boundary
+
+The handover reports all eleven requested metrics/checks and final Git inspection
+shows no commit, push, confidential room data, credentials or generated run data
+in tracked changes. (P10-021-P10-022)
+
 ## Release gate
 
-Implementation is eligible for trial handover only when AC-002 through AC-075 pass, every locked architecture decision in [decisions.md](decisions.md) is implemented, remaining open risks have recorded dispositions, and the final Git status contains no confidential room data, generated run data or credentials. AC-001 applies only to the original planning task.
+The Phase 10 candidate bundle is eligible for handover when AC-002 through AC-084
+applicable to implemented phases pass, every applicable locked architecture
+decision in [decisions.md](decisions.md) is implemented, remaining open risks have
+recorded dispositions, and final Git status contains no confidential room data,
+generated run data or credentials. This is not the final trial-release gate:
+independent red-team execution and reconciliation remain mandatory before a
+release-ready claim. AC-001 applies only to the original planning task.

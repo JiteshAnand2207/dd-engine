@@ -158,6 +158,19 @@ def validate_run_artifact(
             errors.append(str(exc))
     elif path.suffix.lower() == ".jsonl":
         errors.extend(_validate_jsonl_run_id(path, run_id))
+    elif path.suffix.lower() == ".pdf":
+        try:
+            from pypdf import PdfReader
+
+            reader = PdfReader(path)
+            pdf_metadata: Mapping[str, Any] = reader.metadata or {}
+            metadata_text = " ".join(str(value) for value in pdf_metadata.values())
+            if run_id not in metadata_text:
+                errors.append("PDF metadata does not contain the run ID")
+            if not reader.pages:
+                errors.append("PDF has no pages")
+        except (OSError, UnicodeError, ValueError) as exc:
+            errors.append(f"invalid PDF: {exc}")
     else:
         try:
             if run_id not in path.read_text(encoding="utf-8"):

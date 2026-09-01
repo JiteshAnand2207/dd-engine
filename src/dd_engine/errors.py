@@ -55,3 +55,7 @@ class EvidenceError(DDEngineError):
 
 class AnalysisError(DDEngineError):
     """Raised when workstream analysis cannot safely start or validate."""
+
+
+class ReportError(DDEngineError):
+    """Raised when Phase 10 reporting cannot safely start or validate."""

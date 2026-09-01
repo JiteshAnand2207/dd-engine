@@ -4,7 +4,7 @@
 
 This matrix is the implementation-planning baseline for the due-diligence engine. A requirement is counted when a source sentence or list item creates an independently verifiable imperative, constraint, deliverable, evaluation expectation, or project condition. Compound sentences are split only where their clauses require different components, outputs, or checks. Descriptive background is not counted. Illustrative analyst examples and non-engine commercial terms are retained because they constrain evaluation or delivery.
 
-The matrix contains **194 requirements**: 103 from the trial brief, 21 from the room specification, 14 from the planning directive, 25 from the Phase 7 directive, 15 from the Phase 8 directive and 16 from the Phase 9 directive. Component and path names are contracts; some are now implemented as described in the architecture status.
+The matrix contains **216 requirements**: 103 from the trial brief, 21 from the room specification, 14 from the planning directive, 25 from the Phase 7 directive, 15 from the Phase 8 directive, 16 from the Phase 9 directive and 22 from the Phase 10 directive. Component and path names are contracts; some are now implemented as described in the architecture status.
 
 ## Source register
 
@@ -16,6 +16,7 @@ The matrix contains **194 requirements**: 103 from the trial brief, 21 from the 
 | P7 | Phase 7 evidence/calculation directive, 1 September 2026 | Conversation record |
 | P8 | Phase 8 financial/commercial analysis directive, 1 September 2026 | Conversation record |
 | P9 | Phase 9 Irish legal/tax/operational/IT analysis directive, 1 September 2026 | Conversation record |
+| P10 | Phase 10 report and investment-committee brief directive, 1 September 2026 | Conversation record |
 
 ## Trial brief requirements
 
@@ -241,6 +242,33 @@ The matrix contains **194 requirements**: 103 from the trial brief, 21 from the 
 | P9-015 | P9, scope | Do not create the full report, commit or push. | Output/Git boundary | No report; uncommitted changes | Output-tree and Git status review. |
 | P9-016 | P9, verification | Run public-only synthetic analysis with explicit test answers plus complete tests, doctor, lint and type checks. | Verification workflow | Command results | Full acceptance run. |
 
+## Phase 10 report and investment-committee brief requirements
+
+| ID | Source | Normalized sentence-level requirement | Component | Output | Verification method |
+|---|---|---|---|---|---|
+| P10-001 | P10, before editing | Read all authoritative project documents and inspect completed workstreams, evidence, calculations, intake, gaps and limitations before drafting. | Phase 10 input gate | Input fingerprint and report scope | Required-input and stage-state tests. |
+| P10-002 | P10, evidence boundary | Never read planted-issue files, preserve existing work and treat validated structured evidence as authoritative over conversation. | Operating boundary | Structured-only report assembly | Dependency audit, Git review and public-only run. |
+| P10-003 | P10, objective | Generate the full report, Markdown IC brief, PDF IC brief, outstanding-information schedule and validation ledger at the five exact output paths. | Report pipeline | Five `outputs/` artifacts | File, run-ID and stage-artifact assertions. |
+| P10-004 | P10, standard | Write as an adviser to an investment committee deciding acquisition go/no-go and price/structure, with conclusions before detail. | Report renderer | Executive and finding narratives | Required-language and expert review. |
+| P10-005 | P10, standard | Reconcile contradictions, quantify issues, explain transaction implications and identify what could not be established or was asked of management. | Synthesis renderer | Findings, limitations and outstanding schedule | Structured-record coverage tests. |
+| P10-006 | P10, standard | Cite every material claim, avoid unsupported certainty and vague universal hedging, and do not provide a valuation opinion. | Citation and scope validators | Cited calibrated conclusions | Material-coverage and scope checks. |
+| P10-007 | P10, order | Render the eleven required report sections in the exact prescribed order. | Report renderer/validator | `due_diligence_report.md` | Ordered-heading test. |
+| P10-008 | P10, finding format | Give each material finding conclusion, evidence, counterevidence/limitation, recomputed value where relevant, why it matters, transaction implication, action/protection, confidence and citation. | Finding renderer | Complete finding blocks | Field-label and material-finding tests. |
+| P10-009 | P10, citations | Display only human-readable PDF, spreadsheet, DOCX, CSV or image citations that resolve through the native citation engine. | Citation formatter/allowlist | Native locator citations | Dangling/invalid locator rejection tests. |
+| P10-010 | P10, IC brief | Include transaction/thesis, material findings, headline financial reconciliation, go/no-go conditions, price/structure protections, critical unanswered questions and immediate actions. | IC brief renderer | `ic_brief.md` and PDF | Ordered required-section test. |
+| P10-011 | P10, pagination | Render the IC brief to exactly two ISO A4 pages. | Deterministic PDF renderer | `ic_brief.pdf` | Pure-Python media-box/page-count assertion. |
+| P10-012 | P10, rendering | Use stable typography, margins and explicit page breaks, then render the final PDF to images and inspect both pages. | PDF renderer and verification workflow | Layout metrics and page images | Programmatic checks plus recorded visual inspection. |
+| P10-013 | P10, rendering | Reject a three-page, clipped, overlapping, broken-table, unreadably small, uncited or filler-padded IC brief. | PDF/layout validator | Failed validation diagnostic | Three-page, frame, font, citation and visual tests. |
+| P10-014 | P10, fail closed | Fail report generation when a material claim lacks a valid citation. | Material-claim gate | Failed report state | Removed-support test. |
+| P10-015 | P10, fail closed | Fail validation when a headline calculation is invalid, untraceable or omitted. | Calculation gate | Failed validation state | Calculation-ID tamper test. |
+| P10-016 | P10, fail closed | Fail when a referenced registered source does not exist or its checksum/locator is invalid. | Native citation gate | Citation error ledger | Existing citation-validator matrix and Phase 10 rerun. |
+| P10-017 | P10, fail closed | Fail when the IC brief PDF is not exactly two pages. | PDF gate | Failed validation state | Injected third-page test. |
+| P10-018 | P10, fail closed | Fail when a required report/brief section is missing or placeholder text remains. | Text structure gate | Failed validation state | Heading and placeholder tamper tests. |
+| P10-019 | P10, synthetic run | Generate the first complete report bundle against a disposable public synthetic run with explicit test-only intake answers. | Integration workflow | Run-local Phase 10 bundle | End-to-end synthetic execution. |
+| P10-020 | P10, scope | Do not run or simulate the independent red team during Phase 10. | Scope boundary | Explicit validation status | Red-team flag and artifact-tree review. |
+| P10-021 | P10, scope | Do not commit or push. | Git boundary | Uncommitted local changes | Final status/log review. |
+| P10-022 | P10, handover | Report requirement IDs, files, word count, finding counts, citation coverage, calculations, page count, render inspection, limitations, commands and commit safety. | Handover | Final response | Eleven-item response checklist. |
+
 ## Coverage index for specifically named concerns
 
 | Concern | Primary requirement IDs | Planned owner |
@@ -253,6 +281,7 @@ The matrix contains **194 requirements**: 103 from the trial brief, 21 from the 
 | Phase 7 structured records | P7-005-P7-010 | Evidence foundation |
 | Phase 8 Financial/Commercial analysis | P8-001-P8-015 | Sequential analytical pipeline |
 | Phase 9 Legal/Tax/Operations/IT analysis | P9-001-P9-016 | Sequential analytical pipeline and standalone Tax module |
+| Phase 10 report and IC brief | P10-001-P10-022 | Structured report assembly, deterministic A4 renderer and fail-closed bundle validation |
 | Citation validation and duplicate independence | P7-011-P7-016 | Format-native citation validator |
 | Calculation provenance | TB-027, P7-007, P7-015, P7-017-P7-020 | Safe deterministic recomputation ledger |
 | Model routing | TB-019, TB-053-TB-057, TB-088 | Routing policy and invocation ledger |

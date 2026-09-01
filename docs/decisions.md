@@ -68,7 +68,7 @@ Round one follows quick deterministic discovery of paths, hashes, media types an
 
 **Status:** Accepted.
 
-Financial, commercial, legal/contractual, operational/management and IT remain the five formal workstreams. Tax is a mandatory standalone analytical module, not a sixth workstream and not owned by Financial. It writes `tax/tax-findings.json`, `tax/tax-analysis.md` and its own top-level section in `report.md`.
+Financial, commercial, legal/contractual, operational/management and IT remain the five formal workstreams. Tax is a mandatory standalone analytical module, not a sixth workstream and not owned by Financial. It writes `tax/tax-findings.json`, `tax/tax-analysis.md` and its own top-level section in `outputs/due_diligence_report.md`.
 
 **Consequences:** Tax findings must cross-link to Financial, Legal/contractual, Operational/management and IT wherever relevant. Missing Tax output, report section or required cross-link is a fatal validation failure. No deal-lead decision is needed to select this structure.
 
@@ -132,7 +132,7 @@ The synthetic room contains exactly 90 visible files, including one ZIP containe
 
 **Status:** Accepted.
 
-The authored `ic-brief.md` remains Markdown. An in-process deterministic pure-Python renderer produces ISO A4 `ic-brief.pdf`, and a pure-Python PDF parser validates A4 media boxes and exactly two pages programmatically in `validation/ic-brief-page-check.json`.
+The authored `outputs/ic_brief.md` remains Markdown. An in-process deterministic pure-Python renderer produces ISO A4 `outputs/ic_brief.pdf`, and a pure-Python PDF parser records A4 media-box and exact two-page checks in `outputs/report_validation.json`.
 
 **Consequences:** Office, LibreOffice, Docker, a browser and external rendering subprocesses are prohibited from the required path. Pagination and overflow tests are implementation obligations, not open architecture decisions.
 
@@ -199,7 +199,8 @@ evidence stores and validate before stage progression.
 **Consequences:** Silence cannot create analysis, Phase 9 cannot bypass Phase 8,
 and a changed input invalidates reuse through a deterministic fingerprint. The
 canonical paused run remains untouched; disposable integration runs use explicit
-test-only answers. Report drafting and final validation remain unimplemented.
+test-only answers. Phase 8/9 themselves still create no report; Phase 10 owns the
+candidate report bundle and its validation.
 
 ### ADR-021 - Analytical conclusions are structured, version-aware and scoped
 
@@ -217,6 +218,26 @@ research is supplemental, confidential-text-free and locally logged, including a
 **Consequences:** Unsupported summaries, stale clauses, unexplained hedging,
 duplicate-document corroboration and unverified headline numbers fail validation.
 Phase 8/9 create no valuation or final report.
+
+### ADR-022 - Phase 10 assembles and validates a candidate report bundle
+
+**Status:** Accepted by user directive on 1 September 2026.
+
+`report` consumes only the current validated structured workstreams, typed
+evidence/calculation records, contradictions, gaps and verbatim intake artifacts.
+It writes the five exact Phase 10 outputs. Material findings use a fixed complete
+format, and displayed source references are derived only from native locators that
+pass the citation engine. The IC brief uses a deterministic ReportLab canvas with
+built-in fonts, fixed margins, an explicit two-page break and pre-draw overflow
+guards. `validate` independently re-runs content, citation, calculation, source,
+section, placeholder and PDF geometry/page-count checks.
+
+**Consequences:** Missing material support, invalid or dangling citations,
+untraced calculations, missing sections, placeholder text and any brief page
+count other than two fail closed with persistent diagnostics. A passing Phase 10
+ledger expressly records that red team has not yet run and is a candidate-bundle
+validation, not a final release-ready claim. The independent red-team context is
+not created or simulated in this phase.
 
 ## Assumption register
 

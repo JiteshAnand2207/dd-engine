@@ -9,8 +9,9 @@ Phases 8 and 9 add sequential financial, commercial, Irish legal/contractual,
 operational/management and IT analysis plus the standalone Tax module to the
 Phase 7 evidence foundation. Findings separate source fact from inference, retain
 reported and recomputed values, and cannot run until both intake rounds have
-explicitly ingested answers. Report drafting and final validation remain later
-stage interfaces.
+explicitly ingested answers. Phase 10 assembles the full adviser report and
+exactly two-page A4 investment-committee brief, then validates the candidate
+bundle fail closed. Independent red-team execution remains a later release gate.
 
 ## Requirements and installation
 
@@ -203,18 +204,23 @@ Phase 8 writes `workstreams/financial.json`, `financial.md`,
 `customer_grouping.md`. Phase 9 writes the legal/contractual,
 operational/management and IT JSON/Markdown pairs plus `tax/tax-findings.json`
 and `tax/tax-analysis.md`. Both phases validate citations and required analytical
-fields; Phase 9 completes the `analyse` stage. Neither creates a report.
-
-The remaining stage interfaces are:
+fields; Phase 9 completes the `analyse` stage. Neither analysis phase creates a
+report. Generate and revalidate the Phase 10 bundle with:
 
 ```text
 python -m dd_engine report --run runs/<run_id>
 python -m dd_engine validate --run runs/<run_id>
 ```
 
-Each command in this remaining-stage list exits with status 3 and
-`stage not implemented`. This is an intentional scope boundary, not a successful
-stage result.
+`report` requires current passing Phase 8/9 outputs and writes
+`outputs/due_diligence_report.md`, `outputs/ic_brief.md`,
+`outputs/ic_brief.pdf`, `outputs/outstanding_information.md` and
+`outputs/report_validation.json`. Material claims must resolve through the
+native citation engine, every calculation must retain its trace, and required
+sections/placeholders are checked. The deterministic PDF renderer fails before
+overflow and the validator requires exactly two ISO A4 pages. `validate` repeats
+the bundle checks independently. A passing Phase 10 validation does not imply
+that the later independent red-team/reconciliation gate has run.
 
 ## Run structure and resumption
 

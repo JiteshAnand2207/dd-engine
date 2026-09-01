@@ -2,7 +2,7 @@
 
 ## Status and scope
 
-This document defines the implementation architecture. Phase 7 implements the deterministic source register, tiered local-first extraction, two-round evidence-grounded intake with real human pauses, and an extraction-dependent evidence/calculation foundation. Phases 8 and 9 implement the sequential analytical workstreams and standalone Tax module. Reporting, red team and final validation remain later-stage contracts. The chosen runtime harness is **Codex**. Deterministic supporting code targets **Python 3.11 or later**. The native path works without Docker; a container may later be offered only as an optional convenience.
+This document defines the implementation architecture. Phase 7 implements the deterministic source register, tiered local-first extraction, two-round evidence-grounded intake with real human pauses, and an extraction-dependent evidence/calculation foundation. Phases 8 and 9 implement the sequential analytical workstreams and standalone Tax module. Phase 10 implements structured report assembly, the deterministic two-page IC brief and fail-closed candidate-bundle validation. Independent red-team execution and final release reconciliation remain later-stage contracts. The chosen runtime harness is **Codex**. Deterministic supporting code targets **Python 3.11 or later**. The native path works without Docker; a container may later be offered only as an optional convenience.
 
 The design optimizes for an auditable cold run over an unseen, confidential room. It separates repeatable mechanics from model judgment, makes human pauses resumable, isolates red-team context, and never turns a partial or privacy-unsafe run into an apparent success.
 
@@ -56,9 +56,9 @@ Stage 3 comprises both human pauses and their question-generation/resume contrac
 
 ## Repository boundaries
 
-Names below are contracts. Register, extraction, intake, evidence and analysis
-components exist; reporting, red-team packaging and final-deliverable components
-remain planned.
+Names below are contracts. Register, extraction, intake, evidence, analysis and
+Phase 10 report-bundle components exist; red-team packaging and final release
+reconciliation remain planned.
 
 ```text
 AGENTS.md                         Codex entry contract and privacy rules
@@ -69,11 +69,11 @@ src/dd_engine/
   inventory/                     file walk, hashes, duplicates, versions, archives
   extraction/                    native parsers, confidence and escalation packets
   evidence/                      typed records, native citations and calculation validation
+  reporting/                     Phase 10 synthesis, deterministic PDF and fail-closed checks
   tax/                           standalone structured tax analysis and cross-links
   state/                         resumable run state and stage manifests
   logging/                       local run, route, cost and research ledgers
-  validation/                    stage, citation, privacy and deliverable gates
-  rendering/                     in-process pure-Python A4 PDF generation and page check
+  validation/                    later independent red-team/release gates
 prompts/
   intake/                        evidence-driven round contracts
   workstreams/                   five scoped analyst contracts
@@ -216,7 +216,35 @@ Resumption requires an explicit JSON answer file. The engine hashes it, records 
 
 ### Report drafting
 
-Codex drafts from structured claims and calculations, not directly from an unbounded room dump. The report is Markdown and includes an executive view, scope/limitations, five formal workstreams, a standalone Tax section, decision implications, source index and red-team appendix. The IC brief is authored as Markdown and rendered in-process by deterministic pure-Python code to ISO A4 PDF. A pure-Python PDF parser validates the media box and asserts exactly two pages programmatically. No Office, LibreOffice, Docker, browser or external renderer is permitted on this path.
+Phase 10 drafts from the validated structured claims, evidence, calculations,
+contradictions, gaps and verbatim intake artifacts, never directly from an
+unbounded room dump or prior conversational reasoning. `report` requires current
+passing Phase 8/9 output and writes `outputs/due_diligence_report.md`,
+`outputs/ic_brief.md`, `outputs/ic_brief.pdf`,
+`outputs/outstanding_information.md` and
+`outputs/report_validation.json`. The report uses the prescribed eleven-section
+order and renders every material finding through a fixed adviser-quality schema.
+It is decision-focused but gives no independent valuation opinion.
+
+Human-readable citations are formatted only from locators that pass the native
+citation engine. Material findings without valid support, dangling displayed
+citations, untraceable calculations, missing sections and placeholder text fail
+closed. The input and output fingerprints make identical runs reusable while
+detecting upstream or bundle tampering.
+
+The IC brief is authored as Markdown and rendered in-process by deterministic
+pure-Python code to exactly two ISO A4 pages. Fixed built-in fonts, fixed margins,
+an explicit page boundary and a minimum font-size floor prevent silent reflow.
+The renderer raises before frame overflow; a pure-Python PDF parser validates the
+media boxes, page count, text anchors, extractable citations and font operators.
+No Office, LibreOffice, Docker, browser or external renderer is permitted on this
+generation path. Page images may be produced locally after generation solely for
+the required human visual inspection.
+
+`validate` re-runs the complete candidate-bundle checks and records success or a
+resumable failed state. Its passing status means the Phase 10 bundle passed its
+defined gates; it does not claim independent red-team completion or final trial
+release readiness. Those facts are explicit in the validation artifact.
 
 ## Independent red-team execution
 
