@@ -29,6 +29,11 @@ if str(SCRIPT_DIR) not in sys.path:
 
 from generate_synthetic_room import DEFAULT_SEED, generate, sha256_file  # noqa: E402
 
+from dd_engine.source_paths import (  # noqa: E402
+    EMPTY_DIRECTORY_MARKER,
+    is_logically_empty_directory,
+)
+
 EXPECTED_VISIBLE = 90
 EXPECTED_MEMBERS = 10
 EXPECTED_LOGICAL = 100
@@ -92,7 +97,7 @@ def iter_visible_files(room: Path) -> list[Path]:
     for path in room.rglob("*"):
         if path.is_symlink():
             raise ValueError(f"symlinks are forbidden in the synthetic room: {path}")
-        if path.is_file():
+        if path.is_file() and path.name != EMPTY_DIRECTORY_MARKER:
             resolved = path.resolve(strict=True)
             if not resolved.is_relative_to(room):
                 raise ValueError(f"file escaped data-room root: {path}")
@@ -343,8 +348,8 @@ def validate_structure_and_quirks(v: Validator, room: Path, manifest: dict[str, 
     empty = room / "Legal/Legal 2.1"
     v.require(
         "empty referenced folder",
-        empty.is_dir() and not any(empty.iterdir()),
-        "Legal/Legal 2.1 exists and is empty",
+        is_logically_empty_directory(empty),
+        "Legal/Legal 2.1 exists and is logically empty",
     )
 
     visible_entries = [entry for entry in manifest["entries"] if entry.get("visible", True)]
@@ -369,7 +374,7 @@ def validate_structure_and_quirks(v: Validator, room: Path, manifest: dict[str, 
         v.require(f"quirk: {quirk}", quirk in quirk_set, "declared and evidence-linked in manifest")
     basenames: dict[str, list[str]] = defaultdict(list)
     for path in room.rglob("*"):
-        if path.is_file():
+        if path.is_file() and path.name != EMPTY_DIRECTORY_MARKER:
             basenames[path.name].append(path.relative_to(room).as_posix())
     same_name = {name: paths for name, paths in basenames.items() if len(paths) > 1}
     v.require(

@@ -27,6 +27,8 @@ from synthetic_formats import (
     write_xlsx,
 )
 
+from dd_engine.source_paths import EMPTY_DIRECTORY_MARKER, EMPTY_DIRECTORY_MARKER_CONTENT
+
 COMPANY = "Orchard Lantern Systems Limited"
 DATASET = "SYN-ORCHARD-2024-271828"
 
@@ -57,7 +59,11 @@ def _sha256(path: Path) -> str:
 
 
 def _manifest(room: Path, quirks: dict[str, object]) -> dict[str, object]:
-    physical = sorted(path for path in room.rglob("*") if path.is_file())
+    physical = sorted(
+        path
+        for path in room.rglob("*")
+        if path.is_file() and path.name != EMPTY_DIRECTORY_MARKER
+    )
     zip_members: list[dict[str, object]] = []
     for path in physical:
         if path.suffix.casefold() != ".zip":
@@ -101,7 +107,9 @@ def generate_shadow_room(room: Path, manifest_path: Path, truth_path: Path) -> d
     compliance = room / "04_Compliance_Archive"
     for directory in (finance, contracts, systems, compliance):
         directory.mkdir(parents=True, exist_ok=True)
-    (systems / "Intentionally Empty").mkdir(parents=True)
+    empty_directory = systems / "Intentionally Empty"
+    empty_directory.mkdir(parents=True)
+    (empty_directory / EMPTY_DIRECTORY_MARKER).write_bytes(EMPTY_DIRECTORY_MARKER_CONTENT)
 
     for code, year, revenue, gross, ebitda, pat in (
         ("A11", 2019, 4_800_000, 2_736_000, 610_000, 335_000),

@@ -16,6 +16,11 @@ from pathlib import Path
 
 from dd_engine.errors import SourcePathError
 
+EMPTY_DIRECTORY_MARKER = ".dd-empty-dir"
+"""Exact checked-in filename used to preserve intentional empty fixture directories."""
+
+EMPTY_DIRECTORY_MARKER_CONTENT = b"dd-engine intentional empty-directory marker\n"
+
 FORBIDDEN_DIRECTORY_NAMES = frozenset(
     {
         "planted_issues",
@@ -24,6 +29,22 @@ FORBIDDEN_DIRECTORY_NAMES = frozenset(
         "shadow-ground-truth",
     }
 )
+
+
+def is_empty_directory_marker(path: Path | str) -> bool:
+    """Return whether *path* has the one reserved empty-directory marker name."""
+
+    return Path(path).name == EMPTY_DIRECTORY_MARKER
+
+
+def is_logically_empty_directory(path: Path) -> bool:
+    """Treat an actually empty or marker-only directory as logically empty.
+
+    Other dotfiles are ordinary source files.  This intentionally matches only
+    ``EMPTY_DIRECTORY_MARKER`` so a directory with any real file remains non-empty.
+    """
+
+    return path.is_dir() and all(is_empty_directory_marker(child) for child in path.iterdir())
 
 
 @dataclass(frozen=True, slots=True)
@@ -98,10 +119,12 @@ def walk_data_room(path: str | Path) -> DataRoomWalk:
         directories[:] = safe_directories
         if current_path != root:
             discovered_directories.append(current_path)
-            if not directories and not files:
+            if not directories and is_logically_empty_directory(current_path):
                 empty_directories.append(current_path)
         for name in sorted(files):
             candidate = current_path / name
+            if is_empty_directory_marker(candidate):
+                continue
             if _is_link_like(candidate):
                 raise SourcePathError(
                     f"symbolic-link file is forbidden in source room: {candidate}"

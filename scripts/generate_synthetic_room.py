@@ -34,6 +34,11 @@ from synthetic_formats import (  # noqa: E402
     write_xlsx,
 )
 
+from dd_engine.source_paths import (  # noqa: E402
+    EMPTY_DIRECTORY_MARKER,
+    EMPTY_DIRECTORY_MARKER_CONTENT,
+)
+
 DEFAULT_SEED = 314159
 DATASET_ID = "SYN-LARKSPUR-2026-314159"
 GENERATOR_VERSION = "3.0.0"
@@ -1999,8 +2004,10 @@ class RoomBuilder:
         )
         write_corrupt_pdf(corrupt)
 
-        # The empty referenced folder is real filesystem structure, not a document.
-        (self.room / "Legal/Legal 2.1").mkdir(parents=True, exist_ok=True)
+        # Preserve the intentional empty folder in Git without creating a source artifact.
+        empty_directory = self.room / "Legal/Legal 2.1"
+        empty_directory.mkdir(parents=True, exist_ok=True)
+        (empty_directory / EMPTY_DIRECTORY_MARKER).write_bytes(EMPTY_DIRECTORY_MARKER_CONTENT)
 
         zip_members: dict[str, bytes] = {}
         zip_members["Updated Responses/Legal_Questionnaire_Rev2.docx"] = bytes_from_writer(

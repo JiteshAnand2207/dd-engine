@@ -14,6 +14,7 @@ from dd_engine.inventory import RegisterLimits, register_room
 from dd_engine.inventory.archives import canonical_relative_path
 from dd_engine.inventory.register import REGISTER_OUTPUTS, inventory_room
 from dd_engine.runs import create_run, load_manifest
+from dd_engine.source_paths import EMPTY_DIRECTORY_MARKER, EMPTY_DIRECTORY_MARKER_CONTENT
 
 LIMITS = RegisterLimits(
     max_archive_members=50,
@@ -55,6 +56,42 @@ def test_duplicates_versions_mismatch_and_empty_directory(tmp_path: Path) -> Non
     assert sum(bool(item["include_in_analysis"]) for item in exact) == 1
     versioned = [item for item in result.sources if item["version_family"]]
     assert all(item["include_in_analysis"] for item in versioned)
+
+
+def test_marker_only_directory_is_registered_as_empty_without_a_source(tmp_path: Path) -> None:
+    room = tmp_path / "room"
+    marker = room / "Legal" / "Empty Area" / EMPTY_DIRECTORY_MARKER
+    write_file(marker, EMPTY_DIRECTORY_MARKER_CONTENT)
+
+    result = inventory_room(room, LIMITS)
+
+    assert result.empty_directories == ("Legal/Empty Area",)
+    assert result.sources == ()
+    assert result.summary["physical_files"] == 0
+    assert result.summary["logical_source_items"] == 0
+
+
+def test_real_file_beside_marker_means_directory_is_not_empty(tmp_path: Path) -> None:
+    room = tmp_path / "room"
+    directory = room / "Legal" / "No Longer Empty"
+    write_file(directory / EMPTY_DIRECTORY_MARKER, EMPTY_DIRECTORY_MARKER_CONTENT)
+    write_file(directory / "agreement.txt", b"ordinary source")
+
+    result = inventory_room(room, LIMITS)
+
+    assert result.empty_directories == ()
+    assert [item["relative_path"] for item in result.sources] == [
+        "Legal/No Longer Empty/agreement.txt"
+    ]
+
+
+def test_arbitrary_dotfile_is_not_treated_as_repository_metadata(tmp_path: Path) -> None:
+    room = tmp_path / "room"
+    write_file(room / "Legal" / ".ordinary-dotfile", b"ordinary source")
+
+    result = inventory_room(room, LIMITS)
+
+    assert [item["relative_path"] for item in result.sources] == ["Legal/.ordinary-dotfile"]
 
 
 def test_zip_traversal_absolute_and_symlink_members_are_blocked(tmp_path: Path) -> None:

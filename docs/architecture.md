@@ -101,7 +101,7 @@ No exact dependency manager or system utility is mandated at architecture time b
 
 ### Source register
 
-The registrar walks all files without executing content or macros. Each entry receives a stable `document_id`, relative path, size, media type, SHA-256 hash, container/member path, timestamps where available, parser status, duplicate group, version/supersession candidates, classification, sensitivity flags and error codes. The synthetic-room register must contain exactly 100 logical artifacts: 90 visible files, including one ZIP container, plus exactly 10 registered members inside that ZIP.
+The registrar walks all files without executing content or macros. Each entry receives a stable `document_id`, relative path, size, media type, SHA-256 hash, container/member path, timestamps where available, parser status, duplicate group, version/supersession candidates, classification, sensitivity flags and error codes. The synthetic-room register must contain exactly 100 logical artifacts: 90 visible files, including one ZIP container, plus exactly 10 registered members inside that ZIP. The exact reserved `.dd-empty-dir` marker preserves intentionally empty checked-in fixture folders; a directory containing only that marker is logically empty, and only that exact filename is excluded from source and logical-artifact processing. Other dotfiles remain ordinary sources.
 
 Archives are treated as containers. Expansion must reject path traversal and unsafe members, cap nested work deterministically, and record skipped content rather than silently omitting it. Exact size/depth limits require implementation benchmarks and are an open decision.
 
