@@ -11,10 +11,12 @@ from pypdf import PdfReader, PdfWriter
 from dd_engine.analysis import analyse_run
 from dd_engine.config import EngineConfig, load_config
 from dd_engine.errors import AnalysisError, ReportError
+from dd_engine.evidence.store import load_record_sets
 from dd_engine.extraction import extract_run
 from dd_engine.intake import generate_intake_questions, ingest_intake_answers
 from dd_engine.inventory import RegisterLimits, register_room
 from dd_engine.reporting import generate_report, validate_report_outputs
+from dd_engine.reporting.rendering import build_ic_brief_content
 from dd_engine.runs import create_run, load_manifest
 
 LIMITS = RegisterLimits(
@@ -177,6 +179,61 @@ def test_phase9_outputs_versions_tax_and_privacy(analysed_run: Path) -> None:
     assert manifest["stages"]["validate"]["state"] == "not_started"
 
 
+def test_red_team_regressions_are_resolved_systemically(analysed_run: Path) -> None:
+    financial = _payload(analysed_run, "workstreams/financial.json")
+    commercial = _payload(analysed_run, "workstreams/commercial.json")
+    legal = _payload(analysed_run, "workstreams/legal_contractual.json")
+    tax = _payload(analysed_run, "tax/tax-findings.json")
+    operations = _payload(analysed_run, "workstreams/operational_management.json")
+    it = _payload(analysed_run, "workstreams/it.json")
+    payloads = [financial, commercial, legal, tax, operations, it]
+    conclusions = " ".join(
+        str(finding["analysis_conclusion"])
+        for payload in payloads
+        for finding in payload["findings"]
+    )
+
+    assert "evidence-backed YTD EBITDA base" not in conclusions
+    assert "not a normalized completion-accounts peg" in conclusions
+    assert "non-contemporaneous arithmetic offset" in conclusions
+    assert "top two exposures" in conclusions
+    assert "does not establish the current roster" in conclusions
+    assert "no express IP assignment" in conclusions
+    assert "VAT-control balance" in conclusions
+    assert "does not prove that the cited cash entries settled" in conclusions
+    assert "PAYE-control balance" in conclusions
+    assert "positive controls" in conclusions
+    assert "aged beyond current" in conclusions
+    assert "personal-email" in conclusions
+    assert "separately named customers should be treated as one" in conclusions
+    assert "amendment replaces the" in conclusions
+    assert "requires prior written customer consent" in conclusions
+    assert "no contractual RTO" in conclusions
+    assert all(
+        float(finding["confidence"]) <= 0.85
+        for payload in payloads
+        for finding in payload["findings"]
+    )
+
+
+def test_stale_phase_validation_reopens_and_completes_analysis(
+    analysed_run: Path, tmp_path: Path
+) -> None:
+    copied = _copy_run(analysed_run, tmp_path)
+    validation_path = copied / "workstreams" / "phase_8_validation.json"
+    validation = json.loads(validation_path.read_text(encoding="utf-8"))
+    validation["input_fingerprint"] = "0" * 64
+    validation_path.write_text(json.dumps(validation), encoding="utf-8")
+
+    phase_eight = analyse_run(copied, phase=8)
+    phase_nine = analyse_run(copied, phase=9)
+    _, manifest = load_manifest(copied)
+
+    assert phase_eight.reused is False
+    assert phase_nine.reused is False
+    assert manifest["stages"]["analyse"]["state"] == "completed"
+
+
 def _copy_run(source: Path, destination_root: Path) -> Path:
     destination = destination_root / source.name
     shutil.copytree(source, destination)
@@ -218,6 +275,34 @@ def test_phase10_generates_complete_validated_bundle(analysed_run: Path) -> None
     assert manifest["stages"]["validate"]["state"] == "completed"
     assert generate_report(analysed_run).reused is True
     assert validate_report_outputs(analysed_run).reused is True
+
+    payloads = {
+        "financial": _payload(analysed_run, "workstreams/financial.json"),
+        "commercial": _payload(analysed_run, "workstreams/commercial.json"),
+        "legal_contractual": _payload(analysed_run, "workstreams/legal_contractual.json"),
+        "operational_management": _payload(analysed_run, "workstreams/operational_management.json"),
+        "it": _payload(analysed_run, "workstreams/it.json"),
+        "tax": _payload(analysed_run, "tax/tax-findings.json"),
+    }
+    answers: dict[str, object] = {}
+    content = build_ic_brief_content(
+        run_id=analysed_run.name,
+        payloads=payloads,
+        records=load_record_sets(analysed_run),
+        answers=answers,
+    )
+    critical_findings = [
+        finding
+        for payload in payloads.values()
+        for finding in payload["findings"]
+        if finding["materiality"] == "critical"
+    ]
+    condition_text = " ".join(str(value) for value in content["conditions"])
+    protection_text = " ".join(str(value) for value in content["price_protections"])
+    for finding in critical_findings:
+        assert str(finding["issue_id"]) in condition_text
+        for lever in finding["transaction_levers"]:
+            assert str(lever).replace("_", " ") in protection_text.casefold()
 
 
 def test_phase10_fails_closed_when_material_support_is_removed(

@@ -14,7 +14,12 @@ from dd_engine.artifacts import (
 from dd_engine.constants import STAGE_ORDER, StageState
 from dd_engine.errors import IntakeError
 from dd_engine.extraction.models import stable_json_checksum
-from dd_engine.intake.answers import answer_records, ingest_answer_records
+from dd_engine.intake.answers import (
+    ANSWER_NORMALIZATION_VERSION,
+    answer_records,
+    ingest_answer_records,
+    normalize_answer,
+)
 from dd_engine.intake.generation import (
     ROUND_LIMITS,
     generate_candidates,
@@ -368,7 +373,11 @@ def ingest_intake_answers(
     incoming_hash = file_sha256(answer_path)
     intake_state = str(manifest["stages"]["intake"]["state"])
 
-    if stored is not None and stored.get("answer_input_sha256") == incoming_hash:
+    if (
+        stored is not None
+        and stored.get("answer_input_sha256") == incoming_hash
+        and stored.get("answer_normalization_version") == ANSWER_NORMALIZATION_VERSION
+    ):
         unresolved_count = _write_unresolved(run_path, run_id)
         if intake_state == StageState.AWAITING_INPUT.value:
             manifest = resume_stage(run_path, "intake")
@@ -467,3 +476,105 @@ def ingest_intake_answers(
         stage_state=str(manifest["stages"]["intake"]["state"]),
         unresolved_count=unresolved_count,
     )
+
+
+def renormalize_intake_answers(run: str | Path) -> JsonObject:
+    """Reapply the current conservative policy without altering verbatim answers.
+
+    This is an explicit migration path for a normalization-policy correction. It preserves
+    answer provenance and invalidates downstream analysis through the normal stage checksum
+    mechanism when the interpretation changes.
+    """
+
+    run_path, manifest = load_manifest(run)
+    run_id = str(manifest["run_id"])
+    payloads: list[tuple[int, JsonObject]] = []
+    input_artifacts: list[JsonObject] = []
+    for round_number in (1, 2):
+        _load_questions(run_path, run_id, round_number)
+        answers = _load_answers_optional(run_path, run_id, round_number)
+        if answers is None or answers.get("status") == "invalidated":
+            raise IntakeError(
+                "answer renormalization requires valid, explicitly ingested answers for both rounds"
+            )
+        payloads.append((round_number, answers))
+        for path in (
+            _question_json_path(run_path, round_number),
+            _answer_json_path(run_path, round_number),
+        ):
+            input_artifacts.append(
+                {"path": path.relative_to(run_path).as_posix(), "sha256": file_sha256(path)}
+            )
+
+    fingerprint = stable_json_checksum(
+        {
+            "answer_normalization_version": ANSWER_NORMALIZATION_VERSION,
+            "artifacts": input_artifacts,
+            "operation": "renormalize_existing_intake_answers",
+        }
+    )
+    state = str(manifest["stages"]["intake"]["state"])
+    if state == StageState.COMPLETED.value:
+        manifest = reopen_completed_stage(
+            run_path,
+            "intake",
+            f"answer policy migrated to {ANSWER_NORMALIZATION_VERSION}",
+        )
+    elif state == StageState.AWAITING_INPUT.value:
+        manifest = resume_stage(run_path, "intake")
+    elif state in {
+        StageState.NOT_STARTED.value,
+        StageState.FAILED.value,
+        StageState.INVALIDATED.value,
+    }:
+        manifest = start_stage(run_path, "intake", input_checksum=fingerprint)
+    elif state != StageState.RUNNING.value:
+        raise IntakeError(f"cannot renormalize answers from intake state {state}")
+
+    changed_question_ids: list[str] = []
+    renormalized_at = utc_now()
+    for round_number, payload in payloads:
+        records = answer_records(payload)
+        for record in records:
+            normalized, ambiguity, resolution_status = normalize_answer(
+                record.get("verbatim_answer")
+            )
+            if (
+                record.get("normalised_interpretation") != normalized
+                or record.get("ambiguity") != ambiguity
+                or record.get("resolution_status") != resolution_status
+            ):
+                changed_question_ids.append(str(record.get("question_id")))
+            record["normalised_interpretation"] = normalized
+            record["ambiguity"] = ambiguity
+            record["resolution_status"] = resolution_status
+        payload["answer_normalization_version"] = ANSWER_NORMALIZATION_VERSION
+        payload["renormalized_at"] = renormalized_at
+        payload["status_counts"] = {
+            resolution_status: sum(
+                record.get("resolution_status") == resolution_status for record in records
+            )
+            for resolution_status in ("closed", "narrowed", "open")
+        }
+        atomic_write_json(_answer_json_path(run_path, round_number), payload)
+
+    unresolved_count = _write_unresolved(run_path, run_id)
+    manifest = complete_stage(run_path, "intake", required_artifacts=INTAKE_OUTPUTS)
+    append_json_line(
+        run_path / "logs" / "events.jsonl",
+        {
+            "answer_normalization_version": ANSWER_NORMALIZATION_VERSION,
+            "changed_question_ids": changed_question_ids,
+            "event": "intake_answers_renormalized",
+            "run_id": run_id,
+            "stage_state": manifest["stages"]["intake"]["state"],
+            "timestamp": renormalized_at,
+        },
+    )
+    return {
+        "answer_normalization_version": ANSWER_NORMALIZATION_VERSION,
+        "changed_question_ids": changed_question_ids,
+        "run_id": run_id,
+        "stage_state": manifest["stages"]["intake"]["state"],
+        "unresolved_count": unresolved_count,
+    }

@@ -17,9 +17,10 @@ from dd_engine.constants import STAGE_ORDER
 from dd_engine.doctor import format_doctor_report, run_doctor
 from dd_engine.errors import DDEngineError
 from dd_engine.evidence import build_evidence_foundation
-from dd_engine.extraction import extract_run
+from dd_engine.extraction import extract_run, ingest_vision_review
 from dd_engine.intake import generate_intake_questions, ingest_intake_answers
 from dd_engine.inventory import RegisterLimits, register_room
+from dd_engine.red_team import reconcile_red_team
 from dd_engine.reporting import generate_report, validate_report_outputs
 from dd_engine.runs import create_run, load_manifest
 from dd_engine.runtime import (
@@ -88,6 +89,22 @@ def build_parser() -> argparse.ArgumentParser:
     )
     audit_log_parser.add_argument("--run", required=True, type=Path, help="run directory")
     audit_log_parser.add_argument("--json", action="store_true", help="emit machine-readable JSON")
+
+    vision_parser = subparsers.add_parser(
+        "vision-review", help="ingest explicit harness visual-review results"
+    )
+    vision_parser.add_argument("--run", required=True, type=Path, help="run directory")
+    vision_parser.add_argument("--input", required=True, type=Path, help="visual-review JSON file")
+    vision_parser.add_argument("--json", action="store_true", help="emit machine-readable JSON")
+
+    resolution_parser = subparsers.add_parser(
+        "reconcile-red-team", help="validate and render complete challenge dispositions"
+    )
+    resolution_parser.add_argument("--run", required=True, type=Path, help="run directory")
+    resolution_parser.add_argument(
+        "--input", required=True, type=Path, help="red-team disposition JSON file"
+    )
+    resolution_parser.add_argument("--json", action="store_true", help="emit machine-readable JSON")
 
     for stage_name in STAGE_ORDER:
         stage_parser = subparsers.add_parser(
@@ -429,6 +446,30 @@ def _audit_logs_command(arguments: argparse.Namespace) -> int:
     return 0 if result["status"] == "passed" else 1
 
 
+def _vision_review_command(arguments: argparse.Namespace) -> int:
+    result = ingest_vision_review(arguments.run, arguments.input)
+    if arguments.json:
+        print(json.dumps(result, indent=2, sort_keys=True))
+    else:
+        print(f"Visual reviews ingested: {result['reviewed_count']}")
+        print(f"Vision tasks still pending: {result['pending_count']}")
+    return 0
+
+
+def _reconcile_red_team_command(arguments: argparse.Namespace) -> int:
+    result = reconcile_red_team(arguments.run, arguments.input)
+    summary = result["summary"]
+    if arguments.json:
+        print(json.dumps(summary, indent=2, sort_keys=True))
+    else:
+        print(
+            "Red-team dispositions: "
+            f"{summary['accepted']} accepted, {summary['rejected']} rejected, "
+            f"{summary['unresolved']} unresolved"
+        )
+    return 0
+
+
 def _existing_outputs(run_path: Path, candidates: Sequence[str]) -> list[str]:
     return [path for path in candidates if (run_path / path).is_file()]
 
@@ -498,6 +539,24 @@ def _logged_output_paths(arguments: argparse.Namespace) -> list[str]:
             ]
         )
         return _existing_outputs(run_path, candidates)
+    if command == "vision-review":
+        return _existing_outputs(
+            run_path,
+            [
+                "extracts/extraction_manifest.json",
+                "extracts/extracted_units.jsonl",
+                "extracts/needs_vision.json",
+                "extracts/vision_review.json",
+            ],
+        )
+    if command == "reconcile-red-team":
+        return _existing_outputs(
+            run_path,
+            [
+                "red_team/red_team_resolution.json",
+                "red_team/red_team_resolution.md",
+            ],
+        )
     return []
 
 
@@ -524,6 +583,10 @@ def _logged_task_identity(arguments: argparse.Namespace) -> tuple[str, str, str]
         "evidence": "Build and validate structured evidence, calculations and gaps.",
         "report": "Assemble and fail-closed validate the Phase 10 candidate report bundle.",
         "validate": "Revalidate the candidate report bundle and delivery checks.",
+        "vision-review": "Validate and ingest explicit harness review of queued visual evidence.",
+        "reconcile-red-team": (
+            "Validate every red-team disposition and render the canonical resolution ledger."
+        ),
     }
     return command, command, purposes[command]
 
@@ -608,6 +671,10 @@ def main(argv: Sequence[str] | None = None) -> int:
             return _log_research_command(arguments)
         if arguments.command == "audit-logs":
             return _audit_logs_command(arguments)
+        if arguments.command == "vision-review":
+            return _run_logged_command(arguments, _vision_review_command)
+        if arguments.command == "reconcile-red-team":
+            return _run_logged_command(arguments, _reconcile_red_team_command)
     except (DDEngineError, OSError) as exc:
         print(f"error: {exc}", file=sys.stderr)
         return 2

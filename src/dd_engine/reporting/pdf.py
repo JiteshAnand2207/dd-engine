@@ -221,9 +221,7 @@ def _page_one(canvas: Canvas, content: JsonObject) -> PageLayout:
     for item in _objects(content.get("headline")):
         citations = " ".join(_strings(item.get("citations")))
         text = f"{item.get('issue_id')}: {_plain(item.get('text'))} {citations}"
-        y, used = _draw_bullets(
-            canvas, [text], y=y, size=SMALL_FONT_SIZE, leading=SMALL_LEADING
-        )
+        y, used = _draw_bullets(canvas, [text], y=y, size=SMALL_FONT_SIZE, leading=SMALL_LEADING)
         lines += used
     y, used = _draw_heading(canvas, "Most material findings", y=y - 1)
     lines += used
@@ -233,9 +231,7 @@ def _page_one(canvas: Canvas, content: JsonObject) -> PageLayout:
             f"{item.get('issue_id')} / {item.get('workstream')}: "
             f"{_plain(item.get('text'))} {citations}"
         )
-        y, used = _draw_bullets(
-            canvas, [text], y=y, size=SMALL_FONT_SIZE, leading=SMALL_LEADING
-        )
+        y, used = _draw_bullets(canvas, [text], y=y, size=SMALL_FONT_SIZE, leading=SMALL_LEADING)
         lines += used
     return PageLayout(bottom_y=y, line_count=lines, page_number=1)
 
@@ -252,7 +248,13 @@ def _page_two(canvas: Canvas, content: JsonObject) -> PageLayout:
     for title, values in sections:
         y, used = _draw_heading(canvas, title, y=y)
         lines += used
-        y, used = _draw_bullets(canvas, values, y=y)
+        y, used = _draw_bullets(
+            canvas,
+            values,
+            y=y,
+            size=SMALL_FONT_SIZE,
+            leading=SMALL_LEADING,
+        )
         lines += used
         y -= 1
     return PageLayout(bottom_y=y, line_count=lines, page_number=2)

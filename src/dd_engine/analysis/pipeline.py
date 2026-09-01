@@ -31,7 +31,7 @@ from dd_engine.evidence.store import RECORD_PATHS, load_record_sets, write_recor
 from dd_engine.extraction.models import stable_json_checksum
 from dd_engine.runs import load_manifest
 from dd_engine.runtime.logging import record_public_research
-from dd_engine.state import complete_stage, fail_stage, start_stage
+from dd_engine.state import complete_stage, fail_stage, reopen_completed_stage, start_stage
 from dd_engine.time import utc_now
 
 ANALYSIS_INPUT_VERSION = "phase8-phase9-input-v2"
@@ -233,6 +233,10 @@ def _tax_links() -> list[JsonObject]:
             "affected_workstreams": ["financial", "operational_management"],
             "tax_issue_id": "TAX-003",
         },
+        {
+            "affected_workstreams": ["financial", "legal_contractual"],
+            "tax_issue_id": "TAX-004",
+        },
     ]
 
 
@@ -301,6 +305,11 @@ def _existing_outcome(
     if value.get("input_fingerprint") != input_fingerprint or value.get("status") != "passed":
         return None
     _, manifest = load_manifest(run_path)
+    if (
+        phase == 9
+        and manifest["stages"]["analyse"]["state"] != StageState.COMPLETED.value
+    ):
+        return None
     return AnalysisOutcome(
         input_fingerprint=input_fingerprint,
         phase=phase,
@@ -365,6 +374,12 @@ def analyse_run(run: str | Path, phase: int) -> AnalysisOutcome:
         StageState.INVALIDATED.value,
     }:
         start_stage(run_path, "analyse", input_checksum=input_fingerprint)
+    elif analyse_state == StageState.COMPLETED.value:
+        reopen_completed_stage(
+            run_path,
+            "analyse",
+            "validated analysis artifact is stale for the current input fingerprint",
+        )
     elif analyse_state != StageState.RUNNING.value:
         raise AnalysisError(f"cannot run Phase {phase} from analyse state {analyse_state}")
 

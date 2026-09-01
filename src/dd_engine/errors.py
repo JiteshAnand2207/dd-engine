@@ -59,3 +59,7 @@ class AnalysisError(DDEngineError):
 
 class ReportError(DDEngineError):
     """Raised when Phase 10 reporting cannot safely start or validate."""
+
+
+class RedTeamResolutionError(DDEngineError):
+    """Raised when a red-team challenge disposition cannot be validated."""

@@ -23,6 +23,16 @@ _VAGUE = re.compile(
     r"not\s+sure|unclear|tbc|tbd)\b",
     re.I,
 )
+_EXPLICITLY_UNRESOLVED = re.compile(
+    r"(?:\bno\b[^.\n]{0,160}\b(?:supplied|provided|included|available|obtained|received)\b|"
+    r"\bnot\b[^.\n]{0,100}\b(?:supplied|provided|established|confirmed|evidenced|"
+    r"verified|available|obtained|received|resolved)\b|"
+    r"\b(?:keep|leave|remain|remains|treat)\b[^.\n]{0,100}\b(?:open|unresolved|"
+    r"unestablished|outstanding)\b)",
+    re.I,
+)
+
+ANSWER_NORMALIZATION_VERSION = "answer-normalization-v2"
 
 
 def normalize_answer(verbatim: str | None) -> tuple[JsonObject, list[str], str]:
@@ -39,6 +49,15 @@ def normalize_answer(verbatim: str | None) -> tuple[JsonObject, list[str], str]:
         return (
             {"kind": "explicit_non_answer", "value": stripped},
             ["The reply explicitly does not provide the requested fact."],
+            "open",
+        )
+    if _EXPLICITLY_UNRESOLVED.search(stripped):
+        return (
+            {"kind": "explicitly_unresolved", "value": stripped},
+            [
+                "The reply explicitly says that requested evidence or confirmation is absent "
+                "or that the matter remains open."
+            ],
             "open",
         )
     cross_reference = _CROSS_REFERENCE.search(stripped)
@@ -148,7 +167,11 @@ def ingest_answer_records(
         verbatim = provided.get(question_id)
         normalized, ambiguity, status = normalize_answer(verbatim)
         old = previous.get(question_id)
-        if old is not None and old.get("verbatim_answer") != verbatim:
+        if old is not None and (
+            old.get("verbatim_answer") != verbatim
+            or old.get("normalised_interpretation") != normalized
+            or old.get("resolution_status") != status
+        ):
             changed_ids.append(question_id)
             raw_targets = question.get("invalidate_if_answer_changes_evidence", [])
             if isinstance(raw_targets, list):
@@ -191,6 +214,7 @@ def ingest_answer_records(
     return (
         {
             "answer_input_sha256": input_sha256,
+            "answer_normalization_version": ANSWER_NORMALIZATION_VERSION,
             "answered_at": answered_at,
             "answered_by": answered_by,
             "answers": records,

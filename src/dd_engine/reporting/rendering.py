@@ -258,6 +258,41 @@ def _critical_conditions(findings: Sequence[tuple[str, JsonObject]]) -> list[str
     return conditions
 
 
+def _lever_label(value: str) -> str:
+    return value.replace("_", " ").strip()
+
+
+def _brief_critical_conditions(
+    critical: Sequence[tuple[str, JsonObject]],
+) -> list[str]:
+    conditions: list[str] = []
+    for _, finding in critical:
+        issue_id = _plain(finding.get("issue_id"))
+        levers = [_lever_label(value) for value in _strings(finding.get("transaction_levers"))]
+        lever_text = ", ".join(levers) if levers else "completion protection"
+        conditions.append(
+            f"{issue_id}: require {lever_text} and completion of the finding's stated action."
+        )
+    return conditions
+
+
+def _brief_protection_map(
+    critical: Sequence[tuple[str, JsonObject]],
+) -> list[str]:
+    issues_by_lever: dict[str, list[str]] = {}
+    for _, finding in critical:
+        issue_id = _plain(finding.get("issue_id"))
+        for raw_lever in _strings(finding.get("transaction_levers")):
+            lever = _lever_label(raw_lever)
+            issue_ids = issues_by_lever.setdefault(lever, [])
+            if issue_id not in issue_ids:
+                issue_ids.append(issue_id)
+    return [
+        f"{lever.capitalize()}: {', '.join(issue_ids)}."
+        for lever, issue_ids in issues_by_lever.items()
+    ]
+
+
 def _limitation_topics(payloads: Mapping[str, JsonObject]) -> list[tuple[str, str]]:
     result: list[tuple[str, str]] = []
     for workstream in WORKSTREAM_ORDER:
@@ -361,6 +396,7 @@ def render_due_diligence_report(
     register_summary: Mapping[str, object],
     extraction_summary: Mapping[str, object],
     citation_summary: Mapping[str, object],
+    red_team_resolution: Mapping[str, object] | None = None,
 ) -> str:
     evidence_by_id = evidence_index(records.get("evidence", []))
     calculations_by_id = {
@@ -409,18 +445,17 @@ def render_due_diligence_report(
         "| Decision item | Adviser conclusion |",
         "|---|---|",
     ]
-    headline_issue_ids = ("FIN-002", "FIN-003", "FIN-004", "FIN-005", "FIN-007", "COMM-001")
-    by_issue = {str(item.get("issue_id")): item for _, item in findings}
-    for issue_id in headline_issue_ids:
-        finding = by_issue.get(issue_id)
-        if finding is None:
-            continue
+    headline_findings = [
+        finding
+        for _, finding in findings
+        if finding.get("materiality") == "critical" and _strings(finding.get("calculation_ids"))
+    ]
+    for finding in headline_findings:
+        issue_id = str(finding.get("issue_id"))
         citations = " ".join(
             citations_for_ids(_strings(finding.get("supporting_evidence_ids")), evidence_by_id)
         )
-        lines.append(
-            f"| `{issue_id}` | {_table(finding.get('analysis_conclusion'))} {citations} |"
-        )
+        lines.append(f"| `{issue_id}` | {_table(finding.get('analysis_conclusion'))} {citations} |")
     lines.extend(
         [
             "",
@@ -445,16 +480,22 @@ def render_due_diligence_report(
             "",
             "### Principal limitations",
             "",
-            "- Thirteen visual-review tasks remain pending, including loan/HP, CRO and property "
-            "material.",
+            f"- {extraction_summary.get('vision_queue_count', 'Unknown')} visual-review tasks "
+            "remain pending; reviewed visual evidence is identified separately in the extraction "
+            "manifest.",
             "- One corrupt legacy PDF could not be read safely.",
             "- No monthly management-account pack, complete lender schedule, official current CRO "
             "extract, complete IP/privacy evidence, or tested disaster-recovery evidence was "
             "supplied.",
             "- Legal and Tax analysis is commercial Irish due diligence, not a formal legal or "
             "tax opinion.",
-            "- The independent red team has not been run, in accordance with the Phase 10 "
-            "operator instruction.",
+            (
+                "- Red-team challenges have been dispositioned and reconciled. The run still "
+                "does not prove the brand-new-context/allowlisted-packet isolation gate unless "
+                "the required isolation manifests are also present and validated."
+                if red_team_resolution
+                else "- No validated red-team resolution artifact is present."
+            ),
             "",
             REPORT_SECTION_HEADINGS[2],
             "",
@@ -503,16 +544,15 @@ def render_due_diligence_report(
                 ]
             )
     open_gaps = [
-        gap
-        for gap in records.get("gaps", [])
-        if gap.get("status") in {"open", "narrowed"}
+        gap for gap in records.get("gaps", []) if gap.get("status") in {"open", "narrowed"}
     ]
     lines.extend(
         [
             REPORT_SECTION_HEADINGS[9],
             "",
-            f"There are {len(open_gaps)} open/narrowed structured gaps. In addition, all 15 intake "
-            "questions require management confirmation because the ingested answers came from a "
+            f"There are {len(open_gaps)} open/narrowed structured gaps. In addition, all "
+            f"{len(questions)} intake questions require management confirmation because the "
+            "ingested answers came from a "
             "synthetic test operator, not management. See `outputs/outstanding_information.md` for "
             "the complete request list and provenance.",
             "",
@@ -590,12 +630,42 @@ def render_due_diligence_report(
             "### Appendix D - Management questions and red-team status",
             "",
             f"Two rounds asked {len(questions)} questions. Full wording, evidence links and "
-            "response "
-            "provenance are reproduced in `outputs/outstanding_information.md`. No independent red "
-            "team was performed at this stage; no challenge outcome is implied or fabricated.",
+            "response provenance are reproduced in `outputs/outstanding_information.md`.",
             "",
         ]
     )
+    if red_team_resolution:
+        summary = red_team_resolution.get("summary")
+        summary_obj = summary if isinstance(summary, dict) else {}
+        lines.extend(
+            [
+                (
+                    f"The resolution ledger records {summary_obj.get('accepted', 0)} accepted, "
+                    f"{summary_obj.get('rejected', 0)} rejected and "
+                    f"{summary_obj.get('unresolved', 0)} unresolved challenges. The standalone "
+                    "`red_team/red_team_resolution.md` contains full verification evidence, files "
+                    "changed, regressions and regenerated artifacts."
+                ),
+                "",
+                "| Challenge | Outcome | Root cause | Resolution |",
+                "|---|---|---|---|",
+            ]
+        )
+        for disposition in _objects(red_team_resolution.get("dispositions")):
+            lines.append(
+                f"| `{disposition.get('challenge_id')}` | "
+                f"{_table(disposition.get('outcome')).upper()} | "
+                f"{_table(', '.join(_strings(disposition.get('root_causes'))))} | "
+                f"{_table(disposition.get('decision'))} |"
+            )
+        lines.append("")
+    else:
+        lines.extend(
+            [
+                "No challenge outcome is implied without a validated resolution ledger.",
+                "",
+            ]
+        )
     return "\n".join(lines)
 
 
@@ -609,13 +679,14 @@ def build_ic_brief_content(
     evidence_by_id = evidence_index(records.get("evidence", []))
     findings = sorted_findings(payloads)
     critical = [item for item in findings if item[1].get("materiality") == "critical"]
-    by_issue = {str(finding.get("issue_id")): finding for _, finding in findings}
-    headline_ids = ("FIN-002", "FIN-003", "FIN-004", "FIN-005", "FIN-007", "COMM-001")
     headline: list[JsonObject] = []
-    for issue_id in headline_ids:
-        finding = by_issue.get(issue_id)
-        if finding is None:
-            continue
+    headline_findings = [
+        finding
+        for _, finding in findings
+        if finding.get("materiality") == "critical" and _strings(finding.get("calculation_ids"))
+    ]
+    for finding in headline_findings:
+        issue_id = str(finding.get("issue_id"))
         headline.append(
             {
                 "issue_id": issue_id,
@@ -637,25 +708,11 @@ def build_ic_brief_content(
                 ),
             }
         )
-    first_critical_by_workstream: list[tuple[str, JsonObject]] = []
-    seen_workstreams: set[str] = set()
-    for workstream, finding in critical:
-        if workstream not in seen_workstreams:
-            first_critical_by_workstream.append((workstream, finding))
-            seen_workstreams.add(workstream)
-    selected_conditions = list(first_critical_by_workstream)
-    for item in critical:
-        if item not in selected_conditions and len(selected_conditions) < 7:
-            selected_conditions.append(item)
-    conditions = [_plain(finding.get("action")) for _, finding in selected_conditions]
-    protections = [
-        _plain(finding.get("transaction_implication"))
-        for _, finding in first_critical_by_workstream
-    ]
+    conditions = _brief_critical_conditions(critical)
+    protections = _brief_protection_map(critical)
     unanswered = [
-        f"{finding.get('issue_id')}: "
-        f"{_plain(finding.get('uncertainty') or finding.get('action'))}"
-        for _, finding in first_critical_by_workstream
+        f"{finding.get('issue_id')}: {_plain(finding.get('uncertainty') or finding.get('action'))}"
+        for _, finding in critical
     ]
     high_findings = [item for item in findings if item[1].get("materiality") == "high"]
     actions: list[str] = []

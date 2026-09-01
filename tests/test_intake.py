@@ -13,7 +13,11 @@ from PIL import Image
 from dd_engine.config import EngineConfig, load_config
 from dd_engine.constants import STAGE_ORDER
 from dd_engine.extraction import extract_run
-from dd_engine.intake import generate_intake_questions, ingest_intake_answers
+from dd_engine.intake import (
+    generate_intake_questions,
+    ingest_intake_answers,
+    renormalize_intake_answers,
+)
 from dd_engine.intake.answers import normalize_answer
 from dd_engine.intake.generation import question_fingerprint, select_questions
 from dd_engine.intake.models import QuestionCandidate
@@ -177,6 +181,22 @@ def test_unanswered_question_remains_open() -> None:
     assert status == "open" and ambiguity
 
 
+@pytest.mark.parametrize(
+    "answer",
+    [
+        "No supporting schedule has been supplied, so keep the matter open.",
+        "The requested confirmation was not provided and the conclusion remains unestablished.",
+        "Evidence has not been obtained; treat this item as unresolved.",
+    ],
+)
+def test_long_answer_that_explicitly_withholds_support_remains_open(answer: str) -> None:
+    normalized, ambiguity, status = normalize_answer(answer)
+
+    assert normalized["kind"] == "explicitly_unresolved"
+    assert status == "open"
+    assert ambiguity
+
+
 def test_round_one_sets_real_pause_without_fabricating_answers(
     ready_run: Path, tmp_path: Path
 ) -> None:
@@ -275,6 +295,42 @@ def test_two_round_pause_and_completion_produces_all_outputs(
         "unresolved_questions.md",
     ):
         assert (run_path / "intake" / name).is_file()
+
+
+def test_answer_policy_migration_preserves_verbatim_and_reopens_long_non_answer(
+    ready_run: Path, tmp_path: Path
+) -> None:
+    run_path = _clone_run(ready_run, tmp_path)
+    reply = "No supporting evidence has been supplied, so the matter remains open."
+    for round_number in (1, 2):
+        generate_intake_questions(run_path, round_number)
+        questions = _question_payload(run_path, round_number)["questions"]
+        answer_path = tmp_path / f"round-{round_number}.json"
+        _write_answers(
+            answer_path,
+            [str(item["question_id"]) for item in questions],
+            reply,
+        )
+        ingest_intake_answers(run_path, round_number, answer_path)
+
+    stored_path = run_path / "intake" / "round_1_answers.json"
+    stored = json.loads(stored_path.read_text(encoding="utf-8"))
+    stored["answer_normalization_version"] = "legacy-policy"
+    stored["answers"][0]["normalised_interpretation"] = {
+        "kind": "substantive_text",
+        "value": reply,
+    }
+    stored["answers"][0]["resolution_status"] = "closed"
+    stored_path.write_text(json.dumps(stored), encoding="utf-8")
+
+    outcome = renormalize_intake_answers(run_path)
+    migrated = json.loads(stored_path.read_text(encoding="utf-8"))
+
+    assert migrated["answers"][0]["verbatim_answer"] == reply
+    assert migrated["answers"][0]["resolution_status"] == "open"
+    assert migrated["answers"][0]["normalised_interpretation"]["kind"] == "explicitly_unresolved"
+    assert migrated["answer_normalization_version"] == "answer-normalization-v2"
+    assert outcome["stage_state"] == "completed"
 
 
 def test_selective_invalidation_preserves_unaffected_upstream_stages(

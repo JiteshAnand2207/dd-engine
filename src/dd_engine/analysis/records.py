@@ -141,6 +141,22 @@ class AnalysisRecords:
         transaction_levers: list[str] | None = None,
         opinion_status: str | None = None,
     ) -> JsonObject:
+        confidence_basis: list[str] = []
+        calibrated_confidence = confidence
+        unresolved_answer_ids = self.context.unresolved_answer_ids()
+        if unresolved_answer_ids and calibrated_confidence > 0.85:
+            calibrated_confidence = 0.85
+            confidence_basis.append(
+                "Capped at 0.85 because one or more intake answers remain open or narrowed."
+            )
+        extraction_confidences = [float(spec.unit.get("confidence", 0)) for spec in supporting]
+        if extraction_confidences:
+            lowest_extraction_confidence = min(extraction_confidences)
+            if calibrated_confidence > lowest_extraction_confidence:
+                calibrated_confidence = lowest_extraction_confidence
+                confidence_basis.append("Capped at the lowest supporting extraction confidence.")
+        if not confidence_basis:
+            confidence_basis.append("No automatic confidence cap applied.")
         claim_id = f"CLM-{issue_id}"
         self.claims.append(
             Claim(
@@ -150,7 +166,7 @@ class AnalysisRecords:
                 claim_type="inference",
                 workstream=workstream,
                 materiality=materiality,
-                confidence=confidence,
+                confidence=calibrated_confidence,
                 status="supported",
             ).as_record()
         )
@@ -201,7 +217,7 @@ class AnalysisRecords:
                 counterevidence=tuple(counter_ids),
                 calculations=calculations,
                 materiality=materiality,
-                confidence=confidence,
+                confidence=calibrated_confidence,
                 transaction_implication=implication,
                 recommended_action=action,
                 unresolved_question=uncertainty,
@@ -214,7 +230,8 @@ class AnalysisRecords:
             "analytical_reasoning": analysis,
             "calculation_ids": list(calculations),
             "claim_ids": [claim_id],
-            "confidence": confidence,
+            "confidence": calibrated_confidence,
+            "confidence_basis": confidence_basis,
             "counterevidence_ids": counter_ids,
             "issue_id": issue_id,
             "materiality": materiality,

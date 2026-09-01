@@ -34,7 +34,7 @@ from dd_engine.state import (
 )
 from dd_engine.time import utc_now
 
-REPORT_VERSION = "phase10-report-v5"
+REPORT_VERSION = "phase13-report-v6"
 
 REPORT_OUTPUTS = (
     "outputs/due_diligence_report.md",
@@ -71,7 +71,18 @@ _UPSTREAM_PATHS = (
 )
 
 _BUNDLE_PATHS = REPORT_OUTPUTS[:4]
-_VALIDATION_PATHS = (*_UPSTREAM_PATHS, *_BUNDLE_PATHS)
+
+
+def _upstream_paths(run_path: Path) -> tuple[str, ...]:
+    paths = list(_UPSTREAM_PATHS)
+    resolution = "red_team/red_team_resolution.json"
+    if (run_path / resolution).is_file():
+        paths.append(resolution)
+    return tuple(paths)
+
+
+def _validation_paths(run_path: Path) -> tuple[str, ...]:
+    return (*_upstream_paths(run_path), *_BUNDLE_PATHS)
 
 
 @dataclass(frozen=True, slots=True)
@@ -126,8 +137,7 @@ def _fingerprint(run_path: Path, paths: tuple[str, ...], *, version: str) -> str
 
 def _load_payloads(run_path: Path) -> dict[str, JsonObject]:
     return {
-        name: load_json(run_path / relative_path)
-        for name, relative_path in _PAYLOAD_PATHS.items()
+        name: load_json(run_path / relative_path) for name, relative_path in _PAYLOAD_PATHS.items()
     }
 
 
@@ -220,9 +230,37 @@ def _validation_payload(
     result["report_input_fingerprint"] = report_input_fingerprint
     result["report_version"] = REPORT_VERSION
     result["untrusted_source_data_was_executed"] = False
-    result["independent_red_team_performed"] = False
-    result["release_ready"] = False
-    result["validation_scope"] = "phase_10_candidate_report_bundle"
+    resolution_path = run_path / "red_team" / "red_team_resolution.json"
+    resolution: JsonObject | None = (
+        load_json(resolution_path) if resolution_path.is_file() else None
+    )
+    reconciled = bool(
+        resolution
+        and resolution.get("run_id") == run_id
+        and isinstance(resolution.get("summary"), dict)
+        and resolution["summary"].get("total") == len(resolution.get("dispositions", []))
+    )
+    isolation_names = (
+        "packet-allowlist.json",
+        "sealed-packet-manifest.json",
+        "isolation-manifest.json",
+    )
+    isolation_present = all((run_path / "red_team" / name).is_file() for name in isolation_names)
+    result["red_team_reconciled"] = reconciled
+    result["independent_red_team_performed"] = reconciled and isolation_present
+    unresolved = (
+        int(resolution["summary"].get("unresolved", 0))
+        if reconciled and resolution is not None
+        else 0
+    )
+    result["release_ready"] = bool(
+        result["status"] == "passed"
+        and result["independent_red_team_performed"]
+        and unresolved == 0
+    )
+    result["validation_scope"] = (
+        "phase_13_reconciled_candidate_bundle" if reconciled else "phase_10_candidate_report_bundle"
+    )
     return result
 
 
@@ -266,7 +304,7 @@ def generate_report(run: str | Path) -> ReportOutcome:
 
     run_path, manifest = load_manifest(run)
     analysis_validation = _require_analysis_complete(run_path, manifest)
-    input_fingerprint = _fingerprint(run_path, _UPSTREAM_PATHS, version=REPORT_VERSION)
+    input_fingerprint = _fingerprint(run_path, _upstream_paths(run_path), version=REPORT_VERSION)
     report_stage = manifest["stages"]["report"]
     if not isinstance(report_stage, dict):
         raise ReportError("manifest report stage is invalid")
@@ -276,7 +314,7 @@ def generate_report(run: str | Path) -> ReportOutcome:
             existing = load_json(validation_path)
             try:
                 current_bundle = _fingerprint(
-                    run_path, _VALIDATION_PATHS, version=f"{REPORT_VERSION}-validation"
+                    run_path, _validation_paths(run_path), version=f"{REPORT_VERSION}-validation"
                 )
             except ReportError:
                 current_bundle = ""
@@ -304,6 +342,10 @@ def generate_report(run: str | Path) -> ReportOutcome:
         citation_obj = citation_validation if isinstance(citation_validation, dict) else {}
         citation_summary = citation_obj.get("summary")
         citation_summary_obj = citation_summary if isinstance(citation_summary, dict) else {}
+        red_team_resolution_path = run_path / "red_team" / "red_team_resolution.json"
+        red_team_resolution = (
+            load_json(red_team_resolution_path) if red_team_resolution_path.is_file() else None
+        )
 
         report_text = render_due_diligence_report(
             run_id=run_id,
@@ -314,6 +356,7 @@ def generate_report(run: str | Path) -> ReportOutcome:
             register_summary=register_summary,
             extraction_summary=extraction_summary,
             citation_summary=citation_summary_obj,
+            red_team_resolution=red_team_resolution,
         )
         outstanding_text = render_outstanding_information(
             run_id=run_id,
@@ -335,7 +378,7 @@ def generate_report(run: str | Path) -> ReportOutcome:
         atomic_write_text(outputs / "outstanding_information.md", outstanding_text)
         layouts = render_ic_brief_pdf(outputs / "ic_brief.pdf", brief_content)
         bundle_fingerprint = _fingerprint(
-            run_path, _VALIDATION_PATHS, version=f"{REPORT_VERSION}-validation"
+            run_path, _validation_paths(run_path), version=f"{REPORT_VERSION}-validation"
         )
         validation = _validation_payload(
             run_path=run_path,
@@ -396,9 +439,11 @@ def validate_report_outputs(run: str | Path) -> ValidationOutcome:
     _require_analysis_complete(run_path, manifest)
     if manifest["stages"]["report"]["state"] != StageState.COMPLETED.value:
         raise ReportError("final validation requires a completed Phase 10 report stage")
-    report_input_fingerprint = _fingerprint(run_path, _UPSTREAM_PATHS, version=REPORT_VERSION)
+    report_input_fingerprint = _fingerprint(
+        run_path, _upstream_paths(run_path), version=REPORT_VERSION
+    )
     input_fingerprint = _fingerprint(
-        run_path, _VALIDATION_PATHS, version=f"{REPORT_VERSION}-validation"
+        run_path, _validation_paths(run_path), version=f"{REPORT_VERSION}-validation"
     )
     validate_stage = manifest["stages"]["validate"]
     if not isinstance(validate_stage, dict):

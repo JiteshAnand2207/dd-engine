@@ -17,7 +17,7 @@ from dd_engine.analysis.context import (
 from dd_engine.analysis.records import AnalysisRecords, CitationSpec
 from dd_engine.evidence.models import JsonObject
 
-PHASE8_VERSION = "phase8-analysis-v2"
+PHASE8_VERSION = "phase8-analysis-v4"
 
 
 def _money(value: float) -> str:
@@ -271,7 +271,7 @@ def _add_ebitda_finding(context: AnalysisContext, records: AnalysisRecords) -> N
         issue_id="FIN-002",
         conclusion=(
             f"The {_money(adjustment)} transformation add-back is unsupported in the room; "
-            f"the evidence-backed YTD EBITDA base is therefore {_money(baseline)}, "
+            f"the management-reported unadjusted YTD EBITDA is {_money(baseline)}, "
             f"{_percent(adjustment / adjusted * 100)} below reported adjusted EBITDA."
         ),
         source_fact=(
@@ -281,7 +281,8 @@ def _add_ebitda_finding(context: AnalysisContext, records: AnalysisRecords) -> N
         ),
         analysis=(
             "Without invoices, approvals or evidence that the cost is non-recurring, the add-back "
-            "does not meet a supportable quality-of-earnings standard."
+            "does not meet a supportable quality-of-earnings standard. The unadjusted figure is "
+            "still a management-pack number and is not a ledger-reconciled QoE baseline."
         ),
         why_it_matters="An unsupported add-back directly inflates the earnings base used in "
         "price discussions.",
@@ -299,7 +300,10 @@ def _add_ebitda_finding(context: AnalysisContext, records: AnalysisRecords) -> N
         confidence=0.98,
         supporting=support,
         calculation_ids=[calculation],
-        uncertainty="No deal-lead response or adjustment support has been supplied.",
+        uncertainty=(
+            "No adjustment support or ledger-to-management reconciliation has been supplied; "
+            "neither the add-back nor the unadjusted management figure is independently verified."
+        ),
         transaction_levers=["price_assumptions", "earn_out", "warranty", "further_diligence"],
     )
 
@@ -352,7 +356,7 @@ def _add_working_capital_finding(context: AnalysisContext, records: AnalysisReco
         expression="trade_debtors + other_debtors + trade_creditors + prepayments",
         recomputed_value=recomputed,
         reported_value=reported,
-        period="30 June 2026",
+        period="point-in-time source snapshot",
         claim_ids=("CLM-FIN-003",),
     )
     note = _cell(sheet, "D9")
@@ -367,16 +371,17 @@ def _add_working_capital_finding(context: AnalysisContext, records: AnalysisReco
         issue_id="FIN-003",
         conclusion=(
             f"The submitted working-capital formula is wrong: it reports {_money(reported)} "
-            f"instead of recomputed net working capital of {_money(recomputed)}, a "
-            f"{_money(recomputed - reported)} variance."
+            f"instead of a recomputed point-in-time net working-capital snapshot of "
+            f"{_money(recomputed)}, a {_money(recomputed - reported)} variance. The corrected "
+            "snapshot is not a normalized completion-accounts peg."
         ),
         source_fact=(
             "The workbook formula sums rows 5-7 and explicitly notes that trade debtors and a "
             "hidden prepayment row are omitted; the control row reports the correct baseline."
         ),
         analysis=(
-            "The error reverses the direction and scale of the working-capital position. It is a "
-            "formula defect, not a judgmental normalization."
+            "The error reverses the direction and scale of the submitted snapshot. Correcting "
+            "that formula does not establish seasonality, normalizations or the SPA definition."
         ),
         why_it_matters="An incorrect baseline can transfer value mechanically through the "
         "completion accounts.",
@@ -395,6 +400,10 @@ def _add_working_capital_finding(context: AnalysisContext, records: AnalysisReco
         supporting=supporting,
         calculation_ids=[calculation],
         transaction_levers=["price_assumptions", "working_capital_mechanism", "warranty"],
+        uncertainty=(
+            "A monthly bridge, seasonality analysis, account-level SPA definition and agreed "
+            "normalizations are still required before setting a peg."
+        ),
     )
     records.add_contradiction(
         contradiction_id="CON-FIN-003",
@@ -509,6 +518,10 @@ def _add_debt_finding(context: AnalysisContext, records: AnalysisRecords) -> Non
     director_value = float(director_match.group(1).replace(",", ""))
     gross = loan_value + hp_value + director_value
     net = gross - cash_value
+    visual_security = context.units_matching(
+        r"(?:change of control review event|fixed and floating charge|title retention)",
+        locator_type="pdf_page",
+    )
     calculation = records.add_calculation(
         calculation_id="CALC-FIN-006",
         description="Recompute debt and debt-like exposure net of reported cash.",
@@ -529,8 +542,9 @@ def _add_debt_finding(context: AnalysisContext, records: AnalysisRecords) -> Non
         conclusion=(
             f"Identified debt and debt-like items total {_money(gross)} before cash, including "
             f"{_money(hp_value)} HP and a {_money(director_value)} on-demand director balance "
-            f"excluded from management's loan summary; indicative net debt is {_money(net)} "
-            "using the latest ledger cash identified."
+            f"excluded from management's loan summary. A non-contemporaneous arithmetic offset "
+            f"against the latest ledger cash identified is {_money(net)}; this is not "
+            "completion-date net debt or proof that cash is unrestricted."
         ),
         source_fact=(
             f"Loan, HP and related-party sources report {_money(loan_value)}, {_money(hp_value)} "
@@ -539,8 +553,9 @@ def _add_debt_finding(context: AnalysisContext, records: AnalysisRecords) -> Non
         ),
         analysis=(
             "HP and an on-demand related-party balance are debt-like regardless of management's "
-            "classification. The cash date mismatch and pending visual loan letters limit "
-            "completeness."
+            "classification. The cash date mismatch prevents a defensible completion-date net "
+            "debt conclusion. Reviewed lender pages also identify security, title-retention and "
+            "change-of-control review mechanics where present."
         ),
         why_it_matters="Debt-like classification changes equity proceeds, consent analysis and "
         "funds flow.",
@@ -561,11 +576,15 @@ def _add_debt_finding(context: AnalysisContext, records: AnalysisRecords) -> Non
             CitationSpec(hp, exact_value=unit_value(hp)),
             CitationSpec(director_unit, exact_text=director_match.group(0)),
             CitationSpec(cash, exact_value=unit_value(cash)),
+            *[
+                CitationSpec(visual_unit, exact_text=visual_match.group(0))
+                for visual_unit, visual_match in visual_security
+            ],
         ],
         calculation_ids=[calculation],
         uncertainty=(
-            "Loan photographs and the scanned loan/HP pack remain unreviewed, no restricted-cash "
-            "evidence is available, and the cash period differs from the debt schedules."
+            "No completion-date lender statements, payoff evidence or restricted-cash analysis "
+            "is available, and the cash period differs from the debt schedules."
         ),
         transaction_levers=["price_assumptions", "escrow", "consent", "closing_condition"],
     )
@@ -573,7 +592,7 @@ def _add_debt_finding(context: AnalysisContext, records: AnalysisRecords) -> Non
 
 def _add_headcount_finding(context: AnalysisContext, records: AnalysisRecords) -> None:
     allocated = _cell_by_label(context, "Total", path_hint="contractor_headcount")
-    legal_scope = context.cell_matching(r"12 active contractors", path_hint="contractor_list")
+    legal_scope = context.cell_matching(r"\d+\s+active contractors", path_hint="contractor_list")
     paye = _cell_by_label(context, "Total PAYE headcount", path_hint="paye_headcount")
     if allocated is None or legal_scope is None or paye is None:
         return
@@ -583,6 +602,15 @@ def _add_headcount_finding(context: AnalysisContext, records: AnalysisRecords) -
         return
     legal_value = float(scope_match.group(1))
     paye_value = float(numeric_value(paye) or 0)
+    redacted_scope = context.cell_matching(r"records supplied.*records omitted")
+    unredacted_title_matches = context.units_matching(r"employee master\s*-\s*unredacted")
+    version_note = ""
+    if redacted_scope is not None and unredacted_title_matches:
+        version_note = (
+            f" The redacted schedule states '{unit_value(redacted_scope)}', while a later "
+            "unredacted employee workbook is also present; population selection must therefore "
+            "be explicit."
+        )
     calculation = records.add_calculation(
         calculation_id="CALC-FIN-007",
         description="Reconcile client-allocated contractors to the active legal contractor list.",
@@ -604,10 +632,13 @@ def _add_headcount_finding(context: AnalysisContext, records: AnalysisRecords) -
             f"Workforce schedules do not reconcile: PAYE headcount is {paye_value:.0f}, but the "
             f"client allocation lists {allocated_value:.0f} contractors while the legal list "
             f"states {legal_value:.0f}, leaving {legal_value - allocated_value:.0f} "
-            "contractors unallocated."
+            f"contractors unallocated.{version_note}"
         ),
-        source_fact="Three separate schedules provide the PAYE, client-allocation and legal "
-        "contractor counts.",
+        source_fact=(
+            "The PAYE, client-allocation and legal contractor schedules disagree. A redacted "
+            "employee scope note and a later unredacted employee workbook are also present, so "
+            "the population version must be selected explicitly."
+        ),
         analysis=(
             "The mismatch prevents a complete payroll/contractor cost bridge and obscures client "
             "dependency and worker-status exposure."
@@ -630,6 +661,15 @@ def _add_headcount_finding(context: AnalysisContext, records: AnalysisRecords) -
             CitationSpec(allocated, exact_value=unit_value(allocated)),
             CitationSpec(legal_scope, exact_value=unit_value(legal_scope)),
             CitationSpec(paye, exact_value=unit_value(paye)),
+            *(
+                [CitationSpec(redacted_scope, exact_value=unit_value(redacted_scope))]
+                if redacted_scope is not None
+                else []
+            ),
+            *[
+                CitationSpec(title_unit, exact_text=title_match.group(0))
+                for title_unit, title_match in unredacted_title_matches[:1]
+            ],
         ],
         calculation_ids=[calculation],
         transaction_levers=["price_assumptions", "warranty", "indemnity", "further_diligence"],
@@ -651,6 +691,8 @@ def _add_pipeline_finding(context: AnalysisContext, records: AnalysisRecords) ->
     values = [float(numeric_value(unit) or 0) for unit in weighted_units]
     recomputed = sum(values)
     reported = float(numeric_value(total) or 0)
+    top_weighted = sum(sorted(values, reverse=True)[: min(2, len(values))])
+    concentration = top_weighted / recomputed * 100 if recomputed else 0
     inputs = [
         (f"weighted_{index}", unit, value, None)
         for index, (unit, value) in enumerate(zip(weighted_units, values, strict=True), start=1)
@@ -665,18 +707,51 @@ def _add_pipeline_finding(context: AnalysisContext, records: AnalysisRecords) ->
         period="pipeline snapshot at 30 June 2026",
         claim_ids=("CLM-FIN-007",),
     )
+    concentration_calculation = records.add_calculation(
+        calculation_id="CALC-FIN-009",
+        description="Compute the share of probability-weighted pipeline in the two largest rows.",
+        inputs=[
+            *[
+                (f"top_weighted_{index}", unit, value, None)
+                for index, (unit, value) in enumerate(
+                    sorted(
+                        zip(weighted_units, values, strict=True),
+                        key=lambda pair: pair[1],
+                        reverse=True,
+                    )[: min(2, len(values))],
+                    start=1,
+                )
+            ],
+            ("recomputed_pipeline", total, recomputed, None),
+        ],
+        expression=(
+            "("
+            + " + ".join(f"top_weighted_{index}" for index in range(1, min(2, len(values)) + 1))
+            + ") / recomputed_pipeline * 100"
+        ),
+        recomputed_value=round(concentration, 2),
+        currency=None,
+        units="percent",
+        period="pipeline snapshot",
+        claim_ids=("CLM-FIN-007",),
+    )
+    variance_rate = abs(reported - recomputed) / recomputed * 100 if recomputed else 100
     records.add_finding(
         workstream="financial",
         issue_id="FIN-007",
         conclusion=(
             f"Probability-weighted pipeline is overstated by {_money(reported - recomputed)}: "
             f"the opportunity rows sum to {_money(recomputed)}, not the stored "
-            f"{_money(reported)} total."
+            f"{_money(reported)} total. The two largest rows comprise "
+            f"{_percent(concentration)} of the recomputed weighted pipeline."
         ),
         source_fact="The pipeline supplies opportunity values and management probabilities but "
         "no win-rate support.",
-        analysis="The arithmetic error compounds the absence of evidence for probability "
-        "assumptions.",
+        analysis=(
+            f"The stored-total variance is {_percent(variance_rate)} of the recomputed total. "
+            "Its severity is therefore distinct from the more material concentration and "
+            "absence of probability calibration."
+        ),
         why_it_matters="Forecast support affects confidence in forward revenue and any "
         "performance-linked consideration.",
         implication=(
@@ -689,13 +764,13 @@ def _add_pipeline_finding(context: AnalysisContext, records: AnalysisRecords) ->
             "conversion "
             "rates, expected close dates and margin by opportunity."
         ),
-        materiality="high",
+        materiality="high" if variance_rate >= 5 else "medium",
         confidence=0.98,
         supporting=[
             CitationSpec(total, exact_value=unit_value(total)),
             CitationSpec(weighted_units[0], exact_value=unit_value(weighted_units[0])),
         ],
-        calculation_ids=[calculation],
+        calculation_ids=[calculation, concentration_calculation],
         uncertainty="No historical probability calibration or signed-order evidence was supplied.",
         transaction_levers=["price_assumptions", "earn_out", "further_diligence"],
     )
@@ -912,6 +987,136 @@ def _add_customer_concentration(
         calculation_ids=calculation_ids,
         transaction_levers=["price_assumptions", "earn_out", "escrow", "consent"],
     )
+
+    confirmed_group_ids = {item[0] for item in confirmed}
+    exposures: dict[str, list[dict[str, JsonObject]]] = defaultdict(list)
+    for row in rows:
+        group_id = str(unit_value(row.get("D", {})) or "").strip()
+        customer = str(unit_value(row.get("A", {})) or "").strip()
+        exposure_key = (
+            f"group:{group_id}" if group_id in confirmed_group_ids else f"customer:{customer}"
+        )
+        exposures[exposure_key].append(row)
+
+    def ranked(period_column: str) -> list[tuple[str, list[dict[str, JsonObject]], float]]:
+        values = [
+            (
+                key,
+                exposure_rows,
+                sum(float(numeric_value(row[period_column]) or 0) for row in exposure_rows),
+            )
+            for key, exposure_rows in exposures.items()
+        ]
+        return sorted(values, key=lambda item: item[2], reverse=True)
+
+    fy_ranked = ranked("B")
+    ytd_ranked = ranked("C")
+    if len(fy_ranked) >= 2 and len(ytd_ranked) >= 2 and fy_total and ytd_total:
+        fy_top_two_rows = [row for _, exposure_rows, _ in fy_ranked[:2] for row in exposure_rows]
+        fy_top_three_rows = [row for _, exposure_rows, _ in fy_ranked[:3] for row in exposure_rows]
+        ytd_top_three_rows = [
+            row for _, exposure_rows, _ in ytd_ranked[:3] for row in exposure_rows
+        ]
+        fy_top_two = sum(item[2] for item in fy_ranked[:2]) / fy_total * 100
+        fy_top_three = sum(item[2] for item in fy_ranked[:3]) / fy_total * 100
+        ytd_top_two = sum(item[2] for item in ytd_ranked[:2]) / ytd_total * 100
+        ytd_top_three = sum(item[2] for item in ytd_ranked[:3]) / ytd_total * 100
+        concentration_calculations = [
+            records.add_calculation(
+                calculation_id="CALC-COMM-004",
+                description="Compute top-two evidence-normalized customer concentration.",
+                inputs=[
+                    *[
+                        (f"fy_row_{index}", row["B"], float(numeric_value(row["B"]) or 0), None)
+                        for index, row in enumerate(fy_top_two_rows, start=1)
+                    ],
+                    ("fy_total", totals["fy"], fy_total, None),
+                ],
+                expression=(
+                    "("
+                    + " + ".join(f"fy_row_{index}" for index in range(1, len(fy_top_two_rows) + 1))
+                    + ") / fy_total * 100"
+                ),
+                recomputed_value=round(fy_top_two, 2),
+                currency=None,
+                units="percent",
+                period="full-year source period",
+                claim_ids=("CLM-COMM-005",),
+            ),
+            records.add_calculation(
+                calculation_id="CALC-COMM-005",
+                description="Compute top-three evidence-normalized current-period concentration.",
+                inputs=[
+                    *[
+                        (
+                            f"current_row_{index}",
+                            row["C"],
+                            float(numeric_value(row["C"]) or 0),
+                            None,
+                        )
+                        for index, row in enumerate(ytd_top_three_rows, start=1)
+                    ],
+                    ("current_total", totals["ytd"], ytd_total, None),
+                ],
+                expression=(
+                    "("
+                    + " + ".join(
+                        f"current_row_{index}" for index in range(1, len(ytd_top_three_rows) + 1)
+                    )
+                    + ") / current_total * 100"
+                ),
+                recomputed_value=round(ytd_top_three, 2),
+                currency=None,
+                units="percent",
+                period="current source period",
+                claim_ids=("CLM-COMM-005",),
+            ),
+        ]
+        records.add_finding(
+            workstream="commercial",
+            issue_id="COMM-005",
+            conclusion=(
+                f"After evidence-backed group normalization, the top two exposures represent "
+                f"{_percent(fy_top_two)} of full-year and {_percent(ytd_top_two)} of "
+                "current-period "
+                f"revenue; the top three represent {_percent(fy_top_three)} and "
+                f"{_percent(ytd_top_three)}, respectively."
+            ),
+            source_fact=(
+                "Customer-level revenue was aggregated only where contracts independently "
+                "confirmed common group identity; all other customers remained separate."
+            ),
+            analysis=(
+                "Top-two and top-three views show the combined portfolio dependency that a "
+                "single-largest-customer metric omits."
+            ),
+            why_it_matters=(
+                "Loss or repricing across a small number of exposures can affect a majority of "
+                "revenue and delivery demand."
+            ),
+            implication=(
+                "Use normalized top-two/top-three downside cases in valuation and tie deferred "
+                "consideration to retained collected gross profit."
+            ),
+            action=(
+                "Confirm renewal, termination, pricing, consent and service status for each top "
+                "exposure and refresh concentration on collected revenue and gross profit."
+            ),
+            materiality="critical",
+            confidence=0.94,
+            supporting=[
+                *[
+                    CitationSpec(row["B"], exact_value=unit_value(row["B"]))
+                    for row in fy_top_three_rows
+                ],
+                *[
+                    CitationSpec(row["C"], exact_value=unit_value(row["C"]))
+                    for row in ytd_top_three_rows
+                ],
+            ],
+            calculation_ids=concentration_calculations,
+            transaction_levers=["price_assumptions", "earn_out", "escrow", "consent"],
+        )
     return decisions
 
 
@@ -1032,14 +1237,23 @@ def _add_client_headcount_finding(context: AnalysisContext, records: AnalysisRec
         client: paye_by_client[client][0] + contractor_by_client[client][0] for client in common
     }
     largest = max(combined, key=combined.__getitem__)
-    total = sum(value[0] for value in paye_by_client.values()) + sum(
-        value[0] for value in contractor_by_client.values()
-    )
-    share = combined[largest] / total * 100 if total else 0
     total_paye = _cell_by_label(context, "Total PAYE headcount", path_hint="paye_headcount")
-    total_contractors = _cell_by_label(context, "Total", path_hint="contractor_headcount")
-    if total_paye is None or total_contractors is None:
+    allocated_total_unit = _cell_by_label(context, "Total", path_hint="contractor_headcount")
+    legal_scope = context.cell_matching(r"\d+\s+active contractors", path_hint="contractor_list")
+    if total_paye is None or allocated_total_unit is None or legal_scope is None:
         return
+    scope_match = re.search(r"(\d+)\s+active contractors", str(unit_value(legal_scope)), re.I)
+    if scope_match is None:
+        return
+    paye_total = sum(value[0] for value in paye_by_client.values())
+    allocated_contractors = sum(value[0] for value in contractor_by_client.values())
+    legal_contractors = float(scope_match.group(1))
+    unallocated_contractors = max(legal_contractors - allocated_contractors, 0)
+    population = paye_total + legal_contractors
+    lower_share = combined[largest] / population * 100 if population else 0
+    upper_share = (
+        (combined[largest] + unallocated_contractors) / population * 100 if population else 0
+    )
     calculation = records.add_calculation(
         calculation_id="CALC-COMM-003",
         description="Compute largest client-linked workforce share.",
@@ -1054,21 +1268,62 @@ def _add_client_headcount_finding(context: AnalysisContext, records: AnalysisRec
             (
                 "total_paye",
                 total_paye,
-                sum(value[0] for value in paye_by_client.values()),
+                paye_total,
                 None,
             ),
             (
-                "total_contractors",
-                total_contractors,
-                sum(value[0] for value in contractor_by_client.values()),
-                None,
+                "legal_contractor_population",
+                legal_scope,
+                legal_contractors,
+                scope_match.group(0),
             ),
         ],
-        expression="(client_paye + client_contractors) / (total_paye + total_contractors) * 100",
-        recomputed_value=round(share, 2),
+        expression=(
+            "(client_paye + client_contractors) / (total_paye + legal_contractor_population) * 100"
+        ),
+        recomputed_value=round(lower_share, 2),
         currency=None,
         units="percent",
-        period="30 June 2026",
+        period="source population snapshot",
+        claim_ids=("CLM-COMM-004",),
+    )
+    upper_calculation = records.add_calculation(
+        calculation_id="CALC-COMM-006",
+        description=(
+            "Compute the upper bound if every contractor omitted from the allocation schedule "
+            "belongs to the largest client exposure."
+        ),
+        inputs=[
+            ("client_paye", paye_by_client[largest][1], paye_by_client[largest][0], None),
+            (
+                "client_contractors",
+                contractor_by_client[largest][1],
+                contractor_by_client[largest][0],
+                None,
+            ),
+            ("total_paye", total_paye, paye_total, None),
+            (
+                "submitted_contractor_population",
+                allocated_total_unit,
+                allocated_contractors,
+                None,
+            ),
+            (
+                "legal_contractor_population",
+                legal_scope,
+                legal_contractors,
+                scope_match.group(0),
+            ),
+        ],
+        expression=(
+            "(client_paye + client_contractors + "
+            "(legal_contractor_population - submitted_contractor_population)) / "
+            "(total_paye + legal_contractor_population) * 100"
+        ),
+        recomputed_value=round(upper_share, 2),
+        currency=None,
+        units="percent",
+        period="source population snapshot",
         claim_ids=("CLM-COMM-004",),
     )
     records.add_finding(
@@ -1076,8 +1331,10 @@ def _add_client_headcount_finding(context: AnalysisContext, records: AnalysisRec
         issue_id="COMM-004",
         conclusion=(
             f"The largest client allocation uses {combined[largest]:.0f} PAYE/contractor roles, "
-            f"or {_percent(share)} of the submitted client-linked workforce, creating "
-            "delivery and redeployment concentration."
+            f"or at least {_percent(lower_share)} of the full stated workforce population. "
+            f"Because {unallocated_contractors:.0f} contractors are absent from the client "
+            f"allocation, the defensible range is {_percent(lower_share)} to "
+            f"{_percent(upper_share)}."
         ),
         source_fact="PAYE and contractor allocation schedules identify headcount by the same "
         "client codes.",
@@ -1105,8 +1362,11 @@ def _add_client_headcount_finding(context: AnalysisContext, records: AnalysisRec
                 exact_value=unit_value(contractor_by_client[largest][1]),
             ),
         ],
-        calculation_ids=[calculation],
-        uncertainty="Schedules do not distinguish dedicated FTE from shared or partial allocation.",
+        calculation_ids=[calculation, upper_calculation],
+        uncertainty=(
+            "The legal contractor population exceeds the allocation schedule, and the schedules "
+            "do not distinguish dedicated FTE from shared or partial allocation."
+        ),
         transaction_levers=["price_assumptions", "earn_out", "further_diligence"],
     )
 

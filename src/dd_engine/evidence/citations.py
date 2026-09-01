@@ -580,6 +580,42 @@ class CitationValidator:
             "warnings": warnings,
         }
 
+    def validate_reference(
+        self,
+        *,
+        source_id: str,
+        source_checksum: str,
+        locator: Mapping[str, Any],
+        extracted_text: str | None = None,
+        extracted_value: object = None,
+    ) -> JsonObject:
+        """Validate one standalone source reference for an audit or disposition ledger."""
+
+        source = self.sources.get(source_id)
+        version = (
+            str(source.get("probable_version_status", "undetermined"))
+            if source is not None
+            else "undetermined"
+        )
+        citation: JsonObject = {
+            "exact_locator": dict(locator),
+            "extracted_text": extracted_text,
+            "extracted_unit_ids": [],
+            "extracted_value": extracted_value,
+            "extraction_confidence": 0,
+            "source_checksum": source_checksum,
+            "source_id": source_id,
+            "source_version_status": version,
+            "supersession_acknowledged": version == "potentially_superseded",
+        }
+        return self._validate_one(
+            citation=citation,
+            citation_id=f"standalone:{source_id}",
+            citation_kind="evidence",
+            claim_id=None,
+            locator_field="exact_locator",
+        )
+
     @staticmethod
     def _reference_error(
         record_type: str, record_id: str, field: str, missing_id: str
