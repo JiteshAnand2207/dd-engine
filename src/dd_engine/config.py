@@ -60,7 +60,7 @@ class RegisterConfig:
 
 @dataclass(frozen=True, slots=True)
 class AnalysisConfig:
-    """Validated analysis scaffold settings; no analysis is implemented yet."""
+    """Validated analysis settings."""
 
     jurisdiction: str
     workstreams: tuple[str, ...]
@@ -69,7 +69,7 @@ class AnalysisConfig:
 
 @dataclass(frozen=True, slots=True)
 class ReportingConfig:
-    """Validated reporting scaffold settings; no reporting is implemented yet."""
+    """Validated reporting settings."""
 
     report_format: str
     ic_brief_format: str
@@ -81,10 +81,9 @@ class ReportingConfig:
 class ModelRoutingConfig:
     """Logical harness route defaults without provider credentials or model calls."""
 
-    deterministic_profile: str
-    mechanical_profile: str
-    judgment_profile: str
-    red_team_profile: str
+    local_deterministic_profile: str
+    economical_reasoning_profile: str
+    frontier_judgment_profile: str
     direct_api_enabled: bool
 
 
@@ -259,25 +258,30 @@ def _build_model_routing(section: dict[str, Any]) -> ModelRoutingConfig:
         section,
         "model_routing",
         {
-            "deterministic_profile",
-            "mechanical_profile",
-            "judgment_profile",
-            "red_team_profile",
+            "local_deterministic_profile",
+            "economical_reasoning_profile",
+            "frontier_judgment_profile",
             "direct_api_enabled",
         },
     )
     return ModelRoutingConfig(
-        deterministic_profile=_require_locked_value(
-            section, "model_routing", "deterministic_profile", "deterministic"
+        local_deterministic_profile=_require_locked_value(
+            section,
+            "model_routing",
+            "local_deterministic_profile",
+            "local_deterministic",
         ),
-        mechanical_profile=_require_locked_value(
-            section, "model_routing", "mechanical_profile", "economy_mechanical"
+        economical_reasoning_profile=_require_locked_value(
+            section,
+            "model_routing",
+            "economical_reasoning_profile",
+            "economical_reasoning",
         ),
-        judgment_profile=_require_locked_value(
-            section, "model_routing", "judgment_profile", "frontier_judgment"
-        ),
-        red_team_profile=_require_locked_value(
-            section, "model_routing", "red_team_profile", "frontier_red_team"
+        frontier_judgment_profile=_require_locked_value(
+            section,
+            "model_routing",
+            "frontier_judgment_profile",
+            "frontier_judgment",
         ),
         direct_api_enabled=_require_locked_value(
             section, "model_routing", "direct_api_enabled", False

@@ -29,7 +29,7 @@ operator instruction, report the conflict before editing a planning document.
   `runs/<run_id>/` directory and record the run ID in every artifact.
 - Never commit or push unless the operator explicitly requests it.
 
-## Phase 9 scope and engineering rules
+## Phase 11 scope and engineering rules
 
 - Codex is the primary reasoning harness. Python is deterministic local support
   and must not call a model API or require a provider API key.
@@ -38,8 +38,10 @@ operator instruction, report the conflict before editing a planning document.
 - `register`, `extract`, the two-round `intake` stage and the extraction-dependent
   `evidence` foundation are implemented in Phase 7. Sequential Phase 8 and Phase 9
   analysis is implemented through `analyse --phase 8` and `analyse --phase 9`.
-  `report` and `validate` remain interfaces that must report `stage not
-  implemented` and must not generate placeholder success artifacts.
+  Phase 10 implements `report` and `validate` for the candidate report bundle.
+  Phase 11 implements the file-backed runtime prompts, three-class routing policy
+  and complete local task/research ledgers. Independent red-team execution and
+  release reconciliation remain mandatory later gates.
 - The evidence foundation may run while intake is paused. It may materialize
   unanswered questions and extraction limitations as gaps, but it must not mark
   intake or analysis complete, infer an answer, draft a workstream or create a
@@ -92,13 +94,26 @@ operator instruction, report the conflict before editing a planning document.
 - Irish legal and tax findings are commercial diligence, not formal opinions.
   Public research remains supplemental, disabled by default and fully logged when
   performed; confidential source text must never enter a public query.
+- Routing classes are exactly `local_deterministic`, `economical_reasoning` and
+  `frontier_judgment`. Local deterministic work is a valid zero-model route. A
+  cheaper model is used only when the active harness actually exposes one;
+  independent red team is a frontier task in a brand-new context, not a fourth
+  route.
+- Every documented CLI stage/model task is recorded locally. Actual model IDs,
+  token counts and costs are present only when exposed; otherwise they remain
+  null with reasons. Subscription billing is not a fabricated task cost. Logs use
+  source IDs and hashes rather than unnecessary raw sensitive content.
+- Codex remains the primary harness. Claude Code may follow the same CLI and
+  checked-in prompts without a provider-specific API SDK or key. Capability
+  differences must be recorded honestly rather than inferred.
 
 ## Local verification
 
 Run the editable install, complete test suite, doctor, public-only synthetic
-validation, run initialization/register/extract/evidence/status, lint and type checks
-documented in `README.md`. For the canonical synthetic run, generate round-one
-questions and keep intake in `awaiting_input`; the evidence foundation may record
-those unanswered matters as gaps, but never fabricate the deal lead's answers or
-proceed to workstream analysis. Exercise Phase 8 and Phase 9 only in a disposable
-test run containing explicit test-only answers for both rounds.
+validation, run initialization/register/extract/evidence/status, lint and type
+checks documented in `README.md`. For the canonical synthetic run, generate
+round-one questions and keep intake in `awaiting_input`; the evidence foundation
+may record those unanswered matters as gaps, but never fabricate the deal lead's
+answers or proceed to workstream analysis. Exercise Phases 8-11 only in a
+disposable test run containing explicit test-only answers for both rounds. Audit
+its task/research logs. Do not execute red team in the drafting context.

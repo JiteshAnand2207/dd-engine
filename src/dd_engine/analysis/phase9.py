@@ -9,7 +9,7 @@ from dd_engine.analysis.records import AnalysisRecords, CitationSpec
 from dd_engine.evidence.models import JsonObject
 from dd_engine.evidence.store import load_record_sets
 
-PHASE9_VERSION = "phase9-analysis-v1"
+PHASE9_VERSION = "phase9-analysis-v2"
 IRISH_SCOPE = (
     "Commercial due diligence in an Irish transaction context; this is not a formal Irish legal "
     "or tax opinion and specialist advisers must confirm conclusions used in transaction documents."
@@ -957,7 +957,7 @@ def build_phase9(context: AnalysisContext) -> tuple[AnalysisRecords, dict[str, J
     coverage = _coverage(records.findings, existing_issue_ids)
     common = {
         "analysis_version": PHASE9_VERSION,
-        "generated_by": "deterministic local analytical rules with Codex-authored interpretations",
+        "generated_by": "deterministic local analytical rules; Python made no model call",
         "irish_jurisdiction_scope": IRISH_SCOPE,
         "public_research_performed": False,
         "run_id": context.run_id,

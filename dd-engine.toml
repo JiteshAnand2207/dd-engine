@@ -30,8 +30,7 @@ ic_brief_pages = 2
 page_size = "A4"
 
 [model_routing]
-deterministic_profile = "deterministic"
-mechanical_profile = "economy_mechanical"
-judgment_profile = "frontier_judgment"
-red_team_profile = "frontier_red_team"
+local_deterministic_profile = "local_deterministic"
+economical_reasoning_profile = "economical_reasoning"
+frontier_judgment_profile = "frontier_judgment"
 direct_api_enabled = false

@@ -42,6 +42,12 @@ def test_init_run_and_status_cli(tmp_path: Path, capsys: pytest.CaptureFixture[s
     assert status["run_id"] == created["run_id"]
     assert status["overall_state"] == "not_started"
     assert set(status["stages"].values()) == {"not_started"}
+    task_records = [
+        json.loads(line)
+        for line in (run_path / "logs" / "run-log.jsonl").read_text(encoding="utf-8").splitlines()
+    ]
+    assert [record["stage"] for record in task_records] == ["init", "status"]
+    assert all(record["routing_class"] == "local_deterministic" for record in task_records)
 
 
 @pytest.mark.parametrize("stage_name", ("report", "validate"))

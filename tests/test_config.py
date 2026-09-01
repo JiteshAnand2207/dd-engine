@@ -36,10 +36,9 @@ def test_configuration_loads_checked_in_defaults() -> None:
     assert config.reporting.ic_brief_format == "pdf"
     assert config.reporting.ic_brief_pages == 2
     assert config.reporting.page_size == "A4"
-    assert config.model_routing.deterministic_profile == "deterministic"
-    assert config.model_routing.mechanical_profile == "economy_mechanical"
-    assert config.model_routing.judgment_profile == "frontier_judgment"
-    assert config.model_routing.red_team_profile == "frontier_red_team"
+    assert config.model_routing.local_deterministic_profile == "local_deterministic"
+    assert config.model_routing.economical_reasoning_profile == "economical_reasoning"
+    assert config.model_routing.frontier_judgment_profile == "frontier_judgment"
     assert config.model_routing.direct_api_enabled is False
 
 

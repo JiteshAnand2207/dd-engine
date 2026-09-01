@@ -2,7 +2,7 @@
 
 ## Status and scope
 
-This document defines the implementation architecture. Phase 7 implements the deterministic source register, tiered local-first extraction, two-round evidence-grounded intake with real human pauses, and an extraction-dependent evidence/calculation foundation. Phases 8 and 9 implement the sequential analytical workstreams and standalone Tax module. Phase 10 implements structured report assembly, the deterministic two-page IC brief and fail-closed candidate-bundle validation. Independent red-team execution and final release reconciliation remain later-stage contracts. The chosen runtime harness is **Codex**. Deterministic supporting code targets **Python 3.11 or later**. The native path works without Docker; a container may later be offered only as an optional convenience.
+This document defines the implementation architecture. Phase 7 implements the deterministic source register, tiered local-first extraction, two-round evidence-grounded intake with real human pauses, and an extraction-dependent evidence/calculation foundation. Phases 8 and 9 implement the sequential analytical workstreams and standalone Tax module. Phase 10 implements structured report assembly, the deterministic two-page IC brief and fail-closed candidate-bundle validation. Phase 11 implements the three-class routing contract, complete local task/research ledgers and one Codex-first, Claude-compatible file-backed runtime flow. Independent red-team execution and final release reconciliation remain later-stage contracts. The primary runtime harness is **Codex**. Deterministic supporting code targets **Python 3.11 or later**. The native path works without Docker; a container may later be offered only as an optional convenience.
 
 The design optimizes for an auditable cold run over an unseen, confidential room. It separates repeatable mechanics from model judgment, makes human pauses resumable, isolates red-team context, and never turns a partial or privacy-unsafe run into an apparent success.
 
@@ -23,7 +23,7 @@ This design does **not** assume an operating system, Docker, a GPU, Microsoft Of
 | Plane | Responsibility | May reason? | May mutate source room? | Principal artifacts |
 |---|---|---:|---:|---|
 | Deterministic local processing | Inventory, hashing, safe archive inspection, native extraction, evidence addresses, calculations, ledgers, rendering, validation | No | No | Register, extraction records, evidence index, calculations, manifests |
-| Codex reasoning | Dynamic questions, classification escalation, workstream analysis, synthesis and drafting | Yes | No | Questions, findings, report draft, route events |
+| Codex reasoning (Claude Code-compatible boundary) | Dynamic questions, classification escalation, workstream analysis, synthesis and drafting | Yes | No | Questions, findings, report draft, task records |
 | Human/deal-lead pauses | Answer evidence-driven questions, optionally enable narrowly scoped public research, resolve material ambiguity | Human judgment | No | Answers and signed pause/resume records |
 | Independent red-team execution | Refute issues, independently recompute headline numbers, find gaps | Yes, only in a brand-new Codex task/chat | No | Allowlisted sealed-packet manifest, challenge log, recalculations, isolation manifest |
 | Validation and failure handling | Enforce stage contracts, citation resolution, privacy, completeness and honest failure states | Deterministic rules plus explicit human review gates | No | Validation report, quarantine ledger, terminal run status |
@@ -57,7 +57,7 @@ Stage 3 comprises both human pauses and their question-generation/resume contrac
 ## Repository boundaries
 
 Names below are contracts. Register, extraction, intake, evidence, analysis and
-Phase 10 report-bundle components exist; red-team packaging and final release
+Phase 10 report-bundle and Phase 11 runtime/logging components exist; red-team packaging and final release
 reconciliation remain planned.
 
 ```text
@@ -72,15 +72,16 @@ src/dd_engine/
   reporting/                     Phase 10 synthesis, deterministic PDF and fail-closed checks
   tax/                           standalone structured tax analysis and cross-links
   state/                         resumable run state and stage manifests
-  logging/                       local run, route, cost and research ledgers
+  runtime/                       task/research ledgers, route checks and log audit
   validation/                    later independent red-team/release gates
 prompts/
   intake/                        evidence-driven round contracts
   workstreams/                   five scoped analyst contracts
   tax/                           standalone tax-analysis contract
   red-team/                      new-task/chat refutation contract and packet allowlist
+  runtime/                       end-to-end engine and isolated red-team prompts
 config/
-  model-routing.yml              logical route policy, not provider credentials
+  model-routing.yaml             three-class route policy, not provider credentials
   privacy.yml                    deny-by-default egress policy
 schemas/                         artifact JSON Schemas
 tests/                            unit, fixture, failure and clean-clone tests
@@ -156,22 +157,21 @@ prose or create report artifacts.
 
 Python calculation modules create transparent input tables and formula outputs for EBITDA bridges, customer concentration, debt/net-debt, working capital, payroll/headcount, tax tie-outs and other headline figures. Each result records source cells, formula/version and output hash. Reported and recomputed results remain separate. Period, currency, sign and unit normalization is explicit; missing inputs stay null and block recomputation; rounding and deterministic/model-assisted method are recorded. Codex interprets the result; it does not replace the arithmetic ledger.
 
-## Codex reasoning
+## Harness reasoning
 
-Codex is the orchestrator and the sole model-access path. It reads the checked-in workflow contract, invokes local Python stages, writes structured reasoning artifacts, stops at human gates, and records route events. Python does not import a provider SDK, read an API key, or initiate a model request.
+Codex is the primary orchestrator and model-access path. Claude Code may instead follow the same checked-in file prompts and CLI contract. The active harness invokes local Python stages, writes structured reasoning artifacts, stops at human gates and records task events. Python does not import a provider SDK, read an API key or initiate a model request. The repository never infers a concrete model name from a logical route.
 
 ### Routing policy
 
-Routing uses logical profiles so it remains explicit while tolerating the evaluator's subscribed model availability:
+Routing uses exactly three logical classes so it remains explicit while tolerating the operator's subscribed model availability:
 
 | Profile | Intended use | Default selection rule | Escalation rule |
 |---|---|---|---|
-| `deterministic` | Inventory, hashes, native extraction, calculations, validation | Python only | Escalate only on recorded parse/confidence failure |
-| `economy_mechanical` | Classification, bulk normalization, low-risk visual transcription | Fastest suitable lower-cost Codex model available | Escalate for materiality, ambiguity or failed verification |
-| `frontier_judgment` | Financial reasoning, all workstream conclusions, drafting and final synthesis | Strongest suitable reasoning Codex model available | No downgrade without logged operator decision |
-| `frontier_red_team` | Independent refutation and recomputation review | Strong frontier model in a fresh context | Fail isolation rather than reuse drafting context |
+| `local_deterministic` | Inventory, hashing, archive inspection, native extraction, spreadsheet calculations, citation validation and output checks | Python only; zero model calls | A reasoning task is a new logged task, never a relabelled local operation |
+| `economical_reasoning` | Classification, mechanical document triage and bulk low-risk structuring | Cheaper suitable model only when the active harness actually exposes one | Use the single visible model or frontier route with an honest fallback record when no cheaper model is available |
+| `frontier_judgment` | Financial reasoning, contradiction resolution, contract analysis, intake prioritisation, report drafting and independent red team | Strongest suitable model actually available to the harness | Red team still requires a brand-new isolated context; fail isolation rather than reuse drafting context |
 
-Implementation must resolve these profiles to concrete model IDs in checked-in config for the supported Codex environment, while allowing an availability override. The actual resolved model, task purpose, input artifact hashes and outcome are logged. Exact default IDs cannot be chosen safely until the evaluator's Codex model entitlements are known.
+`config/model-routing.yaml` stores the logical policy but leaves concrete model IDs null. At execution, the harness records an actual model only when its exact identifier is visible. Otherwise the ledger stores null plus a reason. Merely documenting an economical route does not establish that a cheaper model exists or was called, and an economical task may honestly fall back to the only visible model.
 
 ### Workstream contracts
 
@@ -291,29 +291,42 @@ Public research is optional and disabled by default. When explicitly enabled, on
 
 ## Run logging, token usage and cost
 
-The run ledger is local JSONL with a human-readable summary. Each model event records route profile, resolved model ID, purpose, input/output artifact hashes, start/end time, status, retry/escalation and any usage metadata Codex exposes.
+`logs/run-log.jsonl` is an append-only local task ledger and
+`logs/run-log.md` is its regenerated human summary. The documented CLI logs each
+real deterministic stage invocation. Codex or Claude Code appends each reasoning
+task through `log-task`. Every record includes run/stage/task identity, purpose,
+harness, visible actual model or a null reason, route, timestamps and duration,
+source IDs supplied, input/output tokens and their basis, API-equivalent cost and
+basis, billing mode, retry/fallback/error status and hashes of run-local output
+artifacts. `audit-logs` rejects duplicate task IDs, raw-sensitive-content flags
+and completed manifest stages without a successful task record.
 
-Cost is never fabricated. The record carries one explicit basis:
+Usage and cost are never fabricated. Token basis is `actual`, `estimated` or
+`unavailable`; unavailable values are null with a reason. API-equivalent cost is
+populated only from reliable tokens and a versioned rate-card reference. Billing
+mode separately records subscription, direct API, local zero-model, other or
+unknown. Thus subscription billing does not become a fictional per-task charge.
 
-- `exact_provider_reported` if Codex exposes billed usage;
-- `estimated_from_versioned_rate_card` if reliable token counts and a dated checked-in rate card exist;
-- `subscription_included` for no incremental per-call charge visible to the operator; or
-- `unavailable` with a reason if the harness exposes neither usage nor cost.
-
-This makes absence visible but may not fully satisfy an evaluator expecting exact monetary cost; that is an unresolved harness risk. The notes file explains what additional telemetry a larger/direct API budget would enable, without making an API key part of the required path.
+`logs/public-research-log.jsonl` separately records each attempted, rejected,
+completed or not-performed action with query, timestamp, purpose, URL, source
+type, use decision, supported claims/citations, retrieved-page hash when retained
+and a false confidential-content flag. It never stores raw page content merely
+to prove research occurred. `logs/run-log-validation.json` records the local
+ledger audit result.
 
 ## Clean-clone and keyless operation
 
-The target operator journey is:
+The target operator journey is defined completely in `docs/runtime-flow.md` and
+`prompts/runtime/run_engine.md`:
 
 1. Clone the repository.
-2. Open it in an already authenticated Codex environment.
+2. Open it in an already authenticated Codex environment (or Claude Code using the same local file contract).
 3. Follow one native Python 3.11+ bootstrap path from README.
 4. Point the run configuration at a local room and separate local output folder.
-5. Start the Codex workflow, answer two generated question packets, and resume.
-6. Receive a validated local deliverable directory.
+5. Start the runtime prompt, answer the two generated question packets at the two enforced pauses, and resume each time with an explicit JSON answer file.
+6. Complete the candidate report, request red team in a brand-new context, reconcile verified challenges and receive a validated local deliverable directory.
 
-No `OPENAI_API_KEY` or other provider key is requested because Codex itself supplies model access through the user's subscription. Python performs local deterministic work only. Docker cannot be part of this acceptance path. A fresh-clone test records wall-clock time and fails if the engine is not running within 20 minutes.
+No `OPENAI_API_KEY`, Anthropic key or provider SDK is requested because the authenticated harness supplies any model access. Python performs local deterministic work only. Docker cannot be part of this acceptance path. Harness-specific abilities such as exact model visibility, token counters, task creation or selectable model tiers are checked at runtime and recorded as available or unavailable rather than assumed. A fresh-clone test records wall-clock time and fails if the engine is not running within 20 minutes.
 
 ## Run artifact contract
 

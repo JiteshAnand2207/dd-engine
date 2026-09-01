@@ -30,10 +30,11 @@ from dd_engine.evidence.pipeline import build_evidence_foundation
 from dd_engine.evidence.store import RECORD_PATHS, load_record_sets, write_record_set
 from dd_engine.extraction.models import stable_json_checksum
 from dd_engine.runs import load_manifest
+from dd_engine.runtime.logging import record_public_research
 from dd_engine.state import complete_stage, fail_stage, start_stage
 from dd_engine.time import utc_now
 
-ANALYSIS_INPUT_VERSION = "phase8-phase9-input-v1"
+ANALYSIS_INPUT_VERSION = "phase8-phase9-input-v2"
 
 PHASE8_OUTPUTS = (
     "workstreams/financial.json",
@@ -315,17 +316,22 @@ def _research_not_performed(context: AnalysisContext) -> None:
     path = context.run_path / "logs" / "public-research-log.jsonl"
     if path.is_file() and path.stat().st_size:
         return
-    append_json_line(
-        path,
+    record_public_research(
+        context.run_path,
         {
             "action": "not_performed",
+            "citations_supported": [],
+            "claim_ids_supported": [],
             "conclusion": (
                 "Source-room evidence was sufficient for the scoped analysis; public research "
                 "remained disabled."
             ),
+            "confidential_room_content_included": False,
             "purpose": "Phase 9 Irish legal/tax contextual research",
             "query": None,
-            "run_id": context.run_id,
+            "result_used": False,
+            "retrieved_page_sha256": None,
+            "source_type": None,
             "timestamp": utc_now(),
             "url": None,
         },

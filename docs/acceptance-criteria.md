@@ -170,15 +170,26 @@ The legal/contractual output declares Irish jurisdiction, distinguishes sourced 
 
 ### AC-038 - Checked-in route policy
 
-The repository contains a schema-valid route policy mapping deterministic, economy-mechanical, frontier-judgment and frontier-red-team profiles to concrete supported Codex model IDs or explicit availability resolution. (TB-053-TB-056)
+The repository contains a schema-valid policy with exactly
+`local_deterministic`, `economical_reasoning` and `frontier_judgment`. Concrete
+model IDs remain null unless the active harness exposes them; independent red
+team is a frontier task with a separate isolation rule, not a fourth route.
+(TB-053-TB-056, P11-004-P11-008)
 
 ### AC-039 - Route use is sensible and visible
 
-Every model reasoning unit has one run-log event containing route profile, resolved model, purpose, input/output hashes, timing, result and escalation reason. Mechanical tasks do not use frontier routes without a documented exception. (TB-019, TB-054-TB-057, TB-088)
+Every model reasoning unit has one run-log event containing route, visible model
+or null reason, purpose, source IDs, output hashes, timing, result and fallback.
+Mechanical tasks do not use frontier routes without a documented fallback or
+exception. (TB-019, TB-054-TB-057, TB-088, P11-005-P11-007)
 
 ### AC-040 - Usage and cost honesty
 
-Every model event has token-usage fields and one cost basis: exact provider-reported, estimate from a dated rate card, subscription-included, or unavailable with reason. Missing, silently zeroed or fabricated values fail validation. (TB-033, TB-088)
+Every task event has token-usage fields and an explicit basis. API-equivalent
+cost exists only from a versioned rate card; otherwise usage/cost are null with
+reasons. Actual billing mode, including subscription or local zero-model, is a
+separate field. Missing, silently zeroed or fabricated values fail validation.
+(TB-033, TB-088, P11-011-P11-014)
 
 ### AC-041 - Bigger-budget note
 
@@ -455,9 +466,79 @@ The handover reports all eleven requested metrics/checks and final Git inspectio
 shows no commit, push, confidential room data, credentials or generated run data
 in tracked changes. (P10-021-P10-022)
 
+## L. Phase 11 runtime routing and complete local ledgers
+
+### AC-085 - Exact three-class routing policy
+
+`config/model-routing.yaml` defines exactly the three required logical classes
+and maps every named task to the correct class. Economical reasoning is selected
+only when a cheaper suitable model is actually exposed; red team is a frontier
+task, not a fourth route. (P11-004-P11-006)
+
+### AC-086 - Honest model availability and zero-model work
+
+A local deterministic event records no model call, `local_no_model` billing and
+zero actual billed cost. A reasoning event records the actual model only when the
+harness exposes it; otherwise the model is null with a reason. The ledger never
+implies calls to multiple models merely because the policy contains multiple
+classes. (P11-007-P11-008)
+
+### AC-087 - Complete stage/model task records
+
+Each documented CLI stage invocation and each harness reasoning task has an
+append-only JSONL record containing the required identity, purpose, provider,
+routing, timing, source, usage, cost/billing, retry/fallback, error and output-
+checksum fields. Duplicate task IDs or an unlogged completed stage fail the log
+audit. (P11-009-P11-013, P11-021)
+
+### AC-088 - Usage, cost and sensitive-content honesty
+
+Token values are marked actual, estimated or unavailable. API-equivalent cost is
+present only from a versioned rate card; otherwise it and unavailable usage are
+null with explicit reasons. Subscription and local-zero-model billing are
+distinguished, and raw sensitive content is rejected from the task ledger.
+(P11-011-P11-014)
+
+### AC-089 - Complete public-research ledger
+
+Each public-research record contains the query, timestamp, purpose, URL, source
+type, use decision, supported claim/citation IDs and an affirmative check that no
+confidential room content entered the query. Disabled research records one
+schema-complete `not_performed` event. (P11-015)
+
+### AC-090 - Runtime artifact contract
+
+The two prompt files, the runtime-flow guide and `config/model-routing.yaml` exist
+at the exact requested paths. The main prompt contains the ordered 19-step flow,
+including vision handling, both human pauses, all workstreams, separate red-team
+request, reconciliation, validation and returned paths. (P11-016-P11-017)
+
+### AC-091 - Human gates cannot be fabricated or skipped
+
+The documented flow stops on both generated `awaiting_input` states and resumes
+only after explicit answer-file ingestion. Silence, `N/A`, partial answers and
+missing replies remain explicit; the runtime never creates deal-lead answers.
+(P11-018)
+
+### AC-092 - Codex-first, Claude-compatible operation
+
+Codex is the primary documented harness. Claude Code can follow the same local
+CLI and file prompts without a provider API SDK or key; documentation distinguishes
+installed/visible capabilities and does not claim model selection, tokens, costs
+or isolated-task creation that the active harness does not expose. (P11-003,
+P11-019-P11-020)
+
+### AC-093 - Logged public synthetic integration and scope boundary
+
+A disposable public-only synthetic run with explicit test-only answer files
+completes all implemented deterministic stages, and `audit-logs` reconciles every
+completed stage to at least one successful real task record. The run does not
+open planted truth, execute red team, commit or push. (P11-001-P11-002,
+P11-021-P11-024)
+
 ## Release gate
 
-The Phase 10 candidate bundle is eligible for handover when AC-002 through AC-084
+The Phase 11 runtime candidate is eligible for handover when AC-002 through AC-093
 applicable to implemented phases pass, every applicable locked architecture
 decision in [decisions.md](decisions.md) is implemented, remaining open risks have
 recorded dispositions, and final Git status contains no confidential room data,

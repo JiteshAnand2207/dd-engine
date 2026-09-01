@@ -20,9 +20,9 @@ The ignored inputs are planning sources, not evidence that they have ever been c
 
 **Status:** Accepted by user directive.
 
-Codex will orchestrate the run, perform model reasoning through the operator's authenticated subscription, invoke deterministic local tools, pause for the deal lead and create a separate red-team context. The required path will not depend on Claude Code or Cursor.
+Codex will orchestrate the primary run, perform model reasoning through the operator's authenticated subscription, invoke deterministic local tools, pause for the deal lead and request a separate red-team context. Claude Code may follow the same checked-in CLI and file prompts; neither path requires a provider-specific API SDK.
 
-**Consequences:** The README and `AGENTS.md` must describe one Codex-first flow. Harness portability may be designed at boundaries but is bonus scope. Model availability and usage telemetry are constrained by what the evaluator's Codex subscription exposes.
+**Consequences:** The README and runtime guide describe one Codex-first flow with an honest Claude Code compatibility boundary. Model selection, isolated-task creation and usage telemetry remain limited to capabilities actually exposed by the active harness.
 
 ### ADR-002 - Python 3.11+ is the deterministic supporting runtime
 
@@ -90,19 +90,33 @@ Red team receives only an allowlisted sealed packet containing the candidate rep
 
 ### ADR-010 - Model routing uses explicit capability profiles
 
-**Status:** Accepted, concrete model IDs open.
+**Status:** Accepted and implemented in Phase 11; concrete model visibility remains environment-dependent.
 
-Routes are `deterministic`, `economy_mechanical`, `frontier_judgment` and `frontier_red_team`. Checked-in config resolves profiles to concrete model IDs available in the supported Codex environment, and actual IDs are logged.
+Routes are exactly `local_deterministic`, `economical_reasoning` and
+`frontier_judgment`. Local work is a valid zero-model route. Economical reasoning
+uses a cheaper suitable model only when the active harness actually exposes one.
+Independent red team is a frontier task whose separate-context requirement is an
+isolation rule, not a fourth route. Checked-in config deliberately leaves model
+IDs null rather than guessing account entitlements.
 
-**Consequences:** The policy is clear and testable without hard-wiring a model the evaluator cannot access. Concrete defaults must be selected after entitlement discovery and recorded before implementation acceptance.
+**Consequences:** Every task records the logical route and the exact actual model
+only when visible; otherwise the model is null with a reason. A single-model
+harness must never be described as having made multiple model calls merely
+because more than one logical route exists.
 
 ### ADR-011 - Token and cost records are transparent, never fabricated
 
 **Status:** Accepted.
 
-Each model event records exposed token usage and one cost basis: provider-reported, estimate from a dated rate card, subscription-included, or unavailable with reason.
+Each task event records actual/estimated tokens only when available. Otherwise
+both values are null with a reason. API-equivalent cost is recorded only when it
+can be derived from usage and a versioned rate card; otherwise it is null with a
+reason. Actual billing mode is separate and includes subscription and local
+zero-model operation.
 
-**Consequences:** The run log remains honest under a subscription harness. Exact monetary cost may remain unavailable, which is a material trial risk requiring early validation.
+**Consequences:** The run log remains honest under subscription and opaque
+harness surfaces. Subscription mode is not itself an exact task cost, and the
+ledger never substitutes a fabricated precision.
 
 ### ADR-012 - Privacy is deny-by-default; research is a narrow logged exception
 
@@ -239,6 +253,28 @@ ledger expressly records that red team has not yet run and is a candidate-bundle
 validation, not a final release-ready claim. The independent red-team context is
 not created or simulated in this phase.
 
+### ADR-023 - Phase 11 uses file-backed orchestration and append-only honest ledgers
+
+**Status:** Accepted by user directive on 1 September 2026.
+
+`prompts/runtime/run_engine.md` is the primary Codex instruction and
+`docs/runtime-flow.md` is its operator runbook; Claude Code may follow the same
+files and CLI. Supporting Python makes no model request. It logs real local CLI
+tasks automatically to `logs/run-log.jsonl`; harness reasoning tasks and public
+research actions are appended through validated input records. The run-log audit
+reconciles completed manifest stages, task IDs, privacy flags and unavailable-
+usage reasons. Both intake rounds remain hard human stops.
+
+The red-team prompt is supplied for a future brand-new context. The drafting
+context may request that execution but cannot perform or simulate it. Automatic
+cross-harness task creation is not assumed; when unavailable, the operator must
+open a new session and provide only a sealed allowlist packet.
+
+**Consequences:** A clean clone has one deterministic CLI and prompt flow without
+a provider SDK or key. The repository can prove which local and reasoning tasks
+were actually recorded, but cannot recover hidden model identifiers, token usage
+or billing from Codex/Claude. Null plus a reason is the accepted honest result.
+
 ## Assumption register
 
 | ID | Assumption | Basis | If false |
@@ -257,6 +293,7 @@ not created or simulated in this phase.
 | U-001 | ADR-007: five formal workstreams plus a mandatory standalone Tax module with structured output, report section and required cross-links. |
 | U-002 | ADR-006: round one follows quick deterministic discovery; round two follows the complete register and preliminary full extraction. |
 | U-003 | ADR-012: public research is optional, disabled by default, target-name/market-only when enabled, and fully logged. |
+| U-004 | ADR-011/ADR-023: exposed usage may be recorded; otherwise token counts and API-equivalent cost remain null with reasons while subscription/local billing is recorded separately. |
 | U-006 | ADR-009: red team uses a brand-new Codex task/chat and allowlisted sealed packet; ordinary subagents require verified non-inheritance. |
 | U-007 | ADR-008: PDF, spreadsheet, DOCX and image citation locators are fixed by format. |
 | U-008 | ADR-015: the IC brief is an exactly two-page A4 PDF rendered and counted through an in-process pure-Python path. |
@@ -267,8 +304,7 @@ not created or simulated in this phase.
 
 | ID | Question | Safe default in this design | Impact / resolution owner |
 |---|---|---|---|
-| U-004 | Must cost be exact money, or is subscription-included/estimated/unavailable-with-reason acceptable? | Never fabricate; record explicit cost basis | High evaluation risk; validate Codex telemetry and ask evaluator. |
-| U-005 | Which concrete frontier and economy models are available under the evaluator's Codex subscription? | Capability profiles with actual resolved ID logged | High routing risk; environment discovery before locking config. |
+| U-005 | Which concrete frontier and economy models are available under the evaluator's active harness/account? | Leave configured IDs null; log exact IDs only when exposed and never infer multiple calls | High routing risk; environment discovery at run time. |
 | U-009 | Must clean-clone setup work offline, and which operating systems are in scope? | Do not claim offline or OS-specific support; minimize and lock native dependencies | High 20-minute risk; evaluator environment disclosure. |
 | U-010 | What archive size, nesting depth and file-size limits are acceptable? | Deny unsafe paths; bounded configurable limits with explicit quarantine | Medium resilience risk; benchmark and threat-model decision. |
 | U-013 | What retention/deletion policy applies to confidential run artifacts after evaluation? | Keep local only; do not auto-delete without explicit authorization | Medium privacy/operations risk; data owner. |
@@ -296,6 +332,11 @@ not created or simulated in this phase.
 
 ## Implementation-readiness decision
 
-**Status: Ready to begin implementation, but not ready to claim trial acceptance.**
+**Status: Phases 7-11 implemented; not ready to claim final trial acceptance.**
 
-The seven hardening decisions are locked and no longer block implementation. Remaining pre-handover blockers are empirical or evaluator-specific: validate Codex model/cost surfaces (U-004/U-005), benchmark the unknown clean-clone environment (U-009), define safe archive limits (U-010), prove spreadsheet handling (U-011), and obtain evaluation/retention thresholds where needed (U-013-U-015). None justifies inventing an environmental prerequisite now.
+The Phase 11 runtime and honest-ledger contract is implemented. Remaining final-
+release work includes an actually isolated red-team execution and reconciliation
+plus empirical or evaluator-specific matters: discover active-harness model
+visibility (U-005), benchmark the unknown clean-clone environment (U-009),
+confirm archive limits (U-010), and obtain retention/evaluation thresholds where
+needed (U-013-U-015). None justifies inventing an environmental prerequisite.

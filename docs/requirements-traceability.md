@@ -4,7 +4,7 @@
 
 This matrix is the implementation-planning baseline for the due-diligence engine. A requirement is counted when a source sentence or list item creates an independently verifiable imperative, constraint, deliverable, evaluation expectation, or project condition. Compound sentences are split only where their clauses require different components, outputs, or checks. Descriptive background is not counted. Illustrative analyst examples and non-engine commercial terms are retained because they constrain evaluation or delivery.
 
-The matrix contains **216 requirements**: 103 from the trial brief, 21 from the room specification, 14 from the planning directive, 25 from the Phase 7 directive, 15 from the Phase 8 directive, 16 from the Phase 9 directive and 22 from the Phase 10 directive. Component and path names are contracts; some are now implemented as described in the architecture status.
+The matrix contains **240 requirements**: 103 from the trial brief, 21 from the room specification, 14 from the planning directive, 25 from the Phase 7 directive, 15 from the Phase 8 directive, 16 from the Phase 9 directive, 22 from the Phase 10 directive and 24 from the Phase 11 directive. Component and path names are contracts; some are now implemented as described in the architecture status.
 
 ## Source register
 
@@ -17,6 +17,7 @@ The matrix contains **216 requirements**: 103 from the trial brief, 21 from the 
 | P8 | Phase 8 financial/commercial analysis directive, 1 September 2026 | Conversation record |
 | P9 | Phase 9 Irish legal/tax/operational/IT analysis directive, 1 September 2026 | Conversation record |
 | P10 | Phase 10 report and investment-committee brief directive, 1 September 2026 | Conversation record |
+| P11 | Phase 11 model-routing, run-logging and runtime-orchestration directive, 1 September 2026 | Conversation record |
 
 ## Trial brief requirements
 
@@ -269,6 +270,35 @@ The matrix contains **216 requirements**: 103 from the trial brief, 21 from the 
 | P10-021 | P10, scope | Do not commit or push. | Git boundary | Uncommitted local changes | Final status/log review. |
 | P10-022 | P10, handover | Report requirement IDs, files, word count, finding counts, citation coverage, calculations, page count, render inspection, limitations, commands and commit safety. | Handover | Final response | Eleven-item response checklist. |
 
+## Phase 11 model routing, run logging and runtime orchestration requirements
+
+| ID | Source | Normalized sentence-level requirement | Component | Output | Verification method |
+|---|---|---|---|---|---|
+| P11-001 | P11, before editing | Read the authoritative requirements and agent instructions, inspect implemented stages and logs, and preserve existing work before editing. | Implementation workflow | Reviewed baseline and scoped changes | Documentation/read audit and Git diff. |
+| P11-002 | P11, evidence boundary | Never read `synthetic/planted_issues/` during implementation or the synthetic rerun. | Path/evidence boundary | Public-only execution | Command and access-path review. |
+| P11-003 | P11, objective | Make one documented clean-clone flow accept an explicit arbitrary data-room path under Codex or Claude Code. | Runtime orchestration | Runtime prompt and runbook | Required-input and clean-flow review. |
+| P11-004 | P11, routing | Define `local_deterministic` for inventory, hashing, archive inspection, native extraction, spreadsheet calculations, citation validation and output checks. | Route policy | Checked-in route table | Config/task mapping assertions. |
+| P11-005 | P11, routing | Define `economical_reasoning` for classification, mechanical triage and bulk low-risk structuring, using a cheaper model only when actually available. | Route policy | Availability-gated economical route | Config and fallback-rule assertions. |
+| P11-006 | P11, routing | Define `frontier_judgment` for financial reasoning, contradiction resolution, contract analysis, intake prioritisation, report drafting and independent red team. | Route policy | Frontier route task map | Config/task mapping assertions. |
+| P11-007 | P11, honesty | Never claim that multiple or cheaper models were called when the harness exposes only one model or no selectable model. | Harness visibility contract | Null/actual model fields and fallback record | Ledger validation and manual environment check. |
+| P11-008 | P11, honesty | Treat local deterministic processing as a valid zero-model route. | Local task logger | Zero-model records | Unit test for null model/token/cost reasons and zero billing. |
+| P11-009 | P11, run log | Record run ID, stage, task ID, purpose, provider/harness, actual visible model and routing class for every logged stage/model task. | Append-only task ledger | `logs/run-log.jsonl` | Required-field audit. |
+| P11-010 | P11, run log | Record start, end, duration and supplied source IDs. | Task ledger | Timing/provenance fields | Timestamp/source-ID validation. |
+| P11-011 | P11, run log | Record input/output tokens and whether they are actual, estimated or unavailable. | Usage ledger | Token fields and basis | Null-reason and numeric consistency tests. |
+| P11-012 | P11, run log | Record API-equivalent estimated cost where possible and actual billing mode, including subscription. | Cost ledger | Cost/billing fields | Versioned-rate-card or null-reason validation. |
+| P11-013 | P11, run log | Record retry/fallback, error and output artifact checksums. | Task ledger | Reliability/output fields | Failure/retry/hash tests. |
+| P11-014 | P11, run log | Never invent exact usage/cost; use null with a reason when unavailable and avoid unnecessary raw sensitive content. | Honest/privacy-safe logging validator | Explicit unavailable reasons and content-free ledgers | Negative tests and privacy audit. |
+| P11-015 | P11, public research | Log query, timestamp, purpose, URL, source type, result-use decision, supported claims/citations and confirmation that no confidential room content entered the query. | Research ledger | `logs/public-research-log.jsonl` | Disabled and completed-action schema tests. |
+| P11-016 | P11, orchestration outputs | Create the two runtime prompts, runtime-flow guide and model-routing YAML at the four exact paths. | Runtime package | `prompts/runtime/*.md`, `docs/runtime-flow.md`, `config/model-routing.yaml` | File/content assertions. |
+| P11-017 | P11, runtime sequence | Make the main prompt implement the prescribed doctor-through-delivery 19-step sequence, including vision, two answer pauses, all workstreams, isolated red-team request, reconciliation and validation. | Main runtime prompt | Ordered operator flow | Prompt-step audit. |
+| P11-018 | P11, human gates | Never bypass an `awaiting_input` state or invent a deal-lead response. | Pause/resume controller and prompt | Two enforced human stops | Integration state assertions. |
+| P11-019 | P11, compatibility | Keep Codex as the primary documented runtime harness. | Runtime documentation | Codex-first runbook | Documentation test. |
+| P11-020 | P11, compatibility | Let Claude Code use the same CLI/prompts without a provider SDK and explain capability differences honestly. | Harness-neutral file contract | Compatibility section | Documentation/config assertions. |
+| P11-021 | P11, synthetic rerun | Rerun the public synthetic example so every completed stage has real task-log coverage. | Integration workflow | Disposable complete run and log audit | Completed-stage reconciliation. |
+| P11-022 | P11, handover | Report the twelve requested implementation, routing, usage, flow, log, privacy, test and commit-safety items. | Handover | Final response | Twelve-item checklist. |
+| P11-023 | P11, scope | Do not run or simulate the independent red team in this chat. | Scope boundary | Candidate status remains unreconciled | Red-team artifact/access review. |
+| P11-024 | P11, Git boundary | Do not commit or push. | Repository safety | Uncommitted local changes | Final Git status/log review. |
+
 ## Coverage index for specifically named concerns
 
 | Concern | Primary requirement IDs | Planned owner |
@@ -282,12 +312,13 @@ The matrix contains **216 requirements**: 103 from the trial brief, 21 from the 
 | Phase 8 Financial/Commercial analysis | P8-001-P8-015 | Sequential analytical pipeline |
 | Phase 9 Legal/Tax/Operations/IT analysis | P9-001-P9-016 | Sequential analytical pipeline and standalone Tax module |
 | Phase 10 report and IC brief | P10-001-P10-022 | Structured report assembly, deterministic A4 renderer and fail-closed bundle validation |
+| Phase 11 runtime and honest logging | P11-001-P11-024 | Three-class routing policy, append-only task/research ledgers and Codex/Claude file-backed orchestration |
 | Citation validation and duplicate independence | P7-011-P7-016 | Format-native citation validator |
 | Calculation provenance | TB-027, P7-007, P7-015, P7-017-P7-020 | Safe deterministic recomputation ledger |
-| Model routing | TB-019, TB-053-TB-057, TB-088 | Routing policy and invocation ledger |
-| Token and cost logging | TB-033, TB-088 | Invocation/cost ledger |
+| Model routing | TB-019, TB-053-TB-057, TB-088, P11-004-P11-008 | Routing policy and invocation ledger |
+| Token and cost logging | TB-033, TB-088, P11-009-P11-014 | Invocation/cost ledger |
 | Privacy restrictions | TB-062-TB-065, RS-015 | Egress guard and local artifact store |
-| Public-research logging | TB-066-TB-067 | Research broker and ledger |
-| Clean-clone setup | TB-059-TB-060, TB-071, TB-085 | Bootstrap/runbook |
+| Public-research logging | TB-066-TB-067, P11-015 | Research broker and ledger |
+| Clean-clone setup | TB-059-TB-060, TB-071, TB-085, P11-003, P11-016-P11-020 | Bootstrap/runbook and runtime prompts |
 | 20-minute setup | TB-061 | Timed acceptance test |
 | Five final deliverables | TB-071-TB-075 | Output packager and delivery manifest |

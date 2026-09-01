@@ -17,7 +17,7 @@ from dd_engine.analysis.context import (
 from dd_engine.analysis.records import AnalysisRecords, CitationSpec
 from dd_engine.evidence.models import JsonObject
 
-PHASE8_VERSION = "phase8-analysis-v1"
+PHASE8_VERSION = "phase8-analysis-v2"
 
 
 def _money(value: float) -> str:
@@ -1204,7 +1204,7 @@ def build_phase8(context: AnalysisContext) -> tuple[AnalysisRecords, dict[str, J
     ]
     common = {
         "analysis_version": PHASE8_VERSION,
-        "generated_by": "deterministic local analytical rules with Codex-authored interpretations",
+        "generated_by": "deterministic local analytical rules; Python made no model call",
         "independent_valuation_provided": False,
         "limitations": limitations,
         "run_id": context.run_id,

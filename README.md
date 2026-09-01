@@ -11,7 +11,9 @@ Phase 7 evidence foundation. Findings separate source fact from inference, retai
 reported and recomputed values, and cannot run until both intake rounds have
 explicitly ingested answers. Phase 10 assembles the full adviser report and
 exactly two-page A4 investment-committee brief, then validates the candidate
-bundle fail closed. Independent red-team execution remains a later release gate.
+bundle fail closed. Phase 11 adds the three-class model-routing contract,
+complete local task/research ledgers and one Codex-first, Claude-compatible
+runtime flow. Independent red-team execution remains a later release gate.
 
 ## Requirements and installation
 
@@ -67,6 +69,22 @@ The `[extraction]` section locks deterministic-first handling, controls optional
 OCR, sets the native-PDF text threshold and PDF render scale, and uses an
 explicit unsupported-format quarantine policy. These values, detected OCR
 capability and extractor/dependency versions form the cache fingerprint.
+
+## Primary runtime flow
+
+For a complete clean-clone run, open this repository in Codex, provide an
+explicit data-room path and follow [the runtime prompt](prompts/runtime/run_engine.md).
+The operator sequence, answer-file format, routing and logging contracts are in
+[the runtime guide](docs/runtime-flow.md). Claude Code may use the same prompt and
+CLI. Codex remains primary; neither harness is assumed to expose an exact model
+ID, selectable cheaper tier, token counts, billing or automatic isolated-task
+creation.
+
+The checked-in [routing policy](config/model-routing.yaml) has exactly three
+classes: `local_deterministic`, `economical_reasoning` and
+`frontier_judgment`. Local work is an honest zero-model route. A cheaper model is
+used only when the active harness actually exposes one. Python never resolves or
+calls a model.
 
 ## Run procedure
 
@@ -221,6 +239,23 @@ sections/placeholders are checked. The deterministic PDF renderer fails before
 overflow and the validator requires exactly two ISO A4 pages. `validate` repeats
 the bundle checks independently. A passing Phase 10 validation does not imply
 that the later independent red-team/reconciliation gate has run.
+
+Every documented CLI stage invocation appends a privacy-safe zero-model record to
+`logs/run-log.jsonl` and refreshes `logs/run-log.md`. Record actual harness
+reasoning with `log-task`, public research with `log-research`, and reconcile all
+completed stages with:
+
+```text
+python -m dd_engine log-task --run runs/<run_id> --input /path/to/task.json
+python -m dd_engine log-research --run runs/<run_id> --input /path/to/research.json
+python -m dd_engine audit-logs --run runs/<run_id> --json
+```
+
+Unavailable model IDs, tokens and API-equivalent costs remain null with explicit
+reasons. API-equivalent cost is calculated only from usage and a versioned rate
+card; subscription is recorded as a billing mode, not converted into a fictional
+per-task charge. Logs contain identifiers, source IDs, timings and output hashes,
+not raw sensitive room content. See the runtime guide for the complete schemas.
 
 ## Run structure and resumption
 

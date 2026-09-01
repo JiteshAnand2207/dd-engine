@@ -1,0 +1,63 @@
+schema_version: 1
+
+runtime:
+  primary_harness: codex
+  compatible_harnesses:
+    - codex
+    - claude_code
+  provider_api_sdk_required: false
+  direct_api_enabled: false
+  model_resolution: harness_runtime_only
+  unresolved_model_value: null
+
+routing_classes:
+  local_deterministic:
+    model_required: false
+    configured_model: null
+    provider_harness: local_python
+    tasks:
+      - inventory
+      - hashing
+      - archive_inspection
+      - native_extraction
+      - spreadsheet_calculations
+      - citation_validation
+      - output_checks
+    usage_policy: zero_model_route_tokens_and_api_cost_not_applicable
+
+  economical_reasoning:
+    model_required: true
+    configured_model: null
+    tasks:
+      - classification
+      - mechanical_document_triage
+      - bulk_low_risk_structuring
+    availability_policy: use_only_when_the_active_harness_explicitly_exposes_a_cheaper_model
+    unavailable_policy: use_the_single_visible_harness_model_and_log_the_fallback_honestly
+    prohibited_claim: never_label_the_active_model_as_cheaper_without_visibility
+
+  frontier_judgment:
+    model_required: true
+    configured_model: null
+    tasks:
+      - financial_reasoning
+      - contradiction_resolution
+      - contract_analysis
+      - intake_prioritisation
+      - report_drafting
+      - independent_red_team
+    availability_policy: use_the_strongest_judgment_model_actually_available_in_the_harness
+    unavailable_policy: use_the_single_visible_harness_model_and_record_actual_model_as_null_if_hidden
+    red_team_policy: isolated_new_task_or_chat_with_no_inherited_context
+
+logging:
+  task_ledger: logs/run-log.jsonl
+  human_summary: logs/run-log.md
+  audit_result: logs/run-log-validation.json
+  public_research_ledger: logs/public-research-log.jsonl
+  raw_sensitive_content_logged: false
+  unavailable_usage_value: null
+  unavailable_usage_requires_reason: true
+  unavailable_cost_value: null
+  unavailable_cost_requires_reason: true
+  api_equivalent_cost_requires_versioned_rate_card: true
