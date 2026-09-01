@@ -29,16 +29,17 @@ operator instruction, report the conflict before editing a planning document.
   `runs/<run_id>/` directory and record the run ID in every artifact.
 - Never commit or push unless the operator explicitly requests it.
 
-## Phase 7 scope and engineering rules
+## Phase 9 scope and engineering rules
 
 - Codex is the primary reasoning harness. Python is deterministic local support
   and must not call a model API or require a provider API key.
 - The native Python 3.11+ path must work without Docker, a database, cloud storage
   or a mandatory system utility.
 - `register`, `extract`, the two-round `intake` stage and the extraction-dependent
-  `evidence` foundation are implemented in Phase 7. `analyse`, `report` and
-  `validate` remain interfaces that must report `stage not implemented` and must
-  not generate placeholder success artifacts.
+  `evidence` foundation are implemented in Phase 7. Sequential Phase 8 and Phase 9
+  analysis is implemented through `analyse --phase 8` and `analyse --phase 9`.
+  `report` and `validate` remain interfaces that must report `stage not
+  implemented` and must not generate placeholder success artifacts.
 - The evidence foundation may run while intake is paused. It may materialize
   unanswered questions and extraction limitations as gaps, but it must not mark
   intake or analysis complete, infer an answer, draft a workstream or create a
@@ -80,6 +81,17 @@ operator instruction, report the conflict before editing a planning document.
 - Preserve resumable failure records. Validate required artifacts before marking
   a stage completed, and invalidate downstream work when upstream checksums change.
 - Preserve unrelated user changes. Do not weaken, skip or falsely report tests.
+- Phase 8 writes financial and commercial workstreams only after both intake
+  rounds are explicitly ingested. Phase 9 requires current passing Phase 8
+  outputs and writes legal/contractual, operational/management and IT workstreams
+  plus the standalone Tax module. Neither phase drafts the final report.
+- Analytical findings separate source fact from inference, carry validated native
+  citations, retain contradictions and limitations, and state confidence,
+  transaction implications and exact next actions. Customer names are not merged
+  without contract, address, VAT, answer or equivalent identity evidence.
+- Irish legal and tax findings are commercial diligence, not formal opinions.
+  Public research remains supplemental, disabled by default and fully logged when
+  performed; confidential source text must never enter a public query.
 
 ## Local verification
 
@@ -88,4 +100,5 @@ validation, run initialization/register/extract/evidence/status, lint and type c
 documented in `README.md`. For the canonical synthetic run, generate round-one
 questions and keep intake in `awaiting_input`; the evidence foundation may record
 those unanswered matters as gaps, but never fabricate the deal lead's answers or
-proceed to workstream analysis.
+proceed to workstream analysis. Exercise Phase 8 and Phase 9 only in a disposable
+test run containing explicit test-only answers for both rounds.

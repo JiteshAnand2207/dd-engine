@@ -2,7 +2,7 @@
 
 ## Status and scope
 
-This document defines the implementation architecture. Phase 7 implements the deterministic source register, tiered local-first extraction, two-round evidence-grounded intake with real human pauses, and an extraction-dependent evidence/calculation foundation. Workstream analysis, reporting and final validation remain later-stage contracts. The chosen runtime harness is **Codex**. Deterministic supporting code targets **Python 3.11 or later**. The native path works without Docker; a container may later be offered only as an optional convenience.
+This document defines the implementation architecture. Phase 7 implements the deterministic source register, tiered local-first extraction, two-round evidence-grounded intake with real human pauses, and an extraction-dependent evidence/calculation foundation. Phases 8 and 9 implement the sequential analytical workstreams and standalone Tax module. Reporting, red team and final validation remain later-stage contracts. The chosen runtime harness is **Codex**. Deterministic supporting code targets **Python 3.11 or later**. The native path works without Docker; a container may later be offered only as an optional convenience.
 
 The design optimizes for an auditable cold run over an unseen, confidential room. It separates repeatable mechanics from model judgment, makes human pauses resumable, isolates red-team context, and never turns a partial or privacy-unsafe run into an apparent success.
 
@@ -54,9 +54,11 @@ flowchart TD
 
 Stage 3 comprises both human pauses and their question-generation/resume contracts. Round one follows quick deterministic discovery. Round two follows the complete source register and preliminary full extraction. Stage 4 starts only after round two is answered or the deal lead explicitly records that an answer is unavailable. Stage 6 packages only validated artifacts.
 
-## Planned repository boundaries
+## Repository boundaries
 
-Names below are contracts for implementation, not files that exist yet.
+Names below are contracts. Register, extraction, intake, evidence and analysis
+components exist; reporting, red-team packaging and final-deliverable components
+remain planned.
 
 ```text
 AGENTS.md                         Codex entry contract and privacy rules
@@ -183,11 +185,26 @@ The five formal workstreams are:
 
 Each consumes the shared evidence index and relevant deal-lead answers, but writes separate claim, gap, question and priority records. Cross-workstream claims are linked, not copied. Each section must state findings, evidence, contradictions, calculations, limitations, management questions and go/no-go or price/structure implications.
 
+The implemented analysis command is deliberately sequential. `analyse --phase 8`
+requires completed two-round intake and creates Financial and Commercial outputs
+plus calculation and evidence-backed customer-grouping schedules. It leaves the
+analysis stage running. `analyse --phase 9` requires current passing Phase 8
+validation, creates Legal/contractual, Operational/management and IT outputs plus
+the standalone Tax output, runs citation/version/tax/privacy/missing-evidence
+checks, and completes analysis. Both phases write into typed shared JSONL stores,
+are fingerprinted for safe reuse, and do not draft `report.md`.
+
 ### Tax handling
 
 Tax is a **mandatory standalone analytical module**, not a sixth formal workstream and not owned by Financial. It consumes the shared evidence index and deal-lead answers, writes structured `tax/tax-findings.json` plus narrative `tax/tax-analysis.md`, and supplies its own top-level Tax section in `report.md`. VAT, PAYE, CT, amended returns, tax clearance, tax computations, invoice samples and tax-response versions receive explicit coverage and tie-outs.
 
 Each tax finding has its own ID, evidence links, calculation links, confidence, impact and follow-up. Where relevant, the module creates bidirectional finding links into Financial, Legal/contractual, Operational/management and IT; absence of a relevant cross-link is a validation error. The five formally named workstreams remain unchanged.
+
+Irish legal and tax outputs are explicitly commercial diligence, not formal legal
+or tax opinions. Effective clauses and revised tax responses are selected through
+registered version evidence. Any public research is supplemental, excludes
+confidential document text, and is recorded locally with query, timestamp,
+purpose, URL and conclusion; the current default records `not_performed`.
 
 ### Intake questions and human pauses
 

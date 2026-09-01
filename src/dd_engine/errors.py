@@ -51,3 +51,7 @@ class IntakeError(DDEngineError):
 
 class EvidenceError(DDEngineError):
     """Raised when the evidence foundation cannot be built or trusted."""
+
+
+class AnalysisError(DDEngineError):
+    """Raised when workstream analysis cannot safely start or validate."""

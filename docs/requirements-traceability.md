@@ -4,7 +4,7 @@
 
 This matrix is the implementation-planning baseline for the due-diligence engine. A requirement is counted when a source sentence or list item creates an independently verifiable imperative, constraint, deliverable, evaluation expectation, or project condition. Compound sentences are split only where their clauses require different components, outputs, or checks. Descriptive background is not counted. Illustrative analyst examples and non-engine commercial terms are retained because they constrain evaluation or delivery.
 
-The matrix contains **163 requirements**: 103 from the trial brief, 21 from the room specification, 14 from the planning directive, and 25 from the Phase 7 directive. Component and path names are contracts; some are now implemented as described in the architecture status.
+The matrix contains **194 requirements**: 103 from the trial brief, 21 from the room specification, 14 from the planning directive, 25 from the Phase 7 directive, 15 from the Phase 8 directive and 16 from the Phase 9 directive. Component and path names are contracts; some are now implemented as described in the architecture status.
 
 ## Source register
 
@@ -14,6 +14,8 @@ The matrix contains **163 requirements**: 103 from the trial brief, 21 from the 
 | RS | [Real-room document specification](../specs_req_room.pdf), pages 1-2 | SHA-256 `F99A520DE1505412926341A4A51F2992A9BC96A0D98E1218526445BEDFC510B8` |
 | USR | Current task directive, 31 August 2026 | Conversation record |
 | P7 | Phase 7 evidence/calculation directive, 1 September 2026 | Conversation record |
+| P8 | Phase 8 financial/commercial analysis directive, 1 September 2026 | Conversation record |
+| P9 | Phase 9 Irish legal/tax/operational/IT analysis directive, 1 September 2026 | Conversation record |
 
 ## Trial brief requirements
 
@@ -195,8 +197,49 @@ The matrix contains **163 requirements**: 103 from the trial brief, 21 from the 
 | P7-021 | P7, outputs | Create the six named JSONL record stores, `citation_validation.json` and `evidence_coverage.md`. | Evidence pipeline | Eight named artifacts | File-existence and run-ID checks. |
 | P7-022 | P7, tests | Test valid and invalid PDF, spreadsheet, DOCX, duplicate, superseded-version and calculation citations. | Test suite | `tests/test_evidence.py` | Focused fixture suite. |
 | P7-023 | P7, synthetic run | Run the evidence foundation against the synthetic room without consulting the answer key. | Canonical run procedure | Run-local evidence artifacts | Public-only validation plus evidence command. |
-| P7-024 | P7, scope | Do not draft workstream prose or the report in Phase 7. | Stage boundary | `analyse`/`report` remain unimplemented | CLI/state and output-tree assertions. |
+| P7-024 | P7, scope | Do not draft workstream prose or the report in Phase 7. | Stage boundary | Phase 7 leaves `analyse`/`report` untouched | CLI/state and output-tree assertions. |
 | P7-025 | P7, scope | Do not commit or push. | Git scope control | Uncommitted changes only | Final Git status/log inspection. |
+
+## Phase 8 financial and commercial analysis requirements
+
+| ID | Source | Normalized sentence-level requirement | Component | Output | Verification method |
+|---|---|---|---|---|---|
+| P8-001 | P8, gate | Read authoritative instructions and inspect evidence, calculations, contradictions, gaps and explicit intake answers before analysis; never use planted truth. | Sequential analysis gate | Input fingerprint and refusal state | Paused-intake/no-output test and path audit. |
+| P8-002 | P8, outputs | Create the required Financial and Commercial JSON/Markdown, calculation and customer-grouping artifacts. | Phase 8 pipeline/renderers | Six named operator artifacts | File/run-ID assertions. |
+| P8-003 | P8, standard | Distinguish analytical conclusions and inferences from source-document summaries. | Finding schema/renderer | Separate source-fact and analytical-reasoning fields | Finding-schema and Markdown-heading tests. |
+| P8-004 | P8, standard | For every material finding state conclusion, evidence, contrary/limiting evidence, recomputation, materiality, confidence, why it matters, transaction implication and exact action. | Finding validator | Structured issue/finding records | Required-field and hedge/uncertainty checks. |
+| P8-005 | P8, financial | Evaluate six-year statutory results, management/statutory bridges, revenue/EBITDA, adjustments, quality of earnings and gross margin. | Financial builder | FIN-001/FIN-002 plus limitations | Synthetic headline assertions and coverage ledger. |
+| P8-006 | P8, financial | Evaluate concentration, debtors/creditors, other debtors/prepayments and normalized working capital. | Financial/commercial builders | FIN-003/FIN-004/COMM-001 plus limitations | Native-cell recomputation tests. |
+| P8-007 | P8, financial | Evaluate debt, loans, HP, debt-like items, cash/restricted cash, fixed assets, disposals and related parties. | Financial builder | FIN-005 plus explicit gaps | Debt schedule and missing-evidence checks. |
+| P8-008 | P8, financial | Evaluate PAYE/contractor headcount, forecasts/pipeline, missing monthly performance and tax figures affecting finance. | Financial builder | FIN-006-FIN-008 plus coverage limitations | Headcount/pipeline tests and Phase 9 tax links. |
+| P8-009 | P8, commercial | Evaluate contracted/reported revenue, customer longevity/churn, disputes, renewal/termination, pricing/margin, pipeline, client headcount, supplier/channel and unsupported claims. | Commercial builder | COMM-001-COMM-004 plus coverage limitations | Synthetic findings and gap ledger. |
+| P8-010 | P8, grouping | Do not merge similar customer names without evidence; retain candidates until contract/address/VAT/answer evidence supports a group. | Customer grouping engine | Decision/basis/member records | Contract-confirmed and candidate assertions. |
+| P8-011 | P8, validation | Validate material citations, duplicate independence, required fields, uncertainty language and missing evidence. | Phase 8 validator | `phase_8_validation.json` | Passing integration and failure fixtures. |
+| P8-012 | P8, scope | Do not provide an independent valuation. | Scope guard | Valuation disclaimer/flag | Payload and text assertions. |
+| P8-013 | P8, scope | Do not draft the final report. | Stage/output boundary | No report artifact | Output-tree and stage-state assertions. |
+| P8-014 | P8, sequencing | Leave analysis running after passing Phase 8 so Phase 9 remains mandatory. | Stage orchestrator | Analyse state `running` | Integration assertion. |
+| P8-015 | P8, verification | Run validators, tests, lint and type checks and preserve unrelated work without commit/push. | Verification workflow | Local command results and Git diff | Full-suite/static/status review. |
+
+## Phase 9 Irish legal, tax, operational and IT analysis requirements
+
+| ID | Source | Normalized sentence-level requirement | Component | Output | Verification method |
+|---|---|---|---|---|---|
+| P9-001 | P9, gate | Require source register, evidence, intake answers and current completed Phase 8 outputs; never use planted truth. | Sequential analysis gate | Phase 8 fingerprint prerequisite | Missing/stale Phase 8 rejection tests. |
+| P9-002 | P9, outputs | Create structured and Markdown Legal/contractual, Operational/management and IT outputs plus standalone Tax outputs. | Phase 9 pipeline/renderers | Seven named analysis artifacts | File/run-ID assertions. |
+| P9-003 | P9, standard | Give each material issue conclusion, evidence, counterevidence/limitation, materiality, confidence, transaction implication and action. | Shared finding schema | Typed records and workstream Markdown | Required-field/citation validation. |
+| P9-004 | P9, legal | Evaluate corporate/ownership, cap table, constitution, change-of-control, amendments, termination, pricing, liability, disputes, employment/contractors, property, insurance/licences, permits, IP, privacy and missing references. | Legal builder | LEGAL-001-LEGAL-005 plus coverage/gaps | Synthetic findings and coverage ledger. |
+| P9-005 | P9, tax | Reconcile VAT, Xero summaries, original/amended filings, charges/payments, PAYE, CT, refunds, computations, TB, invoice samples, clearance and response versions. | Tax builder | TAX-001-TAX-003 plus coverage/gaps | Deterministic tax checks. |
+| P9-006 | P9, operations | Evaluate key-person/workforce/client headcount, supplier/capacity, controls, related parties, continuity and missing evidence. | Operational builder | OPS-001/OPS-002 plus coverage/gaps | Synthetic findings and missing-evidence checks. |
+| P9-007 | P9, IT | Evaluate hosting, access, cybersecurity, backup/restore, DR, vendors, software/IP, GDPR, incidents and missing technical evidence. | IT builder | IT-001/IT-002 plus coverage/gaps | Synthetic findings and privacy checks. |
+| P9-008 | P9, versions | Resolve amendments, revised tax responses and ZIP updates through version evidence; never cite an obsolete clause as current. | Version-aware analysis | Effective-version decisions | Source-ID/status validation. |
+| P9-009 | P9, tax validation | Independently recompute tax tie-outs and retain unresolved computation/ledger/return contradictions. | Calculation/contradiction ledger | CALC-TAX and CON-TAX records | Recomputer and contradiction assertions. |
+| P9-010 | P9, jurisdiction | Distinguish commercial Irish diligence from formal legal or tax opinions and do not invent Irish-law conclusions. | Scope validator | Opinion-status fields/disclaimer | Unsupported-opinion check. |
+| P9-011 | P9, research | Use authoritative public sources only when needed, never query confidential text, and log query/timestamp/purpose/URL/conclusion; research remains supplemental. | Research boundary/ledger | Local research JSONL | Disabled `not_performed` assertion and schema audit. |
+| P9-012 | P9, privacy | Validate PII handling and keep confidential room content local. | PII/egress validator | Privacy check result | Pattern scan and no-network audit. |
+| P9-013 | P9, validation | Validate citations, amendments/versions, questionnaire references, tax recomputation, missing evidence and unsupported legal conclusions. | Phase 9 validator | `phase_9_validation.json` | Passing integration/failure conditions. |
+| P9-014 | P9, completion | Complete analysis only after Phase 8 and Phase 9 artifacts validate; preserve resumable failure state otherwise. | Stage orchestrator | Completed or failed analyse state | State/artifact tests. |
+| P9-015 | P9, scope | Do not create the full report, commit or push. | Output/Git boundary | No report; uncommitted changes | Output-tree and Git status review. |
+| P9-016 | P9, verification | Run public-only synthetic analysis with explicit test answers plus complete tests, doctor, lint and type checks. | Verification workflow | Command results | Full acceptance run. |
 
 ## Coverage index for specifically named concerns
 
@@ -208,6 +251,8 @@ The matrix contains **163 requirements**: 103 from the trial brief, 21 from the 
 | Two intake rounds | TB-020-TB-022 | Human pause/resume controller |
 | Source-level citations | TB-040-TB-043, TB-082 | Evidence-address service |
 | Phase 7 structured records | P7-005-P7-010 | Evidence foundation |
+| Phase 8 Financial/Commercial analysis | P8-001-P8-015 | Sequential analytical pipeline |
+| Phase 9 Legal/Tax/Operations/IT analysis | P9-001-P9-016 | Sequential analytical pipeline and standalone Tax module |
 | Citation validation and duplicate independence | P7-011-P7-016 | Format-native citation validator |
 | Calculation provenance | TB-027, P7-007, P7-015, P7-017-P7-020 | Safe deterministic recomputation ledger |
 | Model routing | TB-019, TB-053-TB-057, TB-088 | Routing policy and invocation ledger |

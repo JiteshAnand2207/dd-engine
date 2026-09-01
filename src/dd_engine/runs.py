@@ -91,6 +91,10 @@ def create_run(config: EngineConfig, *, runs_root: Path | None = None) -> Path:
     try:
         for directory_name in RUN_DIRECTORY_NAMES:
             (run_path / directory_name).mkdir()
+        # Analysis owns these later-phase roots. They are not required when loading legacy
+        # Phase 7 runs, but all newly initialized runs receive the complete structure.
+        (run_path / "tax").mkdir()
+        (run_path / "citations").mkdir()
         now = utc_now()
         manifest: dict[str, Any] = {
             "config": {

@@ -184,6 +184,40 @@ make free-standing material claims. Phase 7 can be exercised safely on the
 canonical room while round one remains `awaiting_input`, but it cannot be
 represented as workstream analysis or used to bypass the deal-lead gate.
 
+### ADR-020 - Analysis is split into sequential Phase 8 and Phase 9 gates
+
+**Status:** Accepted by user directive on 1 September 2026.
+
+`analyse --phase 8` requires completed two-round intake and creates only the
+Financial and Commercial workstreams, calculations and customer-grouping
+schedule. It leaves analysis running. `analyse --phase 9` requires a current,
+passing Phase 8 fingerprint and creates Legal/contractual,
+Operational/management, IT and standalone Tax outputs before completing
+analysis. Both phases merge their records idempotently into the shared typed
+evidence stores and validate before stage progression.
+
+**Consequences:** Silence cannot create analysis, Phase 9 cannot bypass Phase 8,
+and a changed input invalidates reuse through a deterministic fingerprint. The
+canonical paused run remains untouched; disposable integration runs use explicit
+test-only answers. Report drafting and final validation remain unimplemented.
+
+### ADR-021 - Analytical conclusions are structured, version-aware and scoped
+
+**Status:** Accepted by user directive on 1 September 2026.
+
+Every material finding separates source fact from analytical reasoning and states
+conclusion, evidence, contrary evidence or limitation, recomputation where
+relevant, materiality, confidence, transaction implication and exact action.
+Customer groups require identity evidence rather than name similarity. Legal and
+tax outputs are commercial Irish diligence, not formal opinions; amendments and
+revised responses are resolved through registered version evidence. Public
+research is supplemental, confidential-text-free and locally logged, including a
+`not_performed` record when disabled.
+
+**Consequences:** Unsupported summaries, stale clauses, unexplained hedging,
+duplicate-document corroboration and unverified headline numbers fail validation.
+Phase 8/9 create no valuation or final report.
+
 ## Assumption register
 
 | ID | Assumption | Basis | If false |

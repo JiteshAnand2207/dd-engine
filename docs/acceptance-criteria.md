@@ -308,6 +308,88 @@ all unanswered round-one matters and pending extraction/vision limitations as ga
 while intake stays `awaiting_input` and analysis/reporting remain unstarted.
 (P7-003, P7-023-P7-024)
 
+## J. Phase 8 and Phase 9 analysis
+
+### AC-064 - Sequential answer gate
+
+Phase 8 refuses to run until both intake rounds have explicit answer artifacts and
+the intake stage is completed. Phase 9 refuses to run until current Phase 8
+validation passes. A refusal creates no workstream success artifact. (P8-001,
+P9-001)
+
+### AC-065 - Phase 8 output contract
+
+Phase 8 creates the Financial and Commercial JSON/Markdown pairs,
+`financial_calculations.md` and `customer_grouping.md`; every artifact contains the
+run ID and Phase 8 leaves analysis running rather than falsely complete. (P8-002,
+P8-014)
+
+### AC-066 - Adviser-quality finding schema
+
+Every material Phase 8/9 finding separates source fact from inference and includes
+a conclusion, valid evidence, contradiction or explicit limitation, recomputation
+where relevant, materiality, confidence, transaction implication and exact next
+action. Document-summary-only findings fail. (P8-003-P8-004, P9-003)
+
+### AC-067 - Financial and commercial recomputation exemplars
+
+The canonical public synthetic fixture recomputes the unsupported EBITDA
+adjustment, working-capital formula, 90+ debtors, debt/debt-like position, pipeline
+total, group concentration and client-linked headcount from native source
+locators. Reported values remain separate. (P8-005-P8-009)
+
+### AC-068 - Evidence-backed customer grouping
+
+Customer similarity alone never confirms a group. A confirmed group identifies
+the contract, address, VAT, answer or equivalent evidence used; other suggested
+groups remain candidates. Exact duplicates do not add corroboration. (P8-010)
+
+### AC-069 - Phase 9 output contract
+
+Phase 9 creates Legal/contractual, Operational/management and IT JSON/Markdown
+pairs plus `tax/tax-findings.json` and `tax/tax-analysis.md`, then completes the
+analysis stage only after all required validations pass. (P9-002, P9-004-P9-007,
+P9-014)
+
+### AC-070 - Effective-version decisions
+
+Legal amendments, revised questionnaire responses and updated ZIP documents are
+resolved through registered version evidence. A potentially superseded clause is
+not presented as current without acknowledgement. (P9-008)
+
+### AC-071 - Tax reconciliation checks
+
+VAT original/amended returns and summaries, payments/charges/refunds, PAYE,
+corporation tax, trial balance, computation and response versions receive explicit
+tie-outs or limitations. Headline tax calculations independently recompute. (P9-009)
+
+### AC-072 - Irish scope and public-research boundary
+
+Legal and tax findings state that they are commercial diligence, not formal Irish
+legal or tax opinions. Public research is supplemental, contains no confidential
+document text, and is logged with query, timestamp, purpose, URL and conclusion;
+`not_performed` is logged when disabled. (P9-010-P9-011)
+
+### AC-073 - Analysis validation bundle
+
+Analysis validation checks citations, amendment/version choices, questionnaire
+references, tax recomputation, PII handling, missing evidence, unsupported legal
+conclusions and required finding fields. A failed check fails analysis. (P8-011,
+P9-012-P9-013)
+
+### AC-074 - No report or valuation
+
+Phases 8 and 9 create no `report.md`, IC brief, independent valuation or
+placeholder report success artifact. `report` and final `validate` continue to
+report `stage not implemented`. (P8-012-P8-013, P9-015)
+
+### AC-075 - Public synthetic analytical integration
+
+A disposable public synthetic run with explicit test-only answers executes Phase
+8 and then Phase 9, validates all material citations and headline calculations,
+and never opens `synthetic/planted_issues/`. The canonical operator run remains
+paused without fabricated answers. (P8-015, P9-016)
+
 ## Release gate
 
-Implementation is eligible for trial handover only when AC-002 through AC-063 pass, every locked architecture decision in [decisions.md](decisions.md) is implemented, remaining open risks have recorded dispositions, and the final Git status contains no confidential room data, generated run data or credentials. AC-001 applies only to the original planning task.
+Implementation is eligible for trial handover only when AC-002 through AC-075 pass, every locked architecture decision in [decisions.md](decisions.md) is implemented, remaining open risks have recorded dispositions, and the final Git status contains no confidential room data, generated run data or credentials. AC-001 applies only to the original planning task.

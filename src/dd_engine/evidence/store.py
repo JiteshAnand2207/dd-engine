@@ -338,6 +338,18 @@ def _validate_calculation(record: JsonObject, record_id: str) -> list[JsonObject
                         f"non-missing source input {index} requires normalized_value",
                     )
                 )
+            if raw_input.get("reported_value") is None and not _text(
+                raw_input.get("reported_text")
+            ):
+                errors.append(
+                    _error(
+                        "calculations",
+                        record_id,
+                        "missing_reported_source_content",
+                        f"non-missing source input {index} requires reported_value or "
+                        "an exact reported_text span",
+                    )
+                )
     if len(input_ids) != len(set(input_ids)):
         errors.append(
             _error(

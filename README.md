@@ -5,12 +5,12 @@ due-diligence workflow. Codex is the primary harness; Claude Code can follow the
 same file-backed operating contract. Python never invokes a model API, and the
 required path uses no provider API key, Docker, database or cloud service.
 
-Phase 7 adds an auditable evidence and calculation foundation to the complete
-deterministic register/extraction and two-round intake path. It stores typed claims,
-evidence, calculations, contradictions, gaps and issues; resolves format-native
-citations; separates reported and recomputed values; and prevents exact duplicates
-from inflating corroboration. Unanswered intake matters remain gaps. Analysis and
-later stages remain interfaces only.
+Phases 8 and 9 add sequential financial, commercial, Irish legal/contractual,
+operational/management and IT analysis plus the standalone Tax module to the
+Phase 7 evidence foundation. Findings separate source fact from inference, retain
+reported and recomputed values, and cannot run until both intake rounds have
+explicitly ingested answers. Report drafting and final validation remain later
+stage interfaces.
 
 ## Requirements and installation
 
@@ -55,7 +55,9 @@ drafting or red-team reasoning.
 `dd-engine.toml` is the checked-in safe default. Relative `runs_dir` values are
 resolved from the configuration file's directory. Unknown settings are rejected.
 Telemetry, external logging and provider API-key requirements cannot be enabled.
-Public research is disabled by default and is not implemented in Phase 7. The
+Public research is disabled by default. Phase 9 logs that it was not performed;
+any future enabled research must use non-confidential queries and a local query,
+timestamp, purpose, URL and conclusion ledger. The
 `[register]` section configures maximum archive member count, total declared and
 observed uncompressed bytes, and per-member uncompressed bytes. Limit breaches
 are registered as terminal blocked rows rather than silently omitted.
@@ -189,23 +191,36 @@ normalisation; a versioned formula; separate reported and recomputed values;
 rounding; source inputs and locators; and a deterministic or model-assisted method.
 A missing input stays null and blocks recomputation rather than becoming zero.
 
+After both intake rounds have been explicitly answered, run analysis in order:
+
+```text
+python -m dd_engine analyse --run runs/<run_id> --phase 8
+python -m dd_engine analyse --run runs/<run_id> --phase 9
+```
+
+Phase 8 writes `workstreams/financial.json`, `financial.md`,
+`commercial.json`, `commercial.md`, `financial_calculations.md` and
+`customer_grouping.md`. Phase 9 writes the legal/contractual,
+operational/management and IT JSON/Markdown pairs plus `tax/tax-findings.json`
+and `tax/tax-analysis.md`. Both phases validate citations and required analytical
+fields; Phase 9 completes the `analyse` stage. Neither creates a report.
+
 The remaining stage interfaces are:
 
 ```text
-python -m dd_engine analyse --run runs/<run_id>
 python -m dd_engine report --run runs/<run_id>
 python -m dd_engine validate --run runs/<run_id>
 ```
 
-In Phase 7 each command in this remaining-stage list exits with status 3 and
+Each command in this remaining-stage list exits with status 3 and
 `stage not implemented`. This is an intentional scope boundary, not a successful
 stage result.
 
 ## Run structure and resumption
 
 Every run contains `manifest.json` and the directories `checkpoints`, `logs`,
-`source_register`, `extracts`, `intake`, `evidence`, `workstreams`, `red_team` and
-`outputs`. Stage states are `not_started`, `running`, `awaiting_input`,
+`source_register`, `extracts`, `intake`, `evidence`, `workstreams`, `tax`,
+`citations`, `red_team` and `outputs`. Stage states are `not_started`, `running`, `awaiting_input`,
 `completed`, `failed` and `invalidated`.
 
 State writes are atomic. Required artifacts must exist, be nonempty, contain the

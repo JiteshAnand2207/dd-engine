@@ -557,6 +557,7 @@ class CitationValidator:
         if citation_kind == "calculation_input" and matched_units:
             pseudo = {
                 "extracted_value": citation.get("reported_value"),
+                "extracted_text": citation.get("reported_text"),
                 "extracted_unit_ids": citation.get("extracted_unit_ids", []),
             }
             errors.extend(self._validate_content(pseudo, matched_units))

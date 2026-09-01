@@ -9,7 +9,6 @@ import pytest
 
 from dd_engine.cli import NOT_IMPLEMENTED_EXIT, main
 from dd_engine.config import load_config
-from dd_engine.constants import STAGE_ORDER
 from dd_engine.runs import create_run
 
 
@@ -45,7 +44,7 @@ def test_init_run_and_status_cli(tmp_path: Path, capsys: pytest.CaptureFixture[s
     assert set(status["stages"].values()) == {"not_started"}
 
 
-@pytest.mark.parametrize("stage_name", STAGE_ORDER[3:])
+@pytest.mark.parametrize("stage_name", ("report", "validate"))
 def test_later_stage_commands_report_not_implemented(
     stage_name: str, tmp_path: Path, capsys: pytest.CaptureFixture[str]
 ) -> None:
